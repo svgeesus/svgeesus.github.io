@@ -41,8 +41,8 @@ p[property=description] {
 }
 
 .social-media a:not(:hover) {
-	-webkit-filter:  brightness(120%) grayscale();
-	filter: brightness(120%) grayscale();
+	-webkit-filter:  brightness(120%) grayscale(100%);
+	filter: brightness(120%) grayscale(100%);
 }
 
 a.twitter {
@@ -54,6 +54,6 @@ a.github {
 }
 
 	a.github:not(:hover) {
-		-webkit-filter: brightness(800%) grayscale();
-		filter: brightness(800%) grayscale();
+		-webkit-filter: brightness(800%) grayscale(100%);
+		filter: brightness(800%) grayscale(100%);
 	}
