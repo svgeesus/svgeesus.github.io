@@ -27,6 +27,8 @@ img[property=image] {
 p[property=description] {
 	text-align: justify;
 	hyphens: auto;
+	font-kerning: normal;
+
 }
 
 .social-media a {
