@@ -1,0 +1,59 @@
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic);
+
+body {
+	display: flex;
+	margin: 0;
+	height: 100vh;
+	font: 120%/1.5 Cambria, 'Droid Serif', serif;
+}
+
+main {
+	max-width: 25em;
+	margin: auto;
+	text-align: center;
+}
+
+h1 {
+	font-weight: normal;
+}
+
+img[property=image] {
+	display: block;
+	margin: auto;
+	max-width: 5em;
+	border-radius: 50%;
+}
+
+p[property=description] {
+	text-align: justify;
+	hyphens: auto;
+}
+
+.social-media a {
+	display: inline-block;
+	width: 1.5em;
+	margin: .5em;
+	text-indent: -999em;
+	overflow: hidden;
+	background: no-repeat center;
+	transition: .5s;
+	transition-property: -webkit-filter, filter;
+}
+
+.social-media a:not(:hover) {
+	-webkit-filter:  brightness(120%) grayscale();
+	filter: brightness(120%) grayscale();
+}
+
+a.twitter {
+	background-image: url(img/twitter.svg);
+}
+
+a.github {
+	background-image: url(img/github.svg);
+}
+
+	a.github:not(:hover) {
+		-webkit-filter: brightness(800%) grayscale();
+		filter: brightness(800%) grayscale();
+	}
