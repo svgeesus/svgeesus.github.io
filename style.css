@@ -1,22 +1,22 @@
 @font-face {
 	font-family: Charter;
-	src: url(fonts/Charter Regular.woff) format("woff") 
+	src: url(fonts/Charter Regular.woff) format("woff")
 }
 @font-face {
 	font-family: Charter;
 	font-weight: 700;
-	src: url(fonts/Charter Bold.woff) format("woff") 
+	src: url(fonts/Charter Bold.woff) format("woff")
 }
 @font-face {
 	font-family: Charter;
 	font-style: italic;
-	src: url(fonts/Charter Italic.woff) format("woff") 
+	src: url(fonts/Charter Italic.woff) format("woff")
 }
 @font-face {
 	font-family: Charter;
 	font-style: italic;
-	font-weight: 700;	
-	src: url(fonts/Charter Bold italic.woff) format("woff") 
+	font-weight: 700;
+	src: url(fonts/Charter Bold italic.woff) format("woff")
 }
 
 body {
@@ -38,7 +38,7 @@ h1 {
 
 img[property=image] {
 	display: block;
-	margin: auto;
+	margin: 0 auto .5em;
 	max-width: 5em;
 	border-radius: 50%;
 }
