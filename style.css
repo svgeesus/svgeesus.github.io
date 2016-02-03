@@ -27,7 +27,8 @@ body {
 }
 
 main {
-	max-width: 27em;
+	width: 27em;
+	max-width: 90vw;
 	margin: auto;
 	text-align: center;
 }
