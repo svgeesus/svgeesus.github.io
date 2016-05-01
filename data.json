@@ -37,9 +37,9 @@
 		},{
 			"talk": {
 				"title": "WebFonts: Level up!",
-				"slides": "https://github.com/svgeesus/font-level-up"
+				"slides": "https://github.com/svgeesus/font-level-up",
+				"video": "https://www.youtube.com/watch?v=Mho5DIT6MWM"
 			},
-			"video": "https://www.youtube.com/watch?v=Mho5DIT6MWM",
 			"name": "CSSConf Asia",
 			"date": "2015-11-16",
 			"days": "3",
@@ -59,11 +59,11 @@
 		},{
 			"talk": {
 				"title": "Coloured glyphs in OpenType",
-				"slides": "http://www.w3.org/Talks/2014/lilley-chromaticfont-lgm/title.svg"
+				"slides": "http://www.w3.org/Talks/2014/lilley-chromaticfont-lgm/title.svg",
+				"video": "https://www.youtube.com/watch?v=I4Ig9q0ZQZo"
 			},
 			"name": "Libre Graphics Meeting",
 			"url": "http://libregraphicsmeeting.org/2014/program/index.html",
-			"video": "https://www.youtube.com/watch?v=I4Ig9q0ZQZo",
 			"date": "2014-04-03",
 			"country": "de",
 			"city": "Leipzig",
@@ -101,22 +101,22 @@
 	}, {
 			"talk": {
 				"title": "ICC Color Management in SVG2",
-				"slides": "http://www.w3.org/Talks/2012/ChrisLilley-FOSDEM/cover-basic.svg"
+				"slides": "http://www.w3.org/Talks/2012/ChrisLilley-FOSDEM/cover-basic.svg",
+				"audio": "http://www.oyranos.org/FOSDEM2012/SVG2.ogg"
 			},
 			"name": "FOSDEM 2012",
 			"url": "http://www.freedesktop.org/wiki/OpenIcc/Events/Fosdem/2012/",
-			"audio": "http://www.oyranos.org/FOSDEM2012/SVG2.ogg",
 			"date": "2012-05-02",
 			"country": "be",
 			"city": "Brussels"
 		}, {
 			"talk": {
 				"title": "New features in SVG2 - WebFonts, Advanced Gradients, and more",
-				"slides": "http://www.w3.org/Talks/2012/ChrisLilley-SVGSocial/cover.svg"
+				"slides": "http://www.w3.org/Talks/2012/ChrisLilley-SVGSocial/cover.svg",
+				"video": "https://picasaweb.google.com/102901558051835581553/SVGEventInSydney?authkey=Gv1sRgCLvx68On7-_F-QE#5703281468950539026"
 			},
 			"name": "Web Directions SVG Social",
 			"url": "http://svgsocial.eventbrite.com/",
-			"video": "https://picasaweb.google.com/102901558051835581553/SVGEventInSydney?authkey=Gv1sRgCLvx68On7-_F-QE#5703281468950539026",
 			"date": "2012-01-12",
 			"country": "au",
 			"city": "Surry Hills, NSW"
@@ -152,11 +152,11 @@
 		}, {
 			"talk": {
 				"title": "SVG - News and Plans",
-				"type": "Panel"
+				"type": "Panel",
+				"video": "http://river-valley.zeeba.tv/svg-news-and-plans/"
 			},
 			"name": "Libre Graphics Meeting",
 			"url": "http://libregraphicsmeeting.org/2010/program.php.html",
-			"video": "http://river-valley.zeeba.tv/svg-news-and-plans/",
 			"date": "2010-05-27",
 			"days": "4",
 			"country": "be",
@@ -164,10 +164,7 @@
 	}, {
 			"talk": {
 				"title": "Fonts, formats, CSS and libre graphics ",
-				"video":
-				[	"https://www.youtube.com/watch?v=OJ08PbgC9P4",
-					"http://river-valley.zeeba.tv/fonts-formats-css-and-libre-graphics/"
-				],
+				"video": "http://river-valley.zeeba.tv/fonts-formats-css-and-libre-graphics/",
 				"slides": "http://www.w3.org/Talks/2009/05-LGM-Lilley/cover.svg"
 			},
 			"name": "Libre Graphics Meeting",
@@ -352,9 +349,11 @@
 			"country": "hu",
 			"city": "Budapest"
 		}, {
-			"talk": {"title": "Extending SVG Fonts with Graphite"},
+			"talk": {
+				"title": "Extending SVG Fonts with Graphite",
+				"paper": "http://www.w3.org/Talks/2003/Extending%20SVG%20Fonts%20with%20Graphite.pdf"
+			},
 			"name": "23rd Internationalization & Unicode Conference",
-			"paper": "http://www.w3.org/Talks/2003/Extending%20SVG%20Fonts%20with%20Graphite.pdf",
 			"url": "http://www.unicode.org/iuc/iuc23/a359.html",
 			"date": "2003-03-24",
 			"days": "3",
@@ -550,13 +549,15 @@
 			"city": "NATO Consultation, Command and Control Agency",
 			"comment": "XML was a really hot topic at the time"
 		}, {
-			"talk": {"title": "XML meets Graphics"},
+			"talk": {
+				"title": "XML meets Graphics",
+				"slides": "http://www.w3.org/Talks/1999/09/14-SVG-XMLWorld/slide1.htm"
+			},
 			"name": "XML World",
 			"date": "1999-09-14",
 			"days": "3",
 			"country": "ca",
-			"city": "Ottawa",
-			"slides": "http://www.w3.org/Talks/1999/09/14-SVG-XMLWorld/slide1.htm"
+			"city": "Ottawa"
 		},{
 			"talk": {
 				"title": "Rendering Multilingual Documents — CSS and XSL",
