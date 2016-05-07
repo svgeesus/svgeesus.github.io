@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" vocab="http://schema.org">
+<head>
+
+<meta charset="UTF-8">
+<title>Chris Lilley</title>
+<link rel="stylesheet" href="css/wysie.css">
+<link rel="stylesheet" href="css/talks.css">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<main data-store="https://github.com/svgeesus/svgeesus.github.io/data.json">
+
+<h1>
+	<img property="image" src="https://avatars2.githubusercontent.com/u/2506926?v=3&s=460" alt="">
+	<a href="index.html"><span property="name">Chris Lilley</span></a>
+</h1>
+
+<section class="talks">
+	<h1>Talks ([count(talk)])</h1>
+
+	<article data-multiple property="event" typeof="Event">
+		<h1 data-multiple property="talk" typeof="Talk" required>
+			<span property="title" data-default="TBD">Web Fonts: Level up!</span>
+			<span property class="type"><select>
+					<option selected>Talk</option>
+					<option>Keynote</option>
+					<option>Workshop</option>
+					<option>Panel</option>
+					<option>Round Table</option>
+					<option>Paper</option>
+					<option>Tutorial</option>
+				</select></span>
+			<a property class="video" target="_blank">Video</a>
+			<a property class="audio" target="_blank">Audio</a>
+			<a property class="slides" target="_blank">Slides</a>
+		</h1>
+		<h2>
+			<a property="url" href="http://cssconf.asia" target="_blank">
+				<span property="name">CSSConf.asia</span>
+			</a>
+		</h2>
+		<p class="date"><time property="date" datetime="2015-11-08">8 Nov 2015</time></p>
+		<address class="flag-{country}">
+			<span property="city"></span>,
+			<span property="country"><select>
+					<option value="us" selected>USA</option>
+					<option value="gb">UK</option>
+					<option value="au">Australia</option>
+					<option value="at">Austria</option>
+					<option value="be">Belgium</option>
+					<option value="br">Brazil</option>
+					<option value="it">Italy</option>
+					<option value="es">Spain</option>
+					<option value="el">Greece</option>
+					<option value="de">Germany</option>
+					<option value="fr">France</option>
+					<option value="il">Israel</option>
+					<option value="nz">New Zealand</option>
+					<option value="pl">Poland</option>
+					<option value="ca">Canada</option>
+					<option value="cl">Chile</option>
+					<option value="cz">Czech Republic</option>
+					<option value="nl">The Netherlands</option>
+					<option value="no">Norway</option>
+					<option value="ph">Philippines</option>
+					<option value="fi">Finland</option>
+					<option value="ru">Russia</option>
+					<option value="sg">Singapore</option>
+					<option value="se">Sweden</option>
+					<option value="ch">Switzerland</option>
+				</select></span>
+		</address>
+		<p property class="comment"></p>
+	</article>
+</section>
+
+</main>
+
+<script src="wysie.min.js"></script>
+
+</body>
+</html>
