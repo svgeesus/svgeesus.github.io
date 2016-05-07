@@ -30,7 +30,7 @@
 			"name": "Scotland CSS",
 			"url": "http://scotlandcss.com/",
 			"date": "2016-06-01",
-			"country": "uk",
+			"country": "gb",
 			"city": "Edinburgh"
 		},{
 			"talk": {
@@ -510,7 +510,7 @@
 			"name": "Online Help Conference Europe",
 			"date": "2000-06-09",
 			"days": "4",
-			"country": "uk",
+			"country": "gb",
 			"city": "London"
 		}, {
 			"talk": [{
