@@ -22,6 +22,16 @@
 			"date": "2016-06-17",
 			"country": "nl",
 			"city": "Amsterdam"
+		,{
+			"talk": {
+				"title": "Opening Address",
+				"type": "keynote"
+			},
+			"name": "Scotland CSS",
+			"url": "http://scotlandcss.com/",
+			"date": "2016-06-01",
+			"country": "uk",
+			"city": "Edinburgh"
 		},{
 			"talk": {
 				"title": "Audio Working Group",
