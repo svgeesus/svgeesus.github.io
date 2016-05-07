@@ -73,11 +73,11 @@ p[property=description] {
 }
 
 a.twitter {
-	background-image: url(img/twitter.svg);
+	background-image: url(../img/twitter.svg);
 }
 
 a.github {
-	background-image: url(img/github.svg);
+	background-image: url(../img/github.svg);
 }
 
 	a.github:not(:hover) {
