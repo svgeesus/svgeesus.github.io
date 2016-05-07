@@ -1,0 +1,23 @@
+{
+  "name": "svgeesus.github.io",
+  "version": "1.0.0",
+  "description": "Chris Lilley’s personal website",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/svgeesus/svgeesus.github.io.git"
+  },
+  "author": "Chris Lilley, Lea Verou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/svgeesus/svgeesus.github.io/issues"
+  },
+  "homepage": "https://github.com/svgeesus/svgeesus.github.io",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-copy": "0.0.2"
+  }
+}
