@@ -56,7 +56,7 @@ p[property=description] {
 	font-kerning: normal;
 }
 
-.social-media a {
+.links a {
 	display: inline-block;
 	width: 1.5em;
 	margin: .5em;
@@ -67,22 +67,32 @@ p[property=description] {
 	transition-property: -webkit-filter, filter;
 }
 
-.social-media a:not(:hover) {
-	-webkit-filter:  brightness(120%) grayscale(100%);
-	filter: brightness(120%) grayscale(100%);
-}
+	.links a:not(:hover):not(:focus) {
+		-webkit-filter: grayscale(100%);
+		filter: grayscale(100%);
+	}
 
-a.twitter {
-	background-image: url(../img/twitter.svg);
-}
+	a.twitter {
+		background-image: url(../img/twitter.svg);
+	}
 
-a.github {
-	background-image: url(../img/github.svg);
-}
+		a.twitter:not(:hover):not(:focus) {
+			-webkit-filter:  brightness(120%) grayscale(100%);
+			filter: brightness(120%) grayscale(100%);
+		}
 
-	a.github:not(:hover) {
-		-webkit-filter: brightness(800%) grayscale(100%);
-		filter: brightness(800%) grayscale(100%);
+	a.github {
+		background-image: url(../img/github.svg);
+	}
+
+		a.github:not(:hover):not(:focus) {
+			-webkit-filter: brightness(800%) grayscale(100%);
+			filter: brightness(800%) grayscale(100%);
+		}
+
+	a.talks {
+		background-image: url(../img/podium.svg);
+		font-size: 100%;
 	}
 
 .talks {
