@@ -1,644 +1,945 @@
 {
 	"image": "https://avatars2.githubusercontent.com/u/2506926?v=3&s=460",
 	"name": "Chris Lilley",
-	"description": "\tChris Lilley is a Technical Director at the World Wide Web Consortium (W3C).\tConsidered “the father of SVG”, he also co-authored PNG, was co-editor of CSS2, chaired the group that developed @font-face, and co-developed WOFF. Ex Technical Architecture Group.\tChris is still trying to get Color Management on the Web, sigh.\tCurrently working on CSS levels 3/4/5 (no, really), Web Audio, and WOFF2.",
-	"twitter": "http://twitter.com/svgeesus",
-	"github": "http://github.com/svgeesus",
 	"event": [
 		{
-			"talk": {
-				"title": "WebFonts: Level up!",
-				"slides": "https://github.com/svgeesus/font-level-up"
-			},
-			"name": "BrazilJS 2016",
+			"talk": [
+				{
+					"title": "WebFonts: Level up!",
+					"type": "Talk",
+					"slides": "https://github.com/svgeesus/font-level-up"
+				}
+			],
 			"url": "https://braziljs.org/conf?lang=en",
+			"name": "BrazilJS 2016",
 			"date": "2016-08-26",
-			"country": "br",
-			"city": "Porto Alegre"
-		},{
-			"talk": {"title": "The Evolution of CSS 4 Color"},
-			"name": "CSS Day",
+			"city": "Porto Alegre",
+			"country": "br"
+		},
+		{
+			"talk": [
+				{
+					"title": "The Evolution of CSS 4 Color",
+					"type": "Talk",
+					"slides": "http://yougottalovefrontend.com/#page-program"
+				}
+			],
+			"url": "http://yougottalovefrontend.com/#page-program",
+			"name": "You Gotta Love Frontend",
+			"city": "Tel Aviv",
+			"country": "il"
+		},
+		{
+			"talk": [
+				{
+					"title": "The Evolution of CSS 4 Color",
+					"type": "Talk",
+					"slides": "http://yougottalovefrontend.com/#page-program"
+				}
+			],
 			"url": "http://cssday.nl/2016",
+			"name": "CSS Day",
 			"date": "2016-06-17",
-			"country": "nl",
-			"city": "Amsterdam"
-		},{
-			"talk": {
-				"title": "Opening Address",
-				"type": "keynote"
-			},
-			"name": "Scotland CSS",
+			"city": "Amsterdam",
+			"country": "nl"
+		},
+		{
+			"talk": [
+				{
+					"title": "Opening Address",
+					"type": "keynote"
+				}
+			],
 			"url": "http://scotlandcss.com/",
+			"name": "Scotland CSS",
 			"date": "2016-06-01",
-			"country": "scotland",
-			"city": "Edinburgh"
-		},{
-			"talk": {
-				"title": "Audio Working Group",
-				"type": "Panel"
-			},
-			"name": "Second Web Audio Conference",
+			"city": "Edinburgh",
+			"country": "scotland"
+		},
+		{
+			"talk": [
+				{
+					"title": "Audio Working Group",
+					"type": "Panel"
+				}
+			],
 			"url": "http://webaudio.gatech.edu/",
+			"name": "Second Web Audio Conference",
 			"date": "2016-04-04",
-			"days": "3",
-
+			"city": "Atlanta, Georgia",
 			"country": "us",
-			"city": "Atlanta, Georgia"
-		},{
-			"talk": {
-				"title": "WebFonts: Level up!",
-				"slides": "https://github.com/svgeesus/font-level-up",
-				"video": "https://www.youtube.com/watch?v=Mho5DIT6MWM"
-			},
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "WebFonts: Level up!",
+					"type": "Talk",
+					"video": "https://www.youtube.com/watch?v=Mho5DIT6MWM",
+					"slides": "https://github.com/svgeesus/font-level-up"
+				}
+			],
 			"name": "CSSConf Asia",
 			"date": "2015-11-16",
-			"days": "3",
+			"city": "Singapore",
 			"country": "sg",
-			"city": "Singapore"
-		},{
-			"talk": {
-				"title": "Audio Working Group",
-				"type": "panel"
-			},
-			"name": "First Web Audio Conference",
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "Audio Working Group",
+					"type": "panel"
+				}
+			],
 			"url": "http://wac.ircam.fr/",
+			"name": "First Web Audio Conference",
 			"date": "2015-02-26",
-			"days": "3",
+			"city": "Paris",
 			"country": "fr",
-			"city": "Paris"
-		},{
-			"talk": {
-				"title": "Coloured glyphs in OpenType",
-				"slides": "http://www.w3.org/Talks/2014/lilley-chromaticfont-lgm/title.svg",
-				"video": "https://www.youtube.com/watch?v=I4Ig9q0ZQZo"
-			},
-			"name": "Libre Graphics Meeting",
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "Coloured glyphs in OpenType",
+					"type": "Talk",
+					"video": "https://www.youtube.com/watch?v=I4Ig9q0ZQZo",
+					"slides": "http://www.w3.org/Talks/2014/lilley-chromaticfont-lgm/title.svg"
+				}
+			],
 			"url": "http://libregraphicsmeeting.org/2014/program/index.html",
+			"name": "Libre Graphics Meeting",
 			"date": "2014-04-03",
-			"country": "de",
 			"city": "Leipzig",
+			"country": "de",
 			"comment": "Describes the three ways to achieve chromatic fonts which were added to OpenType v.3 in 2014: PNG images, stacked hinted TrueType glyphs, and SVG glyphs in OpenType."
-		}, {
-			"talk": {
-				"title": "Typographers' evening",
-				"type": "Round Table"
-			},
+		},
+		{
+			"talk": [
+				{
+					"title": "Typographers' evening",
+					"type": "Round Table"
+				}
+			],
 			"name": "Microsoft Typography",
 			"date": "2014-01-30",
-			"country": "us",
-			"city": "Seattle, WA"
-		}, {
-			"talk": {
-				"title": "New Work: SVG2, WOFF 2",
-				"slides": "http://www.w3.org/Talks/2012/ChrisLilley-TPAC-NewWork/cover-basic.svg"
-			},
-			"name": "W3C TPAC 2012, Technical Plenary",
+			"city": "Seattle, WA",
+			"country": "us"
+		},
+		{
+			"talk": [
+				{
+					"title": "New Work: SVG2, WOFF 2",
+					"type": "Talk",
+					"slides": "http://www.w3.org/Talks/2012/ChrisLilley-TPAC-NewWork/cover-basic.svg"
+				}
+			],
 			"url": "http://www.w3.org/wiki/TPAC2012",
-
+			"name": "W3C TPAC 2012, Technical Plenary",
 			"date": "2012-10-31",
-			"country": "fr",
-			"city": "Lyon"
-		}, {
-			"talk": {
-				"title": "ICC Color Management in SVG2",
-				"slides": "http://www.w3.org/Talks/2012/ChrisLilley-FOSDEM/cover-basic.svg"
-			},
-			"name": "Libre Graphics Meeting",
+			"city": "Lyon",
+			"country": "fr"
+		},
+		{
+			"talk": [
+				{
+					"title": "ICC Color Management in SVG2",
+					"type": "Talk",
+					"slides": "http://www.w3.org/Talks/2012/ChrisLilley-FOSDEM/cover-basic.svg"
+				}
+			],
 			"url": "http://libregraphicsmeeting.org/2012/program/index.html",
+			"name": "Libre Graphics Meeting",
 			"date": "2012-05-02",
-			"country": "at",
-			"city": "Vienna"
-	}, {
-			"talk": {
-				"title": "ICC Color Management in SVG2",
-				"slides": "http://www.w3.org/Talks/2012/ChrisLilley-FOSDEM/cover-basic.svg",
-				"audio": "http://www.oyranos.org/FOSDEM2012/SVG2.ogg"
-			},
-			"name": "FOSDEM 2012",
+			"city": "Vienna",
+			"country": "at"
+		},
+		{
+			"talk": [
+				{
+					"title": "ICC Color Management in SVG2",
+					"type": "Talk",
+					"audio": "http://www.oyranos.org/FOSDEM2012/SVG2.ogg",
+					"slides": "http://www.w3.org/Talks/2012/ChrisLilley-FOSDEM/cover-basic.svg"
+				}
+			],
 			"url": "http://www.freedesktop.org/wiki/OpenIcc/Events/Fosdem/2012/",
+			"name": "FOSDEM 2012",
 			"date": "2012-05-02",
-			"country": "be",
-			"city": "Brussels"
-		}, {
-			"talk": {
-				"title": "New features in SVG2 - WebFonts, Advanced Gradients, and more",
-				"slides": "http://www.w3.org/Talks/2012/ChrisLilley-SVGSocial/cover.svg",
-				"video": "https://picasaweb.google.com/102901558051835581553/SVGEventInSydney?authkey=Gv1sRgCLvx68On7-_F-QE#5703281468950539026"
-			},
-			"name": "Web Directions SVG Social",
+			"city": "Brussels",
+			"country": "be"
+		},
+		{
+			"talk": [
+				{
+					"title": "New features in SVG2 - WebFonts, Advanced Gradients, and more",
+					"type": "Talk",
+					"video": "https://picasaweb.google.com/102901558051835581553/SVGEventInSydney?authkey=Gv1sRgCLvx68On7-_F-QE#5703281468950539026",
+					"slides": "http://www.w3.org/Talks/2012/ChrisLilley-SVGSocial/cover.svg"
+				}
+			],
 			"url": "http://svgsocial.eventbrite.com/",
+			"name": "Web Directions SVG Social",
 			"date": "2012-01-12",
-			"country": "au",
-			"city": "Surry Hills, NSW"
-		}, {
-			"talk": {
-				"title": "SVG, CSS3, and WOFF",
-				"slides": "http://www.w3.org/Talks/2010/ChrisLilley-SVG-LaCantine/cover.svg"
-			},
-			"name": "SVG Meetup",
+			"city": "Surry Hills, NSW",
+			"country": "au"
+		},
+		{
+			"talk": [
+				{
+					"title": "SVG, CSS3, and WOFF",
+					"type": "Talk",
+					"slides": "http://www.w3.org/Talks/2010/ChrisLilley-SVG-LaCantine/cover.svg"
+				}
+			],
 			"url": "http://www.w3.org/2010/09/SVGmeetup-Paris.html",
+			"name": "SVG Meetup",
 			"date": "2010-09-06",
-			"country": "fr",
 			"city": "Paris",
+			"country": "fr",
 			"comment": "The front page uses a ton of filter effects and css3 OpenType features to horrendous effect which will make your eyes bleed. I'm really sorry."
-		}, {
-			"talk": {
-				"title": "Graphical Effects Beyond SVG 1.1",
-				"type": "Panel"
-			},
+		},
+		{
+			"talk": [
+				{
+					"title": "Graphical Effects Beyond SVG 1.1",
+					"type": "Panel"
+				}
+			],
+			"url": "http://www.svgopen.org/2010/registration.php?section=abstracts_and_proceedings#paper_77",
 			"name": "SVG Open 2010",
 			"date": "2010-08-30",
-			"days": "3",
-			"url": "http://www.svgopen.org/2010/registration.php?section=abstracts_and_proceedings#paper_77",
+			"city": "Paris",
 			"country": "fr",
-			"city": "Paris"
-		}, {
-			"talk": {"title": "The W3C standards process and Web Fonts"},
-			"name": "TypeCon 2010: Babel",
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "The W3C standards process and Web Fonts",
+					"type": "Talk"
+				}
+			],
 			"url": "http://www.typecon.com/",
+			"name": "TypeCon 2010: Babel",
 			"date": "2010-08-20",
-			"country": "us",
-			"city": "Los Angeles, CA"
-		}, {
-			"talk": {
-				"title": "SVG - News and Plans",
-				"type": "Panel",
-				"video": "http://river-valley.zeeba.tv/svg-news-and-plans/"
-			},
-			"name": "Libre Graphics Meeting",
+			"city": "Los Angeles, CA",
+			"country": "us"
+		},
+		{
+			"talk": [
+				{
+					"title": "SVG - News and Plans",
+					"type": "Panel",
+					"video": "http://river-valley.zeeba.tv/svg-news-and-plans/"
+				}
+			],
 			"url": "http://libregraphicsmeeting.org/2010/program.php.html",
+			"name": "Libre Graphics Meeting",
 			"date": "2010-05-27",
-			"days": "4",
+			"city": "Brussels",
 			"country": "be",
-			"city": "Brussels"
-	}, {
-			"talk": {
-				"title": "Fonts, formats, CSS and libre graphics ",
-				"video": "http://river-valley.zeeba.tv/fonts-formats-css-and-libre-graphics/",
-				"slides": "http://www.w3.org/Talks/2009/05-LGM-Lilley/cover.svg"
-			},
-			"name": "Libre Graphics Meeting",
+			"days": "4"
+		},
+		{
+			"talk": [
+				{
+					"title": "Fonts, formats, CSS and libre graphics ",
+					"type": "Talk",
+					"video": "http://river-valley.zeeba.tv/fonts-formats-css-and-libre-graphics/",
+					"slides": "http://www.w3.org/Talks/2009/05-LGM-Lilley/cover.svg"
+				}
+			],
 			"url": "http://libregraphicsmeeting.org/2009/program.php.html",
-			"date": "2009-08-06",
-			"days": "4",
-			"country": "ca",
-			"city": "Montréal, Quebec"
-		}, {
-			"talk": {
-				"title": "What is happening with SVG",
-				"slides": "http://www.w3.org/Talks/2008/LGM3/cover.svg"
-			},
 			"name": "Libre Graphics Meeting",
+			"date": "2009-08-06",
+			"city": "Montréal, Quebec",
+			"country": "ca",
+			"days": "4"
+		},
+		{
+			"talk": [
+				{
+					"title": "What is happening with SVG",
+					"type": "Talk",
+					"slides": "http://www.w3.org/Talks/2008/LGM3/cover.svg"
+				}
+			],
 			"url": "http://libregraphicsmeeting.org/2008/program.html",
+			"name": "Libre Graphics Meeting",
 			"date": "2008-05-08",
-			"days": "4",
+			"city": "Wrocław",
 			"country": "pl",
-			"city": "Wrocław"
-		}, {
-			"talk": {
-				"title": "Mind the Gap: Seeking holes in the markup-related standards suite",
-				"type": "Panel"
-			},
-			"name": "Extreme Markup Languages",
+			"days": "4"
+		},
+		{
+			"talk": [
+				{
+					"title": "Mind the Gap: Seeking holes in the markup-related standards suite",
+					"type": "Panel"
+				}
+			],
 			"url": "http://www.extrememarkup.com/",
+			"name": "Extreme Markup Languages",
 			"date": "2007-08-09",
-			"country": "ca",
-			"city": "Montréal, Quebec"
-		}, {
-			"talk": {
-				"title": "The Future of the Web Page",
-				"type": "Panel"
-			},
-			"name": "Sixteenth International World Wide Web Conference",
+			"city": "Montréal, Quebec",
+			"country": "ca"
+		},
+		{
+			"talk": [
+				{
+					"title": "The Future of the Web Page",
+					"type": "Panel"
+				}
+			],
 			"url": "http://www.w3.org/2007/05/w3c-track.html",
+			"name": "Sixteenth International World Wide Web Conference",
 			"date": "2007-05-09",
-			"country": "ca",
-			"city": "Banff, Alberta"
-		}, {
-			"talk": {"title": "HTML Reloaded"},
-			"name": "Sixteenth International World Wide Web Conference",
+			"city": "Banff, Alberta",
+			"country": "ca"
+		},
+		{
+			"talk": [
+				{
+					"title": "HTML Reloaded",
+					"type": "Talk"
+				}
+			],
 			"url": "http://www.w3.org/2007/05/w3c-track.html",
+			"name": "Sixteenth International World Wide Web Conference",
 			"date": "2007-05-07",
-			"country": "ca",
-			"city": "Banff, Alberta"
-		}, {
-			"talk": {
-				"title": "SVG Print, background and progress",
-				"slides": "http://www.w3.org/Talks/2006/lilley-svgprint/title.svg"
-			},
-			"name": "W3C Print Symposium 2006",
+			"city": "Banff, Alberta",
+			"country": "ca"
+		},
+		{
+			"talk": [
+				{
+					"title": "SVG Print, background and progress",
+					"type": "Talk",
+					"slides": "http://www.w3.org/Talks/2006/lilley-svgprint/title.svg"
+				}
+			],
 			"url": "http://www.w3c.de/Events/2006/PrintSymposium_en.html",
+			"name": "W3C Print Symposium 2006",
 			"date": "2006-10-17",
-			"country": "de",
-			"city": "Heidelberg"
-		}, {
-			"talk": {"title": "Epona, a re-evaluation"},
-			"name": "VII F.E.R.C.AN Workshop",
+			"city": "Heidelberg",
+			"country": "de"
+		},
+		{
+			"talk": [
+				{
+					"title": "Epona, a re-evaluation",
+					"type": "Talk"
+				}
+			],
 			"url": "http://viasacra.org.uk/f-e-r-c-an-publications/",
+			"name": "VII F.E.R.C.AN Workshop",
 			"date": "2006-05-25",
-			"days": "3",
-			"country": "pt",
 			"city": "Cascais",
-			"comment": "A talk about epigraphy of the Gallo-Roman deity Epona, presented at the 7th Fontes Epigraphici Religionum Celticarum ANtiquarum (FERCAN) workshop. Yes, this one was not work-related :)"
-		}, {
-			"talk": {
-				"title": "SVG: where are we and why does it matter",
-				"slides": "http://www.w3.org/Talks/2006/0512-svgeuws-chris/title.svg"
-			},
-			"name": "SVG European Workshop",
+			"country": "pt",
+			"comment": "A talk about epigraphy of the Gallo-Roman deity Epona, presented at the 7th Fontes Epigraphici Religionum Celticarum ANtiquarum (FERCAN) workshop. Yes, this one was not work-related :)",
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "SVG: where are we and why does it matter",
+					"type": "Talk",
+					"slides": "http://www.w3.org/Talks/2006/0512-svgeuws-chris/title.svg"
+				}
+			],
 			"url": "http://www.roitsystems.com/twiki/bin/view/SVGWorkshop",
+			"name": "SVG European Workshop",
 			"date": "2006-05-12",
-			"country": "ch",
-			"city": "Zürich"
-		}, {
-			"talk": {
-				"title": "Using Web Multimedia Standards for Mobile Multimedia",
-				"slides": "http://www.w3.org/Talks/2006/0315-mmhs-chris/title.svg"
-			},
+			"city": "Zürich",
+			"country": "ch"
+		},
+		{
+			"talk": [
+				{
+					"title": "Using Web Multimedia Standards for Mobile Multimedia",
+					"type": "Talk",
+					"slides": "http://www.w3.org/Talks/2006/0315-mmhs-chris/title.svg"
+				}
+			],
 			"name": "Multimedia Handsets",
 			"date": "2006-03-15",
-			"country": "nl",
-			"city": "Amsterdam"
-		}, {
-			"talk": {
-				"title": "What Does SVG Really Need",
-				"type": "Keynote"
-			},
+			"city": "Amsterdam",
+			"country": "nl"
+		},
+		{
+			"talk": [
+				{
+					"title": "What Does SVG Really Need",
+					"type": "Keynote"
+				}
+			],
+			"url": "http://www.svgopen.org/2004/keynotes_en.html#Lilley",
 			"name": "SVG Open 2004",
 			"date": "2004-09-07",
-			"days": "4",
-			"url": "http://www.svgopen.org/2004/keynotes_en.html#Lilley",
+			"city": "Tokyo",
 			"country": "jp",
-			"city": "Tokyo"
-		}, {
-		"talk": {
-				"title": "Architectural Principles of the World Wide Web",
-				"slides": "http://www.w3.org/Talks/2004/Lilley-TAG-XMLEurope/Overview.html"
-			},
+			"days": "4"
+		},
+		{
+			"talk": [
+				{
+					"title": "Architectural Principles of the World Wide Web",
+					"type": "Talk",
+					"slides": "http://www.w3.org/Talks/2004/Lilley-TAG-XMLEurope/Overview.html"
+				}
+			],
 			"name": "XML Europe 2004",
 			"date": "2004-04-18",
-			"days": 4,
+			"city": "Amsterdam",
 			"country": "nl",
-			"city": "Amsterdam"
-		}, {
-			"talk": {
-				"title": "Architecture of the World Wide Web and Hot TAG Topics",
-				"type": "Panel"
-			},
+			"days": 4
+		},
+		{
+			"talk": [
+				{
+					"title": "Architecture of the World Wide Web and Hot TAG Topics",
+					"type": "Panel"
+				}
+			],
 			"name": "W3C Technical Plenary",
 			"date": "2004-03-01",
-			"days": 5,
+			"city": "Cannes-Mandelieu",
 			"country": "fr",
-			"city": "Cannes-Mandelieu"
-		}, {
-			"talk": {"title": "Emoji - Not your Grandfather's Glyphs"},
-			"name": "24th Internationalization & Unicode Conference",
-			"date": "2003-09-03",
-			"days": "3",
-			"country": "us",
-			"city": " Atlanta, Georgia",
+			"days": 5
+		},
+		{
+			"talk": [
+				{
+					"title": "Emoji - Not your Grandfather's Glyphs",
+					"type": "Talk"
+				}
+			],
 			"url": "http://www.unicode.org/iuc/iuc24/a338.html",
-			"comment": "Yes, in 1993, when they were starting to be used in Japan and were wildly non-interoperable between carriers. We got there eventually."
-		}, {
-			"talk": {"title": "Extending SVG Fonts with Graphite"},
 			"name": "24th Internationalization & Unicode Conference",
 			"date": "2003-09-03",
-			"days": "3",
-			"country": "us",
 			"city": " Atlanta, Georgia",
-			"url": "http://www.unicode.org/iuc/iuc24/a339.html"
-		}, {
-			"talk": {
-				"title": "Internationalization and the Digital Divide",
-				"type": "Panel"
-			},
+			"country": "us",
+			"comment": "Yes, in 1993, when they were starting to be used in Japan and were wildly non-interoperable between carriers. We got there eventually.",
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "Extending SVG Fonts with Graphite",
+					"type": "Talk",
+					"paper": "http://www.w3.org/Talks/2003/Extending%20SVG%20Fonts%20with%20Graphite.pdf"
+				}
+			],
+			"url": "http://www.unicode.org/iuc/iuc24/a339.html",
 			"name": "24th Internationalization & Unicode Conference",
 			"date": "2003-09-03",
-			"days": "3",
-			"country": "us",
 			"city": " Atlanta, Georgia",
-			"url": "http://www.unicode.org/iuc/iuc24/a204.html"
-		}, {
-			"talk": {
-				"title": "The Next-Generation Web Client",
-				"type": "Keynote"
-			},
-			"name": "SVG Open 2003",
-			"date": "2003-07-13",
-			"days": "6",
+			"country": "us",
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "Internationalization and the Digital Divide",
+					"type": "Panel"
+				}
+			],
+			"url": "http://www.unicode.org/iuc/iuc24/a204.html",
+			"name": "24th Internationalization & Unicode Conference",
+			"date": "2003-09-03",
+			"city": " Atlanta, Georgia",
+			"country": "us",
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "The Next-Generation Web Client",
+					"type": "Keynote"
+				}
+			],
 			"url": "http://www.svgopen.org/2003/proceedings.html#paper126",
-			"country": "ca",
-			"city": "Vancouver, BC"
-		}, {
-			"talk": {
-				"title": "SVG and Mapping - Possible Enhancements to a Future SVG Standard Regarding Cartographic Requirements",
-				"type": "Panel"
-			},
 			"name": "SVG Open 2003",
 			"date": "2003-07-13",
-			"days": "6",
-			"url": "http://www.svgopen.org/2003/proceedings.html#paper120",
-			"country": "ca",
 			"city": "Vancouver, BC",
-			"comment": "Enhancements we still don't have :("
-		}, {
-			"talk": {"title": "Beyond SVG 1.1"},
-			"name": "Twelfth International World Wide Web Conference, Developer Day",
+			"country": "ca",
+			"days": "6"
+		},
+		{
+			"talk": [
+				{
+					"title": "SVG and Mapping - Possible Enhancements to a Future SVG Standard Regarding Cartographic Requirements",
+					"type": "Panel"
+				}
+			],
+			"url": "http://www.svgopen.org/2003/proceedings.html#paper120",
+			"name": "SVG Open 2003",
+			"date": "2003-07-13",
+			"city": "Vancouver, BC",
+			"country": "ca",
+			"comment": "Enhancements we still don't have :(",
+			"days": "6"
+		},
+		{
+			"talk": [
+				{
+					"title": "Beyond SVG 1.1",
+					"type": "Talk"
+				}
+			],
 			"url": "http://www2003.org/dd/t2_a1.htm",
+			"name": "Twelfth International World Wide Web Conference, Developer Day",
 			"date": "2003-05-24",
-			"country": "hu",
-			"city": "Budapest"
-		}, {
-			"talk": {
-				"title": "Pulling It All Together",
-				"slides": "http://www.w3.org/2003/Talks/www2003-pullingItAllTogether/0.svg"
-			},
+			"city": "Budapest",
+			"country": "hu"
+		},
+		{
+			"talk": [
+				{
+					"title": "Pulling It All Together",
+					"type": "Talk",
+					"slides": "http://www.w3.org/2003/Talks/www2003-pullingItAllTogether/0.svg"
+				}
+			],
 			"name": "Twelfth International World Wide Web Conference",
 			"date": "2003-05-21",
-			"days": "3",
+			"city": "Budapest",
 			"country": "hu",
-			"city": "Budapest"
-		}, {
-			"talk": {
-				"title": "Extending SVG Fonts with Graphite",
-				"paper": "http://www.w3.org/Talks/2003/Extending%20SVG%20Fonts%20with%20Graphite.pdf"
-			},
-			"name": "23rd Internationalization & Unicode Conference",
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "Extending SVG Fonts with Graphite",
+					"type": "Talk",
+					"paper": "http://www.w3.org/Talks/2003/Extending%20SVG%20Fonts%20with%20Graphite.pdf"
+				}
+			],
 			"url": "http://www.unicode.org/iuc/iuc23/a359.html",
+			"name": "23rd Internationalization & Unicode Conference",
 			"date": "2003-03-24",
-			"days": "3",
-			"country": "cz",
 			"city": "Prague",
-			"comment": "SVG Fonts were a stopgap solution as an alternative to just converting text to curves. This was an attempt to improve the internationalization aspect. OpenType ended up being a much better and more widely deployed solution."
-		}, {
-			"talk": {
-				"title": "W3C Technical Architecture Group",
-				"type": "Panel"
-			},
+			"country": "cz",
+			"comment": "SVG Fonts were a stopgap solution as an alternative to just converting text to curves. This was an attempt to improve the internationalization aspect. OpenType ended up being a much better and more widely deployed solution.",
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "W3C Technical Architecture Group",
+					"type": "Panel"
+				}
+			],
 			"name": "XML 2002",
 			"date": "2002-12-10",
-			"country": "us",
 			"city": "Baltimore, MD",
+			"country": "us",
 			"comment": "I served on the TAG for three years, co-wrote Architecture of the World Wide Web with TimBL, Roy Fielding et. al."
-		}, {
-			"talk": {"title": "Visualization with SVG"},
+		},
+		{
+			"talk": [
+				{
+					"title": "Visualization with SVG",
+					"type": "Talk"
+				}
+			],
 			"name": "Applied Visualization Laboratory, University of Tennessee",
 			"date": "2002-09-26",
-			"country": "us",
-			"city": "Knoxville, TN"
-		}, {
-			"talk": {
-				"title": "SVG: Vector Graphics meets Unicode",
-				"type": "Keynote"
-			},
-			"name": "22nd International Unicode Conference",
+			"city": "Knoxville, TN",
+			"country": "us"
+		},
+		{
+			"talk": [
+				{
+					"title": "SVG: Vector Graphics meets Unicode",
+					"type": "Keynote"
+				}
+			],
 			"url": "http://www.unicode.org/iuc/iuc22/program.html",
-			"date": "2002-09-09",
-			"days": "5",
-			"country": "us",
-			"city": "San Jose, CA"
-		}, {
-			"talk": {
-				"title": "Web Internationalization",
-				"type": "Panel"
-			},
 			"name": "22nd International Unicode Conference",
 			"date": "2002-09-09",
-			"days": "5",
+			"city": "San Jose, CA",
 			"country": "us",
-			"city": "San Jose, CA"
-		}, {
-			"talk": {
-				"title": "Beyond SVG 1.0 - the next steps",
-				"type": "Keynote"
-			},
+			"days": "5"
+		},
+		{
+			"talk": [
+				{
+					"title": "Web Internationalization",
+					"type": "Panel"
+				}
+			],
+			"name": "22nd International Unicode Conference",
+			"date": "2002-09-09",
+			"city": "San Jose, CA",
+			"country": "us",
+			"days": "5"
+		},
+		{
+			"talk": [
+				{
+					"title": "Beyond SVG 1.0 - the next steps",
+					"type": "Keynote"
+				}
+			],
 			"name": "SVG Open / Carto.net",
 			"date": "2002-07-15",
-			"days": "3",
+			"city": "Zürich",
 			"country": "ch",
-			"city": "Zürich"
-		}, {
-			"talk": {
-				"title": "Mobile SVG Profiles",
-				"slides": "http://www.w3.org/2002/Talks/www2002-mobsvg/"
-			},
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "Mobile SVG Profiles",
+					"type": "Talk",
+					"slides": "http://www.w3.org/2002/Talks/www2002-mobsvg/"
+				}
+			],
 			"name": "Eleventh International World Wide Web Conference",
 			"date": "2002-05-07",
-			"days": "5",
-			"country": "us",
 			"city": "Honolulu, Hawaii",
-			"comment": "SVG on wildly underpowered pre-smartphones was the hot new thing."
-		}, {
-			"talk": {"title": "SVG: Vector Graphics meets Unicode"},
-			"name": "Twentieth International Unicode Conference",
+			"country": "us",
+			"comment": "SVG on wildly underpowered pre-smartphones was the hot new thing.",
+			"days": "5"
+		},
+		{
+			"talk": [
+				{
+					"title": "SVG: Vector Graphics meets Unicode",
+					"type": "Talk"
+				}
+			],
 			"url": "http://www.unicode.org/iuc/iuc20/program.html",
+			"name": "Twentieth International Unicode Conference",
 			"date": "2002-01-28",
-			"days": "4",
+			"city": "Washington, DC",
 			"country": "us",
-			"city": "Washington, DC"
-		}, {
-			"talk": {
-				"title": "Beyond SVG 1.0 - Mobile SVG and XML Integration",
-				"slides": "http://www.w3.org/Talks/2001/XML2001/BeyondSVG/Overview.html"
-			},
-			"name": "XML 2001 USA",
+			"days": "4"
+		},
+		{
+			"talk": [
+				{
+					"title": "Beyond SVG 1.0 - Mobile SVG and XML Integration",
+					"type": "Talk",
+					"slides": "http://www.w3.org/Talks/2001/XML2001/BeyondSVG/Overview.html"
+				}
+			],
 			"url": "http://www.xmlconference.net/xmlusa/2001/thursday.htm",
+			"name": "XML 2001 USA",
 			"date": "2001-12-11",
-			"days": "4",
-			"country": "us",
 			"city": "Orlando, Florida",
-			"comment": "The slides use an xml processing instruction which is no longer supported by browsers, so no longer render correctly. It was early days for SVG."
-		}, {
-			"talk": {"title": "SVG"},
+			"country": "us",
+			"comment": "The slides use an xml processing instruction which is no longer supported by browsers, so no longer render correctly. It was early days for SVG.",
+			"days": "4"
+		},
+		{
+			"talk": [
+				{
+					"title": "SVG",
+					"type": "Talk"
+				}
+			],
 			"name": "W3C Day, Keio University",
 			"date": "2001-11-29",
-			"country": "jp",
-			"city": "Tokyo"
-		}, {
-			"talk": {"title": "SVG: Vector Graphics meets Unicode"},
-			"name": "Nineteenth International Unicode Conference",
+			"city": "Tokyo",
+			"country": "jp"
+		},
+		{
+			"talk": [
+				{
+					"title": "SVG: Vector Graphics meets Unicode",
+					"type": "Talk"
+				}
+			],
 			"url": "http://www.unicode.org/iuc/iuc19/program.html",
+			"name": "Nineteenth International Unicode Conference",
 			"date": "2001-09-12",
-			"days": "4",
+			"city": "San Jose, CA",
 			"country": "us",
-			"city": "San Jose, CA"
-		}, {
-			"talk": {"title": "SVG Overview"},
+			"days": "4"
+		},
+		{
+			"talk": [
+				{
+					"title": "SVG Overview",
+					"type": "Talk"
+				}
+			],
 			"name": "Sophia Schneider Automation",
 			"date": "2001-06-21",
-			"country": "fr",
-			"city": "Sophia Antipolis"
-		}, {
-			"talk": {"title": "A Comparison of WebCGM and SVG"},
+			"city": "Sophia Antipolis",
+			"country": "fr"
+		},
+		{
+			"talk": [
+				{
+					"title": "A Comparison of WebCGM and SVG",
+					"type": "Talk"
+				}
+			],
 			"name": "XML Europe 2001",
 			"date": "2001-05-21",
-			"days": "5",
+			"city": "Berlin",
 			"country": "de",
-			"city": "Berlin"
-		}, {
-			"talk": {"title": "SVG: Vector Graphics meets Unicode"},
-			"name": "Eighteenth International Unicode Conference",
+			"days": "5"
+		},
+		{
+			"talk": [
+				{
+					"title": "SVG: Vector Graphics meets Unicode",
+					"type": "Talk"
+				}
+			],
 			"url": "http://www.unicode.org/iuc/iuc18/program.html",
+			"name": "Eighteenth International Unicode Conference",
 			"date": "2001-04-24",
-			"days": "4",
+			"city": "Hong Kong",
 			"country": "cn",
-			"city": "Hong Kong"
-		}, {
-			"talk": {"title": "SVG"},
+			"days": "4"
+		},
+		{
+			"talk": [
+				{
+					"title": "SVG",
+					"type": "Talk"
+				}
+			],
 			"name": "PAGE 2001 (Japan Association of Graphic Arts Technology)",
 			"date": "2001-02-08",
-			"days": "2",
+			"city": "Tokyo",
 			"country": "jp",
-			"city": "Tokyo"
-		}, {
-			"talk": {"title": "SVG"},
+			"days": "2"
+		},
+		{
+			"talk": [
+				{
+					"title": "SVG",
+					"type": "Talk"
+				}
+			],
 			"name": "Future of Web Graphics Symposium",
 			"date": "2001-02-03",
-			"country": "fr",
-			"city": "Paris"
-		}, {
-			"talk": {"title": "SVG"},
+			"city": "Paris",
+			"country": "fr"
+		},
+		{
+			"talk": [
+				{
+					"title": "SVG",
+					"type": "Talk"
+				}
+			],
 			"name": "Philips Research",
 			"date": "2001-02-02",
-			"country": "nl",
-			"city": "Eindhoven"
-		}, {
-			"talk": [{
-				"title": "The Latest in Cascading Style Sheets",
-				"slides": "http://www.w3.org/People/chris/OHE2000/Lilley-CSS.pdf"
-			}, {"title": "Cutting Edge XML"}],
+			"city": "Eindhoven",
+			"country": "nl"
+		},
+		{
+			"talk": [
+				{
+					"title": "The Latest in Cascading Style Sheets",
+					"type": "Talk",
+					"slides": "http://www.w3.org/People/chris/OHE2000/Lilley-CSS.pdf"
+				},
+				{
+					"title": "Cutting Edge XML",
+					"type": "Talk"
+				}
+			],
 			"name": "Online Help Conference Europe",
 			"date": "2000-06-09",
-			"days": "4",
+			"city": "London",
 			"country": "gb",
-			"city": "London"
-		}, {
-			"talk": [{
-				"title": "W3C and Web Standards",
-				"type": "Panel"
-			}],
-			"name": "Ninth International World Wide Web Conference",
-
+			"days": "4"
+		},
+		{
+			"talk": [
+				{
+					"title": "W3C and Web Standards",
+					"type": "Panel"
+				}
+			],
 			"url": "http://www.www9.org/w9-panels.html",
-			"date": "2000-05-15",
-			"days": "5",
-			"country": "nl",
-			"city": "Amsterdam"
-		}, {
-			"talk": {
-				"title": "Scalable Vector Graphics (SVG)",
-				"type": "Tutorial",
-				"paper": "http://www.w3.org/People/chris/SVGtut-WWW9/www9-svg-tutorial.pdf",
-				"slides": "http://www.w3.org/People/chris/SVGtut-WWW9/slide1.htm"
-			},
 			"name": "Ninth International World Wide Web Conference",
 			"date": "2000-05-15",
-			"days": "5",
+			"city": "Amsterdam",
 			"country": "nl",
-			"city": "Amsterdam"
-		}, {
-			"talk": {"title": "Internationalisation and Localisation with SVG"},
-			"name": "Sixteenth International Unicode Conference",
+			"days": "5"
+		},
+		{
+			"talk": [
+				{
+					"title": "Scalable Vector Graphics (SVG)",
+					"type": "Tutorial",
+					"paper": "http://www.w3.org/People/chris/SVGtut-WWW9/www9-svg-tutorial.pdf",
+					"slides": "http://www.w3.org/People/chris/SVGtut-WWW9/slide1.htm"
+				}
+			],
+			"name": "Ninth International World Wide Web Conference",
+			"date": "2000-05-15",
+			"city": "Amsterdam",
+			"country": "nl",
+			"days": "5"
+		},
+		{
+			"talk": [
+				{
+					"title": "Internationalisation and Localisation with SVG",
+					"type": "Talk"
+				}
+			],
 			"url": "http://www.unicode.org/iuc/iuc16/program.html",
+			"name": "Sixteenth International Unicode Conference",
 			"date": "2000-03-30",
-			"country": "nl",
-			"city": "Amsterdam"
-		}, {
-			"talk": {"title": "CSS and Online Help Systems"},
+			"city": "Amsterdam",
+			"country": "nl"
+		},
+		{
+			"talk": [
+				{
+					"title": "CSS and Online Help Systems",
+					"type": "Talk"
+				}
+			],
 			"name": "WinWriters Online Help Conference",
 			"date": "2000-03-05",
-			"days": "5",
+			"city": "San Diego, California",
 			"country": "us",
-			"city": "San Diego, California"
-		}, {
-			"talk": {"title": "XML at W3C"},
+			"days": "5"
+		},
+		{
+			"talk": [
+				{
+					"title": "XML at W3C",
+					"type": "Talk"
+				}
+			],
 			"name": "NATO C3A XML Workshop",
 			"date": "1999-11-09",
-			"days": "3",
-			"country": "nl",
 			"city": "NATO Consultation, Command and Control Agency",
-			"comment": "XML was a really hot topic at the time"
-		}, {
-			"talk": {
-				"title": "XML meets Graphics",
-				"slides": "http://www.w3.org/Talks/1999/09/14-SVG-XMLWorld/slide1.htm"
-			},
+			"country": "nl",
+			"comment": "XML was a really hot topic at the time",
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "XML meets Graphics",
+					"type": "Talk",
+					"slides": "http://www.w3.org/Talks/1999/09/14-SVG-XMLWorld/slide1.htm"
+				}
+			],
 			"name": "XML World",
 			"date": "1999-09-14",
-			"days": "3",
+			"city": "Ottawa",
 			"country": "ca",
-			"city": "Ottawa"
-		},{
-			"talk": {
-				"title": "Rendering Multilingual Documents — CSS and XSL",
-				"paper": "http://www.w3.org/Talks/1998/lilley-iuc19-paper.pdf"
-			},
-			"name": "Thirteenth International Unicode Conference",
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "Rendering Multilingual Documents — CSS and XSL",
+					"type": "Talk",
+					"paper": "http://www.w3.org/Talks/1998/lilley-iuc19-paper.pdf"
+				}
+			],
 			"url": "http://www.unicode.org/iuc/iuc13/program.html",
+			"name": "Thirteenth International Unicode Conference",
 			"date": "1998-09-08",
-			"days": "5",
-			"country": "us",
-			"city": "San Jose, CA"
-		}, {
-			"talk": {
-				"title": "The design of an International Web Font Extension for Cascading Style Sheets",
-				"paper": "http://www.w3.org/People/chris/IUC12/WebFonts.pdf"
-			},
-			"name": "Twelfth International Unicode Conference",
-			"url": "http://www.unicode.org/iuc/iuc12/program.html",
-			"date": "1998-04-08",
-			"days": "5",
-			"country": "jp",
-			"city": "Tokyo"
-		}, {
-			"talk": {"title": "The design of an International Web Font Extension for Cascading Style Sheets"},
-			"name": "Eleventh International Unicode Conference",
-			"url": "http://www.unicode.org/iuc/iuc11/program.html",
-			"date": "1997-09-02",
-			"days": "5",
-			"country": "us",
 			"city": "San Jose, CA",
-			"comment": "Telling people about @font-face, when it was brand new."
-		}, {
-			"talk": {
-				"title": "Not Just Decoration: quality graphics for the Web",
-				"type": "Paper",
-				"paper": "http://www.w3.org/Conferences/WWW4/Papers/53/gq-boston.html"
-			},
-			"name": "Fourth International World Wide Web Conference",
-			"url": "http://www.w3.org/Conferences/WWW4/Program_Full.html",
-			"date": "1995-12-11",
-			"days": "4",
 			"country": "us",
+			"days": "5"
+		},
+		{
+			"talk": [
+				{
+					"title": "The design of an International Web Font Extension for Cascading Style Sheets",
+					"type": "Talk",
+					"paper": "http://www.w3.org/People/chris/IUC12/WebFonts.pdf"
+				}
+			],
+			"url": "http://www.unicode.org/iuc/iuc12/program.html",
+			"name": "Twelfth International Unicode Conference",
+			"date": "1998-04-08",
+			"city": "Tokyo",
+			"country": "jp",
+			"days": "5"
+		},
+		{
+			"talk": [
+				{
+					"title": "The design of an International Web Font Extension for Cascading Style Sheets",
+					"type": "Talk"
+				}
+			],
+			"url": "http://www.unicode.org/iuc/iuc11/program.html",
+			"name": "Eleventh International Unicode Conference",
+			"date": "1997-09-02",
+			"city": "San Jose, CA",
+			"country": "us",
+			"comment": "Telling people about @font-face, when it was brand new.",
+			"days": "5"
+		},
+		{
+			"talk": [
+				{
+					"title": "Not Just Decoration: quality graphics for the Web",
+					"type": "Paper",
+					"paper": "http://www.w3.org/Conferences/WWW4/Papers/53/gq-boston.html"
+				}
+			],
+			"url": "http://www.w3.org/Conferences/WWW4/Program_Full.html",
+			"name": "Fourth International World Wide Web Conference",
+			"date": "1995-12-11",
 			"city": "Boston, MA",
-			"comment": "I was hired by W3C after giving this talk and discussing with W3C staff about the importance of graphics on the Web."
-		}, {
-			"talk": {
-				"title": "Active Web Pages",
-				"type": "Tutorial"
-			},
+			"country": "us",
+			"comment": "I was hired by W3C after giving this talk and discussing with W3C staff about the importance of graphics on the Web.",
+			"days": "4"
+		},
+		{
+			"talk": [
+				{
+					"title": "Active Web Pages",
+					"type": "Tutorial"
+				}
+			],
 			"name": "Eurographics UK",
 			"date": "1995-03-28",
-			"days": "3",
-			"country": "gb",
 			"city": "Loughborough",
-			"comment": "In those days you could do a half day tutorial on the Web, from HTTP through HTML to this new CSS thing that no-one knew about yet"
-		}, {
-			"talk": {"title": "An Introduction to Standardised Colour Measurement"},
+			"country": "gb",
+			"comment": "In those days you could do a half day tutorial on the Web, from HTTP through HTML to this new CSS thing that no-one knew about yet",
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "An Introduction to Standardised Colour Measurement",
+					"type": "Talk"
+				}
+			],
 			"name": "12th Eurographics UK Conference",
 			"date": "1994-03-22",
-			"days": "3",
+			"city": "Oxford",
 			"country": "gb",
-			"city": "Oxford"
-		}, {
-			"talk": {
-				"title": "The Design and Development of Distance Learning Materials for Graphics and Visualisation",
-				"type": "Paper"
-			},
+			"days": "3"
+		},
+		{
+			"talk": [
+				{
+					"title": "The Design and Development of Distance Learning Materials for Graphics and Visualisation",
+					"type": "Paper"
+				}
+			],
 			"name": "Second Eurographics Workshop on Graphics and Visualisation Education (GVE)",
 			"date": "1993-09-15",
-			"country": "es",
-			"city": "Barcelona"
+			"city": "Barcelona",
+			"country": "es"
 		}
-	]
+	],
+	"description": "\tChris Lilley is a Technical Director at the World Wide Web Consortium (W3C).\tConsidered “the father of SVG”, he also co-authored PNG, was co-editor of CSS2, chaired the group that developed @font-face, and co-developed WOFF. Ex Technical Architecture Group.\tChris is still trying to get Color Management on the Web, sigh.\tCurrently working on CSS levels 3/4/5 (no, really), Web Audio, and WOFF2.",
+	"twitter": "http://twitter.com/svgeesus",
+	"github": "http://github.com/svgeesus"
 }
