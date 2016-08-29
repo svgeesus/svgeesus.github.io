@@ -7,6 +7,7 @@
 				{
 					"title": "WebFonts: Level up!",
 					"type": "Talk",
+					"video": "https://www.youtube.com/watch?v=qTrIi4YQ1As",
 					"slides": "https://github.com/svgeesus/font-level-up"
 				}
 			],
@@ -21,6 +22,7 @@
 				{
 					"title": "The Evolution of CSS 4 Color",
 					"type": "Talk",
+					"video": "https://www.youtube.com/watch?v=2BReTHTcogM",
 					"slides": "https://www.w3.org/Talks/2016/css4-color-talk/#intro"
 				}
 			],
