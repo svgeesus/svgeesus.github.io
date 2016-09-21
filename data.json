@@ -5,6 +5,17 @@
 		{
 			"talk": [
 				{
+					"title": "TBD",
+					"type": "Talk"
+				}
+			],
+			"date": "2 Dec 2016",
+			"city": "Paris",
+			"country": "fr"
+		},
+		{
+			"talk": [
+				{
 					"title": "WebFonts: Level up!",
 					"type": "Talk",
 					"video": "https://www.youtube.com/watch?v=qTrIi4YQ1As",
