@@ -18,6 +18,19 @@
 		{
 			"talk": [
 				{
+					"title": "TBD",
+					"type": "Panel"
+				}
+			],
+			"url": "https://www.w3.org/wiki/Publishing_Community_Meeting_at_TPAC_2016",
+			"name": "Publishing Community Meeting at TPAC 2016",
+			"date": "23 Sep 2016",
+			"city": "Lisbon",
+			"country": "us"
+		},
+		{
+			"talk": [
+				{
 					"title": "WebFonts: Level up!",
 					"type": "Talk",
 					"video": "https://www.youtube.com/watch?v=qTrIi4YQ1As",
