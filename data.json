@@ -18,6 +18,20 @@
 		{
 			"talk": [
 				{
+					"title": "WebFonts: Level Up!",
+					"type": "Talk"
+				}
+			],
+			"url": "http://www.meetup.com/Boston-CSS/",
+			"name": "Boston CSS",
+			"date": "02 Nov 2016",
+			"city": "Boston",
+			"country": "us",
+			"comment": "Great to be giving this talk at my local, friendly CSS  meetup"
+		},
+		{
+			"talk": [
+				{
 					"title": "The Open Web Platform and Digital Publishing",
 					"type": "Panel"
 				}
