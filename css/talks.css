@@ -224,7 +224,8 @@ main:empty:before {
 	.talks address.flag-cn:before { content: url(flags/cn.png); }
 	.talks address.flag-jp:before { content: url(flags/jp.png); }
 	.talks address.flag-at:before { content: url(flags/at.png); }
-	.talks address.flag-scotland:before { content: url(flags/scotland.png); }
+	.talks address.flag-scotland:before { content: url(flags/scotland.png);} 
+	.talks address.flag-pt:before { content: url(flags/pt.png); }
 
 	.talks .comment,
 	.talks .comment a {
