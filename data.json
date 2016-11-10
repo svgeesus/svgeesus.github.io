@@ -16,10 +16,18 @@
 			"country": "fr"
 		},
 		{
+			"talk": [],
+			"name": "3rd CSS Developers Conference",
+			"date": "17 Dec 2016",
+			"city": "Guangzhou",
+			"country": "us"
+		},
+		{
 			"talk": [
 				{
 					"title": "WebFonts: Level Up!",
-					"type": "Talk"
+					"type": "Talk",
+					"video": "https://www.youtube.com/watch?v=DnG_QYvqoHg"
 				}
 			],
 			"url": "http://www.meetup.com/Boston-CSS/",
