@@ -5,22 +5,30 @@
 		{
 			"talk": [
 				{
-					"title": "TBD",
+					"title": "Web Fonts: Power Up!",
 					"type": "Talk"
 				}
 			],
 			"url": "http://www.dotcss.io/",
 			"name": "dotCSS",
-			"date": "2 Dec 2016",
+			"date": "3 Dec 2016",
 			"city": "Paris",
-			"country": "fr"
+			"country": "fr",
+			"comment": "The ultra fast 18 minutes edited highlights version"
 		},
 		{
-			"talk": [],
-			"name": "3rd CSS Developers Conference",
-			"date": "17 Dec 2016",
-			"city": "Guangzhou",
-			"country": "us"
+			"talk": [
+				{
+					"title": "The Evolution of CSS 4 Color",
+					"type": "Talk",
+					"slides": "https://www.w3.org/Talks/2016/css4-color-talk/#intro"
+				}
+			],
+			"url": "https://2016.cssconf.asia/",
+			"name": "CSS Conf Asia",
+			"date": "25 Nov 2016",
+			"city": "Singapore",
+			"country": "sg"
 		},
 		{
 			"talk": [
