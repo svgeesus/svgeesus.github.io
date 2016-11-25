@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <title>Chris Lilley</title>
-    <link rel="stylesheet" href="css/wysie.css">
+    <link rel="stylesheet" href="css/mavo.css">
     <link rel="stylesheet" href="css/talks.css">
     <link rel="stylesheet" href="css/style.css">
 
@@ -21,12 +21,14 @@
 </h1>
 
         <section class="talks">
-            <h1>[count(talk)] talks</h1>
+            <h1>[count(talk)] sessions at [count(event)] events ([count(upcoming)] events upcoming)</h1>
 
-            <article data-multiple property="event" typeof="Event">
-                <h1 data-multiple property="talk" typeof="Talk" required>
-			<span property="title" data-default="TBD">Web Fonts: Level up!</span>
-			<span property class="type"><select>
+            <article data-multiple property="event" data-order="desc">
+				<meta property="upcoming" content="[date &gt; now]" />
+                <h1 data-multiple property="talk">
+			<span property="title" data-default>TBD</span>
+			<span property class="type">
+				<select>
 					<option selected>Talk</option>
 					<option>Keynote</option>
 					<option>Workshop</option>
@@ -40,52 +42,31 @@
 			<a property class="paper" target="_blank">Paper</a>
 			<a property class="slides" target="_blank">Slides</a>
 		</h1>
-                <h2>
-			<a property="url" href="http://cssconf.asia" target="_blank">
-				<span property="name">CSSConf.asia</span>
+        <h2>
+			<a property="url" target="_blank">
+				<span property="name"></span>
 			</a>
 		</h2>
-                <p class="date"><time property="date" datetime="2015-11-08">8 Nov 2015</time></p>
-                <address class="flag-[country]"> 
+         <p class="date"><time property="date"></time></p>
+		<address class="flag-[country]">
 			<span property="city"></span>,
-			<span property="country"><select>
-					
-					<option value="au">Australia</option>
-					<option value="at">Austria</option>
-					<option value="be">Belgium</option>
-					<option value="br">Brazil</option>
-					<option value="ca">Canada</option>
-					<option value="cl">Chile</option>
-					<option value="cz">Czech Republic</option>
-					<option value="fi">Finland</option>
-					<option value="fr">France</option>
-					<option value="el">Greece</option>
-					<option value="de">Germany</option>
-					<option value="il">Israel</option>
-					<option value="it">Italy</option>
-					<option value="nz">New Zealand</option>
-					<option value="nl">The Netherlands</option>
-					<option value="no">Norway</option>
-					<option value="ph">Philippines</option>
-					<option value="pl">Poland</option>
-					<option value="pt">Portugal</option>
-					<option value="ru">Russia</option>
-					<option value="scotland">Scotland</option>
-					<option value="sg">Singapore</option>
-					<option value="es">Spain</option>
-					<option value="se">Sweden</option>
-					<option value="ch">Switzerland</option>
-					<option value="us" selected>USA</option>
-					<option value="gb">UK</option>
-				</select></span>
+			<span property="country" data-edit="#countries"></span>
 		</address>
-                <p property class="comment"></p>
-            </article>
-        </section>
+		<p class="comment" property></p>
+		<p class="comment" style="display: [iff(feedback, block, none)]">
+			<a property="feedback" target="_blank">Feedback</a>
+		</p>
+	</article>
+    </section>
 
     </main>
+	<div hidden data-source="https://github.com/svgeesus/svgeesus.github.io/countries.json" class="mavo mv-keep-unhandled">
+	<select id="countries">
+		<option value="[code]" property="country" data-multiple typeof>[name]</option>
+	</select>
+</div>	
 
-    <script src="wysie.min.js"></script>
+    <script src="mavo.min.js"></script>
 
 </body>
 
