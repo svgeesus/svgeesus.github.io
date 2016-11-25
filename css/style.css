@@ -34,6 +34,14 @@ main {
 	text-align: center;
 }
 
+	main.pubs {
+		text-align: justify;
+	}
+
+	main.pubs h1 {
+		text-align: center;
+	}
+
 h1 {
 	font-weight: normal;
 }
