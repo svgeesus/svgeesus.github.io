@@ -1,0 +1,536 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title>Chris Lilley's résumé</title>
+<meta name="viewport" content="width=device-width" />
+<style>
+/**
+ * "Variables"
+ */
+h1, h2, .date {
+	font: small-caps normal 100% Constantia, 'Palatino Linotype', Palatino, Georgia, serif;
+}
+
+h1,
+header > h1 > span,
+header > ul > li:before,
+em.people {
+	color: #9BBB59;
+}
+
+/**
+ * Style
+ */
+
+* { margin:0; }
+
+html {
+	background: #9BA2B0;
+	font-size: 15px;
+}
+
+body {
+	width: 65em;
+	padding: 7em 8%;
+	box-sizing: border-box;
+	margin: 1em auto;
+	background: white;
+	box-shadow: 1px 1px 5px 2px rgba(0,0,0,.3);
+	font: 100%/1.6 'Segoe UI', Optima, 'Hiragino Kaku Gothic Pro', 'Apple Gothic', Tahoma, 'Helvetica Neue', sans-serif;
+
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	-o-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+
+	-moz-transition: .5s font-size;
+	-ms-transition: .5s font-size;
+	-o-transition: .5s font-size;
+	-webkit-transition: .5s font-size;
+	transition: .5s font-size;
+}
+
+h1, h2 {
+	page-break-after: avoid;
+}
+
+h1 {
+	margin-top: 1.2em;
+	font-size: 180%;
+}
+
+h2 {
+	margin-top: 1em;
+	font-size: 150%;
+}
+
+a {
+	color:#4F6128;
+}
+
+abbr[title] {
+	border-bottom: 1px dotted #4F6128;
+	cursor: help;
+}
+
+p {
+	margin: .6em 0;
+}
+
+h1 + p,
+h2 + p {
+	margin-top: 0;
+}
+
+ul {
+	padding: 0;
+	list-style: square;
+}
+
+header {
+	text-align: center;
+}
+
+	header > h1 {
+		color: #7F7F7F;
+		border-bottom: 1px solid #9BBB59;
+		margin: 0 0 .15em;
+		text-indent: 1.2em;
+		font-size: 450%;
+		line-height: 1.05;
+		font-variant: normal;
+	}
+
+		header > h1 > span {
+			display: inline-block;
+			margin-left: -2.7em;
+			vertical-align: super;
+			font-size: 50%;
+		}
+
+	header > ul {
+		display: block;
+		margin-bottom: .5em;
+	}
+
+		header > ul > li {
+			display: inline;
+			list-style: none;
+		}
+
+		header > ul > li:before {
+			content: '● ';
+		}
+
+		header > ul > li:first-child:before {
+			content: none;
+		}
+
+	address {
+		font-style: normal;
+	}
+
+ol.timeline {
+	padding: 0;
+	border: 0 solid #ddd;
+	border-width: 4px 0;
+}
+
+	ol.timeline > li {
+		list-style: none;
+		padding: .4em 0;
+		border: 1px solid white; /* Chrome printing bug */
+		border-top-color: #ccc;
+	}
+
+	ol.timeline > li:first-child {
+		border-top: 0;
+	}
+
+		ol.timeline > li > p {
+			margin: 0;
+		}
+
+		ol.timeline > li > .date {
+			float: left;
+			margin-left: .1em;
+			max-width: 8rem;
+			color: gray;
+			font-size: 110%;
+		}
+
+		ol.timeline > li > .date ~ p {
+			margin-left: 9rem;
+		}
+
+.note {
+	margin-top: .4em;
+	font-size: 75%;
+}
+
+	.note a:not(:hover):not(:active) {
+		color: inherit;
+	}
+
+footer {
+	margin-top: 3em;
+	font-style: italic;
+}
+
+.amp {
+	font-style: italic;
+}
+
+	#papers li > span.title, li > a > span.title, li > span.journal {font-style: italic}
+	#papers li > span.vol {font-weight: bold}
+	#papers li > span.isbn {font-variant: small-caps}
+	 #papers li > a.paper {
+   		display: inline-block;
+   		vertical-align: .1em;
+   		padding: .4em .4em .25em;
+   		margin-left: .5em;
+   		color: white;
+   		text-shadow: 0;
+   		font-size: 75%;
+   		line-height: 1;
+   		text-transform: uppercase;
+   		border-radius: .3em;
+   		background: #9BBB59;
+   }
+	#papers li > a.paper:hover {
+		text-decoration: none;
+		background: black;
+	}
+
+@media screen {
+	a {
+		text-decoration: none
+	}
+	a:hover {
+		text-decoration: underline;
+		color: #092735
+	}
+}
+@media (max-width:950px) {
+	html { font-size: 13px; }
+}
+
+@media (max-width:700px) {
+	html { font-size: 12px; }
+}
+
+@media (max-width:600px) {
+	body { width: auto; margin: 1em; }
+}
+
+@media print {
+	html {
+		background: none;
+		font-size: 16pt;
+	}
+	body {
+		box-shadow: none;
+	}
+
+	header > h1 {
+		color: black;
+	}
+
+	footer {
+		display: none;
+	}
+}
+</style>
+
+</head>
+<body>
+
+<header>
+	<h1>Chris Lilley <span>CV</span></h1>
+	<ul>
+		<li><a href="https://en.wikipedia.org/wiki/Chris_Lilley_%28computer_scientist%29">Wikipedia</a></li>
+		<li><a href="http://svgees.us">svgees.us</a></li>
+		<li><a href="https://twitter.com/svgeesus">@svgeesus</a></li>
+		<li><a href="https://github.com/svgeesus">Github</a></li>
+		<li><a href="https://www.linkedin.com/in/chrislilleyw3c">LinkedIn</a></li>
+		<li><a href="mailto:chris@w3.org">chris@w3.org</a></li>
+	</ul>
+</header>
+
+<section id="summary">
+	<h1>Summary</h1>
+	<p>I'm Technical Director of the Interaction Domain at the <a href="http://w3.org" target="_new">World
+	Wide Web Consortium (<abbr title="World Wide Web Consortium">W3C</abbr>)</a>, with specific involvement in <strong>Web Fonts,
+	<abbr title="Cascading Style Sheets">CSS</abbr>,</strong> and <strong>Web Audio</strong>. I am a <strong>co-author of <abbr title="Portable Networked Graphics">PNG</abbr></strong> and played a
+	pivotal rôle in the <strong>creation of SVG</strong>, the development of <strong>CSS
+	@font-face</strong> and the worldwide  success of <strong>downloadable fonts</strong>
+	with WOFF 1.0 and 2.0.
+	Earlier, I was a member of the <strong>W3C Technical Architecure Group</strong>
+	and co-author of <em>Architecture of the World Wide Web, volume 1</em> with <em class="people">Tim Berners-Lee</em>,
+	<em class="people">Roy Fielding</em>, and others. I was the first chair of the <strong>Fonts, CSS</strong>, and
+	<strong>SVG Working Groups</strong> at <abbr>W3C</abbr>, and co-editor of the
+	CSS2 and SVG 1 specifications.
+	I'm co-author of <strong>five books</strong> in the field of Computer Graphics, and have given <strong>
+	60 talks</strong> at conferences worldwide. </p>
+</section>
+
+<section id="work-experience">
+	<h1>Work experience</h1>
+
+	<ol class="timeline">
+		<li>
+			<p class="date">Jul 2008 - present</p>
+			<p>Technical Director, Interaction Domain, <abbr title="World Wide Web Consortium">W3C</abbr></p>
+			<p class="note">Overall technical direction of interactive, user-facing Web standards.</p>
+		</li>
+		<li>
+			<p class="date">Jul 2006 - Jul 2008</p>
+			<p>Domain Lead, Interaction Domain, <abbr title="World Wide Web Consortium">W3C</abbr></p>
+			<p class="note">Managerial responsibility of Interaction Domain staff.</p>
+		</li>
+		<li>
+			<p class="date">Aug 2006 - Feb 2010</p>
+			<p>Rich Web Client Activity Lead, <abbr title="World Wide Web Consortium">W3C</abbr></p>
+			<p class="note">The first attempt to integrate multiple languages such as HTML, SVG, MathML, XForms and custom markup. Namespace-based approach, eventually closed down in favour of HTML5.</p>
+		</li>
+		<li>
+			<p class="date">Apr 1996 - present</p>
+			<p>Graphics Activity Lead, <abbr title="World Wide Web Consortium">W3C</abbr></p>
+			<p class="note">Overall responsibility for graphics standards - notably PNG, WebCGM, SVG.</p>
+		</li>
+		<li>
+			<p class="date">Apr 1996 -  Feb 1997,
+			Mar 2010 - present</p>
+			<p>Fonts Activity Lead, <abbr title="World Wide Web Consortium">W3C</abbr></p>
+			<p class="note">Creation of the @font-face specification (later merged into CSS2),
+			then responsibility for downloadable font formats WOFF 1.0 and WOFF 2.0.</p>
+		</li>
+		<li>
+			<p class="date">Mar 1995 - Mar 1996</p>
+			<p>W3C Advisory Committee representative,
+			<a href="https://www.jisc.ac.uk/"><abbr title="Joint Information
+			Systems Committee">JISC</abbr></a></p>
+			<p class="note">Representing the digital, networked needs of the UK Higher
+			Education sector to the W3C.</p>
+		</li>
+		<li>
+			<p class="date">Apr 1991 - Mar 1996</p>
+			<p>Technical Author <span class="amp">&amp;</span> Electronic Teaching Specialist, University of Manchester, UK</p>
+			<p class="note">Responsible for the research, writing, illustration and field-testing
+			of training materials on Computer Graphics, used throughout the UK Higher
+			Education sector.</p>
+		</li>
+		<li>
+			<p class="date">Apr 1986 - Sep 1989</p>
+			<p>Medical Laboratory Scientific Officer, Departments of Haematology and
+			Transfusion Science, Falkirk Infirmary.</p>
+			<p class="note">Diagnostic blood testing, transfusion cross-matching,
+			emergency on-call coverage, computer analysis of diagnostic data.</p>
+		</li>
+		<!--
+		<li>
+			<p class="date">Apr 1986 - Apr 1987</p>
+			<p>Junior Medical Laboratory Scientific Officer, Departments of Haematology and
+			Transfusion Science, Falkirk Infirmary.</p>
+			<p class="note">Diagnostic blood testing.</p>
+		</li>
+		<li>
+			<p class="date">Apr 1985 - Apr 1986</p>
+			<p>Cataloguer of Weapons <span class="amp">&amp;</span> Medals, Museum of the Argyll and Sutherland
+			Highlanders, Stirling Castle</p>
+			<p class="note">Research and textual/photographic documentation of museum holdings.</p>
+		</li>
+		-->
+	</ol>
+
+
+</section>
+
+<section id="speaking">
+	<h1>Speaking</h1>
+	<p>I have given <strong>over 60 talks in nineteen countries</strong> over the last 20 years, and
+	have spoken at some of the <strong>most prominent international</strong> web development
+	conferences, including giving <strong>opening keynote addresses</strong>. Recent topics have included:</p>
+	<ul>
+		<li>OpenType features in CSS3 Fonts</li>
+		<li>Chromatic font extensions to OpenType</li>
+		<li>WOFF 2.0 and WebFonts</li>
+		<li>ICC Color Management in SVG <span class="amp">&amp;</span> CSS</li>
+		<li>New features in SVG2</li>
+	</ul>
+
+	<p>A <a href="https://www.w3.org/People/chris/rewrite/talks.html">full list of talks</a> is available,
+	with links to slides, video, and papers as appropriate.</p>
+</section>
+
+
+<section id="judging">
+	<h1>Judging <span class="amp">&amp;</span> reviewing</h1>
+	<p>I have served on the <strong>program committees</strong> for:
+	<ul><li>the <em>International World Wide Web</em> conferences</li>
+	<li>the <em>SVG Open</em> conference series</li>
+	<li>the <em>International Unicode</em> conferences</li>
+	<li><em>Extreme Markup (now Balisage)</em>.</li>
+	</ul>
+	<p>I was the <strong>technical reviewer</strong> for Chris Coyier's
+		forthcoming book on SVG, to be published by <em>A Book Apart</em>.</p>
+</section>
+
+<section id="writing">
+	<h1>Selected Publications</h1>
+
+<section id="books">
+<h2>Books</h2>
+<ul>
+<li>Watt, Andrew H.; Lilley, Chris, <em>et. al.</em> (2003) <span class="title">SVG Unleashed</span>. Sams. <span class="isbn">ISBN 0-672-32429-6</span>
+ <li>Lin, F.; Wyrwas, K.; Irwin J.; Lilley, C.; Hewitt, W.T.; Howard, T.L.J. (1995) <span class="title">Geometry for Computer Graphics</span>. Sheffield, UCoSDA. <span class="isbn">ISBN 1-85889-059-4</span>
+<li>Lilley, C.; Lin, F.; Hewitt, W.T.; Howard, T.L.J. (1993) <span class="title">Visualisation 1: Graphical Communication</span>. Sheffield, UCoSDA. <span class="isbn">ISBN 1-85889-027-6</span>
+<li>Lilley, C.; Lin, F.; Hewitt, W.T.; Howard, T.L.J. (1993) <span class="title">Colour in Computer Graphics</span>. Sheffield, UCoSDA. <span class="isbn">ISBN 1-85889-022-5</span>
+<li>Lilley, C.; Lin, F.; Hewitt, W.T.; Howard, T.L.J. (1993) <span class="title">Standards for Computer Graphics</span>. Sheffield, UCoSDA. <span class="isbn">ISBN 1-85889-017-9</span>
+</ul>
+</section>
+
+<section id="papers">
+<h2>Papers</h2>
+<ul>
+<li>Lilley, C.; Correll, S. (2003) <span class="title">Extending SVG Fonts with Graphite</span>. In <span class="journal">Proceedings of the 23rd International Unicode Conference</span> <a href="http://www.w3.org/Talks/2003/Extending%20SVG%20Fonts%20with%20Graphite.pdf" class="paper">PDF</a>.
+<li>Lilley, C. (2001) <span class="title">SVG: Unicode meets Vector Graphics</span>. In <span class="journal">Proceedings of the 18th International Unicode Conference</span>.
+<li>Lilley, C. (2000) <span class="title">Scalable Vector Graphics</span>. In <span class="journal">Proceedings of the Ninth International World Wide Web Conference</span> <a href="http://www.w3.org/People/chris/SVGtut-WWW9/www9-svg-tutorial.pdf" class="paper">PDF</a>.
+<li>Lilley, C. (2000) <span class="title">Internationalisation and Localisation with SVG</span> in <span class="journal">Proceedings of the 16th International Unicode Conference</span>.
+<li>Lilley, C. (1998) <span class="title">Rendering Multilingual Documents – CSS and XSL</span> in <span class="journal">Proceedings of the 13th International Unicode Conference</span>. <a href="http://www.w3.org/Talks/1998/lilley-iuc19-paper.pdf" class="paper">PDF</a>.
+<li>Nielsen, Henrik Frystyk; Gettys, Jim;  Baird-Smith, Anselm; Prud'hommeaux, Eric; Lie, Håkon Wium; Lilley, Chris (1997) <span class="title">Network Performance Effects of HTTP/1.1, CSS1, and PNG </span> in <span class="journal">ACM SIGCOMM Computer Communication Review</span> <span class="vol">27(4)</span>, pp.155-166 ·October 1997 <a href="http://www.w3.org/Protocols/HTTP/Performance/Pipeline.html" class="paper">HTML</a>.
+<li>Lilley, C. (1997) <span class="title">The Design of an International Web Font Extension for Cacading Style Sheets</span> in <span class="journal">Proceedings of the 11th International Unicode Conference</span>. <a href="http://www.w3.org/People/chris/IUC12/WebFonts.pdf" class="paper">PDF</a>.
+<li>Lilley, C (1995) <span class="title">Not Just Decoration : Quality Graphics for the Web</span>.
+ in <span class="journal">World Wide Web Journal</span> <span class="vol">1(1)</span>, pp.291–307, Boston, 1995. <a href="http://www.w3.org/Conferences/WWW4/Papers/53/gq-boston.html" class="paper">HTML</a>.
+<li>Lilley, C. (1995) <span class="title">Active Web Pages</span>. In <span class="journal">Proceedings of the 1995 Eurographics UK Conference</span>, Loughborough, 1995, pp 267–281
+<li>Lilley, C; Lin, F; Hewitt, W.T.; Howard, T.L.J. (1994) <span class="title">The Design and Development of Distance Learning Materials for Graphics and Visualisation</span>. In <span class="journal">Eurographics Workshop on Graphics and Visualisation Education (GVE)</span>, Barcelona, 1993. Also reprinted in <span class="journal">Computers & Graphics</span> <span class="vol">18(3)</span>, pp.269–275
+<li>Lilley, C. (1994) <span class="title">An Introduction to Standardised Colour Measurement</span>. in <span class="journal">Proceedings of the 12th Eurographics UK Conference</span>, 22–24 March 1994 pp.163–177
+</ul>
+</section>
+
+<section id="reports">
+<h2>Web Standards and other specifications</h2>
+<ul>
+<li>Lilley, Chris (editor) (2016) <a href="https://datatracker.ietf.org/doc/draft-ietf-justfont-toplevel/"><span class="title">The font Top Level Type</span></a>. IETF Standards Track, 29 January 2016.
+<li>Lilley, Chris (editor) (2015) <a href="http://www.w3.org/TR/WOFF20ER/"><span class="title">WOFF 2.0 Evaluation Report</span></a>. W3C specification, 14 April 2015.
+<li>Thompson, H.; Lilley, C. <a href="http://datatracker.ietf.org/doc/rfc7303/"><span class="title">RFC 7303: XML Media Types</span></a>. IETF Proposed Standard. 07 July 2014.
+<li>Dahlström, Eric <em>et. al.</em> (2011) <a href="http://www.w3.org/TR/SVG11/"><span class="title">Scalable Vector Graphics (SVG) 1.1 (Second Edition)</span></a>. W3C Recommendation. 16 August 2011.
+<li>Çelik, Tantek; Lilley, Chris; Baron, L. David (editors) (2011) <a href="http://www.w3.org/TR/css3-color/"><span class="title">CSS Color Module Level 3</span></a>. W3C Recommendation, 7 June 2011.
+<li>Lilley, Chris; Grasso, Anthony (2009) <a href="http://www.w3.org/TR/SVGColor12/"><span class="title">SVG Color 1.2, Part 2: Language</span>.</a> W3C specification, 01 October 2009.
+<li>Anderson, A.; Berjon, R. <em>et. al.</em> (2006) <a href="http://www.w3.org/TR/SVGMobile12/"><span class="title">Scalable Vector Graphics (SVG) Tiny 1.2 Specification</span></a>. W3C Recommendation, 22 December 2008.
+<li>Jacobs, Ian; Walsh, Norm (eds)(2004) <a href="http://www.w3.org/TR/2004/REC-webarch-20041215/"><span class="title">Architecture of the World Wide Web, Volume One</span>.</a> W3C Recommendation, 15 December 2004.
+<li>Lilley, Chris (2004) <a href="http://www.w3.org/2001/tag/doc/xmlIDsemantics-32.html"><span class="title">How should the problem of identifying ID semantics in XML languages be addressed in the absence of a DTD?</span></a>. TAG finding, 30 November 2004.
+<li>Duce, David (editor) (2003) <a href="http://www.w3.org/TR/PNG/"><span class="title">Portable Network Graphics (PNG) Specification (Second Edition)</span></a>. W3C Recommendation. 10 November 2003. Also published as <span class="title">Information technology — Computer graphics and image processing — Portable Network Graphics (PNG): Functional specification</title>. ISO/IEC 15948:2003 (E).
+<li>Lilley, Chris (2003) <a href="http://www.w3.org/2001/tag/doc/contentPresentation-26.html"><span class="title">Separation of semantic and presentational markup, to the extent possible, is architecturally sound</span></a>. Draft TAG finding, 30 June 2003.
+<li>Diaz, A. et al. (2001) <a href"http://www.w3.org/TR/2001/NOTE-CX-20011211"><span class="title">Component Extension (CX) API requirements Version 1.0</span></a>. W3C specification, 11 December 2001.
+<li>Ferraiolo, Jon (editor) (2001) <a href="http://www.w3.org/TR/SVG10/"><span class="title">Scalable Vector Graphics (SVG) 1.0 Specification</span></a>. W3C Recommendation. 4 September 2001.
+<li>Bos, Bert; Lie, Håkon Wium; Lilley, Chris; Jacobs, Ian (1998) <a href="http://www.w3.org/TR/REC-CSS2/"><span class="title">Cascading Style Sheets, level 2</span></a>. W3C Recommendation, 12 May 1998.
+<li>Lilley, Chris (editor) (1997) <a href="http://www.w3.org/TR/WD-font-970721"><span class="title">Web Fonts</span></a>. W3C specification, 21 July 1997. This work was later merged into CSS2.
+<li>Lilley, Chris; Platon, Roy (1997) <a href="http://www.w3.org/TR/NOTE-cgm-970618"><span class="title">Use of CGM as a Scalable Graphics Format</span></a>. W3C specification, 18 June 1997.
+</ul>
+</section>
+
+
+</section>
+
+
+<section id="education">
+	<h1>Education</h1>
+	<ol class="timeline">
+		<li>
+			<p class="date">Sep 1993 - Apr 1994</p>
+			<p><strong>Postgraduate Diploma, Bioinformatics</strong>; Global Network
+			Academy/<a href="http://www.uni-bielefeld.de/%28en%29/">University of Bielefeld</a>, Germany.</p>
+			<p class="note">This course used then-new electronic techniques such as the World Wide Web for course delivery, and multi-user interactive chatrooms(MOO) for tutorials. I was a 'consulting student' (teaching assistant) on this course, my interest being in the technologies used as well as the course material. </p>
+		</li>
+		<!--
+		<li>
+			<p class="date">Oct 1990 - Mar 1991</p>
+			<p><strong>Business Enterprise training</strong>; York Enterprise Centre, UK.</p>
+			<p class="note">Business skills, cashflow analysis, marketing and promotion</p>
+		</li>
+		-->
+		<li>
+			<p class="date">Sep 1989 - Sep 1990</p>
+			<p><strong>Master of Science, Biological Computation</strong>; <a href="http://www.york.ac.uk/">Univeristy of York</a>, UK.</p>
+			<p>Thesis: <em>Browser: A tool for interactive examination of large Modula-2 programs</em>. </p>
+			<p class="note">An intensive computer science conversion course. Distinction.</p>
+		</li>
+		<li>
+			<p class="date">Sep 1978 - May 1983</p>
+			<p><strong>Bachelor of Science, Biochemistry</strong>;
+			<a href="http://www.stir.ac.uk/">University of Stirling</a>, UK.</p>
+			<p class="note">Honors degree.</p>
+		</li>
+	</ol>
+</section>
+
+
+<section id="technical-skills">
+	<h1>Technical skills</h1>
+	<p>I have a broad understanding of the full Open Web Stack of technologies, including:</p>
+	<ul>
+		<li>Information abstraction and granularity, the URL, Web Architecture</li>
+		<li>Character encoding, the character/glyph model, text layout</li>
+		<li>HTML (2 - 5)</li>
+		<li>XML technologies, in particular SVG</li>
+		<li>CSS (including CSS3/4/5)</li>
+	</ul>
+	<p>I also have experience with a wide range of programming languages and technologies, including
+	Pascal, Turbo Pascal, FORTRAN, Modula-2, Modula-3, Ada, C, Arduino/C++, JavaScript (ES6,
+	together with the DOM <span class="amp">&amp;</span> related APIs), Z80 and ARM Cortex assembly.
+	 </p>
+</section>
+
+<section id="languages">
+	<h1>Languages</h1>
+	<ul>
+		<li><strong>English</strong>: Native speaker, rich vocabulary, high competence</li>
+		<li><strong>French</strong>: Good reading level, conversational competence</li>
+	</ul>
+</section>
+
+<section id="memberships">
+	<h1>Professional memberships</h1>
+	<p>From April 1987 to September 1989 I was an <strong>Associate of the Institute of Medical
+	Laboratory Sciences</strong>. From April 1992 until March 1996 I was a <strong>Member of Eurographics UK chapter</strong>.
+	I am currently an Individual Member of the International Typographic Association <strong>(ATypI,
+	Association Typographique Internationale)</strong>.
+
+<section id="interests-prof">
+	<h1>Professional interests</h1>
+	<p>Computer Graphics, primarily 2D, with special interest in
+	technical illustration, interactive graphics, and scientific visualization.
+	Typography, in particular advanced and non-Latin typography.
+	Color theory and color management, particularly as it pertains to the Open Web;
+	Open web standards, in particular the socio-political process of successful standardization.
+	Compound documents and appropriate choices across the content-presentation gradient.
+	Technical communication (writing, illustration, discourse).</p>
+</section>
+
+<section id="interests-rsrch">
+	<h1>Research interests</h1>
+	<p>Information visualization. Color measurement, color appearance modelling,
+	psychological and biological aspects of color vision.
+	Sound synthesis, in particular subtractive and additive synthesis, sonic modelling,
+	analog synthesis, novel microcontroller-based performance interfaces, sonic visualization.
+</p>
+</section>
+
+
+<footer>
+	<p>References are available upon request.</p>
+</footer>
+
+<script>
+(function(){
+	if(!document.querySelectorAll) return;
+	var external = document.querySelectorAll('a[href^="http://"], a[href^="https://"]'), a;
+	for(var i=external.length; a=external[--i];) a.setAttribute('target', '_blank');
+})();
+</script>
+</body>
+</html>
