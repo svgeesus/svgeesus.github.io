@@ -5,15 +5,45 @@
 		{
 			"talk": [
 				{
-					"title": "TBD",
+					"title": "Web Fonts: Power Up!",
 					"type": "Talk"
 				}
 			],
 			"url": "http://www.dotcss.io/",
 			"name": "dotCSS",
-			"date": "2 Dec 2016",
+			"date": "3 Dec 2016",
 			"city": "Paris",
-			"country": "fr"
+			"country": "fr",
+			"comment": "The ultra fast 18 minutes edited highlights version"
+		},
+		{
+			"talk": [
+				{
+					"title": "The Evolution of CSS 4 Color",
+					"type": "Talk",
+					"slides": "https://www.w3.org/Talks/2016/css4-color-talk/#intro"
+				}
+			],
+			"url": "https://2016.cssconf.asia/",
+			"name": "CSS Conf Asia",
+			"date": "25 Nov 2016",
+			"city": "Singapore",
+			"country": "sg"
+		},
+		{
+			"talk": [
+				{
+					"title": "WebFonts: Level Up!",
+					"type": "Talk",
+					"video": "https://www.youtube.com/watch?v=DnG_QYvqoHg"
+				}
+			],
+			"url": "http://www.meetup.com/Boston-CSS/",
+			"name": "Boston CSS",
+			"date": "02 Nov 2016",
+			"city": "Boston",
+			"country": "us",
+			"comment": "Great to be giving this talk at my local, friendly CSS  meetup"
 		},
 		{
 			"talk": [
@@ -26,7 +56,7 @@
 			"name": "Publishing Community Meeting at TPAC 2016",
 			"date": "23 Sep 2016",
 			"city": "Lisbon",
-			"country": "us"
+			"country": "pt"
 		},
 		{
 			"talk": [
