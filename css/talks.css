@@ -249,7 +249,7 @@ h1[property=talk] {
 	right: -1.5em;
 }
 
-// hide editing toolbar
+
 .mv-wrapper.can-login .mv-bar {
   display: none;
  }
