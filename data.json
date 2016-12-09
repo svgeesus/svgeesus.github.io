@@ -6,7 +6,8 @@
 			"talk": [
 				{
 					"title": "Web Fonts: Power Up!",
-					"type": "Talk"
+					"type": "Talk",
+					"slides": "https://www.w3.org/Talks/2016/font-level-up/powerup#intro"
 				}
 			],
 			"url": "http://www.dotcss.io/",
