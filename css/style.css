@@ -146,10 +146,15 @@ p[property=description] {
 			float: right;
 			opacity: 1;
 			border-top: 0;
+			border-bottom: 0;
 			font-size: 75%;
 		}
 
 		[property=talk] .mv-item-bar:empty {
+			display: none;
+		}
+
+		button.mv-add.mv-add-talk {
 			display: none;
 		}
 
