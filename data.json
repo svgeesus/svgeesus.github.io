@@ -9,6 +9,22 @@
 					"type": "Talk"
 				}
 			],
+			"url": "https://www.webdirections.org/code/",
+			"name": "Web Directions Code",
+			"date": "2017-08-03",
+			"city": "Melbourne",
+			"country": "au"
+		},
+		{
+			"talk": []
+		},
+		{
+			"talk": [
+				{
+					"title": "TBD",
+					"type": "Talk"
+				}
+			],
 			"url": "https://www.paris-web.fr/",
 			"name": "Paris Web",
 			"date": "2017-",
