@@ -3,71 +3,73 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <title>Chris Lilley: Talks</title>
+	 <meta charset="UTF-8">
+	 <title>Chris Lilley: Talks</title>
 
 	<link rel="stylesheet" href="https://dev.mavo.io/dist/mavo.css">
-    <link rel="stylesheet" href="css/talks.css">
-    <link rel="stylesheet" href="css/style.css">
+	 <link rel="stylesheet" href="css/talks.css">
+	 <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-    <main mv-bar="no-login" mv-app mv-storage="https://github.com/svgeesus/svgeesus.github.io/data.json">
+	<main mv-bar="no-login" mv-app mv-storage="https://github.com/svgeesus/svgeesus.github.io/data.json">
 
-        <h1>
-	<img property="image" src="https://avatars2.githubusercontent.com/u/2506926?v=3&s=460" alt="">
-	<a href="index.html"><span property="name">Chris Lilley</span></a>
-</h1>
+	<h1>
+		<img property="image" src="https://avatars2.githubusercontent.com/u/2506926?v=3&s=460" alt="">
+		<a href="index.html"><span property="name">Chris Lilley</span></a>
+	</h1>
 
-        <section class="talks">
-            <h1>[count(talk)] sessions at [count(event)] events ([count(upcoming)] events upcoming)</h1>
+	<section class="talks">
+		<h1>[count(talk)] sessions at [count(event)] events ([count(upcoming)] events upcoming)</h1>
 
-            <article mv-multiple property="event" mv-order="desc">
-				<meta property="upcoming" content="[date &gt; now]" />
-                <h1 mv-multiple property="talk">
-			<span property="title" mv-default>TBD</span>
-			<span property class="type">
-				<select>
-					<option selected>Talk</option>
-					<option>Keynote</option>
-					<option>Workshop</option>
-					<option>Panel</option>
-					<option>Round Table</option>
-					<option>Paper</option>
-					<option>Tutorial</option>
-				</select></span>
-			<a property class="video" target="_blank">Video</a>
-			<a property class="audio" target="_blank">Audio</a>
-			<a property class="paper" target="_blank">Paper</a>
-			<a property class="slides" target="_blank">Slides</a>
-		</h1>
-        <h2>
-			<a property="url" target="_blank">
-				<span property="name"></span>
-			</a>
-		</h2>
-         <p class="date"><time property="date"></time></p>
-		<address class="flag-[country]">
-			<span property="city"></span>,
-			<span property="country" mv-edit="#countries"></span>
-		</address>
-		<p class="comment" property></p>
-		<p class="comment" style="display: [iff(feedback, block, none)]">
-			<a property="feedback" target="_blank">Feedback</a>
-		</p>
-	</article>
-    </section>
+		<article mv-multiple property="event" mv-order="desc">
+			<meta property="upcoming" content="[date &gt; now]" />
 
-    </main>
+			<h1 mv-multiple property="talk">
+				<span property="title" mv-default>TBD</span>
+				<span property class="type">
+					<select>
+						<option selected>Talk</option>
+						<option>Keynote</option>
+						<option>Workshop</option>
+						<option>Panel</option>
+						<option>Round Table</option>
+						<option>Paper</option>
+						<option>Tutorial</option>
+					</select></span>
+				<a property class="video" target="_blank">Video</a>
+				<a property class="audio" target="_blank">Audio</a>
+				<a property class="paper" target="_blank">Paper</a>
+				<a property class="slides" target="_blank">Slides</a>
+			</h1>
+			<h2>
+				<a property="url" target="_blank">
+					<span property="name"></span>
+				</a>
+			</h2>
+			<p class="date"><time property="date"></time></p>
+			<address class="flag-[country]">
+				<span property="city"></span>,
+				<span property="country" mv-edit="#countries"></span>
+			</address>
+			<p class="comment" property></p>
+			<p class="comment" style="display: [iff(feedback, block, none)]">
+				<a property="feedback" target="_blank">Feedback</a>
+			</p>
+		</article>
+	</section>
+
+	</main>
+
 	<div hidden  mv-app="countries" mv-source="https://github.com/svgeesus/svgeesus.github.io/countries.json" class="mavo mv-keep-unhandled">
 	<select id="countries">
 		<option value="[code]" property="country" mv-multiple typeof>[name]</option>
 	</select>
 </div>
 
-    <script src="https://dev.mavo.io/dist/mavo.js"></script>
+	 <script src="https://dev.mavo.io/dist/mavo.js"></script>
 
 </body>
 

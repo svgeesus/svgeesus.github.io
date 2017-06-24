@@ -103,51 +103,54 @@ p[property=description] {
 		font-size: 100%;
 	}
 
-.talks {
-	font-size: smaller;
+.talks > h1 {
+	border-bottom: 2px solid;
+	font-size: 120%;
 }
 
-	.talks > h1 {
-		border-bottom: 2px solid;
+[property=event] {
+	text-align: right;
+	font-size: .9rem;
+}
+
+	[property=event] h1 a {
+		margin-left: 0;
 	}
 
-	.talks article {
-		text-align: right;
+	[property=event] h1 a.slides {
+		background: orange;
 	}
 
-.talks article h1 a {
-	margin-left: 0;
-}
+	[property=event] h1 a.audio {
+		background: #0bd;
+	}
 
-.talks article h1 a.slides {
-	background: orange;
-}
+	[property=event] h1 a.video {
+		background: yellowgreen;
+	}
 
-.talks article h1 a.audio {
-	background: #0bd;
-}
+	[property=event] h1 a.paper {
+		background: #b7d;
+	}
 
-.talks article h1 a.video {
-	background: yellowgreen;
-}
+	[property=event] h1 a:hover {
+		background: slategray;
+	}
 
-.talks article h1 a.paper {
-	background: #b7d;
-}
+	h1[property=talk] {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		width: auto;
+	}
 
-.talks article h1 a:hover {
-	background: slategray;
-}
+	[property=talk] .mv-item-bar {
+		position: static;
+		opacity: 1;
+		font-size: 80%;
+	}
 
-h1[property=talk] {
-	width: auto;
-}
-
-[property=title] {
-	font-weight: bold;
-	text-align: inherit;
-}
-
-.wysie-item {
-	margin-right: 0;
-}
+	[property=title] {
+		font-weight: bold;
+		text-align: inherit;
+	}
