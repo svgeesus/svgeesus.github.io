@@ -138,19 +138,22 @@ p[property=description] {
 	}
 
 	h1[property=talk] {
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
 		width: auto;
 	}
 
-	[property=talk] .mv-item-bar {
-		position: static;
-		opacity: 1;
-		font-size: 80%;
-	}
+		[property=talk] .mv-item-bar {
+			position: static;
+			float: right;
+			opacity: 1;
+			border-top: 0;
+			font-size: 75%;
+		}
 
-	[property=title] {
-		font-weight: bold;
-		text-align: inherit;
-	}
+		[property=talk] .mv-item-bar:empty {
+			display: none;
+		}
+
+		[property=title] {
+			font-weight: bold;
+			text-align: inherit;
+		}
