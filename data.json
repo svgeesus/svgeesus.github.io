@@ -5,6 +5,19 @@
 		{
 			"talk": [
 				{
+					"title": "TBD",
+					"type": "Talk"
+				}
+			],
+			"url": "https://www.paris-web.fr/",
+			"name": "Paris Web",
+			"date": "2017-",
+			"city": "Paris",
+			"country": "fr"
+		},
+		{
+			"talk": [
+				{
 					"title": "Web Fonts: Power Up!",
 					"type": "Talk",
 					"slides": "https://www.w3.org/Talks/2016/font-level-up/powerup#intro"
@@ -1004,5 +1017,6 @@
 	],
 	"description": "\tChris Lilley is a Technical Director at the World Wide Web Consortium (W3C).\tConsidered “the father of SVG”, he also co-authored PNG, was co-editor of CSS2, chaired the group that developed @font-face, and co-developed WOFF. Ex Technical Architecture Group.\tChris is still trying to get Color Management on the Web, sigh.\tCurrently working on CSS levels 3/4/5 (no, really), Web Audio, and WOFF2.",
 	"twitter": "http://twitter.com/svgeesus",
-	"github": "http://github.com/svgeesus"
+	"github": "http://github.com/svgeesus",
+	"@context": "http://schema.org"
 }
