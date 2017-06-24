@@ -9,6 +9,19 @@
 					"type": "Talk"
 				}
 			],
+			"url": "https://www.paris-web.fr/",
+			"name": "Paris Web",
+			"date": "2017-10-05",
+			"city": "Paris",
+			"country": "fr"
+		},
+		{
+			"talk": [
+				{
+					"title": "TBD",
+					"type": "Talk"
+				}
+			],
 			"url": "https://viewsourceconf.org/london-2017/",
 			"name": "View Source London",
 			"date": "2017-10-27",
@@ -1039,19 +1052,6 @@
 			"date": "1993-09-15",
 			"city": "Barcelona",
 			"country": "es"
-		},
-		{
-			"talk": [
-				{
-					"title": "TBD",
-					"type": "Talk"
-				}
-			],
-			"url": "https://www.paris-web.fr/",
-			"name": "Paris Web",
-			"date": "2017-10-05",
-			"city": "Paris",
-			"country": "fr"
 		}
 	],
 	"description": "\tChris Lilley is a Technical Director at the World Wide Web Consortium (W3C).\tConsidered “the father of SVG”, he also co-authored PNG, was co-editor of CSS2, chaired the group that developed @font-face, and co-developed WOFF. Ex Technical Architecture Group.\tChris is still trying to get Color Management on the Web, sigh.\tCurrently working on CSS levels 3/4/5 (no, really), Web Audio, and WOFF2.",
