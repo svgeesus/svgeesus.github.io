@@ -16,7 +16,17 @@
 			"country": "au"
 		},
 		{
-			"talk": []
+			"talk": [
+				{
+					"title": "TBD",
+					"type": "Talk"
+				}
+			],
+			"url": "https://www.webdirections.org/leaders/",
+			"name": "Web Directions Leaders",
+			"date": "2017-08-02",
+			"city": "Melbourne",
+			"country": "au"
 		},
 		{
 			"talk": [
@@ -27,7 +37,7 @@
 			],
 			"url": "https://www.paris-web.fr/",
 			"name": "Paris Web",
-			"date": "2017-",
+			"date": "2017-10-05",
 			"city": "Paris",
 			"country": "fr"
 		},
