@@ -5,7 +5,8 @@
 
     <meta charset="UTF-8">
     <title>Chris Lilley: Talks</title>
-    <link rel="stylesheet" href="css/mavo.css">
+
+	<link rel="stylesheet" href="https://dev.mavo.io/dist/mavo.css">
     <link rel="stylesheet" href="css/talks.css">
     <link rel="stylesheet" href="css/style.css">
 
@@ -13,7 +14,7 @@
 
 <body>
 
-    <main data-store="https://github.com/svgeesus/svgeesus.github.io/data.json">
+    <main mv-app mv-storage="https://github.com/svgeesus/svgeesus.github.io/data.json">
 
         <h1>
 	<img property="image" src="https://avatars2.githubusercontent.com/u/2506926?v=3&s=460" alt="">
@@ -23,10 +24,10 @@
         <section class="talks">
             <h1>[count(talk)] sessions at [count(event)] events ([count(upcoming)] events upcoming)</h1>
 
-            <article data-multiple property="event" data-order="desc">
+            <article mv-multiple property="event" mv-order="desc">
 				<meta property="upcoming" content="[date &gt; now]" />
-                <h1 data-multiple property="talk">
-			<span property="title" data-default>TBD</span>
+                <h1 mv-multiple property="talk">
+			<span property="title" mv-default>TBD</span>
 			<span property class="type">
 				<select>
 					<option selected>Talk</option>
@@ -50,7 +51,7 @@
          <p class="date"><time property="date"></time></p>
 		<address class="flag-[country]">
 			<span property="city"></span>,
-			<span property="country" data-edit="#countries"></span>
+			<span property="country" mv-edit="#countries"></span>
 		</address>
 		<p class="comment" property></p>
 		<p class="comment" style="display: [iff(feedback, block, none)]">
@@ -60,13 +61,13 @@
     </section>
 
     </main>
-	<div hidden data-source="https://github.com/svgeesus/svgeesus.github.io/countries.json" class="mavo mv-keep-unhandled">
+	<div hidden  mv-app="countries" mv-source="https://github.com/svgeesus/svgeesus.github.io/countries.json" class="mavo mv-keep-unhandled">
 	<select id="countries">
-		<option value="[code]" property="country" data-multiple typeof>[name]</option>
+		<option value="[code]" property="country" mv-multiple typeof>[name]</option>
 	</select>
-</div>	
+</div>
 
-    <script src="mavo.min.js"></script>
+    <script src="https://dev.mavo.io/dist/mavo.js"></script>
 
 </body>
 
