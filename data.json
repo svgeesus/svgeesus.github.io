@@ -9,11 +9,11 @@
 					"type": "Talk"
 				}
 			],
-			"url": "https://www.paris-web.fr/",
-			"name": "Paris Web",
-			"date": "2017-10-05",
-			"city": "Paris",
-			"country": "fr"
+			"url": "https://viewsourceconf.org/london-2017/",
+			"name": "View Source London",
+			"date": "2017-10-27",
+			"city": "London",
+			"country": "gb"
 		},
 		{
 			"talk": [
@@ -22,11 +22,11 @@
 					"type": "Talk"
 				}
 			],
-			"url": "https://viewsourceconf.org/london-2017/",
-			"name": "View Source London",
-			"date": "2017-10-27",
-			"city": "London",
-			"country": "gb"
+			"url": "https://www.paris-web.fr/",
+			"name": "Paris Web",
+			"date": "2017-10-05",
+			"city": "Paris",
+			"country": "fr"
 		},
 		{
 			"talk": [
