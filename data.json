@@ -9,6 +9,19 @@
 					"type": "Talk"
 				}
 			],
+			"url": "https://smashingconf.com/barcelona-2017/",
+			"name": "Smashing Conference",
+			"date": "2017-10-17",
+			"city": "Barcelona",
+			"country": "es"
+		},
+		{
+			"talk": [
+				{
+					"title": "TBD",
+					"type": "Talk"
+				}
+			],
 			"url": "https://viewsourceconf.org/london-2017/",
 			"name": "View Source London",
 			"date": "2017-10-27",
