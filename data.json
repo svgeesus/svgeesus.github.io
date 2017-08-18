@@ -5,20 +5,7 @@
 		{
 			"talk": [
 				{
-					"title": "TBD",
-					"type": "Talk"
-				}
-			],
-			"url": "https://smashingconf.com/barcelona-2017/",
-			"name": "Smashing Conference",
-			"date": "2017-10-17",
-			"city": "Barcelona",
-			"country": "es"
-		},
-		{
-			"talk": [
-				{
-					"title": "TBD",
+					"title": "The State of WebFonts",
 					"type": "Talk"
 				}
 			],
@@ -35,6 +22,19 @@
 					"type": "Talk"
 				}
 			],
+			"url": "https://smashingconf.com/barcelona-2017/",
+			"name": "Smashing Conference",
+			"date": "2017-10-17",
+			"city": "Barcelona",
+			"country": "es"
+		},
+		{
+			"talk": [
+				{
+					"title": "The State of WebFonts",
+					"type": "Talk"
+				}
+			],
 			"url": "https://www.paris-web.fr/",
 			"name": "Paris Web",
 			"date": "2017-10-05",
@@ -44,7 +44,7 @@
 		{
 			"talk": [
 				{
-					"title": "TBD",
+					"title": "The State of WebFonts",
 					"type": "Talk"
 				}
 			],
@@ -57,7 +57,7 @@
 		{
 			"talk": [
 				{
-					"title": "TBD",
+					"title": "There & Back Again, a Web Tale",
 					"type": "Talk"
 				}
 			],
