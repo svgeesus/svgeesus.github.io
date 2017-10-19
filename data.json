@@ -19,7 +19,8 @@
 			"talk": [
 				{
 					"title": "Color at W3C: 20 years of pain",
-					"type": "Talk"
+					"type": "Talk",
+					"slides": "https://www.w3.org/Talks/2017/css4-color-talk/20years.html#intro"
 				}
 			],
 			"url": "http://www.color.org/events/toronto/graphic_arts_day.xalter",
