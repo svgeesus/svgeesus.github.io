@@ -18,7 +18,20 @@
 		{
 			"talk": [
 				{
-					"title": "TBD",
+					"title": "Color at W3C 20 years of pain",
+					"type": "Talk"
+				}
+			],
+			"url": "http://www.color.org/events/toronto/graphic_arts_day.xalter",
+			"name": "Graphic Arts Day",
+			"date": "2017-10-13",
+			"city": "Toronto",
+			"country": "ca"
+		},
+		{
+			"talk": [
+				{
+					"title": "The State of WebFonts",
 					"type": "Talk"
 				}
 			],
