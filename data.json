@@ -33,7 +33,8 @@
 			"talk": [
 				{
 					"title": "The State of WebFonts",
-					"type": "Talk"
+					"type": "Talk",
+					"slides": "https://www.w3.org/Talks/2017/font-level-up/#intro"
 				}
 			],
 			"url": "https://smashingconf.com/barcelona-2017/",
