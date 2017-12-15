@@ -5,6 +5,19 @@
 		{
 			"talk": [
 				{
+					"title": "TBD",
+					"type": "Keynote"
+				}
+			],
+			"url": "http://www.color.org/DevCon/devcon2018/index.xalter",
+			"name": "ICC Developer Conference 2018",
+			"date": "2018-02-27",
+			"city": "Munich",
+			"country": "de"
+		},
+		{
+			"talk": [
+				{
 					"title": "The State of WebFonts",
 					"type": "Talk",
 					"video": "https://www.youtube.com/watch?v=WavFhB6NwHw"
