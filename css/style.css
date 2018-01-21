@@ -36,12 +36,10 @@ body {
 }
 
 main {
-	padding: 1em;
 	width: 37rem;
 	width: var(--content-width);
-	box-sizing: border-box;
 	max-width: 90vw;
-	margin: auto;
+	margin: 0 auto auto;
 	text-align: center;
 }
 
@@ -72,41 +70,53 @@ p[property=description] {
 }
 
 header {
-	text-align: center;
+	text-align: center
+}
+
+header h1 {
+	margin-bottom: 0;
 }
 
 nav {
 	display: -webkit-box;
 	display: flex;
-	-webkit-box-pack: center;
-	        justify-content: center;
+	flex-wrap: wrap;
+	-webkit-box-pack: justify;
+	        justify-content: space-between;
+	min-width: -webkit-min-content;
+	min-width: -moz-min-content;
+	min-width: min-content;
 	padding: 0 calc(50% - 37rem / 2 - .5em);
 	padding: 0 calc(50% - var(--content-width) / 2 - .5em);
-	background: hsl(190, 50%, 93%);
-	xborder-bottom: 1px solid hsl(190, 100%, 40%)
+	background: hsl(190, 50%, 93%)
 }
 
 nav a[aria-current] {
 	background: hsl(190, 60%, 80%);
 }
 
-nav a:not(.social) {
+nav div {
 	display: -webkit-box;
-	display: flex;
-	padding: 0 1em;
-	-webkit-box-align: center;
-	        align-items: center
+	display: flex
 }
 
-nav a:not(.social):hover {
+nav div:first-of-type a {
+	display: -webkit-box;
+	display: flex;
+	padding: .5em 1em;
+	-webkit-box-align: center;
+	        align-items: center;
+	box-sizing: border-box;
+	min-width: -webkit-min-content;
+	min-width: -moz-min-content;
+	min-width: min-content
+}
+
+nav div:first-of-type a:hover {
 	box-shadow: 0 -.3em #0ac inset;
 }
 
-nav a:not(.social) + a.social {
-	margin-left: auto;
-}
-
-nav a.social {
+nav div.social a {
 	-webkit-box-flex: 0;
 	        flex: none;
 	width: 1.5em;
@@ -120,27 +130,34 @@ nav a.social {
 	mix-blend-mode: multiply
 }
 
-nav a.social:not(:hover):not(:focus) {
+nav div.social a:not(:hover):not(:focus) {
 	-webkit-filter: grayscale(100%);
 	filter: grayscale(100%);
 }
 
-nav a.social.twitter {
+nav div.social a.twitter {
 	background-image: url(../img/twitter.svg)
 }
 
-nav a.social.twitter:not(:hover):not(:focus) {
+nav div.social a.twitter:not(:hover):not(:focus) {
 	-webkit-filter:  brightness(120%) grayscale(100%);
 	filter: brightness(120%) grayscale(100%);
 }
 
-nav a.social.github {
+nav div.social a.github {
 	background-image: url(../img/github.svg)
 }
 
-nav a.social.github:not(:hover):not(:focus) {
+nav div.social a.github:not(:hover):not(:focus) {
 	-webkit-filter: brightness(800%) grayscale(100%);
 	filter: brightness(800%) grayscale(100%);
+}
+
+@media (max-width: 480px) {
+	nav div {
+		font-size: 80%;
+		margin: 0 auto
+	}
 }
 
 .talks > h1 {

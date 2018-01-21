@@ -33,11 +33,9 @@ body {
 }
 
 main {
-	padding: 1em;
 	width: var(--content-width);
-	box-sizing: border-box;
 	max-width: 90vw;
-	margin: auto;
+	margin: 0 auto auto;
 	text-align: center;
 }
 
@@ -65,66 +63,80 @@ p[property=description] {
 
 header {
 	text-align: center;
+
+	& h1 {
+		margin-bottom: 0;
+	}
 }
 
 nav {
 	display: flex;
-	justify-content: center;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	min-width: min-content;
 	padding: 0 calc(50% - var(--content-width) / 2 - .5em);
 	background: hsl(190, 50%, 93%);
-	xborder-bottom: 1px solid hsl(190, 100%, 40%);
 
 	& a[aria-current] {
 		background: hsl(190, 60%, 80%);
 	}
 
-	& a:not(.social) {
+	& div {
 		display: flex;
-		padding: 0 1em;
-		align-items: center;
 
-		&:hover {
-			box-shadow: 0 -.3em #0ac inset;
+		&:first-of-type {
+			& a {
+				display: flex;
+				padding: .5em 1em;
+				align-items: center;
+				box-sizing: border-box;
+				min-width: min-content;
+
+				&:hover {
+					box-shadow: 0 -.3em #0ac inset;
+				}
+			}
 		}
 
-		& + a.social {
-			margin-left: auto;
+		&.social a {
+			flex: none;
+			width: 1.5em;
+			padding: .5em;
+			text-indent: -999em;
+			overflow: hidden;
+			background: no-repeat center;
+			background-origin: content-box;
+			transition: .3s;
+			transition-property: -webkit-filter, filter;
+			mix-blend-mode: multiply;
+
+			&:not(:hover):not(:focus) {
+				-webkit-filter: grayscale(100%);
+				filter: grayscale(100%);
+			}
+
+			&.twitter {
+				background-image: url(../img/twitter.svg);
+
+				&:not(:hover):not(:focus) {
+					-webkit-filter:  brightness(120%) grayscale(100%);
+					filter: brightness(120%) grayscale(100%);
+				}
+			}
+
+			&.github {
+				background-image: url(../img/github.svg);
+
+				&:not(:hover):not(:focus) {
+					-webkit-filter: brightness(800%) grayscale(100%);
+					filter: brightness(800%) grayscale(100%);
+				}
+			}
 		}
-	}
-}
 
-nav a.social {
-	flex: none;
-	width: 1.5em;
-	padding: .5em;
-	text-indent: -999em;
-	overflow: hidden;
-	background: no-repeat center;
-	background-origin: content-box;
-	transition: .3s;
-	transition-property: -webkit-filter, filter;
-	mix-blend-mode: multiply;
-
-	&:not(:hover):not(:focus) {
-		-webkit-filter: grayscale(100%);
-		filter: grayscale(100%);
-	}
-
-	&.twitter {
-		background-image: url(../img/twitter.svg);
-
-		&:not(:hover):not(:focus) {
-			-webkit-filter:  brightness(120%) grayscale(100%);
-			filter: brightness(120%) grayscale(100%);
-		}
-	}
-
-	&.github {
-		background-image: url(../img/github.svg);
-
-		&:not(:hover):not(:focus) {
-			-webkit-filter: brightness(800%) grayscale(100%);
-			filter: brightness(800%) grayscale(100%);
+		@media (max-width: 480px) {
+			font-size: 80%;
+			margin: 0 auto;
 		}
 	}
 }
