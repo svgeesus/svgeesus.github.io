@@ -14,26 +14,7 @@
 
 <body>
 
-<header>
-	<nav>
-		<a href="index.html">Home</a>
-		<a href="talks.html">Speaking</a>
-		<a href="publications.html">Publications</a>
-		<a href="cv.html" target="_blank">CV</a>
-		<a class="social twitter" href="http://twitter.com/svgeesus" target="_blank" title="Twitter">Twitter</a>
-		<a class="social github" href="http://github.com/svgeesus" target="_blank" title="Github">Github</a>
-	</nav>
-
-	<h1>
-		<img property="image" src="https://avatars2.githubusercontent.com/u/2506926?v=3&s=460" alt="">
-
-		<span property="name">
-			
-			Chris Lilley
-		</span>
-	</h1>
-</header>
-
+@@include("_header.html")
 
 <main mv-bar="no-login" mv-app mv-storage="https://github.com/svgeesus/svgeesus.github.io/data.json">
 
@@ -86,8 +67,7 @@
 	</select>
 </div>
 
-<script src="sitewide.js"></script>
-
+@@include("_footer.html")
 <script src="https://dev.mavo.io/dist/mavo.js"></script>
 
 </body>

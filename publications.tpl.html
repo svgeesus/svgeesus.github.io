@@ -1,13 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang=en>
 <head>
 
-<meta charset="UTF-8">
-<title>Chris Lilley: Publications</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link rel="stylesheet" href="css/style.css">
-
+@@include("_head.html", {
+	"title": "Chris Lilley: Publications",
+	"includes": ""
+})
 
 <style>
 	a:hover {background: #F06; color: white }
@@ -37,26 +35,9 @@
 </head>
 <body>
 
-<header>
-	<nav>
-		<a href="index.html">Home</a>
-		<a href="talks.html">Speaking</a>
-		<a href="publications.html">Publications</a>
-		<a href="cv.html" target="_blank">CV</a>
-		<a class="social twitter" href="http://twitter.com/svgeesus" target="_blank" title="Twitter">Twitter</a>
-		<a class="social github" href="http://github.com/svgeesus" target="_blank" title="Github">Github</a>
-	</nav>
-
-	<h1>
-		<img property="image" src="https://avatars2.githubusercontent.com/u/2506926?v=3&s=460" alt="">
-
-		<span property="name">
-			Chris Lilley’s Publications
-			
-		</span>
-	</h1>
-</header>
-
+@@include("_header.html", {
+	"title": "Chris Lilley’s Publications"
+})
 
 <main class="pubs">
 
@@ -120,8 +101,7 @@
 </section>
 </article>
 
-<script src="sitewide.js"></script>
-
+@@include("_footer.html")
 
 </body>
 </html>

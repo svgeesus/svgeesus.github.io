@@ -1,3 +1,4 @@
+
 @font-face {
 	font-family: Charter;
 	src: url(fonts/Charter Regular.woff) format("woff")
@@ -19,16 +20,22 @@
 	src: url(fonts/Charter Bold italic.woff) format("woff")
 }
 
+:root {
+	--content-width: 37rem;
+}
+
 body {
 	display: flex;
+	flex-flow: column;
 	margin: 0;
-	height: 100vh;
+	min-height: 100vh;
 	font: 115%/1.6 Charter, Cambria, 'Droid Serif', serif;
 }
 
 main {
 	padding: 1em;
-	width: 30em;
+	width: var(--content-width);
+	box-sizing: border-box;
 	max-width: 90vw;
 	margin: auto;
 	text-align: center;
@@ -38,7 +45,7 @@ main {
 		text-align: justify;
 	}
 
-	main.pubs h1 {
+	.pubs h1 {
 		text-align: center;
 	}
 
@@ -64,44 +71,71 @@ p[property=description] {
 	font-kerning: normal;
 }
 
-.links a {
-	display: inline-block;
+header {
+	text-align: center;
+}
+
+nav {
+	display: flex;
+	justify-content: center;
+	padding: 0 calc(50% - var(--content-width) / 2 - .5em);
+	background: hsl(190, 50%, 93%);
+	xborder-bottom: 1px solid hsl(190, 100%, 40%);
+}
+
+	nav a[aria-current] {
+		background: hsl(190, 60%, 80%);
+	}
+
+	nav a:not(.social) {
+		display: flex;
+		padding: 0 1em;
+		align-items: center;
+	}
+
+		nav a:not(.social):hover {
+			box-shadow: 0 -.3em #0ac inset;
+		}
+
+a:not(.social) + a.social {
+	margin-left: auto;
+}
+
+a.social {
+	flex: none;
 	width: 1.5em;
-	margin: .5em;
+	padding: .5em;
 	text-indent: -999em;
 	overflow: hidden;
 	background: no-repeat center;
+	background-origin: content-box;
 	transition: .5s;
 	transition-property: -webkit-filter, filter;
+	mix-blend-mode: multiply;
 }
 
-	.links a:not(:hover):not(:focus) {
+	nav a.social:not(:hover):not(:focus) {
 		-webkit-filter: grayscale(100%);
 		filter: grayscale(100%);
 	}
 
-	a.twitter {
+	a.social.twitter {
 		background-image: url(../img/twitter.svg);
 	}
 
-		a.twitter:not(:hover):not(:focus) {
+		a.social.twitter:not(:hover):not(:focus) {
 			-webkit-filter:  brightness(120%) grayscale(100%);
 			filter: brightness(120%) grayscale(100%);
 		}
 
-	a.github {
+	a.social.github {
 		background-image: url(../img/github.svg);
 	}
 
-		a.github:not(:hover):not(:focus) {
+		a.social.github:not(:hover):not(:focus) {
 			-webkit-filter: brightness(800%) grayscale(100%);
 			filter: brightness(800%) grayscale(100%);
 		}
-
-	a.talks {
-		background-image: url(../img/podium.svg);
-		font-size: 100%;
-	}
 
 .talks > h1 {
 	border-bottom: 2px solid;
