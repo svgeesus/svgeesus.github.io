@@ -1,0 +1,231 @@
+
+@font-face {
+	font-family: Charter;
+	src: url(fonts/Charter Regular.woff) format("woff")
+}
+@font-face {
+	font-family: Charter;
+	font-weight: 700;
+	src: url(fonts/Charter Bold.woff) format("woff")
+}
+@font-face {
+	font-family: Charter;
+	font-style: italic;
+	src: url(fonts/Charter Italic.woff) format("woff")
+}
+@font-face {
+	font-family: Charter;
+	font-style: italic;
+	font-weight: 700;
+	src: url(fonts/Charter Bold italic.woff) format("woff")
+}
+
+:root {
+	--content-width: 37rem;
+}
+
+body {
+	display: flex;
+	flex-flow: column;
+	margin: 0;
+	min-height: 100vh;
+	font: 115%/1.6 Charter, Cambria, 'Droid Serif', serif;
+}
+
+main {
+	padding: 1em;
+	width: var(--content-width);
+	box-sizing: border-box;
+	max-width: 90vw;
+	margin: auto;
+	text-align: center;
+}
+
+h1 {
+	font-weight: normal;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+img[property=image] {
+	display: block;
+	margin: 0 auto .5em;
+	max-width: 5em;
+	border-radius: 50%;
+}
+
+p[property=description] {
+	text-align: justify;
+	hyphens: auto;
+	font-kerning: normal;
+}
+
+header {
+	text-align: center;
+}
+
+nav {
+	display: flex;
+	justify-content: center;
+	padding: 0 calc(50% - var(--content-width) / 2 - .5em);
+	background: hsl(190, 50%, 93%);
+	xborder-bottom: 1px solid hsl(190, 100%, 40%);
+
+	& a[aria-current] {
+		background: hsl(190, 60%, 80%);
+	}
+
+	& a:not(.social) {
+		display: flex;
+		padding: 0 1em;
+		align-items: center;
+
+		&:hover {
+			box-shadow: 0 -.3em #0ac inset;
+		}
+
+		& + a.social {
+			margin-left: auto;
+		}
+	}
+}
+
+nav a.social {
+	flex: none;
+	width: 1.5em;
+	padding: .5em;
+	text-indent: -999em;
+	overflow: hidden;
+	background: no-repeat center;
+	background-origin: content-box;
+	transition: .3s;
+	transition-property: -webkit-filter, filter;
+	mix-blend-mode: multiply;
+
+	&:not(:hover):not(:focus) {
+		-webkit-filter: grayscale(100%);
+		filter: grayscale(100%);
+	}
+
+	&.twitter {
+		background-image: url(../img/twitter.svg);
+
+		&:not(:hover):not(:focus) {
+			-webkit-filter:  brightness(120%) grayscale(100%);
+			filter: brightness(120%) grayscale(100%);
+		}
+	}
+
+	&.github {
+		background-image: url(../img/github.svg);
+
+		&:not(:hover):not(:focus) {
+			-webkit-filter: brightness(800%) grayscale(100%);
+			filter: brightness(800%) grayscale(100%);
+		}
+	}
+}
+
+.talks > h1 {
+	border-bottom: 2px solid;
+	font-size: 120%;
+}
+
+[property=event] {
+	text-align: right;
+	font-size: .9rem;
+
+	& h1 a {
+		margin-left: 0;
+
+		&.slides {
+			background: orange;
+		}
+
+		&.audio {
+			background: #0bd;
+		}
+
+		&.video {
+			background: yellowgreen;
+		}
+
+		&.paper {
+			background: #b7d;
+		}
+
+		&:hover {
+			background: slategray;
+		}
+	}
+}
+
+h1[property=talk] {
+	width: auto;
+
+	& .mv-item-bar {
+		position: static;
+		float: right;
+		opacity: 1;
+		border-top: 0;
+		border-bottom: 0;
+		font-size: 75%;
+
+		&:empty {
+			display: none;
+		}
+	}
+}
+
+button.mv-add.mv-add-talk {
+	display: none;
+}
+
+[property=title] {
+	font-weight: bold;
+	text-align: inherit;
+}
+
+main.pubs {
+	text-align: justify;
+
+	& h1 {
+		text-align: center;
+	}
+
+	& li a:hover {
+		background: #F06;
+		color: white;
+	}
+
+	& span.title,
+	& span.title,
+	& span.journal {
+		font-style: italic;
+	}
+
+	& span.vol {
+		font-weight: bold;
+	}
+
+	& span.isbn {
+		font-variant: small-caps;
+	}
+
+	& a.paper {
+		display: inline-block;
+		vertical-align: .1em;
+		padding: .4em .4em .25em;
+		margin-left: .5em;
+		color: white;
+		text-shadow: 0;
+		font-size: 75%;
+		line-height: 1;
+		text-transform: uppercase;
+		border-radius: .3em;
+		background: #b7d;
+	}
+}

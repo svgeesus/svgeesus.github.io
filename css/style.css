@@ -25,8 +25,11 @@
 }
 
 body {
+	display: -webkit-box;
 	display: flex;
-	flex-flow: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	        flex-flow: column;
 	margin: 0;
 	min-height: 100vh;
 	font: 115%/1.6 Charter, Cambria, 'Droid Serif', serif;
@@ -34,20 +37,13 @@ body {
 
 main {
 	padding: 1em;
+	width: 37rem;
 	width: var(--content-width);
 	box-sizing: border-box;
 	max-width: 90vw;
 	margin: auto;
 	text-align: center;
 }
-
-	main.pubs {
-		text-align: justify;
-	}
-
-	.pubs h1 {
-		text-align: center;
-	}
 
 h1 {
 	font-weight: normal;
@@ -67,8 +63,12 @@ img[property=image] {
 
 p[property=description] {
 	text-align: justify;
-	hyphens: auto;
-	font-kerning: normal;
+	-webkit-hyphens: auto;
+	   -moz-hyphens: auto;
+	    -ms-hyphens: auto;
+	        hyphens: auto;
+	-webkit-font-kerning: normal;
+	        font-kerning: normal;
 }
 
 header {
@@ -76,66 +76,72 @@ header {
 }
 
 nav {
+	display: -webkit-box;
 	display: flex;
-	justify-content: center;
+	-webkit-box-pack: center;
+	        justify-content: center;
+	padding: 0 calc(50% - 37rem / 2 - .5em);
 	padding: 0 calc(50% - var(--content-width) / 2 - .5em);
 	background: hsl(190, 50%, 93%);
-	xborder-bottom: 1px solid hsl(190, 100%, 40%);
+	xborder-bottom: 1px solid hsl(190, 100%, 40%)
 }
 
-	nav a[aria-current] {
-		background: hsl(190, 60%, 80%);
-	}
+nav a[aria-current] {
+	background: hsl(190, 60%, 80%);
+}
 
-	nav a:not(.social) {
-		display: flex;
-		padding: 0 1em;
-		align-items: center;
-	}
+nav a:not(.social) {
+	display: -webkit-box;
+	display: flex;
+	padding: 0 1em;
+	-webkit-box-align: center;
+	        align-items: center
+}
 
-		nav a:not(.social):hover {
-			box-shadow: 0 -.3em #0ac inset;
-		}
+nav a:not(.social):hover {
+	box-shadow: 0 -.3em #0ac inset;
+}
 
-a:not(.social) + a.social {
+nav a:not(.social) + a.social {
 	margin-left: auto;
 }
 
-a.social {
-	flex: none;
+nav a.social {
+	-webkit-box-flex: 0;
+	        flex: none;
 	width: 1.5em;
 	padding: .5em;
 	text-indent: -999em;
 	overflow: hidden;
 	background: no-repeat center;
 	background-origin: content-box;
-	transition: .5s;
+	transition: .3s;
 	transition-property: -webkit-filter, filter;
-	mix-blend-mode: multiply;
+	mix-blend-mode: multiply
 }
 
-	nav a.social:not(:hover):not(:focus) {
-		-webkit-filter: grayscale(100%);
-		filter: grayscale(100%);
-	}
+nav a.social:not(:hover):not(:focus) {
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+}
 
-	a.social.twitter {
-		background-image: url(../img/twitter.svg);
-	}
+nav a.social.twitter {
+	background-image: url(../img/twitter.svg)
+}
 
-		a.social.twitter:not(:hover):not(:focus) {
-			-webkit-filter:  brightness(120%) grayscale(100%);
-			filter: brightness(120%) grayscale(100%);
-		}
+nav a.social.twitter:not(:hover):not(:focus) {
+	-webkit-filter:  brightness(120%) grayscale(100%);
+	filter: brightness(120%) grayscale(100%);
+}
 
-	a.social.github {
-		background-image: url(../img/github.svg);
-	}
+nav a.social.github {
+	background-image: url(../img/github.svg)
+}
 
-		a.social.github:not(:hover):not(:focus) {
-			-webkit-filter: brightness(800%) grayscale(100%);
-			filter: brightness(800%) grayscale(100%);
-		}
+nav a.social.github:not(:hover):not(:focus) {
+	-webkit-filter: brightness(800%) grayscale(100%);
+	filter: brightness(800%) grayscale(100%);
+}
 
 .talks > h1 {
 	border-bottom: 2px solid;
@@ -144,55 +150,96 @@ a.social {
 
 [property=event] {
 	text-align: right;
-	font-size: .9rem;
+	font-size: .9rem
 }
 
-	[property=event] h1 a {
-		margin-left: 0;
-	}
+[property=event] h1 a {
+	margin-left: 0
+}
 
-	[property=event] h1 a.slides {
-		background: orange;
-	}
+[property=event] h1 a.slides {
+	background: orange;
+}
 
-	[property=event] h1 a.audio {
-		background: #0bd;
-	}
+[property=event] h1 a.audio {
+	background: #0bd;
+}
 
-	[property=event] h1 a.video {
-		background: yellowgreen;
-	}
+[property=event] h1 a.video {
+	background: yellowgreen;
+}
 
-	[property=event] h1 a.paper {
-		background: #b7d;
-	}
+[property=event] h1 a.paper {
+	background: #b7d;
+}
 
-	[property=event] h1 a:hover {
-		background: slategray;
-	}
+[property=event] h1 a:hover {
+	background: slategray;
+}
 
-	h1[property=talk] {
-		width: auto;
-	}
+h1[property=talk] {
+	width: auto
+}
 
-		[property=talk] .mv-item-bar {
-			position: static;
-			float: right;
-			opacity: 1;
-			border-top: 0;
-			border-bottom: 0;
-			font-size: 75%;
-		}
+h1[property=talk] .mv-item-bar {
+	position: static;
+	float: right;
+	opacity: 1;
+	border-top: 0;
+	border-bottom: 0;
+	font-size: 75%
+}
 
-		[property=talk] .mv-item-bar:empty {
-			display: none;
-		}
+h1[property=talk] .mv-item-bar:empty {
+	display: none;
+}
 
-		button.mv-add.mv-add-talk {
-			display: none;
-		}
+button.mv-add.mv-add-talk {
+	display: none;
+}
 
-		[property=title] {
-			font-weight: bold;
-			text-align: inherit;
-		}
+[property=title] {
+	font-weight: bold;
+	text-align: inherit;
+}
+
+main.pubs {
+	text-align: justify
+}
+
+main.pubs h1 {
+	text-align: center;
+}
+
+main.pubs li a:hover {
+	background: #F06;
+	color: white;
+}
+
+main.pubs span.title,
+	main.pubs span.title,
+	main.pubs span.journal {
+	font-style: italic;
+}
+
+main.pubs span.vol {
+	font-weight: bold;
+}
+
+main.pubs span.isbn {
+	font-variant: small-caps;
+}
+
+main.pubs a.paper {
+	display: inline-block;
+	vertical-align: .1em;
+	padding: .4em .4em .25em;
+	margin-left: .5em;
+	color: white;
+	text-shadow: 0;
+	font-size: 75%;
+	line-height: 1;
+	text-transform: uppercase;
+	border-radius: .3em;
+	background: #b7d;
+}

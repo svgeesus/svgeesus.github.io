@@ -19,6 +19,11 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-file-include": "^2.0.1",
-    "gulp-rename": "^1.2.2"
+    "gulp-rename": "^1.2.2",
+    "autoprefixer": "^7.2.5",
+    "gulp-postcss": "^7.0.1",
+    "postcss-custom-properties": "^6.2.0",
+    "postcss-nesting": "^4.2.1",
+    "postcss-selector-matches": "^3.0.1"
   }
 }
