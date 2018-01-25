@@ -25,5 +25,8 @@
     "postcss-custom-properties": "^6.2.0",
     "postcss-nesting": "^4.2.1",
     "postcss-selector-matches": "^3.0.1"
+  },
+  "dependencies": {
+    "eslint": "^4.16.0"
   }
 }
