@@ -40,4 +40,4 @@ gulp.task("watch", function() {
 	gulp.watch(["**/*.tpl.html", "./templates/*.html"], ["html"]);
 });
 
-gulp.task("default", ["html"]);
+gulp.task("default", ["html", "css"]);
