@@ -5,7 +5,32 @@
 		{
 			"talk": [
 				{
-					"title": "TBD",
+					"title": "The State of WebFonts",
+					"type": "Talk"
+				}
+			],
+			"name": "FrontendConf 2018",
+			"date": "2018-05-28",
+			"city": "Moscow",
+			"country": "ru"
+		},
+		{
+			"talk": [
+				{
+					"title": "Color in UI Design",
+					"type": "Talk"
+				}
+			],
+			"url": "https://web.mit.edu/6.813/www/sp18/",
+			"name": "MIT 6.813 User Interface Design",
+			"date": "2018-04-04",
+			"city": "Cambridge",
+			"country": "us"
+		},
+		{
+			"talk": [
+				{
+					"title": "Color at W3C",
 					"type": "Keynote"
 				}
 			],
