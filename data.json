@@ -5,14 +5,15 @@
 		{
 			"talk": [
 				{
-					"title": "The State of WebFonts",
+					"title": "WebFonts in 2018: Everything Changes",
 					"type": "Talk"
 				}
 			],
 			"name": "FrontendConf 2018",
 			"date": "2018-05-28",
 			"city": "Moscow",
-			"country": "ru"
+			"country": "ru",
+			"url": "http://frontendconf.ru/moscow-rit/2018/abstracts/3642"
 		},
 		{
 			"talk": [
