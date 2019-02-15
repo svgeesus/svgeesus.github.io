@@ -19,14 +19,6 @@
 		{
 			"talk": [
 				{
-					"title": "TBD",
-					"type": "Talk"
-				}
-			]
-		},
-		{
-			"talk": [
-				{
 					"title": "WebFonts in 2018: Everything Changes",
 					"type": "Talk",
 					"@context": "http://schema.org"
