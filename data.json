@@ -5,16 +5,29 @@
 		{
 			"talk": [
 				{
+					"title": "WebFonts in 2019: Everything Changes",
+					"type": "Talk"
+				}
+			],
+			"name": "KharkivCSS",
+			"date": "2019-04-20",
+			"city": "Kharkiv"
+		},
+		{
+			"talk": [
+				{
 					"title": "WebFonts in 2018: Everything Changes",
 					"type": "Talk",
-					"video": "https://vimeo.com/312700362"
+					"video": "https://vimeo.com/312700362",
+					"@context": "http://schema.org"
 				}
 			],
 			"url": "https://fronteers.nl/congres/2018/schedule",
 			"name": "Fronteers 2018",
 			"date": "2018-10-05",
 			"city": "Amsterdam",
-			"country": "nl"
+			"country": "nl",
+			"@context": "http://schema.org"
 		},
 		{
 			"talk": [
