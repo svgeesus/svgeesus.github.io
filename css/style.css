@@ -25,11 +25,8 @@
 }
 
 body {
-	display: -webkit-box;
 	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	        flex-flow: column;
+	flex-flow: column;
 	margin: 0;
 	min-height: 100vh;
 	font: 115%/1.6 Charter, Cambria, 'Droid Serif', serif;
@@ -62,7 +59,6 @@ img[property=image] {
 p[property=description] {
 	text-align: justify;
 	-webkit-hyphens: auto;
-	   -moz-hyphens: auto;
 	    -ms-hyphens: auto;
 	        hyphens: auto;
 	-webkit-font-kerning: normal;
@@ -78,11 +74,9 @@ header h1 {
 }
 
 nav {
-	display: -webkit-box;
 	display: flex;
 	flex-wrap: wrap;
-	-webkit-box-pack: justify;
-	        justify-content: space-between;
+	justify-content: space-between;
 	min-width: -webkit-min-content;
 	min-width: -moz-min-content;
 	min-width: min-content;
@@ -96,16 +90,13 @@ nav a[aria-current] {
 }
 
 nav div {
-	display: -webkit-box;
 	display: flex
 }
 
 nav div:first-of-type a {
-	display: -webkit-box;
 	display: flex;
 	padding: .5em 1em;
-	-webkit-box-align: center;
-	        align-items: center;
+	align-items: center;
 	box-sizing: border-box;
 	min-width: -webkit-min-content;
 	min-width: -moz-min-content;
@@ -117,8 +108,7 @@ nav div:first-of-type a:hover {
 }
 
 nav div.social a {
-	-webkit-box-flex: 0;
-	        flex: none;
+	flex: none;
 	width: 1.5em;
 	padding: .5em;
 	text-indent: -999em;

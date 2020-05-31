@@ -36,8 +36,8 @@ gulp.task('css', function () {
 });
 
 gulp.task("watch", function() {
-	gulp.watch(["**/*.src.css"], ["css"]);
-	gulp.watch(["**/*.tpl.html", "./templates/*.html"], ["html"]);
+	gulp.watch(["**/*.src.css"], gulp.series("css"));
+	gulp.watch(["**/*.tpl.html", "./templates/*.html"], gulp.series("html"));
 });
 
-gulp.task("default", ["html", "css"]);
+gulp.task("default", gulp.parallel("html", "css"));
