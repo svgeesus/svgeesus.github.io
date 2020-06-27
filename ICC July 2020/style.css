@@ -1,26 +1,93 @@
-body {
-	max-width: 120ch;
-	margin: 5vh auto;
-	font: 100%/1.5 Palatino Linotype, serif;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+:root {
+	--font-sans: Inter, "Helvetica Neue", Helvetica, sans-serif;
+	--font-serif: "Hoefler Text", Garamond, "Times New Roman", serif;
 }
 
-header>h1, header>h2 {
+html {
+	padding: 1em;
+}
+
+body {
+	max-width: 100ch;
+	margin: 5vh auto;
+	font: 120%/1.5 var(--font-serif);
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: var(--font-sans);
+	line-height: 1;
+	letter-spacing: -0.03em;
+}
+
+a {
+	color: hsl(220 30% 40%);
+}
+
+header > h1,
+header > h2 {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center
 }
 
-figcaption, p.status {
+header > h1 {
+	font-size: 300%;
+}
+
+header > h2 {
+	line-height: inherit;
+}
+
+	header > h2 .affiliation,
+	header > h2 time {
+		display: block;
+		font-weight: 300;
+	}
+
+section > h1 {
+	font-size: 180%;
+}
+
+p {
+	text-align: justify;
+	hyphens: auto;
+}
+
+figure {
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid hsl(0 0% 80%);
+	padding: 1em;
+	counter-increment: figure;
+}
+
+	figure img {
+		max-width: 100%;
+	}
+
+	figcaption {
+		color: hsl(0 0% 30%);
+	}
+
+		figcaption::before {
+			content: "Figure " counter(figure) ": ";
+			color: black;
+		}
+
+figcaption,
+p.status {
 	font-style: italic;
-	margin-left: 5em;
-	margin-right: 5em;
-	text-align: center;
+	text-align: justify;
+	text-align-last: center;
 }
 
 p.status {
-	margin-top: 1em;
+	max-width: 80ch;
+	margin: 1em auto 0;
 }
 
-dd>p:first-child {
+dd > p:first-child {
 	margin-top: 0;
 }
