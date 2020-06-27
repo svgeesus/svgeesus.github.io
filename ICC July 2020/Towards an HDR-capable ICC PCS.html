@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<title>Towards an HDR-capable ICC PCS</title>
+<style>
+    body {
+        max-width: 120ch;
+        margin: 5vh auto;
+        font: 100%/1.5 Palatino Linotype, serif;
+    }
+    header>h1, header>h2 {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center
+    }
+    figcaption, p.status {
+        font-style: italic;
+        margin-left: 5em;
+        margin-right: 5em;
+        text-align: center;
+    }
+    p.status {
+        margin-top: 1em;
+    }
+    dd>p:first-child {
+        margin-top: 0;
+    }
+</style>
+
+<header>
+    <h1>Towards an HDR-capable ICC PCS</h1>
+
+    <h2>Chris Lilley<br>
+    World Wide Web Consortium (W3C)
+    June 2020</h2>
+
+    <p class="status">
+    This paper is an early draft
+    presented for discussion
+    by the HDR Working Group
+    at the July 2020 International Color Consortium (ICC) meeting.
+    It is incomplete,
+    has not tested HDR gamut mapping in any depth,
+    and does not yet draw any conclusions.
+    It has not been peer-reviewed by the ICC.
+    </p>
+</header>
+
+<article>
+    <section>
+        <h1>Introduction</h1>
+        <p>
+        Traditional color management,
+        with a focus on the reproduction of printed imagery,
+        has concerned itself with a restricted dynamic range;
+        typically less than 90:1, it is
+        formed by the deepest multi-ink black, on the one hand,
+        and paper white
+        seen under a not especially bright illuminant (??? cd/m2)
+        (get viewing cabinet values)
+        on the other.
+        </p>
+        <p>
+        Developments in display technology
+        increased this, but it was still bounded by display flare (at the dark end)
+        and modest peak luminances of 200 cd/m² or so at the high end,
+        giving a linear dynamic range of 1000:1 or so.
+        </p>
+        <p>
+        Real-world scenes (from Fairchild, simultaneous dynamic range)
+        specular hilights, deep shadows
+        HDR survey.
+        </p>
+        <p>
+        Experiments to extend L to a modest level of 400
+        (4x media white)
+        (hdr-CIELAB, hdr-IPT).
+        </p>
+        <p>
+        Meanwhile the TV and movie industry,
+        and the related field of 3D computer graphics,
+        has advanced and is generating,
+        manipulating
+        and distributing to consumers,
+        HDR content with dynamic ranges of 4000:1
+        or higher.
+        </p>
+    </section>
+
+    <section>
+        <h1>HDR luminance levels</h1>
+        <p>
+        Current HDR video broadcasts conform to [Rec.2100]
+        which supports two transfer functions:
+        one with relative luminance and suitable for variable viewing conditions
+        (Hybrid Log Gamma, HLG)
+        and the other with absolute luminance and suitable for fixed, dark viewing conditions
+        (Perceptual Quantizer, PQ);
+        the latter requires re-rendering for other viewing environments.
+        </p>
+        <p>
+        Rec.2100 supports (peak, small-area) luminances up to 12x media white (HLG)
+        or 71.4x media white (PQ).
+        Dark colors significantly below
+        those suported by Standard Dynamic Range (SDR)
+        once viewing flare is taken into account,
+        are also supported.
+        The highest conformance level of the VESA
+        </p>
+        <p>
+        Besides video, there is interest in distributing HDR still-image content,
+        either stills from video content,
+        or HDR graphic arts content.
+        Computer graphics content, OpenEXR.
+        ACES archival imagery.
+        Neflix AVIF paper
+        </p>
+    </section>
+
+    <section>
+        <h1>The ICC Profile Connection Space</h1>
+        <p>
+        ICC (4.3 and Max) currently allows XYZ and Lab as Profile Connection Space.
+        </p>
+        <p>
+        XYZ is unbounded, and used for HDR by ACES (see below).
+        </p>
+        <p>
+        Lab is bounded to L=100 at media white.
+        ??? has shown that L can be extended to 400
+        ??? has shown that L is a poor predictor of Lightness beyond 400
+        </p>
+        <p>
+        Arbitrarily placing the peak intensity white at L=100
+        distorts the Lightness curve and would not (??? why)
+        be a good Lightnes predictor.
+        </p>
+        <p>
+        Modifications to CIE Lab, such as [HDR-Lab] and [???]
+        are known, but would constitute an additional PCS.
+        The idea of adding an additional PCS is not new;
+        Tastl et al have explored using CIECAM02 as an ICC PCS [ICC CIECAM02].
+        </p>
+        <p>
+        Safdar et al [] have proposed J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>, and HDR-capable uniform colorspace [Safdar-PUCS].
+        J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> uses (a modified) PQ transfer function,
+        claims to correct the CIE Lab hue non-linearity,
+        is computationally less complex than CIECAM02 or CIECAM16,
+        and has an associated deltaE metric
+        which is (compared to deltaE 2000) computationally simple
+        and could be used for gamut mapping operations.
+        </p>
+        <p>
+        This paper therefore examines J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> as a potential HDR ICC PCS.
+        </p>
+    </section>
+
+    <section>
+        <h1>J<sub>z</sub>a<sub>z</sub>b<sub>z</sub></h1>
+        (describe)
+
+    (goals from paper)
+
+        <p>
+        The input to J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> is absolute CIE XYZ, with a D65 whitepoint.
+        ?? scene referred or output referred?
+        Since ICC uses CIE XYZ as a PCS,
+        and since ICCMax allows non-D50 whitepoints,
+        it seems feasible that a future version of the ICC specification
+        could add J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> as an additional PCS for processing of HDR data.
+        </p>
+
+        <p>
+        The present author
+        <a href="https://github.com/LeaVerou/color.js/tree/master/src/spaces">implemented
+        J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> and J<sub>z</sub>C<sub>z</sub>h<sub>z</sub></a> as part of a
+        <a href="https://colorjs.io/">JavaScript color library</a>.
+        The implementation was checked against published Matlab code,
+        but is as yet unreleased as it needs more testing to be certain of correctness.
+        </p>
+
+
+        <section>
+            <h1>Transfer curve</h1>
+            <p>
+            The J<sub>z</sub> component, termed Brightness,
+            is the perceptually uniform correlate of Luminance
+            in the J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> model.
+            The transfer curve is strongly influenced by,
+            but not identical to,
+            the Dolby PQ curve used in Rec.2100;
+            like PQ, the luminance range is absolute and ranges from
+            0 to 10,000 cd/m².
+            </p>
+            <p>
+            The authors of J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>
+            do not specifically address
+            where in this range
+            the media white should be placed,
+            although this is a critical item both for viewer comfort
+            and for the integration of SDR and HDR content in a single program.
+            Dolby conducted a histogram analysis of
+            HDR and SDR graded indoor scenes from cinematic content for home distribution.
+            Their Reference Level Guidelines for PQ [Dolby-PQ-levels]
+            give the encoded PQ values of
+            0.34 for an 18% gray card (17 cd/m²)
+            and go on to deduce the corresponding level of 0.54
+            for a media 'diffuse white' (100% reflectance) illuminated at 140 cd/m².
+            Their analysis found outdoor scenes to be 1.7 stops higher in exposure,
+            placing an 18% grey card at 57 cd/m² and a PQ value of 0.45,
+            with diffuse white at 425 cd/m² and a PQ value of 0.66.
+            </p>
+            <p>
+            The implementation by the present author therefore places the media whitepoint
+            for all SDR RGB colorspaces at PQ of 0.54, corresponding to 140 cd/m².
+            </p>
+            Capabilities, peak luminance, media white (Dolby).
+
+Fixed viewing condition assumption.
+
+Use for chroma plane as well as lightness axis.
+
+Small numbers due to limited range
+        </section>
+
+        <section>
+            <h1>
+                Chroma and Hue
+            </h1>
+            <p>
+                Like the equations for deltaE2000,
+                J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> introduces a correction term for
+                the deep blue to purple non-linearity of Lab and CIECAM02
+            </p>
+            <p>
+            <figure>
+                <img src="2020-prim-sec.svg" style="width: 60vw"/>
+                <figcaption>Rec.2020 primaries and secondaries, plotted on the CIE CH plane.
+                For comparison, the sRGB primaries and secondaries are shown by the dashed lines.</figcaption>
+            </figure>
+
+            <figure>
+                <img src="2020-prim-sec-JzCzhz.svg" style="width: 60vw"/>
+                <figcaption>Rec.2020 primaries and secondaries, plotted on the CIE CH plane.
+                For comparison, the sRGB primaries and secondaries are shown by the dashed lines.</figcaption>
+            </figure>
+            </p>
+            <p>
+            Notice the shift in hue angle of the blue primaries relative to cyan and magenta,
+            the altered hue angle differences between sRGB and Rec.2020 values,
+            and the very small numbers:
+            for example, Rec.2020 yellow
+            has a CIE LCH Chroma of 132 but a J<sub>z</sub>C<sub>z</sub>h<sub>z</sub> Chroma of 0.156.
+            </p>
+            (summarize equation)
+        </section>
+
+        <section>
+            <h1>DeltaE</h1>
+            <p>
+            <!-- does this really fit here?-->
+            Rousselot et.  al. [Quality Assesment HDR] examined HDR image quality metrics
+            using ICtCp, J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>, and HDR-Lab.
+            12 SDR metrics were extended to HDR,
+            and two new HDR metrics were proposed.
+            </p>
+
+            <p>
+            Because many of the limitations of CIE Lab are corrected in the computation of J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>,
+            then unlike the relatively complicated deltaE2000 metric,
+            the deltaE metric uses a simple linear root sum of squares in J<sub>z</sub>C<sub>z</sub>h<sub>z</sub>:
+            </p>
+            <p>
+                ΔE = √(ΔJ<sub>z</sub>² + ΔC<sub>z</sub>² + Δh<sub>z</sub>²)
+            </p>
+            <p>
+            where, as with CIE LCH, Δh<sub>z</sub> is the length of the chord:
+            </p>
+            <p>
+                Δh<sub>z</sub> = 2 × √(C<sub>z</sub>1 × C<sub>z</sub>2) × sin(Δh), Δh in radians
+            </p>
+            <p>
+            This metric was
+            <a href="https://github.com/LeaVerou/color.js/tree/master/src/deltaE">implemented</a>
+            and
+            <a href="https://colorjs.io/tests/delta.html">tested</a>
+            against 76, CMC(2,1) and deltaE2000.
+            </p>
+            <p>
+            It is immediately apparent that the metric has a very different range.
+            </p>
+                (table with white-to-black, Sharma "large delta E", and small deltaE comparisons.)
+            <p>
+            While not necessarily an issue for automated tasks such as gamut mapping,
+            the very small values for this distance metric might prove a barrier to
+            acceptability or perceptibility use or client-vendor communication.
+            </p>
+        </section>
+
+        <section>
+            <h1>Input data</h1>
+            <p>
+                Not very many HDR samples, in particular no non-neutral samples above media white.
+
+                ??? HDR gamut mapping study used ??? colorspace
+            </p>
+        </section>
+
+    </section>
+
+    <section>
+        <h1>Gamut mapping</h1>
+        <p>
+        Gamut compression from an SDR, WCG display
+        to a SCG display
+        has been investigated by Xu et al
+        [CGM-Vividness], [Gamut Compression]
+        who compared CIE Lab, CAM02-UCS and J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>.
+        Six global and two local (spatial) GMAs were tested.
+        Their algorithms included Vividness Preserving
+        (distance from the blackpoint)
+        and Depth Preserving (distance from media white);
+        the latter did not perform well.
+        Their conclusions included the statement that
+        "J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> is a promising UCS for gamut mapping".
+        However, only the WCG aspect of J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> was investigated, not the HDR aspect.
+        </p>
+        <p>
+        To simulate a constant-lightness, hue preserving GMA,
+        the present author implemented J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>, J<sub>z</sub>C<sub>z</sub>h<sub>z</sub>, and the J<sub>z</sub> distance metric;
+        then plotted the progressive Chroma reduction
+        of two blues (sRGB primary blue and Rec.2020 primary blue)
+        in two UCS: CIE LCH and J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>.
+        Blue was chosen to investigate the hue linearity,
+        which is known to be problematic for CIE Lab.
+        </p>
+        <p>
+        <figure>
+            <img src="sRGB-blue-lab.svg" style="width: 60vw"/>
+            <figcaption>Above: sRGB blue, with progressive reduction of
+            CIE LCH Chroma to the neutral axis.
+            Below, linear-light sRGB primary intensities.</figcaption>
+        </figure>
+
+        <figure>
+            <img src="sRGB-blue-JzCzhz.svg" style="width: 60vw"/>
+            <figcaption>Above: sRGB blue, with progressive reduction of
+            J<sub>z</sub>C<sub>z</sub>h<sub>z</sub> Chroma to the neutral axis.
+            Below, linear-light sRGB primary intensities.</figcaption>
+        </figure>
+        </p>
+        <p>
+        For the LCH chroma reduction,
+        a shift towards purple is easily seen
+        and the RGB levels clearly indicate that
+        the red component is rising faster than the green.
+        </p>
+        <p>
+        For the J<sub>z</sub>C<sub>z</sub>h<sub>z</sub> chroma reduction,
+        the objectionable purple shift
+        is replaced by a worrying cyan shift,
+        and the green component is rising faster than the red.
+        In addition, the three components do not fully converge to the neutral axis.
+        </p>
+        <p>
+        Having examined a SCG mapping, as a WCG colorspace Rec.2020 blue was tested.
+        The color ramps are converted to sRGB for display; salmon indicates out-of-gamut colors.
+        </p>
+        <p>
+        <figure>
+            <img src="rec2020-lab.svg" style="width: 60vw"/>
+            <figcaption>Above: Rec.2020 blue, with progressive reduction of
+            CIE LCH Chroma to the neutral axis.
+            Below, linear-light Rec.2020 primary intensities.</figcaption>
+        </figure>
+
+        <figure>
+            <img src="rec2020-JzCzhz.svg" style="width: 60vw"/>
+            <figcaption>Above: Rec.2020 blue, with progressive reduction of
+            J<sub>z</sub>C<sub>z</sub>h<sub>z</sub> Chroma to the neutral axis.
+            Below, linear-light Rec.2020 primary intensities.</figcaption>
+        </figure>
+        </p>
+        <p>
+        The same tendencies
+        (an excess of red in LCH,
+        and of green in J<sub>z</sub>C<sub>z</sub>h<sub>z</sub>)
+        were noted,
+        although only a portion of the generated color ramp
+        could be visualized due to display gamut limitations.
+        </p>
+        <p>
+        It is hypothesized that the shift from blue to purple,
+        which crosses a color name boundary,
+        is visualy more noticeable than
+        the shift from deep blue to cyan blue,
+        which does not.
+        </p>
+    </section>
+
+    <section>
+        <h1>Further Work</h1>
+        <p>
+        It is possible that a UCS with the HLG transfer curve might
+        be more widely applicable to a range of viewing environments
+        and allocate more of the code space to commonly occurring colors.
+
+        The hue linearity needs to be further investigated.
+
+        Performance with non-neutral, high chroma colors is inadequately explored.
+
+        The values for J<sub>z</sub>C<sub>z</sub>h<sub>z</sub> brightness and chroma,
+        and the values for deltaE,
+        are too small for easy comprehension
+        or comparison with other systems.
+
+        Beyond that, no conclusions are presented at this stage.
+        <p>
+
+        <p>
+        Much further work remains to be done
+        to even understand the goals of HDR-capable ICC manipulation of color.
+        In addition to merely progressing from colorimetry to color appearance models:
+        spatial effects and image appearance models,
+        tone mapping/color re-rendering,
+        user expectations and
+        the range of viewing environments
+        are increasingly important for satisfactory rendering of still,
+        let alone moving,
+        HDR content.
+        </p>
+    </section>
+
+</article>
+
+<footer>
+    <section>
+        <h1>Appendix: Source colorspaces</h1>
+        <p>Potential HDR colorspaces and other HDR datasources
+            which could be processed as inputs to an HDR-capable ICC workflow:
+        </p>
+
+        <section>
+            <h1>ITU Rec. BT.2100</h1>
+            <p>This uses the same ultrawide gamut
+                primaries as ITU Rec. BT.2020;
+                while physically realisable in principle,
+                they lie right on the spectral locus
+                which limits their brightness
+                and exacerbates observer metamerism.
+            </p>
+            <p>
+                It specifies two transfer curves.
+                One is Hybrid Log Gamma (HLG),
+                which uses relative luminances
+                and can be used with a range of viewing conditions
+                by scaling the peak luminance;
+                and the other is Perceptual Quantizer (PQ),
+                which uses absolute luminances
+                and requires a dark viewing environment (??? cd/m2).
+            </p>
+            <p>
+                These colorspaces are in current use for the bradcast of HDR content
+                (movies, news, still images) and for UHD Blu-Ray.
+                The effective gamut usage is not full,
+                but is still somewhat greater than
+                the DCI-p3 gamut.
+            </p>
+            <p>
+                Most current workflow does not use ICC profiles.
+            </p>
+            <p>
+                This pair of colorspaces is proposed for a future,
+                <a href="https://drafts.csswg.org/css-color-hdr/">HDR-aware extension to CSS Color</a>,
+                by the present author,
+                but has not yet been adopted by the CSS Working Group.
+            </p>
+        </section>
+
+        <section>
+            <h1>ProPhoto RGB</h1>
+            <p>
+                Originally proposed by Kodak as the Reference Output Medium (ROMM) colorspace,
+this is an ultrawide gamut, output referred, RGB space.
+            </p>
+            <p>
+                As two of the three primaries are outside the spectral locus,
+                ProPhoto RGB is often used as a Camera RAW decoding target
+                (for example, by Adobe Lightroom)
+                to avoid gamut compression in the early stages of photomanipulation
+                and as a master archival format for digital photography.
+            </p>
+            <p>
+                Some HDR still images use this format, often by exposure stacking
+                (taking mid-range luminances from a series of photographs
+                with different exposure settings,
+                or with different exposure conversions from the linear RAW original photo).
+            </p>
+            <p>
+                Most current workflow does use ICC profiles. However,
+                the transfer function is a 1.8 gamma
+                with a small linear to to constrain the slope near zero to 16.
+                A widely distributed ICC profile uses a simple 1.8 gamma,
+                which relies on a poorly-documented feature of Adobe Lightroom and Photoshop
+                which constrain the slope near zero to 16.
+                Such profiles would not necessarily be interoperable with other software.
+            </p>
+        </section>
+
+        <section>
+            <h1>IC<sub>T</sub>C<sub>P</sub></h1>
+            <p>Defined by</p>
+
+        </section>
+
+        <section>
+            <h1>ACES AP0</h1>
+            <p>Defined by</p>
+            <p>
+                Most current workflow does not use ICC profiles.
+            </p>
+        </section>
+
+        <section>
+            <h1>OpenEXR</h1>
+            <p>OpenEXR is a high-dynamic-range, 2D image file format
+                developed by Industrial Light & Magic (ILM) for use in computer imaging applications.
+                For linear images, the 'half float' format
+                provides 1024 values per color component per f-stop,
+                and 30 f-stops;
+                an additional 10 f-stops with reduced precision
+                are available at the low end (denormals).
+            </p>
+        </section>
+
+    </section>
+
+    <section>
+        <h1>References</h1>
+        <dl>
+            <dt id=ARIB_STD-B67>[ <a href="https://www.arib.or.jp/english/html/overview/doc/2-STD-B67v1_0.pdf">ARIB_STD-B67</a> ]</dt>
+            <dd>
+                <p>ARIB, <i>Essential Parameter Values for the Extended Image Dynamic Range Television (EIDRTV) System for Programme Production</i>. 3 July 2015</p>
+            </dd>
+            <dt id="BT.2100">[ <a href="https://www.itu.int/dms_pubrec/itu-r/rec/bt/R-REC-BT.2100-2-201807-I!!PDF-E.pdf">BT.2100</a> ]</dt>
+            <dd>
+                <p>ITU-R  BT.2100-2 <i>Image parameter values for high dynamic range television for use in production and international programme exchange</i>. July 2018</p>
+            </dd>
+            <dt id="BT.2390">[ <a href="https://www.itu.int/dms_pub/itu-r/opb/rep/R-REP-BT.2390-8-2020-PDF-E.pdf">BT.2390</a> ]</dt>
+            <dd>
+                <p><i>ITU-R BT.2390-8 High dynamic range television for production and international programme exchange</i>. February 2020</p>
+            </dd>
+            <dt id="CGM-Vividness">[ <a href="">CGM-Vividness</a> ]</dt>
+            <dd>
+                <p>Baiyue Zhao, Lihao Xu, Ming Ronnier Luo. <i>Colour gamut mapping using vividness scale</i>. IS&T International Symposium on Electronic Imaging 2019, Color Imaging XXIV: Displaying, Processing, Hardcopy, and Applications.</p>
+            </dd>
+            <dt id="Dolby-PQ-levels">[ <a href="https://www.dolby.com/us/en/technologies/dolby-vision/operational-guidelines-for-pq-2.pdf">Dolby-PQ-levels</a> ]</dt>
+            <!-- 404 this weekend! -->
+            <dd>
+                <p>Dolby Laboratories, Inc. <i>Reference Level Guidelines for PQ (BT.2100)</i>.  2016.</p>
+            </dd>
+            <dt id="Gamut_Compression">[ <a href="">Gamut Compression</a> ]</dt>
+            <dd>
+                <p>Lihao Xu, Baiyue Zhao and M. R. Luo. <i>Colour gamut mapping between small and large colour gamuts: Part I. gamut compression</i>. Optics Express <b>26</b> no. 9, 30 Apr 2018.</p>
+            </dd>
+            <dt id="HDR_Photo_Survey">[ <a href="http://markfairchild.org/HDR.html">HDR Photo Survey</a> ]</dt>
+            <dd>
+                <p>Fairchild, Mark<i>The HDR Photographic Survey</i>.</p>
+            </dd>
+            <dt id="iCAM06">[ <a href="">iCAM06</a> ]</dt>
+            <dd>
+                <p>Jiangtao Kuang, Garrett M. Johnson, Mark D. Fairchild. <i>iCAM06: A refined image appearance model for HDR image rendering</i>. J. Vis. Commun. Image R. <b>18</b> (2007) pp. 406–414</p>
+            </dd>
+            <dt id="ICC_CIECAM02">[ <a href="">ICC CIECAM02</a> ]</dt>
+            <dd>
+                <p>    Ingeborg Tastl, Miheer Bhachech, Nathan Moroney and Jack Holm. <i>ICC Color Management and CIECAM02</i>.
+                </p>
+            </dd>
+            <dt id="Quality_Assesment_HDR">[ <a href="">Quality Assesment HDR</a> ]</dt>
+            <dd>
+                <p>Maxime Rousselot, Olivier Le Meur, Rémi Cozot and Xavier Ducloux. <i>Quality Assessment of HDR/WCG Images Using HDR Uniform Color Spaces</i>. J. Imaging 2019, <b>5</b>, 18</p>
+            </dd>
+            <dt id="Rendering-HDR-images">[ <a href="">Rendering HDR images</a> ]</dt>
+            <dd>
+                <p>Garrett M. Johnson, Mark D. Fairchild. <i>Rendering HDR Images</i>.</p>
+            </dd>
+            <dt id="Safdar-PUCS">[ <a href="https://www.osapublishing.org/DirectPDFAccess/33630C0F-CFF9-6328-FA6195B4E962F4D7_368272/oe-25-13-15131.pdf?da=1&id=368272&amp;seq=0&amp;mobile=no">Safdar-PUCS</a> ]</dt>
+            <dd>
+                <p>Muhammad Safdar, Guihua Ciu, Youn Jin Kim, Ming Ronnier Luo.
+                <i>Perceptually uniform color space for image signals including
+                    high dynamic range and wide gamut</i>.
+                    Optics Express, vol <b>24</b> no 13 pp. 15131-15151.
+                    26 June 2017.
+                </p>
+            </dd>
+            <dt id="Sharma-DeltaE2000">[ <a href="http://www2.ece.rochester.edu/~gsharma/ciede2000/">Sharma-DeltaE2000</a> ]</dt>
+            <dd>
+                <p>G. Sharma, W. Wu, E. N. Dalal.
+                    <i>The CIEDE2000 Color-Difference Formula: Implementation Notes, Supplementary Test Data, and Mathematical Observations</i>. Color Research and Application, vol. <b>30</b>. No. 1, pp. 21-30, February 2005.</p>
+            </dd>
+            <dt id="SMPTE-ST-2084">[ <a href="https://ieeexplore.ieee.org/document/7291452">SMPTE-ST-2084</a> ]</dt>
+            <dd>
+                <p>ST 2084:2014 - SMPTE Standard - <i>High Dynamic Range Electro-Optical Transfer Function of Mastering Reference Displays</i>. ISBN 978-1-61482-829-7. 29 August 2014</p>
+            </dd>
+            <dt id="UHDTV_Gamut_Mapping">[ <a href="">UHDTV Gamut Mapping</a> ]</dt>
+            <dd>
+                <p>Kenichiro Masaoka, Yuichi Kusakabe, Takayuki Yamashita, Yukihiro Nishida, Tetsuomi Ikeda, and Masayuki Sugawara. <i>Algorithm Design for Gamut Mapping From UHDTV to HDTV</i>. Journal of Display Technology, vol. <b>12</b>, No. 7, July 2016</p>
+            </dd>
+            <!-- <dt>[ <a href=""></a> ]</dt>
+            <dd>
+                <p></p>
+            </dd>
+            <dt>[ <a href=""></a> ]</dt>
+            <dd>
+                <p></p>
+            </dd>
+            <dt>[ <a href=""></a> ]</dt>
+            <dd>
+                <p></p>
+            </dd>
+            <dt>[ <a href=""></a> ]</dt>
+            <dd>
+                <p></p>
+            </dd>
+            <dt>[ <a href=""></a> ]</dt>
+            <dd>
+                <p></p>
+            </dd> -->
+        </dl>
+    </section>
+
+</footer>
