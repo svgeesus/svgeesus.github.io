@@ -61,7 +61,10 @@
         manipulating
         and distributing to consumers,
         HDR content with dynamic ranges of 4000:1
-        or higher. [<a href="#YouTube-HDR">YouTube-HDR</a>]
+        or higher.
+        [<a href="#Netflix_ODS">Netflix ODS</a>],
+        [<a href="#YouTube-HDR">YouTube-HDR</a>]
+
         </p>
     </section>
 
@@ -118,7 +121,8 @@
             </q>
         </p>
         <p>
-        Besides video, there is interest in distributing HDR still-image content,
+        Besides HDR video, there is interest
+        in distributing HDR still-image content,
         either stills from video content,
         or HDR graphic arts content.
         Computer graphics content, OpenEXR.
@@ -160,6 +164,7 @@
         and has an associated deltaE metric
         which is (compared to deltaE 2000) computationally simple
         and could be used for gamut mapping operations.
+        Unlike CIECAM02 [<a href="#ICC_CIECAM02">ICC CIECAM02</a>], it is invertible.
         </p>
         <p>
         This paper therefore examines J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> as a potential HDR ICC PCS.
@@ -244,6 +249,9 @@ Small numbers due to limited range
                 the deep blue to purple non-linearity of Lab and CIECAM02
             </p>
             <p>
+                PQ compression is used for the chromatic axes, as well as for the lightness axis.
+            </p>
+            <p>
             <figure>
                 <img src="2020-prim-sec.svg" style="width: 60vw"/>
                 <figcaption>Rec.2020 primaries and secondaries, plotted on the CIE CH plane.
@@ -257,13 +265,14 @@ Small numbers due to limited range
             </figure>
             </p>
             <p>
-            Notice the shift in hue angle of the blue primaries relative to cyan and magenta,
-            the altered hue angle differences between sRGB and Rec.2020 values,
-            and the very small numbers:
+            A shift in hue angle of the blue primaries
+            (relative to cyan and magenta)
+            is readilly apparent.
+            There is an altered hue angle differences between sRGB and Rec.2020 values.
+            Coordinate values are very small:
             for example, Rec.2020 yellow
             has a CIE LCH Chroma of 132 but a J<sub>z</sub>C<sub>z</sub>h<sub>z</sub> Chroma of 0.156.
             </p>
-            (summarize equation)
         </section>
 
         <section>
@@ -544,6 +553,22 @@ Small numbers due to limited range
     <section>
         <h2>Tentative Conclusions, &amp; Further Work</h2>
         <p>
+            Tastl <i>et. al.</i> concluded [<a href="ICC_CIECAM02">ICC CIECAM02</a>]:
+        </p>
+        <blockquote>Trying to use CIECAM02 within an ICC framework is not as
+            simple as switching from XYZ to CIELAB. It requires careful
+            thought about the goals that one hopes to achieve, careful
+            selection of the CIECAM02 input parameters and management of
+            the expectations. It is not the answer to all the problems and it
+            also produces new problems that have to be dealt with in an
+            appropriate way.
+        </blockquote>
+        <p>The same caveats apply to the use of
+            J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>
+            within an ICC framework.
+            Having said which:
+        </p>
+        <p>
         The PQ transfer curve is specific to a reference display
         in a dim viewing environment.
         The positioning of diffuse, media white is subject to debate
@@ -594,7 +619,7 @@ Small numbers due to limited range
         </p>
 
         <section>
-            <h1>ITU Rec. BT.2100</h1>
+            <h3>ITU Rec. BT.2100</h3>
             <p>This uses the same ultrawide gamut
                 primaries as ITU Rec. BT.2020;
                 while physically realisable in principle,
@@ -679,6 +704,16 @@ this is an ultrawide gamut, output referred, RGB space.
                 which was contributed by Industrial Light & Magic
                 and is similar to a shader language.
             </p>
+            <p>
+                Various output transforms are defined,
+                which vary with monitor colorimetry;
+                and peak white level.
+                For example:
+            </p>
+            <ul>
+                <li>P3-D65 ST.2084 (1,000 cd/m²)</li>
+                <li>P3-D65 ST.2084 (4,000 cd/m²)</li>
+            </ul>
         </section>
 
         <section>
@@ -753,6 +788,11 @@ this is an ultrawide gamut, output referred, RGB space.
             <dd>
                 <p>    Ingeborg Tastl, Miheer Bhachech, Nathan Moroney and Jack Holm. <i>ICC Color Management and CIECAM02</i>.
                 </p>
+            </dd>
+            <dt id="Netflix_ODS">[ <a href="https://drive.google.com/file/d/0B37xotBvlV3Qc1E4VW5sMzNwcmc/view">Netflix ODS</a> ]</dt>
+            <dd>
+                <p><i>Netflix Originals Delivery Specifications</i>
+                version OC-3-3<, July 2019/p>
             </dd>
             <dt id="PQ-HLG_Transcoding">[ <a href="http://downloads.bbc.co.uk/rd/pubs/papers/HDR/BBC_HDRTV_PQ_HLG_Transcode_v2.pdf">PQ-HLG Transcoding</a> ]</dt>
             <dd>
