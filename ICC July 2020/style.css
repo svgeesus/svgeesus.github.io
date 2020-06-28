@@ -125,3 +125,7 @@ table {
 	tbody tr:nth-of-type(odd) {
 		background: hsl(220 10% 97%);
 	}
+
+a[href=""] {
+	background: yellow;
+}
