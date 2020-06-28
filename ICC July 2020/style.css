@@ -37,17 +37,19 @@ header > h1 {
 }
 
 header > h2 {
-	line-height: inherit;
+	line-height: 1.4;
 }
 
 	header > h2 .affiliation,
 	header > h2 time {
 		display: block;
 		font-weight: 300;
+		font-size: 80%;
 	}
 
 section > h1 {
-	font-size: 180%;
+	font-size: 150%;
+	color: hsl(220 10% 40%);
 }
 
 p {
@@ -67,18 +69,23 @@ figure {
 		max-width: 100%;
 	}
 
-	figcaption {
-		color: hsl(0 0% 30%);
+	figcaption,
+	table caption {
+
 	}
 
 		figcaption::before {
 			content: "Figure " counter(figure) ": ";
-			color: black;
+		}
+
+		figcaption::before,
+		table caption::before {
+			color: hsl(220 10% 40%);
 		}
 
 figcaption,
 p.status,
-table>caption {
+table > caption {
 	font-style: italic;
 	text-align: justify;
 	text-align-last: center;
@@ -87,8 +94,34 @@ table>caption {
 p.status {
 	max-width: 80ch;
 	margin: 1em auto 0;
+	hyphens: manual;
 }
 
 dd > p:first-child {
 	margin-top: 0;
 }
+
+table {
+	width: 100%;
+	border-spacing: 0;
+	counter-increment: table;
+	font-variant-numeric: lining-nums;
+}
+
+	table caption::before {
+		content: "Table " counter(table) ": ";
+	}
+
+	th,
+	td {
+		padding: .3em .5em .2em;
+	}
+
+	thead th {
+		border-bottom: 1px solid hsl(220 10% 70%);
+		font: bold 100%/1 var(--font-sans);
+	}
+
+	tbody tr:nth-of-type(odd) {
+		background: hsl(220 10% 97%);
+	}
