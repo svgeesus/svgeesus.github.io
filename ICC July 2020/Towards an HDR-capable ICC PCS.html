@@ -469,7 +469,8 @@
         Gamut compression from an SDR, WCG display
         to a SCG display
         has been investigated by Xu et al
-        [CGM-Vividness], [Gamut Compression]
+        [<a href="#CGM-Vividness">CGM-Vividness</a>],
+        [<a href="Gamut_Compression">Gamut Compression</a>]
         who compared CIE Lab, CAM02-UCS and J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>.
         Six global and two local (spatial) GMAs were tested.
         Their algorithms included Vividness Preserving
@@ -491,14 +492,14 @@
         </p>
         <p>
         <figure>
-            <img src="sRGB-blue-lab.svg" style="width: 60vw"/>
+            <img src="sRGB-blue-lab.svg" style="width: 80vw"/>
             <figcaption>Above: sRGB blue, with progressive reduction of
             CIE LCH Chroma to the neutral axis.<br>
             Below, linear-light sRGB primary intensities.</figcaption>
         </figure>
 
         <figure>
-            <img src="sRGB-blue-JCH.svg" style="width: 60vw"/>
+            <img src="sRGB-blue-JCH.svg" style="width: 80vw"/>
             <figcaption>Above: sRGB blue, with progressive reduction of
             J<sub>z</sub>C<sub>z</sub>h<sub>z</sub> Chroma to the neutral axis.<br>
             Below, linear-light sRGB primary intensities.</figcaption>
@@ -523,14 +524,14 @@
         </p>
         <p>
         <figure>
-            <img src="rec2020-lab.svg" style="width: 60vw"/>
+            <img src="rec2020-lab.svg" style="width: 80vw"/>
             <figcaption>Above: Rec.2020 blue, with progressive reduction of
             CIE LCH Chroma to the neutral axis.<br>
             Below, linear-light Rec.2020 primary intensities.</figcaption>
         </figure>
 
         <figure>
-            <img src="rec2020-JCH.svg" style="width: 60vw"/>
+            <img src="rec2020-JCH.svg" style="width: 80vw"/>
             <figcaption>Above: Rec.2020 blue, with progressive reduction of
             J<sub>z</sub>C<sub>z</sub>h<sub>z</sub> Chroma to the neutral axis.<br>
             Below, linear-light Rec.2020 primary intensities.</figcaption>
@@ -728,7 +729,15 @@ this is an ultrawide gamut, output referred, RGB space.
                 and 30 f-stops;
                 an additional 10 f-stops with reduced precision
                 are available at the low end (denormals).
-                <span class="todo">colorspace?</span>
+            </p>
+            <p>
+                OpenEXR supports RGB, XYZ, and YCbCr colors.
+                It allows storage of the
+                red, green, blue and white chromaticities
+                [<a href="#OpenEXRIntro">OpenEXR Intro</a>].
+                However
+                <q>The chromaticities attribute is optional, and many
+                    programs that write OpenEXR omit it.</q>
             </p>
         </section>
 
@@ -808,6 +817,13 @@ this is an ultrawide gamut, output referred, RGB space.
             <dd>
                 <p><i>Netflix Originals Delivery Specifications</i>
                 version OC-3-3<, July 2019/p>
+            </dd>
+            <dt id="OpenEXRIntro">[ <a href="https://www.openexr.com/documentation/TechnicalIntroduction.pdf">OpenEXR Intro</a> ]</dt>
+            <dd>
+                <p>Florian Kainz, Rod Bogart, Piotr Stanczyk, Peter Hillman.
+                    <i>Technical Introduction to OpenEXR</i>.
+                    November 2013
+                </p>
             </dd>
             <dt id="PQ-HLG_Transcoding">[ <a href="http://downloads.bbc.co.uk/rd/pubs/papers/HDR/BBC_HDRTV_PQ_HLG_Transcode_v2.pdf">PQ-HLG Transcoding</a> ]</dt>
             <dd>
