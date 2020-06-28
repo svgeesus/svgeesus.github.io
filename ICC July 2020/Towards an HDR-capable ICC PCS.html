@@ -46,7 +46,7 @@
         </p>
         <p>
         Real-world scenes (from Fairchild, simultaneous dynamic range)
-        specular hilights, deep shadows
+        specular highlights, deep shadows
         HDR survey.
         </p>
         <p>
@@ -61,7 +61,7 @@
         manipulating
         and distributing to consumers,
         HDR content with dynamic ranges of 4000:1
-        or higher.
+        or higher. [<a href="#YouTube-HDR">YouTube-HDR</a>]
         </p>
     </section>
 
@@ -70,24 +70,16 @@
         <p>
         Current HDR video broadcasts conform to [Rec.2100]
         which supports two transfer functions:
-        one with relative luminance and suitable for variable viewing conditions
+        one is scene referred,
+        with relative luminance and suitable for variable viewing conditions
         (Hybrid Log Gamma, HLG)
-        and the other with absolute luminance and suitable for fixed, dark viewing conditions
+        and the other
+        is display-referred,
+        with absolute luminance and suitable for fixed, dark viewing conditions
         (Perceptual Quantizer, PQ);
         the latter requires re-rendering for other viewing environments.
         </p>
-        <p>
-            For HLG,
-            diffuse white is placed at a code value of 0.75
-            (75 "IRE"),
-            which allocates three quarters of the code space
-            for commonly occuring, SDR colors;
-            and leaves 3.5 stops (12x diffuse white)
-            for hilights.
-            The absolute luminance of the diffuse white in HLG
-            thus varies with display brightness,
-            which can be adapted to suit viewing conditions.
-        </p>
+
         <!-- how to cite Craig Revie "High Dynamic Range Imaging Is there a role for ICC ?" -->
         <p>
         Rec.2100 supports (peak, small-area) luminances up to 12x media white (HLG)
@@ -97,6 +89,33 @@
         once viewing flare is taken into account,
         are also supported.
         TODO The highest conformance level of the VESA
+        </p>
+        <p>
+            For HLG,
+            diffuse white is placed at a code value of 0.75
+            (75 "IRE"),
+            which allocates three quarters of the code space
+            for commonly occuring, SDR colors;
+            and leaves 3.5 stops (12x diffuse white)
+            for highlights.
+            The absolute luminance of the diffuse white in HLG
+            thus varies with display brightness,
+            which can be adapted to suit viewing conditions.
+        </p>
+        <p>
+            For PQ, diffuse white depends on the absolute luminance and varies,
+            although recommendations are emerging for indoor and outdoor scenes.
+            Around 5.5 stops are reserved for specular highlights
+            (calculations vary depending on the assumptions made).
+            The difference beweeen the live-broadcast focussed HLG
+            and the movie oriented PQ has been summed up
+            [<a href="#Borer-Cotton">Borer &amp; Cotton</a>]
+            as
+            <q>
+                Brighter displays for brighter environments
+                <i>vs.</i>
+                Brighter displays for more highlights
+            </q>
         </p>
         <p>
         Besides video, there is interest in distributing HDR still-image content,
@@ -111,29 +130,30 @@
     <section>
         <h1>The ICC Profile Connection Space</h1>
         <p>
-        ICC (4.3 and Max) currently allows XYZ and Lab as Profile Connection Space.
+        ICC (4.3 and Max) currently allows XYZ and CIE Lab
+        as Profile Connection Space.
         </p>
         <p>
-        XYZ is unbounded, and used for HDR by ACES (see below).
-        </p>
-        <p>
-        Lab is bounded to L=100 at media white.
-        ??? has shown that L can be extended to 400
-        ??? has shown that L is a poor predictor of Lightness beyond 400
+        XYZ is unbounded, and used for HDR by ACES (see below);
+        while
+        CIE Lab is bounded to L=100 at media white.
         </p>
         <p>
         Arbitrarily placing the peak intensity white at L=100
-        distorts the Lightness curve and would not (??? why)
-        be a good Lightnes predictor.
+        distorts the Lightness curve and would not
+        be a good Lightness predictor.
         </p>
         <p>
-        Modifications to CIE Lab, such as [<a href="#HDR-Lab">HDR-Lab</a>],
-        are known, but would constitute an additional PCS.
-        The idea of adding an additional PCS is not new;
-        Tastl et al have explored using CIECAM02 as an ICC PCS [ICC CIECAM02].
+        Fairchild has shown that L can be extended to 400,
+        [<a href="#HDR-Lab">HDR-Lab</a>]
+        but this would constitute an additional PCS
+        rather than a revision of the existing one.
+        The idea of adding an additional ICC PCS is not new;
+        Tastl et al have explored using CIECAM02 as an ICC PCS
+        [<a href="#ICC_CIECAM02">ICC CIECAM02</a>].
         </p>
         <p>
-        Safdar et al [] have proposed J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>, and HDR-capable uniform colorspace [Safdar-PUCS].
+        Safdar et al have proposed J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>, an HDR-capable uniform colorspace [<a href="#Safdar-PUCS">Safdar-PUCS</a>].
         J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> uses (a modified) PQ transfer function,
         claims to correct the CIE Lab hue non-linearity,
         is computationally less complex than CIECAM02 or CIECAM16,
@@ -522,21 +542,31 @@ Small numbers due to limited range
     </section>
 
     <section>
-        <h1>Further Work</h1>
+        <h1>Tentative Conclusions, &amp; Further Work</h1>
+        <p>
+        The PQ transfer curve is specific to a reference display
+        in a dim viewing environment.
+        The positioning of diffuse, media white is subject to debate
+        and the re-rendering required for non-dim viewing environments is poorly defined.
+        </p>
         <p>
         It is possible that a UCS with the HLG transfer curve might
         be more widely applicable to a range of viewing environments
         and allocate more of the code space to commonly occurring colors.
-
-        The hue linearity needs to be further investigated.
-
-        Performance with non-neutral, high chroma colors is inadequately explored.
-
+        </p>
+        <p>
+        The hue linearity of J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> needs to be further investigated.
+        </p>
+        <p>
+            Performance of J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>with non-neutral, high chroma colors is inadequately explored.
+        </p>
+        <p>
         The values for J<sub>z</sub>C<sub>z</sub>h<sub>z</sub> brightness and chroma,
         and the values for deltaE,
         are too small for easy comprehension
         or comparison with other systems.
-
+        </p>
+        <p>
         Beyond that, no conclusions are presented at this stage.
         <p>
 
@@ -547,7 +577,7 @@ Small numbers due to limited range
         spatial effects and image appearance models,
         tone mapping/color re-rendering,
         user expectations and
-        the range of viewing environments
+        applicability to a range of viewing environments
         are increasingly important for satisfactory rendering of still,
         let alone moving,
         HDR content.
@@ -672,6 +702,14 @@ this is an ultrawide gamut, output referred, RGB space.
             <dd>
                 <p>ARIB, <i>Essential Parameter Values for the Extended Image Dynamic Range Television (EIDRTV) System for Programme Production</i>. 3 July 2015</p>
             </dd>
+            <dt id="Borer-Cotton]">[ <a href="https://manualzz.com/doc/45311472/pq-and-hlg">Borer &amp; Cotton</a> ]</dt>
+            <dd>
+                <p>Tim Borer & Andrew Cotton, BBC Research & Development.
+                <i>High Dynamic Range, PQ and HLG</i>
+                SMPTE Education Webcast Series, 2017
+                </p>
+            </dd>
+
             <dt id="BT.2100">[ <a href="https://www.itu.int/dms_pubrec/itu-r/rec/bt/R-REC-BT.2100-2-201807-I!!PDF-E.pdf">BT.2100</a> ]</dt>
             <dd>
                 <p>ITU-R  BT.2100-2 <i>Image parameter values for high dynamic range television for use in production and international programme exchange</i>. July 2018</p>
@@ -698,7 +736,11 @@ this is an ultrawide gamut, output referred, RGB space.
                 <p>mark Fairchild, Ping-Hsu Chen. <i>Brightness, lightness, and specifying color in high-dynamic-range scenes and images</i>.
                     SPIE/IS&amp;T Electronic Imaging Conference, San Francisco, 78670O-1 -78670O-14, 2011</p>
             </dd>
-
+            <dt id="HDR-VVC">[ <a href="">HDR-VVC</a> ]</dt>
+            <dd>
+                <p>Borer, Tim. <i>Display of High Dynamic Range Images Under Varying Viewing Conditions</i>.
+                BBC White Paper WHP369, December 2019</p>
+            </dd>
             <dt id="HDR_Photo_Survey">[ <a href="http://markfairchild.org/HDR.html">HDR Photo Survey</a> ]</dt>
             <dd>
                 <p>Fairchild, Mark<i>The HDR Photographic Survey</i>.</p>
@@ -712,6 +754,11 @@ this is an ultrawide gamut, output referred, RGB space.
                 <p>    Ingeborg Tastl, Miheer Bhachech, Nathan Moroney and Jack Holm. <i>ICC Color Management and CIECAM02</i>.
                 </p>
             </dd>
+            <dt id="PQ-HLG_Transcoding">[ <a href="http://downloads.bbc.co.uk/rd/pubs/papers/HDR/BBC_HDRTV_PQ_HLG_Transcode_v2.pdf">PQ-HLG Transcoding</a> ]</dt>
+            <dd>
+                <p>BBC. <i>Perceptual Quantiser (PQ) to Hybrid Log-Gamma (HLG) Transcoding</i>. Version 2, 2017</p>
+            </dd>
+
             <dt id="Quality_Assesment_HDR">[ <a href="">Quality Assesment HDR</a> ]</dt>
             <dd>
                 <p>Maxime Rousselot, Olivier Le Meur, Rémi Cozot and Xavier Ducloux. <i>Quality Assessment of HDR/WCG Images Using HDR Uniform Color Spaces</i>. J. Imaging 2019, <b>5</b>, 18</p>
@@ -741,6 +788,11 @@ this is an ultrawide gamut, output referred, RGB space.
             <dt id="UHDTV_Gamut_Mapping">[ <a href="">UHDTV Gamut Mapping</a> ]</dt>
             <dd>
                 <p>Kenichiro Masaoka, Yuichi Kusakabe, Takayuki Yamashita, Yukihiro Nishida, Tetsuomi Ikeda, and Masayuki Sugawara. <i>Algorithm Design for Gamut Mapping From UHDTV to HDTV</i>. Journal of Display Technology, vol. <b>12</b>, No. 7, July 2016</p>
+            </dd>
+            <dt id="YouTube-HDR">[ <a href="https://support.google.com/youtube/answer/7126552?hl=en">YouTube-HDR</a> ]</dt>
+            <dd>
+                <p>YouTube Help <i>Upload High Dynamic Range (HDR) videos</i>
+                "If you're grading your video, grade in Rec. 2020 with PQ or HLG. "</p>
             </dd>
             <!-- <dt>[ <a href=""></a> ]</dt>
             <dd>
