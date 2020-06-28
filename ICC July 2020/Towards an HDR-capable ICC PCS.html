@@ -76,6 +76,17 @@
         (Perceptual Quantizer, PQ);
         the latter requires re-rendering for other viewing environments.
         </p>
+
+        <!-- how to cite Craig Revie "High Dynamic Range Imaging Is there a role for ICC ?" -->
+        <p>
+        Rec.2100 supports (peak, small-area) luminances up to 12x media white (HLG)
+        or 71.4x media white (PQ).
+        Dark colors significantly below
+        those suported by Standard Dynamic Range (SDR)
+        once viewing flare is taken into account,
+        are also supported.
+        TODO The highest conformance level of the VESA
+        </p>
         <p>
             For HLG,
             diffuse white is placed at a code value of 0.75
@@ -88,15 +99,20 @@
             thus varies with display brightness,
             which can be adapted to suit viewing conditions.
         </p>
-        <!-- how to cite Craig Revie "High Dynamic Range Imaging Is there a role for ICC ?" -->
         <p>
-        Rec.2100 supports (peak, small-area) luminances up to 12x media white (HLG)
-        or 71.4x media white (PQ).
-        Dark colors significantly below
-        those suported by Standard Dynamic Range (SDR)
-        once viewing flare is taken into account,
-        are also supported.
-        TODO The highest conformance level of the VESA
+            For PQ, diffuse white depends on the absolute luminance and varies,
+            although recommendations are emerging for indoor and outdoor scenes.
+            Around 5.5 stops are reserved for specular hilights
+            (calculations vary depending on the assumptions made).
+            The difference beweeen the live-broadcast focussed HLG
+            and the movie oriented PQ has been summed up
+            [<a href="#Borer-Cotton">Borer &amp; Cotton</a>]
+            as
+            <q>
+                Brighter displays for brighter environments
+                <i>vs.</i>
+                Brighter displays for more highlights
+            </q>
         </p>
         <p>
         Besides video, there is interest in distributing HDR still-image content,
@@ -670,6 +686,14 @@ this is an ultrawide gamut, output referred, RGB space.
             <dd>
                 <p>ARIB, <i>Essential Parameter Values for the Extended Image Dynamic Range Television (EIDRTV) System for Programme Production</i>. 3 July 2015</p>
             </dd>
+            <dt id="Borer-Cotton]">[ <a href="https://manualzz.com/doc/45311472/pq-and-hlg">Borer &amp; Cotton</a> ]</dt>
+            <dd>
+                <p>Tim Borer & Andrew Cotton, BBC Research & Development.
+                <i>High Dynamic Range, PQ and HLG</i>
+                SMPTE Education Webcast Series, 2017
+                </p>
+            </dd>
+
             <dt id="BT.2100">[ <a href="https://www.itu.int/dms_pubrec/itu-r/rec/bt/R-REC-BT.2100-2-201807-I!!PDF-E.pdf">BT.2100</a> ]</dt>
             <dd>
                 <p>ITU-R  BT.2100-2 <i>Image parameter values for high dynamic range television for use in production and international programme exchange</i>. July 2018</p>
