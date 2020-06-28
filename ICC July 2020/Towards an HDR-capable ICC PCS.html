@@ -77,13 +77,26 @@
         the latter requires re-rendering for other viewing environments.
         </p>
         <p>
+            For HLG,
+            diffuse white is placed at a code value of 0.75
+            (75 "IRE"),
+            which allocates three quarters of the code space
+            for commonly occuring, SDR colors;
+            and leaves 3.5 stops (12x diffuse white)
+            for hilights.
+            The absolute luminance of the diffuse white in HLG
+            thus varies with display brightness,
+            which can be adapted to suit viewing conditions.
+        </p>
+        <!-- how to cite Craig Revie "High Dynamic Range Imaging Is there a role for ICC ?" -->
+        <p>
         Rec.2100 supports (peak, small-area) luminances up to 12x media white (HLG)
         or 71.4x media white (PQ).
         Dark colors significantly below
         those suported by Standard Dynamic Range (SDR)
         once viewing flare is taken into account,
         are also supported.
-        The highest conformance level of the VESA
+        TODO The highest conformance level of the VESA
         </p>
         <p>
         Besides video, there is interest in distributing HDR still-image content,
@@ -114,7 +127,7 @@
         be a good Lightnes predictor.
         </p>
         <p>
-        Modifications to CIE Lab, such as [HDR-Lab] and [???]
+        Modifications to CIE Lab, such as [<a href="#HDR-Lab">HDR-Lab</a>],
         are known, but would constitute an additional PCS.
         The idea of adding an additional PCS is not new;
         Tastl et al have explored using CIECAM02 as an ICC PCS [ICC CIECAM02].
@@ -235,18 +248,11 @@ Small numbers due to limited range
 
         <section>
             <h1>DeltaE</h1>
-            <p>
-            <!-- does this really fit here?-->
-            Rousselot et.  al. [Quality Assesment HDR] examined HDR image quality metrics
-            using ICtCp, J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>, and HDR-Lab.
-            12 SDR metrics were extended to HDR,
-            and two new HDR metrics were proposed.
-            </p>
 
             <p>
             Because many of the limitations of CIE Lab are corrected in the computation of J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>,
-            then unlike the relatively complicated deltaE2000 metric,
-            the deltaE metric uses a simple linear root sum of squares in J<sub>z</sub>C<sub>z</sub>h<sub>z</sub>:
+            then unlike the relatively complicated ΔE2000 metric,
+            the ΔEJ<sub>z</sub> metric uses a simple linear root sum of squares in J<sub>z</sub>C<sub>z</sub>h<sub>z</sub>:
             </p>
             <p>
                 ΔEJ<sub>z = √(ΔJ<sub>z</sub>² + ΔC<sub>z</sub>² + Δh<sub>z</sub>²)
@@ -263,7 +269,9 @@ Small numbers due to limited range
             and
             <a href="https://colorjs.io/tests/delta.html">tested</a>
             against ΔE76, ΔECMC(2:1) and ΔE2000.
-            After range-setting pairs of sRGB white against white and black respectively,
+            In the table below,
+            after range-setting pairs of sRGB white
+            against white and black respectively,
             the next four rows
             are the "large color difference" color pairs from [Sharma]
             and the final three rows
@@ -353,6 +361,7 @@ Small numbers due to limited range
                     <td>0.6395</td>
                     <td>0.00219895</td>
                 </tr>
+                <caption>Table 1: comparison of ΔE metrics</caption>
             </table>
             <p>
             It is immediately apparent that the ΔEJ<sub>z</sub> metric has a very different range.
@@ -367,9 +376,52 @@ Small numbers due to limited range
         </section>
 
         <section>
-            <h1>Input data</h1>
+            <h1>Input data: colors and images</h1>
             <p>
-                Not very many HDR samples, in particular no non-neutral samples above media white.
+                <!-- does this really fit here?-->
+                Rousselot et.  al. [Quality Assesment HDR] examined HDR image quality metrics
+                using ICtCp, J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>, and HDR-Lab.
+                12 SDR metrics were extended to HDR,
+                and two new HDR metrics were proposed.
+                Among their conclusions,
+                they cited lack of clarity in the white point used for color grading
+                and suggested use of the HLG transfer function.
+                They suggest the blue hue deviation correction
+                makes the J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> color space more sensitive
+                to gamut mismatch distortions.
+                They also cite [BT.2408] for a
+                diffuse white point luminance
+                of 203 cd/m² for IC<sub>T</sub>C<sub>P</sub>
+                and suggest a white point for
+                J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>
+                of 997 cd/m², and repeatedly stress
+                the diffuse white luminance values used in image preparation
+                as critical to which of the tested UCS will perform best.
+            </p>
+            <p>
+                Extended SDR metrics tend to suffer from only considering
+                the luminance aspect
+                (Rousselot describes these as "color blind" metrics).
+                Many existing test images are contained within the BT.709 gamut,
+                and even those using BT.2020 or BT.2100
+                are lacking in non-neutral, let alone high-chroma
+                samples above media white.
+            </p>
+            <p>
+                Similar limitations apply to the experiments leading to
+                HDR-Lab and HDR-IPT [<a href="#HDR-Lab">HDR-Lab</a>];
+                the data were obtained
+                from observer evaluation of monochrome patches
+                with a diffuse white of 997 cd/m²
+                and luminance levels up to 2x diffuse white.
+                The transfer function matches CIE L up to 1x diffuse white,
+                and uses the Michaelis-Menten equation
+                up to 4x diffuse white.
+                For evaluation of Chroma, hue linearity, and hue spacing
+                the Munsell Renotation values were used,
+                which clearly are an SDR data set.
+            </p>
+
 
                 ??? HDR gamut mapping study used ??? colorspace
             </p>
@@ -639,6 +691,12 @@ this is an ultrawide gamut, output referred, RGB space.
             <dd>
                 <p>Lihao Xu, Baiyue Zhao and M. R. Luo. <i>Colour gamut mapping between small and large colour gamuts: Part I. gamut compression</i>. Optics Express <b>26</b> no. 9, 30 Apr 2018.</p>
             </dd>
+            <dt id="HDR-Lab">[ <a href="http://rit-mcsl.org/fairchild/PDFs/PRO37.pdf">HDR-Lab</a> ]</dt>
+            <dd>
+                <p>mark Fairchild, Ping-Hsu Chen. <i>Brightness, lightness, and specifying color in high-dynamic-range scenes and images</i>.
+                    SPIE/IS&amp;T Electronic Imaging Conference, San Francisco, 78670O-1 -78670O-14, 2011</p>
+            </dd>
+
             <dt id="HDR_Photo_Survey">[ <a href="http://markfairchild.org/HDR.html">HDR Photo Survey</a> ]</dt>
             <dd>
                 <p>Fairchild, Mark<i>The HDR Photographic Survey</i>.</p>

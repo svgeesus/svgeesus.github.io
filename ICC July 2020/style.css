@@ -77,7 +77,8 @@ figure {
 		}
 
 figcaption,
-p.status {
+p.status,
+table>caption {
 	font-style: italic;
 	text-align: justify;
 	text-align-last: center;
