@@ -34,8 +34,8 @@
         typically less than 90:1, it is
         formed by the deepest multi-ink black, on the one hand,
         and paper white
-        seen under a not especially bright illuminant (??? cd/m2)
-        (get viewing cabinet values)
+        seen under a not especially bright illuminant (<span class="todo">???</span> cd/m2)
+        <span class="todo">(get viewing cabinet values)</span>
         on the other.
         </p>
         <p>
@@ -45,14 +45,14 @@
         giving a linear dynamic range of 1000:1 or so.
         </p>
         <p>
-        Real-world scenes (from Fairchild, simultaneous dynamic range)
+            <span class="todo">Real-world scenes (from Fairchild, simultaneous dynamic range)
         specular highlights, deep shadows
-        HDR survey.
+        HDR survey.</span>
         </p>
         <p>
-        Experiments to extend L to a modest level of 400
+            <span class="todo">Experiments to extend L to a modest level of 400
         (4x media white)
-        (hdr-CIELAB, hdr-IPT).
+        (hdr-CIELAB, hdr-IPT).<span class="todo">
         </p>
         <p>
         Meanwhile the TV and movie industry,
@@ -79,7 +79,8 @@
         and the other
         is display-referred,
         with absolute luminance and suitable for fixed, dark viewing conditions
-        (Perceptual Quantizer, PQ);
+        (Perceptual Quantizer, PQ),
+        originally published as [<a href="#SMPTE-ST-2084">SMPTE-ST-2084</a>];
         the latter requires re-rendering for other viewing environments.
         </p>
 
@@ -91,7 +92,16 @@
         those suported by Standard Dynamic Range (SDR)
         once viewing flare is taken into account,
         are also supported.
-        TODO The highest conformance level of the VESA
+        </p>
+        <p>
+            The conformance levels of the VESA
+            Certified DisplayHDR conformance specification
+            [<a href="#DisplayHDR">Certified DisplayHDR</a>]
+            require Minimum Peak Luminance
+            ranging from 500 to 1400 cd/m²,
+            while the highest "True Black" conformance levels
+            require a Maximum Black Level Luminance
+            of 0.0005 cd/m².
         </p>
         <p>
             For HLG,
@@ -125,9 +135,9 @@
         in distributing HDR still-image content,
         either stills from video content,
         or HDR graphic arts content.
-        Computer graphics content, OpenEXR.
+        <span class="todo">Computer graphics content, OpenEXR.
         ACES archival imagery.
-        Neflix AVIF paper
+        Neflix AVIF paper</span>
         </p>
     </section>
 
@@ -173,13 +183,10 @@
 
     <section>
         <h2>J<sub>z</sub>a<sub>z</sub>b<sub>z</sub></h2>
-        (describe)
-
-    (goals from paper)
+        <span class="todo">(describe goals from paper)</span>
 
         <p>
         The input to J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> is absolute CIE XYZ, with a D65 whitepoint.
-        ?? scene referred or output referred?
         Since ICC uses CIE XYZ as a PCS,
         and since ICCMax allows non-D50 whitepoints,
         it seems feasible that a future version of the ICC specification
@@ -230,13 +237,6 @@
             The implementation by the present author therefore places the media whitepoint
             for all SDR RGB colorspaces at PQ of 0.54, corresponding to 140 cd/m².
             </p>
-            Capabilities, peak luminance, media white (Dolby).
-
-Fixed viewing condition assumption.
-
-Use for chroma plane as well as lightness axis.
-
-Small numbers due to limited range
         </section>
 
         <section>
@@ -454,7 +454,7 @@ Small numbers due to limited range
             </p>
 
 
-                ??? HDR gamut mapping study used ??? colorspace
+            <span class="todo">??? HDR gamut mapping study used ??? colorspace<span class="todo">
             </p>
         </section>
 
@@ -687,7 +687,7 @@ this is an ultrawide gamut, output referred, RGB space.
 
         <section>
             <h3>IC<sub>T</sub>C<sub>P</sub></h3>
-            <p>Defined by</p>
+            <p><span class="todo">Defined by<span class="todo"></p>
 
         </section>
 
@@ -725,6 +725,7 @@ this is an ultrawide gamut, output referred, RGB space.
                 and 30 f-stops;
                 an additional 10 f-stops with reduced precision
                 are available at the low end (denormals).
+                <span class="todo">colorspace?</span>
             </p>
         </section>
 
@@ -756,6 +757,10 @@ this is an ultrawide gamut, output referred, RGB space.
             <dt id="CGM-Vividness">[ <a href="https://www.ingentaconnect.com/content/ist/ei/2019/00002019/00000014/art00004?crawler=true&mimetype=application/pdf">CGM-Vividness</a> ]</dt>
             <dd>
                 <p>Baiyue Zhao, Lihao Xu, Ming Ronnier Luo. <i>Colour gamut mapping using vividness scale</i>. IS&T International Symposium on Electronic Imaging 2019, Color Imaging XXIV: Displaying, Processing, Hardcopy, and Applications.</p>
+            </dd>
+            <dt id="DisplayHDR">[ <a href="https://displayhdr.org/performance-criteria-cts1-1/">DisplayHDR</a> ]</dt>
+            <dd>
+                <p>VESA, <i>dDisplayHDR CTS v1.1</i>. September 2019</p>
             </dd>
             <dt id="Dolby-PQ-levels">[ <a href="https://www.dolby.com/us/en/technologies/dolby-vision/operational-guidelines-for-pq-2.pdf">Dolby-PQ-levels</a> ]</dt>
             <!-- 404 this weekend! -->

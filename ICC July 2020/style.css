@@ -126,6 +126,6 @@ table {
 		background: hsl(220 10% 97%);
 	}
 
-a[href=""] {
+a[href=""], .todo {
 	background: yellow;
 }
