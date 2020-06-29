@@ -291,6 +291,7 @@
                 the deep blue to purple non-linearity of Lab and CIECAM02
             </p>
             <p>
+                After transformation to an LMS cone domain,
                 PQ compression is used for the chromatic axes, as well as for the lightness axis.
             </p>
             <p>
@@ -470,11 +471,11 @@
                 They also cite [<a href="#BT.2048">BT.2408</a>] for a
                 diffuse white point luminance
                 of 203 cd/m² for IC<sub>T</sub>C<sub>P</sub>
-                and suggest a white point for
+                suggest a white point for
                 J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>
                 of 997 cd/m², and repeatedly stress
                 the diffuse white luminance values used in image preparation
-                as critical to which of the tested UCS will perform best.
+                as a critical foctor in determining which of the tested UCS will perform best.
             </p>
             <p>
                 Extended SDR metrics tend to suffer from only considering
@@ -500,9 +501,9 @@
                 which clearly are an SDR data set.
             </p>
 
-
+            <!-- <p>
             <span class="todo">??? HDR gamut mapping study used ??? colorspace<span class="todo">
-            </p>
+            </p> -->
         </section>
 
     </section>
@@ -690,7 +691,7 @@
                 (movies, news, still images) and for UHD Blu-Ray.
                 The effective gamut usage is not full,
                 but is still somewhat greater than
-                the DCI-p3 gamut.
+                the DCI-P3 gamut.
             </p>
             <p>
                 Most current workflow does not use ICC profiles.
@@ -707,7 +708,7 @@
             <h3>ProPhoto RGB</h3>
             <p>
                 Originally proposed by Kodak as the Reference Output Medium (ROMM) colorspace,
-this is an ultrawide gamut, output referred, RGB space.
+                this is an ultrawide gamut, output referred, RGB space.
             </p>
             <p>
                 As two of the three primaries are outside the spectral locus,
@@ -735,7 +736,27 @@ this is an ultrawide gamut, output referred, RGB space.
 
         <section>
             <h3>IC<sub>T</sub>C<sub>P</sub></h3>
-            <p><span class="todo">Defined by<span class="todo"></p>
+            <p>
+                Defined by Dolby [<a href="#Dolby-ICTCP">Dolby-ICTCP</a>],
+                this colorspace extends the concept of the constant luminance
+                Y'<sub>C</sub>C'<sub>BC</sub>C'<sub>RC</sub> model
+                and claims an improvement in hue uniformity.
+                Reduced implementation cost and
+                increased speed for color transformations
+                are given as key criteria.
+             </p>
+             <p>
+                 The starting point is [<a href="#BT.2020">BT.2020</a>]
+                 linear RGB data, and after transformation to an LMS cone domain,
+                 the PQ transfer characteristic [<a href="#SMPTE-ST-2084">SMPTE-ST-2084</a>]
+                 is applied.
+             </p>
+             <p>
+                 The Dolby paper mentions in passing that
+                 <q>IC<sub>T</sub>C<sub>P</sub> has also been defined
+                    utilizing the HLG non-linearity, but that derivation
+                    will not be discussed in this paper</q>
+             </p>
 
         </section>
 
@@ -779,7 +800,7 @@ this is an ultrawide gamut, output referred, RGB space.
                 It allows storage of the
                 red, green, blue and white chromaticities
                 [<a href="#OpenEXRIntro">OpenEXR Intro</a>].
-                However
+                However, the specification sadly notes
                 <q>The chromaticities attribute is optional, and many
                     programs that write OpenEXR omit it.</q>
             </p>
