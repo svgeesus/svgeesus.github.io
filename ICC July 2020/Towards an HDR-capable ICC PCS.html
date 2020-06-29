@@ -374,6 +374,8 @@
             by BYK-Gardner GmbH.
             The Lab input data for ΔEJ<sub>z</sub>
             was adapted from D50 to D65 with a linear Bradford CAT.
+            The final column is simply the ΔEJ<sub>z</sub> multiplied by 400,
+            to allow easier comparison.
             </p>
             <table>
                 <thead>
@@ -384,6 +386,7 @@
                         <th>ΔECMC(2:1)</th>
                         <th>ΔE2000</th>
                         <th>ΔEJ<sub>z</sub></th>
+                        <th>ΔEJ<sub>z</sub> × 400</th>
                     </tr>
                 </thead>
                 <tr title="100% L = 100">
@@ -392,11 +395,13 @@
                     <td>100</td>
                     <td>33.7401</td>
                     <td>100</td>
-                    <td>0.19355636</td>
+                    <td>0.193556</td>
+                    <td>77.4225</td>
                 </tr>
                 <tr title="0% L = 0">
                     <td style="background-color: white">white</td>
                     <td style="background-color: white">white</td>
+                    <td>0</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
@@ -408,7 +413,8 @@
                     <td>36.8680</td>
                     <td>37.9233</td>
                     <td>27.1492</td>
-                    <td>0.07066268</td>
+                    <td>0.070663</td>
+                    <td>28.2651</td>
                 </tr>
                 <tr  title="Sharma test 18: large color differences">
                     <td style="background-color: rgb(48.339% 46.083% 46.673%); color: white">lab(50 2.5 0)</td>
@@ -416,7 +422,8 @@
                     <td>31.9100</td>
                     <td>34.4758</td>
                     <td>22.8977</td>
-                    <td>0.05403943</td>
+                    <td>0.054039</td>
+                    <td>21.6158</td>
                 </tr>
                 <tr  title="Sharma test 19: large color differences">
                     <td style="background-color: rgb(48.339% 46.083% 46.673%); color: white">lab(50 2.5 0)</td>
@@ -424,7 +431,8 @@
                     <td>30.2531</td>
                     <td>38.0618</td>
                     <td>31.9030</td>
-                    <td>0.05438124</td>
+                    <td>0.054381</td>
+                    <td>21.7524</td>
                 </tr>
                 <tr title="Sharma test 20: large color differences">
                     <td style="background-color: rgb(48.339% 46.083% 46.673%); color: white">lab(50 2.5 0)</td>
@@ -432,7 +440,8 @@
                     <td>27.4089</td>
                     <td>33.3342</td>
                     <td>19.4535</td>
-                    <td>0.04848435</td>
+                    <td>0.048484</td>
+                    <td>19.3936</td>
                 </tr>
                 <tr title="Brilliant Yellow with Hue error">
                     <td style="background-color: rgb(97.326% 80.279% 0%);">lab(84.25 5.74 96.00)</td>
@@ -440,7 +449,8 @@
                     <td>3.1849</td>
                     <td>1.6364</td>
                     <td>1.6743</td>
-                    <td>0.00760321</td>
+                    <td>0.007603</td>
+                    <td>3.0412</td>
                 </tr>
                 <tr title="Brilliant Yellow with low Chroma error">
                     <td style="background-color: rgb(97.326% 80.279% 0%);">lab(84.25 5.74 96.00)</td>
@@ -448,7 +458,8 @@
                     <td>2.9225</td>
                     <td>0.8770</td>
                     <td>0.5887</td>
-                    <td>0.00204053</td>
+                    <td>0.002040</td>
+                    <td>0.8160</td>
                 </tr>
                 <tr title="Brilliant Yellow with high Chroma error">
                     <td style="background-color: rgb(97.326% 80.279% 0%);">lab(84.25 5.74 96.00)</td>
@@ -456,7 +467,8 @@
                     <td>3.4242</td>
                     <td>1.0221</td>
                     <td>0.6395</td>
-                    <td>0.00219895</td>
+                    <td>0.002199</td>
+                    <td>0.8796</td>
                 </tr>
                 <caption>Comparison of ΔE metrics</caption>
             </table>
@@ -464,6 +476,7 @@
             It is immediately apparent that the ΔEJ<sub>z</sub> metric has a very different range.
             As expected, ΔE76 over-estimates for high-chroma pairs,
             while ΔECMC(2:1) and ΔE2000 are at least comparable in magnitude.
+            The scaled values, however, are at least broadly comparable with ΔE2000
             </p>
             <p>
             While not necessarily an issue for automated tasks such as gamut mapping,
