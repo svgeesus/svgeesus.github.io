@@ -5,15 +5,33 @@
 	--font-serif: "Hoefler Text", Garamond, "Times New Roman", serif;
 }
 
-html {
-	padding: 1em;
+@media print {
+	body {
+		font: 13pt/1.5 var(--font-serif);
+		max-width: 100ch;
+		margin: 5vh auto;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		break-after: avoid;
+	}
+	figure {
+		break-inside: avoid;
+	}
 }
+
+@media screen {
 
 body {
 	max-width: 100ch;
 	margin: 5vh auto;
 	font: 120%/1.5 var(--font-serif);
+	}
 }
+
+html {
+	padding: 1em;
+}
+
 
 h1, h2, h3, h4, h5 {
 	font-family: var(--font-sans);
