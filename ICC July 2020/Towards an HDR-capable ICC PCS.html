@@ -124,14 +124,14 @@
             and corresponding Maximum Black luminance
             ranging from 0.1 to 0.02 cd/m²;
             the simultaneous dynamic range is thus greater than 70,000.
-            Meanwhile the highest "True Black" conformance levels
+            Meanwhile the highest “True Black” conformance levels
             require a Maximum Black Level Luminance
             of 0.0005 cd/m² (although so far, only with a minimum peak of 500).
         </p>
         <p>
             For HLG,
             diffuse white is placed at a code value of 0.75
-            (75 "IRE"),
+            (75 “IRE”),
             which allocates three quarters of the code space
             for commonly occuring, SDR colors;
             and leaves 3.5 stops (12x diffuse white)
@@ -177,7 +177,9 @@
         hard-edged graphic arts and typography).
         </p>
         <!-- Netflix note problems with ICC software ignoring
-        absolute luminance value
+        absolute luminance value.
+        also the effect of blending in a non linear-light
+        is even worse for PQ than for SDR
         https://netflixtechblog.com/enhancing-the-netflix-ui-experience-with-hdr-1e7506ad3e8-->
     </section>
 
@@ -265,7 +267,7 @@
             and for the integration of SDR and HDR content in a single program.
             Dolby conducted a histogram analysis of
             HDR and SDR graded indoor scenes from cinematic content for home distribution.
-            Their Reference Level Guidelines for PQ [<a href="#"Dolby-PQ-levels">Dolby-PQ-levels</a>]
+            Their Reference Level Guidelines for PQ [<a href="#Dolby-PQ-levels">Dolby-PQ-levels</a>]
             give the encoded PQ values of
             0.34 for an 18% gray card (17 cd/m²)
             and go on to deduce the corresponding level of 0.54
@@ -279,7 +281,7 @@
             for all SDR RGB colorspaces at PQ of 0.54, corresponding to 140 cd/m².
             </p>
             <p>
-                In contrast, [<a href="#BT.2048">BT.2048</a>] lists higher "nominal" values,
+                In contrast, [<a href="#BT.2048">BT.2048</a>] lists higher “nominal” values,
                 placing an 18% grey card at a luminance of 26 cd/m²
                 (PQ 0.38, HLG 0.38)
                 and diffuse white at 203  cd/m²
@@ -360,10 +362,10 @@
             after range-setting pairs of sRGB white
             against white and black respectively,
             the next four rows
-            are the "large color difference" color pairs from
+            are the “large color difference” color pairs from
             [<a href="#Sharma-DeltaE2000">Sharma-DeltaE2000</a>]
             and the final three rows
-            are published results with small ΔECMC(2:1) for "brilliant yellow" pairs
+            are published results with small ΔECMC(2:1) for “Brilliant Yellow” pairs
             by BYK-Gardner GmbH.
             The Lab input data for ΔEJ<sub>z</sub>
             was adapted from D50 to D65 with a linear Bradford CAT.
@@ -498,7 +500,7 @@
             <p>
                 Extended SDR metrics tend to suffer from only considering
                 the luminance aspect
-                (Rousselot describes these as "color blind" metrics).
+                (Rousselot describes these as “color blind” metrics).
                 Many existing test images are contained within the BT.709 gamut,
                 and even those using BT.2020 or BT.2100
                 are lacking in non-neutral, let alone high-chroma
@@ -549,7 +551,7 @@
         and Depth Preserving (distance from media white);
         the latter did not perform well.
         Their conclusions included the statement that
-        "J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> is a promising UCS for gamut mapping".
+        <q>J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> is a promising UCS for gamut mapping</q>.
         However, only the WCG aspect of J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> was investigated, not the HDR aspect.
         </p>
         <p>
