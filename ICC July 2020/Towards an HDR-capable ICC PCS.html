@@ -95,13 +95,15 @@
         which supports two transfer functions:
         one is scene referred,
         with relative luminance and suitable for variable viewing conditions
-        (Hybrid Log Gamma, HLG)
+        (Hybrid Log Gamma, HLG),
+        originally published as [<a href="#ARIB_STD-B67">ARIB_STD-B67</a>]
         and the other
         is display-referred,
         with absolute luminance and suitable for fixed, dark viewing conditions
         (Perceptual Quantizer, PQ),
         originally published as [<a href="#SMPTE-ST-2084">SMPTE-ST-2084</a>];
-        the latter requires re-rendering for other viewing environments.
+        the latter requires re-rendering for other viewing environments
+        [<a href="#HDR-VVC">HDR-VVC</a>].
         </p>
 
         <!-- how to cite Craig Revie "High Dynamic Range Imaging Is there a role for ICC ?" -->
@@ -154,6 +156,11 @@
                 <i>vs.</i>
                 Brighter displays for more highlights
             </q>
+        </p>
+        <p>Transcoding of PQ to HLG is possible,
+            for a given st of viewing conditions
+            and a given peak luminance
+            [<a href="#PQ-HLG_Transcoding">PQ-HLG Transcoding</a>].
         </p>
         <p>
         Besides HDR video, there is interest
@@ -478,6 +485,11 @@
                 as a critical foctor in determining which of the tested UCS will perform best.
             </p>
             <p>
+                Kuang <i>et.al.</i> have proposed
+                a "refined image appearance model" for HDR image rendering
+                [<a href="#iCAM06">iCAM06</a>].
+            </p>
+            <p>
                 Extended SDR metrics tend to suffer from only considering
                 the luminance aspect
                 (Rousselot describes these as "color blind" metrics).
@@ -499,6 +511,14 @@
                 For evaluation of Chroma, hue linearity, and hue spacing
                 the Munsell Renotation values were used,
                 which clearly are an SDR data set.
+            </p>
+            <p>
+                A set of HDR images is publicly available
+                for the investigation of HDR image rendering
+                [<a href="#HDR_Photo_Survey">HDR Photo Survey</a>]
+                although existing gamut mapping studies
+                mostly concentrate on more established and widely published
+                WCG SDR images such as the Kodak PhotoCD images.
             </p>
 
             <!-- <p>
@@ -525,6 +545,17 @@
         Their conclusions included the statement that
         "J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> is a promising UCS for gamut mapping".
         However, only the WCG aspect of J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> was investigated, not the HDR aspect.
+        </p>
+        <p>
+            Masaoka <i>et.al.</i> have claimed
+            [<a href="#UHDTV_Gamut_Mapping">UHDTV Gamut Mapping</a>]
+            that the CIE Lab
+            hue non-linearity has minimal effect on UHDTV to HDTV
+            (BT.2020 to BT.709) gamut mapping
+            because the blue hues of the two systems are closely aligned.
+            Their GMA, operating in CIE Lab because of the computational difficulties of CIECAM02,
+            preserves metric hues except for yellow and cyan highlights,
+            whose hue is altered to preserve lightness.
         </p>
         <p>
         To simulate a constant-lightness, hue preserving GMA,
@@ -747,9 +778,15 @@
              </p>
              <p>
                  The starting point is [<a href="#BT.2020">BT.2020</a>]
-                 linear RGB data, and after transformation to an LMS cone domain,
+                 linear RGB data, and after transformation to
+                 a sharpened LMS cone domain,
                  the PQ transfer characteristic [<a href="#SMPTE-ST-2084">SMPTE-ST-2084</a>]
-                 is applied.
+                 is applied to simulate the adaptive cone response.
+                 The compressed LMS data is then separated into
+                 luminance and chrominance axes to simulate
+                 the dark-light (Intensity), yellow-blue (tritan)
+                 and red-green (Protan) opponent axes
+                 in the HVS.
              </p>
              <p>
                  The Dolby paper mentions in passing that
@@ -811,7 +848,7 @@
     <section id="references">
         <h2>References</h2>
         <dl>
-            <dt id=ARIB_STD-B67>[ <a href="https://www.arib.or.jp/english/html/overview/doc/2-STD-B67v1_0.pdf">ARIB_STD-B67</a> ]</dt>
+            <dt id="ARIB_STD-B67">[ <a href="https://www.arib.or.jp/english/html/overview/doc/2-STD-B67v1_0.pdf">ARIB_STD-B67</a> ]</dt>
             <dd>
                 <p>ARIB, <i>Essential Parameter Values for the Extended Image Dynamic Range Television (EIDRTV) System for Programme Production</i>. 3 July 2015</p>
             </dd>
@@ -820,6 +857,13 @@
                 <p>Tim Borer & Andrew Cotton, BBC Research & Development.
                 <i>High Dynamic Range, PQ and HLG</i>
                 SMPTE Education Webcast Series, 2017
+                </p>
+            </dd>
+            <dt id="BT.2020">[ <a href="https://www.itu.int/dms_pubrec/itu-r/rec/bt/R-REC-BT.2020-2-201510-I!!PDF-E.pdf">BT.2020</a> ]</dt>
+            <dd>
+                <p>ITU-R BT.2020-2
+                    <i>Parameter values for ultra-high definition television systems for production and international programme exchange</i>.
+                    October 2015
                 </p>
             </dd>
             <dt id="BT.2048">[ <a href="https://www.itu.int/pub/R-REP-BT.2408">BT.2048</a> ]</dt>
