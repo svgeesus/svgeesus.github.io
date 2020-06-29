@@ -140,7 +140,7 @@ table {
 
 	thead th {
 		border-bottom: 1px solid hsl(220 10% 70%);
-		font: bold 100%/1 var(--font-sans);
+		font: bold 90%/1 var(--font-sans);
 	}
 
 	tbody tr:nth-of-type(odd) {
