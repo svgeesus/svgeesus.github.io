@@ -17,6 +17,9 @@
 	figure {
 		break-inside: avoid;
 	}
+	table {
+		font: 12pt/1.5 var(--font-serif);
+	}
 }
 
 @media screen {
