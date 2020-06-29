@@ -158,7 +158,7 @@
             </q>
         </p>
         <p>Transcoding of PQ to HLG is possible,
-            for a given st of viewing conditions
+            for a given set of viewing conditions
             and a given peak luminance
             [<a href="#PQ-HLG_Transcoding">PQ-HLG Transcoding</a>].
         </p>
@@ -167,20 +167,25 @@
         in distributing HDR still-image content,
         either stills from video content,
         or HDR graphic arts content.
+        </p>
             <!-- Computer graphics content, OpenEXR.
         ACES archival imagery. -->
-        Neflix are using the AVIF format for HDR imagery
-        [<a href="#Netflix-AVIF">Netflix-AVIF</a>].
-        (Note: Unlike traditional photograhic images
-        used for gamut mapping studies, these images
-        combine HDR still photograhic content with
-        hard-edged graphic arts and typography).
+        <p>
+            Neflix are using the AVIF format for HDR imagery
+            [<a href="#Netflix-AVIF">Netflix-AVIF</a>].
+            (Note: Unlike traditional photograhic images
+            used for gamut mapping studies, these images
+            combine HDR still photograhic content with
+            hard-edged graphic arts and typography).
+            Netflix are using an ICC workflow for these still images
+            [<a href="#Netflix-HDR-UI">Netflix-HDR-UI</a>]
+            but note problems with much ICC software ignoring
+            absolute luminance value.
+            They also point out that
+            the effect of alpha blending in a non linear-light colorspace
+            is even worse for PQ than for SDR, where it is unfortunately common.
         </p>
-        <!-- Netflix note problems with ICC software ignoring
-        absolute luminance value.
-        also the effect of blending in a non linear-light
-        is even worse for PQ than for SDR
-        https://netflixtechblog.com/enhancing-the-netflix-ui-experience-with-hdr-1e7506ad3e8-->
+
     </section>
 
     <section>
@@ -941,9 +946,16 @@
             </dd>
             <dt id="Netflix-AVIF">[ <a href="https://netflixtechblog.com/avif-for-next-generation-image-coding-b1d75675fe4">Netflix-AVIF</a> ]</dt>
             <dd>
-                <p>Netflix Technology Blog.
+                <p>Aditya Mavlankar, Jan De Cock, Cyril Concolato, Kyle Swanson, Anush Moorthy and Anne Aaron.
                     <i>AVIF for Next-Generation Image Coding</i>.
-                    February 2020</div> </p>
+                    Netflix Technology Blog, February 2020</div> </p>
+            </dd>
+            <dt id="Netflix-HDR-UI">[ <a href="https://netflixtechblog.com/enhancing-the-netflix-ui-experience-with-hdr-1e7506ad3e8">Netflix-HDR-UI</a> ]</dt>
+            <dd>
+                <p>Yuji Mano, Benbuck Nason, Joe Drago.
+                    <i>Enhancing the Netflix UI Experience with HDR</i>.
+                    Netflix Technology Blog, September 2018
+                </p>
             </dd>
             <dt id="Netflix_ODS">[ <a href="https://drive.google.com/file/d/0B37xotBvlV3Qc1E4VW5sMzNwcmc/view">Netflix ODS</a> ]</dt>
             <dd>
