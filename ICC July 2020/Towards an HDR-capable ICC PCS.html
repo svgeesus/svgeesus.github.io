@@ -31,29 +31,49 @@
         Traditional color management,
         with a focus on the reproduction of printed imagery,
         has concerned itself with a restricted dynamic range;
-        typically less than 90:1, it is
-        formed by the deepest multi-ink black, on the one hand,
+        it is
+        constrained by the deepest multi-ink black, on the one hand,
         and paper white
         seen under a not especially bright illuminant
-        (2000 lux, per  ISO 3664:2009)
+        (2000 lux for critical viewing, per [<a href="#ISO_3664:2009">ISO 3664:2009</a>]
         on the other.
         </p>
         <p>
-        Developments in display technology
-        increased this, but it was still bounded by display flare (at the dark end)
+            For example, the deepest black in the [<a href="FOGRA51">FOGRA51</a>] characterisation data
+            (CMYK 100 100 100 100) has an Lab value of 12.71 0.53 4.89,
+            giving a dynamic range of 65.95.
+<!-- black Y 0.015160921874999999
+    white Y 1
+-->
+        </p>
+        <p>
+        For on-screen presentation,
+        developments in Standard Dynamic Range (SDR) display technology
+        increased this dynamic range,
+        but it was still bounded by display flare (at the dark end)
         and modest peak luminances of 200 cd/m² or so at the high end,
         giving a linear dynamic range of 1000:1 or so.
         </p>
         <p>
-            <span class="todo">Real-world scenes (from Fairchild, simultaneous dynamic range)
-        specular highlights, deep shadows
-        HDR survey.</span>
+            For example, the lowest conformance level
+            of the VESA [<a href="#DisplayHDR">DisplayHDR</a>] specification
+            gives a minimum luminance for peak white of 400 cd/m²
+            and a maximum luminance for black (at maximum scene luminance,
+            i.e. no backlight dimming) of 0.4 cd/m²;
+            the simultaneous contrast is thus 1000:1.
         </p>
         <p>
-            <span class="todo">Experiments to extend L to a modest level of 400
+        Fairchild has experimentaly extended CIE Lightness
+        to a modest level of 400
         (4x media white)
-        (hdr-CIELAB, hdr-IPT).<span class="todo">
+        with HDR-Lab and HDR-IPT
+        [<a href="#HDR-Lab">HDR-Lab</a>].
         </p>
+        <!-- <p>
+            However, real-world scenes (from Fairchild, simultaneous dynamic range)
+            specular highlights, deep shadows
+            HDR survey.</span>
+        </p> -->
         <p>
         Meanwhile the TV and movie industry,
         and the related field of 3D computer graphics,
@@ -71,7 +91,7 @@
     <section>
         <h2>HDR luminance levels</h2>
         <p>
-        Current HDR video broadcasts conform to [Rec.2100]
+        Current HDR video broadcasts conform to [<a href="#BT.2100">BT.2100</a>]
         which supports two transfer functions:
         one is scene referred,
         with relative luminance and suitable for variable viewing conditions
@@ -94,14 +114,17 @@
         are also supported.
         </p>
         <p>
-            The conformance levels of the VESA
+            The various conformance levels of the VESA
             Certified DisplayHDR conformance specification
             [<a href="#DisplayHDR">Certified DisplayHDR</a>]
             require Minimum Peak Luminance
             ranging from 500 to 1400 cd/m²,
-            while the highest "True Black" conformance levels
+            and corresponding Maximum Black luminance
+            ranging from 0.1 to 0.02 cd/m²;
+            the simultaneous dynamic range is thus greater than 70,000.
+            Meanwhile the highest "True Black" conformance levels
             require a Maximum Black Level Luminance
-            of 0.0005 cd/m².
+            of 0.0005 cd/m² (although so far, only with a minimum peak of 500).
         </p>
         <p>
             For HLG,
@@ -117,7 +140,9 @@
         </p>
         <p>
             For PQ, diffuse white depends on the absolute luminance and varies,
-            although recommendations are emerging for indoor and outdoor scenes.
+            although recommendations are emerging for indoor and outdoor scenes
+            [<a href="#Dolby-PQ-levels">Dolby-PQ-levels</a>],
+            [<a href="#BT.2048">BT.2048</a>].
             Around 5.5 stops are reserved for specular highlights
             (calculations vary depending on the assumptions made).
             The difference beweeen the live-broadcast focussed HLG
@@ -135,8 +160,9 @@
         in distributing HDR still-image content,
         either stills from video content,
         or HDR graphic arts content.
-        <span class="todo">Computer graphics content, OpenEXR.
-        ACES archival imagery.
+        <span class="todo">
+            <!-- Computer graphics content, OpenEXR.
+        ACES archival imagery. -->
         Neflix AVIF paper</span>
         </p>
     </section>
@@ -144,17 +170,19 @@
     <section>
         <h2>The ICC Profile Connection Space</h2>
         <p>
-        ICC (4.3 and Max) currently allows XYZ and CIE Lab
+        ICC (4.3 and Max) currently allows either CIE XYZ or CIE Lab
         as Profile Connection Space.
         </p>
         <p>
-        XYZ is unbounded, and used for HDR by ACES (see below);
+        CIE XYZ is unbounded, and used for HDR by ACES and OpenEXR (see <a href="#appendix">appendix</a>);
         while
-        CIE Lab is bounded to L=100 at media white.
+        CIE Lab is bounded to L=100 at media white
+        (perfect diffuse reflector).
         </p>
         <p>
-        Arbitrarily placing the peak intensity white at L=100
-        distorts the Lightness curve and would not
+        Arbitrarily placing the HDR peak intensity white at L=100
+        grossly distorts the Lightness curve,
+        and would not
         be a good Lightness predictor.
         </p>
         <p>
@@ -224,7 +252,7 @@
             and for the integration of SDR and HDR content in a single program.
             Dolby conducted a histogram analysis of
             HDR and SDR graded indoor scenes from cinematic content for home distribution.
-            Their Reference Level Guidelines for PQ [Dolby-PQ-levels]
+            Their Reference Level Guidelines for PQ [<a href="#"Dolby-PQ-levels">Dolby-PQ-levels</a>]
             give the encoded PQ values of
             0.34 for an 18% gray card (17 cd/m²)
             and go on to deduce the corresponding level of 0.54
@@ -236,6 +264,20 @@
             <p>
             The implementation by the present author therefore places the media whitepoint
             for all SDR RGB colorspaces at PQ of 0.54, corresponding to 140 cd/m².
+            </p>
+            <p>
+                In contrast, [<a href="#BT.2048">BT.2048</a>] lists higher "nominal" values,
+                placing an 18% grey card at a luminance of 26 cd/m²
+                (PQ 0.38, HLG 0.38)
+                and diffuse white at 203  cd/m²
+                (PQ 0.58, HLG 0.75).
+                They caution that:
+            </p>
+            <blockquote>However, for both types of content
+                the spread around this mean value is significant,
+                indicating that in practice the measured white levels
+                can be expected to vary significantly around this target value
+            </blockquote>
             </p>
         </section>
 
@@ -267,9 +309,9 @@
             <p>
             A shift in hue angle of the blue primaries
             (relative to cyan and magenta)
-            is readilly apparent.
-            There is an altered hue angle differences between sRGB and Rec.2020 values.
-            Coordinate values are very small:
+            is readily apparent.
+            There are altered hue angle relationships between the sRGB and Rec.2020 values.
+            Coordinate values are <em>very</em> small:
             for example, Rec.2020 yellow
             has a CIE LCH Chroma of 132 but a J<sub>z</sub>C<sub>z</sub>h<sub>z</sub> Chroma of 0.156.
             </p>
@@ -279,18 +321,20 @@
             <h3>DeltaE</h3>
 
             <p>
-            Because many of the limitations of CIE Lab are corrected in the computation of J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>,
+            Because many of the limitations of CIE Lab are claimed to be corrected
+            in the computation of J<sub>z</sub>a<sub>z</sub>b<sub>z</sub>,
             then unlike the relatively complicated ΔE2000 metric,
-            the ΔEJ<sub>z</sub> metric uses a simple linear root sum of squares in J<sub>z</sub>C<sub>z</sub>h<sub>z</sub>:
+            the ΔEJ<sub>z</sub> metric uses a simple root sum of squares in
+            J<sub>z</sub>C<sub>z</sub>h<sub>z</sub>:
             </p>
-            <p>
+            <p class="equation">
                 ΔEJ<sub>z = √(ΔJ<sub>z</sub>² + ΔC<sub>z</sub>² + Δh<sub>z</sub>²)
             </p>
             <p>
             where, as with CIE LCH, Δh<sub>z</sub> is the length of the chord:
             </p>
-            <p>
-                Δh<sub>z</sub> = 2 × √(C<sub>z</sub>1 × C<sub>z</sub>2) × sin(Δh), Δh in radians
+            <p  class="equation">
+                Δh<sub>z</sub> = 2 × √(C<sub>z</sub>1 × C<sub>z</sub>2) × sin(Δh), <i>Δh in radians</i>
             </p>
             <p>
             This metric was
@@ -616,7 +660,7 @@
 </article>
 
 <footer>
-    <section>
+    <section id="appendix">
         <h2>Appendix: Source colorspaces</h2>
         <p>Potential HDR colorspaces and other HDR datasources
             which could be processed as inputs to an HDR-capable ICC workflow:
@@ -757,7 +801,7 @@ this is an ultrawide gamut, output referred, RGB space.
                 SMPTE Education Webcast Series, 2017
                 </p>
             </dd>
-            <dt id="BT.2048">[ <a href="https://www.itu.int/pub/R-REP-BT.2408"></a> ]</dt>
+            <dt id="BT.2048">[ <a href="https://www.itu.int/pub/R-REP-BT.2408">BT.2048</a> ]</dt>
             <dd>
                 <p>ITU-R BT.2408-3
                 <i>Guidance for operational practices
@@ -786,6 +830,10 @@ this is an ultrawide gamut, output referred, RGB space.
             <dd>
                 <p>Dolby Laboratories, Inc. <i>Reference Level Guidelines for PQ (BT.2100)</i>.  2016.</p>
             </dd>
+            <dt id="FOGRA51">[ <a href="https://www.fogra.org/en/fogra-standardization/fogra-characterizationdata/fogra-characterizationdata-download/a-download-of-fogra-characterization-data.html">FOGRA51</a> ]</dt>
+            <dd>
+                <p>FOGRA51 characterization data</p>
+            </dd>
             <dt id="Gamut_Compression">[ <a href="https://www.osapublishing.org/DirectPDFAccess/D69199B3-B2CD-40DE-57AF089107E6AF2E_385750/oe-26-9-11481.pdf?da=1&id=385750&seq=0&mobile=no">Gamut Compression</a> ]</dt>
             <dd>
                 <p>Lihao Xu, Baiyue Zhao and M. R. Luo. <i>Colour gamut mapping between small and large colour gamuts: Part I. gamut compression</i>. Optics Express <b>26</b> no. 9, 30 Apr 2018.</p>
@@ -812,6 +860,11 @@ this is an ultrawide gamut, output referred, RGB space.
             <dd>
                 <p>    Ingeborg Tastl, Miheer Bhachech, Nathan Moroney and Jack Holm. <i>ICC Color Management and CIECAM02</i>.
                 </p>
+            </dd>
+            <dt>[ <a href="ISO_3664:2009">ISO 3664:2009</a> ]</dt>
+            <dd>
+                <p>ISO 3664:2009
+                    <i>Graphic technology and photography — Viewing conditions</i>.</p>
             </dd>
             <dt id="Netflix_ODS">[ <a href="https://drive.google.com/file/d/0B37xotBvlV3Qc1E4VW5sMzNwcmc/view">Netflix ODS</a> ]</dt>
             <dd>

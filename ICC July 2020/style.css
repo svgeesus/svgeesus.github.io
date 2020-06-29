@@ -129,3 +129,8 @@ table {
 a[href=""], .todo {
 	background: yellow;
 }
+
+p.equation {
+	margin-left: 3em;
+	font-size: 120%
+}
