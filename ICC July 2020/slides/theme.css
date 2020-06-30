@@ -250,6 +250,13 @@ blockquote {
 		text-align: left;
 	}
 
+figcaption {
+	font-style: italic;
+	font-family: var(--font-serif);
+	text-align: justify;
+	text-align-last: center;
+}
+
 /* Syntax highlighting */
 .token.comment,
 .token.prolog,
