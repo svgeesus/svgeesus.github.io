@@ -16,11 +16,239 @@
 		Towards an HDR-capable ICC PCS
 	</h1>
 	<h2>
-		ICC HDR meeting, June 2020
+		ICC HDR meeting, 30 June 2020
 	</h2>
 	<p class="attribution">By <a href="https://svgees.us">Chris Lilley</a>, W3C</p>
+	<p>Slides accompany <a href="../Lilley-HDR.pdf">this paper</a></p>
 </header>
 
+<article id="need" class="slide">
+	<h1>Need for HDR</h1>
+	<p>Consumer WCG, HDR films, series, news, sports (BT.2100 PQ, HLG)</p>
+	<p>Consumer WCG, HDR-ready TVs commonplace</p>
+	<p>Consumer WCG (P3) laptops, tablets, phones; HDR coming </p>
+	<p>WCG, HDR still images coming (AVIF)</p>
+</article>
+
+<article id="PQ-HLG" class="slide  heading-2x1">
+	<h1>BT.2100: HLG &amp; PQ</h1>
+	<div>
+		<h3>Hybrid Log Gamma</h3>
+		<ul>
+			<li>Scene-referred, relative luminance</li>
+			<li>Diffuse white at 0.75</li>
+			<li>3.5 stops highlights</li>
+			<li>Range of viewing environments (dim to bright)</li>
+			<li><q>Brighter displays for brighter environments</q></li>
+		</ul>
+	</div>
+	<div>
+		<h3>Perceptual Quantizer</h3>
+		<ul>
+			<li>Reference display referred, absolute luminance</li>
+			<li>Diffuse white varies (0.54, 0.58, 0.66)?</li>
+			<li>5.5 stops highlights</li>
+			<li>Dim viewing environment</li>
+			<li><q>Brighter displays for more highlights</q></li>
+		</ul>
+	</div>
+</article>
+
+<article id="HDR-Lab" class="slide">
+	<h1>Extending or replacing Lab?</h1>
+	<p>Fairchild HDR-Lab extends Lightness to 400</p>
+	<p>Exaggeration of large Chroma remains</p>
+	<p>Blue hue non-linearity (curve to purple)</p>
+	<p>Increasingly complex metrics: ΔE76, ΔECMC(2:1) and ΔE2000</p>
+</article>
+
+<article id="Jzazbz" class="slide">
+	<h1>J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> (Safdar 2017)</h1>
+	<p>Correction term for blue non-linearity</p>
+	<p>Starts with absolute D65 XYZ, 0 to 10,000 cd/m²</p>
+	<p>Transform to sharpened LMS domain</p>
+	<p>BT.2100 PQ transfer function</p>
+</article>
+
+<article id="abplane" class="slide heading-1x1">
+	<h2>CIE Lab</h2>
+	<img src="../2020-prim-sec.svg" alt="">
+</article>
+
+<article id="azbzplane" class="slide heading-1x1">
+	<h2>J<sub>z</sub>a<sub>z</sub>b<sub>z</sub></h2>
+	<img src="../2020-prim-sec-JCH.svg" alt="">
+</article>
+
+<article id="both" class="slide heading-2x1">
+	<h1>Comparison</h1>
+	<section>
+		<h2>CIE Lab</h2>
+		<img src="../2020-prim-sec.svg" alt="">
+	</section>
+	<section>
+		<h2>J<sub>z</sub>a<sub>z</sub>b<sub>z</sub></h2>
+		<img src="../2020-prim-sec-JCH.svg" alt="">
+	</section>
+</article>
+
+<article id="dE" class="slide">
+	<h1>Delta E J<sub>z</sub></h1>
+	<p class="equation">
+		ΔEJ<sub>z</sub> = √(ΔJ<sub>z</sub>² + ΔC<sub>z</sub>² + ΔH<sub>z</sub>²)
+	</p>
+	<p  class="equation">
+		ΔH<sub>z</sub> = 2 × √(C<sub>z</sub>1 × C<sub>z</sub>2) × sin(Δh), <i>Δh in radians</i>
+	</p>
+</article>
+
+<article id="dEcompare" class="slide">
+	<table>
+		<thead>
+			<tr>
+				<th>Reference</th>
+				<th>Sample</th>
+				<th>ΔE76</th>
+				<th>ΔECMC(2:1)</th>
+				<th>ΔE2000</th>
+				<th>ΔEJ<sub>z</sub></th>
+				<th>ΔEJ<sub>z</sub> × 400</th>
+			</tr>
+		</thead>
+		<tr title="100% L = 100">
+			<td style="background-color: white">white</td>
+			<td style="background-color: black; color: white">black</td>
+			<td>100</td>
+			<td>33.7401</td>
+			<td>100</td>
+			<td>0.193556</td>
+			<td>77.4225</td>
+		</tr>
+		<tr title="0% L = 0">
+			<td style="background-color: white">white</td>
+			<td style="background-color: white">white</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+		</tr>
+		<tr  title="Sharma test 17: large color differences">
+			<td style="background-color: rgb(48.339% 46.083% 46.673%); color: white">lab(50 2.5 0)</td>
+			<td style="background-color: rgb(83.454% 64.035% 83.505%); color: white">lab(73 25 -18)</td>
+			<td>36.8680</td>
+			<td>37.9233</td>
+			<td>27.1492</td>
+			<td>0.070663</td>
+			<td>28.2651</td>
+		</tr>
+		<tr  title="Sharma test 18: large color differences">
+			<td style="background-color: rgb(48.339% 46.083% 46.673%); color: white">lab(50 2.5 0)</td>
+			<td style="background-color: rgb(59.697% 58.432% 37.238%); color: white">lab(61 -5 29)</td>
+			<td>31.9100</td>
+			<td>34.4758</td>
+			<td>22.8977</td>
+			<td>0.054039</td>
+			<td>21.6158</td>
+		</tr>
+		<tr  title="Sharma test 19: large color differences">
+			<td style="background-color: rgb(48.339% 46.083% 46.673%); color: white">lab(50 2.5 0)</td>
+			<td style="background-color: rgb(27.005% 57.806% 54.274%); color: white">lab(56 -27 -3)</td>
+			<td>30.2531</td>
+			<td>38.0618</td>
+			<td>31.9030</td>
+			<td>0.054381</td>
+			<td>21.7524</td>
+		</tr>
+		<tr title="Sharma test 20: large color differences">
+			<td style="background-color: rgb(48.339% 46.083% 46.673%); color: white">lab(50 2.5 0)</td>
+			<td style="background-color: rgb(72.42% 48.204% 44.896%); color: white">lab(58 24 15)</td>
+			<td>27.4089</td>
+			<td>33.3342</td>
+			<td>19.4535</td>
+			<td>0.048484</td>
+			<td>19.3936</td>
+		</tr>
+		<tr title="Brilliant Yellow with Hue error">
+			<td style="background-color: rgb(97.326% 80.279% 0%);">lab(84.25 5.74 96.00)</td>
+			<td style="background-color: rgb(99.33% 79.797% 0%);">lab(84.46 8.88 96.49)</td>
+			<td>3.1849</td>
+			<td>1.6364</td>
+			<td>1.6743</td>
+			<td>0.007603</td>
+			<td>3.0412</td>
+		</tr>
+		<tr title="Brilliant Yellow with low Chroma error">
+			<td style="background-color: rgb(97.326% 80.279% 0%);">lab(84.25 5.74 96.00)</td>
+			<td style="background-color: rgb(97.779% 80.525% 0%);">lab(84.52 5.75 93.09)</td>
+			<td>2.9225</td>
+			<td>0.8770</td>
+			<td>0.5887</td>
+			<td>0.002040</td>
+			<td>0.8160</td>
+		</tr>
+		<tr title="Brilliant Yellow with high Chroma error">
+			<td style="background-color: rgb(97.326% 80.279% 0%);">lab(84.25 5.74 96.00)</td>
+			<td style="background-color: rgb(97.434% 80.426% 0%);">lab(84.37 5.86 99.42)</td>
+			<td>3.4242</td>
+			<td>1.0221</td>
+			<td>0.6395</td>
+			<td>0.002199</td>
+			<td>0.8796</td>
+		</tr>
+		<caption>Comparison of ΔE metrics</caption>
+	</table>
+</article>
+
+<article id="GMA" class="slide">
+	<h1>Gamut Mapping studies</h1>
+	<p>Xu studied CIE Lab, CAM02-UCS &amp; J<sub>z</sub>a<sub>z</sub>b<sub>z</sub></p>
+	<p>Six global & two spatial GMA including HPMINDE</p>
+	<p>WCG only, not HDR</p>
+	<p><q>J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> is a promising UCS for gamut mapping</q></p>
+</article>
+
+<article id="sRGB-LCH" class="slide heading-1x1">
+	<h1>sRGB blue, LCH chroma reduced</h1>
+	<img src="../sRGB-blue-lab.svg" alt="">
+</article>
+
+<article id="sRGB-JCH" class="slide heading-1x1">
+	<h1>sRGB blue, J<sub>z</sub>C<sub>z</sub>h<sub>z</sub> chroma reduced</h1>
+	<img src="../sRGB-blue-JCH.svg" alt="">
+</article>
+
+<article id="r2020-LCH" class="slide heading-1x1">
+	<h1>BT.2020 blue, LCH chroma reduced</h1>
+	<img src="../rec2020-lab.svg" alt="">
+</article>
+
+<article id="r2020-JCH" class="slide heading-1x1">
+	<h1>BT.2020 blue, J<sub>z</sub>C<sub>z</sub>h<sub>z</sub> chroma reduced</h1>
+	<img src="../rec2020-JCH.svg" alt="">
+</article>
+
+<article class="slide">
+	<h1>Not my conclusion</h1>
+	<blockquote>
+		<i>Trying to use CIECAM02 within an ICC framework is not as
+            simple as switching from XYZ to CIELAB. It requires careful
+            thought about the goals that one hopes to achieve, careful
+            selection of the CIECAM02 input parameters and management of
+            the expectations. It is not the answer to all the problems and it
+            also produces new problems that have to be dealt with in an
+            appropriate way.</i>
+	</blockquote>
+</article>
+
+<article class="slide">
+	<h1>Tentative conclusions</h1>
+	<p>HDR aspect of J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> little explored</p>
+	<p>A UCS with HLG might apply to more viewing conditions, without re-rendering</p>
+	<p>Hue linearity of J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> needs to be further investigated</p>
+	<p>The tiny values are awkward for comparison & communication</p>
+</article>
+<!--
 <article class="slide">
 	<h1>Slide heading</h1>
 	<p>Slide content</p>
@@ -69,7 +297,7 @@
 	<img src="../2020-prim-sec-JCH.svg" alt="">
 	<img src="../2020-prim-sec.svg" alt="">
 	<img src="../2020-prim-sec-JCH.svg" alt="">
-</article>
+</article> -->
 
 <footer class="slide" title="The End">
 	<h1>Thank you!</h1>
