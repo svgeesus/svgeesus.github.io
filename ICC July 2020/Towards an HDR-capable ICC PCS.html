@@ -64,8 +64,8 @@
         </p>
         <p>
         Fairchild has experimentaly extended CIE Lightness
-        to a modest level of 400
-        (4x media white)
+        to a level of 400
+        (corresponding to a luminance of 46x media white)
         with HDR-Lab and HDR-IPT
         [<a href="#HDR-Lab">HDR-Lab</a>].
         </p>
@@ -282,10 +282,6 @@
             with diffuse white at 425 cd/m² and a PQ value of 0.66.
             </p>
             <p>
-            The implementation by the present author therefore places the media whitepoint
-            for all SDR RGB colorspaces at PQ of 0.54, corresponding to 140 cd/m².
-            </p>
-            <p>
                 In contrast, [<a href="#BT.2048">BT.2048</a>] lists higher “nominal” values,
                 placing an 18% grey card at a luminance of 26 cd/m²
                 (PQ 0.38, HLG 0.38)
@@ -298,6 +294,10 @@
                 indicating that in practice the measured white levels
                 can be expected to vary significantly around this target value
             </blockquote>
+            <p>
+                The implementation by the present author therefore places the media whitepoint
+                for all SDR RGB colorspaces at PQ of 0.58, corresponding to 203 cd/m².
+                </p>
         </section>
 
         <section>
