@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<title>CSS, WCG, HDR</title>
+
+	<link href="https://inspirejs.org/inspire.css" rel="stylesheet" />
+	<link href="theme.css" rel="stylesheet" />
+	<link href="talk.css" rel="stylesheet" />
+</head>
+<body class="language-markup" data-prism-plugins="normalize-whitespace">
+
+<header id="intro" class="slide">
+	<h1>
+		CSS, WCG, HDR
+	</h1>
+	<h2>
+		TPAC, 19 October 2020
+	</h2>
+	<p class="attribution">By <a href="https://svgees.us">Chris Lilley</a>, W3C</p>
+</header>
+
+<article id="color-4" class="slide">
+	<h1><a href="https://drafts.csswg.org/css-color-4/">CSS Color 4</a></h1>
+	<p>Adds <a href="https://drafts.csswg.org/css-color-4/#predefined">calibrated RGB spaces</a> (beyond sRGB)</p>
+	<p>display-p3, a98-rgb, prophoto-rgb, rec2020</p>
+	<p>Adds CIE <a href="https://drafts.csswg.org/css-color-4/#lab-colors">Lab, LCH</a> (D50, Bradford)</p>
+	<p><a href="https://drafts.csswg.org/css-color-4/#color-conversion-code">Sample code</a> to reassure wary implementers</p>
+</article>
+
+<article id="color-4-2" class="slide">
+	<h1>CSS Color 4</h1>
+	<p>Adds colorspaces defined by <a href="https://drafts.csswg.org/css-color-4/#at-profile">downloadable ICC profiles</a></p>
+	<p>Several <a href="https://drafts.csswg.org/css-color-4/#cal-cmyk">calibrated CMYK and n-color examples</a></p>
+	<p><a href="https://drafts.csswg.org/css-color-4/#device-cmyk"><tt>device-cmyk</tt></a> redefined to <a href="https://drafts.csswg.org/css-color-4/#device-cmyk">use FOGRA-39</a> behind the scenes</p>
+</article>
+
+<article class="slide heading-1x1">
+	<h2>Discouraging "naive" CMYK to RGB conversion</h2>
+	<img src="https://drafts.csswg.org/css-color-4/images/macbeth-naive.svg" alt="don't do this">
+</article>
+
+<article class="slide heading-1x1">
+	<h2>Encouraging ICC CMYK to RGB interconversion</h2>
+	<img src="https://drafts.csswg.org/css-color-4/images/macbeth-roundtrip.svg" alt="do this">
+</article>
+
+<article id="color-4-impl" class="slide">
+	<h1>CSS Color 4 Implementations</h1>
+	<p>Safari implements <tt>color(display-p3)</tt> since 2016; now implementing at least <tt>Lab, LCH</tt> </p>
+	<p>Chrome desire to implement, TAG review</p>
+	<p>Firefox asking pre-implementation, platform consistency questions</p>
+</article>
+
+<article id="color-4-impl-2" class="slide">
+	<h1>CSS Color 4 Implementations</h1>
+	<p>BFO (CSS to PDF) implements <i>all</i> of CSS Color 4</p>
+	<p>Test suite in development</p>
+</article>
+
+<article class="slide" id="todo">
+	<h1>Outstanding issues</h1>
+	<p>Gamut mapping</p>
+	<p>Color serialization</p>
+	<p>Interpolation and currentColor</p>
+	<p>Choice of computational space (linear light XYZ, perceptually uniform Lab or LCH, legacy sRGB</p>
+</article>
+
+<article id="color-5" class="slide">
+	<h1><a href="https://drafts.csswg.org/css-color-5/">CSS Color 5</a></h1>
+	<p><a href="https://drafts.csswg.org/css-color-5/#color-mix"><tt>color-mix</tt></a> mixes 2 colors (in LCH by default)  </p>
+	<p><a href="https://drafts.csswg.org/css-color-5/#colorcontrast"><tt>color-contrast</tt></a> finds most contrasting color (relative luminance) from a list</p>
+	<p><a href="https://drafts.csswg.org/css-color-5/#coloradjust"><tt>color-adjust</tt></a> &amp;
+	<a href="https://drafts.csswg.org/css-color-5/#relative-colors">relative color syntax</a> modifies a color</p>
+</article>
+
+<article id="color-hdr" class="slide">
+	<h1><a href="https://drafts6.csswg.org/css-color-hdr/">Color HDR</a></h1>
+	<p><b>Unofficial draft</b>, not yet adopted</p>
+	<p>Adds Rec BT.2100 with <a href="https://drafts6.csswg.org/css-color-hdr/#valdef-color-rec2100-hlg">HLG</a> or <a href="https://drafts6.csswg.org/css-color-hdr/#valdef-color-rec2100-pq">PQ</a></p>
+	<p>Adds <a href="https://drafts6.csswg.org/css-color-hdr/#Jzazbz">J<sub>z</sub>a<sub>z</sub>b<sub>z</sub></a> &amp;
+		<a href="https://drafts6.csswg.org/css-color-hdr/#JzCzHz">J<sub>z</sub>C<sub>z</sub>H<sub>z</sub></a></p>
+	<p>Adds <a href="https://drafts.csswg.org/css-color-hdr/#ICtCp">IC<sub>T</sub>C<sub>P</sub></a> </p>
+	<p>Requires <a href="https://drafts6.csswg.org/css-color-hdr/#Compositing-SDR-HDR">compositing in CIE XYZ</a> (not sRGB!!
+		or even <a href="https://www.w3.org/TR/compositing-1/#blendingnonseparable">NTSC</a>!!!)</p>
+</article>
+
+<article class="slide" id="MQ5">
+	<h1>Media Queries 5</h1>
+	<p><a href="https://drafts.csswg.org/mediaqueries-5/#color-gamut">color-gamut media query</a> (srgb |p3|rec2020)</p>
+	<p><a href="https://drafts.csswg.org/mediaqueries-5/#dynamic-range">dynamic-range media query</a> (standard|high)</p>
+	<p>And for separate video planes:</p>
+	<ul>
+		<li><a href="https://drafts.csswg.org/mediaqueries-5/#video-color-gamut">video-color-gamut</a></li>
+		<li><a href="https://drafts.csswg.org/mediaqueries-5/#video-dynamic-range">video-dynamic-range</a></li>
+	</ul>
+</article>
+
+<!--
+<article class="slide">
+	<h1>Slide heading</h1>
+	<p>Slide content</p>
+</article>
+
+<article class="slide heading-2x1">
+	<h1>Contents side by side</h1>
+	<p>Slide content 1</p>
+	<p>Slide content 2</p>
+</article>
+
+<article class="slide heading-1x1">
+	<h1>Heading + full size img</h1>
+	<img src="../2020-prim-sec.svg" alt="">
+</article>
+
+<article class="slide heading-1x1">
+	<h1>Heading + full size figure</h1>
+	<figure>
+		<img src="../2020-prim-sec.svg" alt="">
+		<figcaption>Rec.2020 primaries and secondaries, plotted on the CIE CH plane. For comparison, the sRGB primaries and secondaries are shown by the dashed lines.</figcaption>
+	</figure>
+</article>
+
+<article class="slide heading-2x1">
+	<h1>Heading + img side by side</h1>
+	<img src="../2020-prim-sec.svg" alt="">
+	<img src="../2020-prim-sec-JCH.svg" alt="">
+</article>
+
+<article class="slide heading-2x1">
+	<h1>Heading + img with headings</h1>
+	<section>
+		<h2>Content 1</h2>
+		<img src="../2020-prim-sec.svg" alt="">
+	</section>
+	<section>
+		<h2>Content 2</h2>
+		<img src="../2020-prim-sec-JCH.svg" alt="">
+	</section>
+</article>
+
+<article class="slide heading-2x2">
+	<h1>Heading + img 2x2</h1>
+	<img src="../2020-prim-sec.svg" alt="">
+	<img src="../2020-prim-sec-JCH.svg" alt="">
+	<img src="../2020-prim-sec.svg" alt="">
+	<img src="../2020-prim-sec-JCH.svg" alt="">
+</article> -->
+
+<footer class="slide" title="The End">
+	<h1>Thank you!</h1>
+</footer>
+
+<script src="https://inspirejs.org/inspire.js"></script>
+
+</body>
+</html>
