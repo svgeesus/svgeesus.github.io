@@ -5,13 +5,26 @@
 		{
 			"talk": [
 				{
-					"title": "WebFonts in 2019: Everything Changes",
+					"title": "Colour on the web and broadcast",
 					"type": "Talk"
+				}
+			],
+			"url": "http://www.color.org/DevCon/devcon2020/index.xalter",
+			"name": "ICC DevCon 2020",
+			"date": "2020-11-30"
+		},
+		{
+			"talk": [
+				{
+					"title": "WebFonts in 2019: Everything Changes",
+					"type": "Talk",
+					"@context": "http://schema.org"
 				}
 			],
 			"name": "KharkivCSS",
 			"date": "2019-04-20",
-			"city": "Kharkiv"
+			"city": "Kharkiv",
+			"@context": "http://schema.org"
 		},
 		{
 			"talk": [
