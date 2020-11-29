@@ -1,0 +1,36 @@
+HDR10           pq
+Dolby Vision    pq
+HDR10+ (samsung)    pq?
+Dolby Vision Profile 8.4    hlg
+
+https://www.theverge.com/21524288/apple-iphone-12-pro-review
+
+
+Dolby Vision and the rival HDR10 format are what’s called perceptual quantizer (PQ) HDR systems. And PQ systems are not backwards compatible with SDR displays, meaning Dolby Vision video has only been compatible with Dolby Vision displays. (Playing a Dolby Vision video on a non-Dolby Vision display would look completely wrong.) If you wanted to watch a Dolby Vision video on a regular display, you would have to re-encode it into SDR — basically, make an entirely new video file.
+
+But the iPhone 12 shoots video in a newer version of Dolby Vision called Profile 8.4 that’s built on a standard called HLG, or hybrid log-gamma. HLG works differently than PQ systems; it was developed by broadcasters like the BBC and NHK to be backwards compatible with SDR displays so they would only have to broadcast one video stream.
+
+All this means that an iPhone 12 HDR video is a 10-bit HLG file with additional Dolby Vision metadata on top, and it will happily play back as SDR on SDR displays, HLG on HLG displays, and Dolby Vision on Dolby Vision displays that support Profile 8.4. And iOS 14 is smart enough to know when the apps and devices you’re sharing video to don’t support this new format, and it’ll make sure you send something that works. It is all very clever, even though, in practice, what it means is you’re mostly sharing SDR video.
+
+https://www.dxomark.com/apple-iphone-12-pro-camera-review-great-smartphone-video/
+
+The iPhone 12 Pro isn’t even the top-flight model in Apple’s 2020 smartphone lineup, but still makes it into the upper echelons of our ranking and is for now the best iPhone in our database. Its Photo performance is solid across the board and a slight improvement over last year’s flagship 11 Pro Max in many areas. The new model shines in its video mode, which thanks to HLG Dolby Vision technology, offers a wider dynamic range than many rival phones. If tele-zooming is a high priority, the iPhone 12 Pro might not be your number one pick, but it’s an easy recommendation for any other mobile imaging application.
+
+https://avdisco.com/t/demystifying-dolby-vision-profile-levels-dolby-vision-levels-mel-fel/95
+
+the colorimetry is utilizing ICpCt (or IPT) colorimetry within the BT2100 boundary. It is close to the DCI-P3 colorimetry that most of us come to know. The most well-known will be streamers like Apple TV 4K, nVidia Shield TV 2019, Roku Ultra 2020, and players like Oppo 203 (which you have a choice between Player or TV-led) and of course for the media front, we have the models that runs the RealTek (RTL1619DR) chipsets like Zidoo Z9X.
+
+First is the single-layer (Profile 5 & 8) that most LLDV-based sources will prefer - e.g. Netflix, Apple TV+, Disney Plus. Besides streaming devices that utilize this type of DV implementation are the media players such as Zidoo Z9X and nVidia Shield TV 2019 that comes with DV decoding capability (LLDV).
+
+from Dolby Vision Profiles
+
+Mastering Display Color Volume as specified in SMPTE ST 2086,
+ST 2086:2018
+https://standards.globalspec.com/std/10382332/smpte-st-2086
+https://ieeexplore.ieee.org/document/8353899 $72
+
+Colorimetry – Part 2: CIE standard illuminants
+ISO/CIE DIS 11664-2:2020(E)
+http://cie.co.at/publications/colorimetry-part-2-cie-standard-illuminants
+A, D65, D50 at 1nm intervals
+€48 Secure PDF

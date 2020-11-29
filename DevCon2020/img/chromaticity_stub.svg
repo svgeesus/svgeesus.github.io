@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375.652 369.666">
+  <defs>
+    <style>
+      .a, .b, .f {
+        fill: none;
+        stroke: #F3D69B;
+        stroke-miterlimit: 10;
+      }
+
+      .a {
+        stroke-width: 3px;
+      }
+
+      .c {
+        font-size: 14px;
+      }
+
+      .c, .d, .e {
+        fill: hsl(58, 13%, 56%);
+        font-family: Helvetica Neue;
+      }
+
+      .d, .e {
+        font-size: 18px;
+      }
+
+      .e {
+        font-style: italic;
+      }
+
+      .f {
+        stroke-width: 0.4px;
+      }
+    </style>
+  </defs>
+  <title>chromaticity_stub</title>
+  <g>
+    <polygon class="a" points="113.828 322.7 113.792 322.7 113.72 322.736 113.648 322.736 113.54 322.772 113.432 322.772 113.288 322.772 113.108 322.772 112.856 322.664 112.46 322.412 111.236 321.404 110.336 320.576 109.148 319.532 107.528 318.128 105.512 316.328 102.992 313.808 99.932 310.136 95.828 303.692 90.608 293.252 84.02 276.728 75.884 252.248 67.496 218.3 59.612 175.928 54.104 130.676 52.556 88.772 56.156 54.428 57.56 48.884 59.144 43.844 60.98 39.344 62.96 35.456 65.156 32.18 67.46 29.516 69.944 27.428 72.5 25.916 75.164 24.872 77.9 24.332 80.708 24.224 83.516 24.512 86.396 25.124 89.312 25.988 92.264 27.068 106.844 34.376 120.596 43.124 133.808 52.952 146.84 63.752 159.728 75.272 172.58 87.296 185.468 99.68 198.284 112.244 211.028 124.808 223.52 137.228 235.652 149.324 247.28 160.916 258.224 171.788 268.196 181.76 276.872 190.4 284.504 197.996 290.84 204.26 295.988 209.408 300.092 213.512 303.368 216.752 305.996 219.38 308.192 221.576 309.992 223.376 311.432 224.78 312.512 225.86 313.34 226.688 313.952 227.3 314.348 227.696 314.672 228.02 314.924 228.272 315.176 228.524 315.392 228.74 315.536 228.884 315.608 228.956 315.644 228.992 315.644 228.992 315.644 228.992 315.644 228.992 315.644 228.992 315.644 228.992 315.644 228.992 315.644 228.992 315.644 228.992 315.644 228.992 315.644 228.992 315.644 228.992 315.644 228.992 315.644 228.992 315.644 228.992 315.644 228.992 315.644 228.992 113.828 322.7"/>
+    <path class="b" d="M169,536.5H493v-324H169v324Zm0,0v3.6" transform="translate(-117.848 -212)"/>
+    <text class="c" transform="translate(41.152 342.5)">0.0</text>
+    <line class="b" x1="123.152" y1="324.5" x2="123.152" y2="328.1"/>
+    <text class="c" transform="translate(113.152 342.5)">0.2</text>
+    <line class="b" x1="195.152" y1="324.5" x2="195.152" y2="328.1"/>
+    <text class="c" transform="translate(185.152 342.5)">0.4</text>
+    <line class="b" x1="267.152" y1="324.5" x2="267.152" y2="328.1"/>
+    <text class="c" transform="translate(257.152 342.5)">0.6</text>
+    <line class="b" x1="339.152" y1="324.5" x2="339.152" y2="328.1"/>
+    <text class="c" transform="translate(329.152 342.5)">0.8</text>
+    <text class="d" transform="translate(195.152 364.5)">x</text>
+    <line class="b" x1="51.152" y1="324.5" x2="47.552" y2="324.5"/>
+    <text class="c" transform="translate(23.152 324.5)">0.0</text>
+    <line class="b" x1="51.152" y1="252.5" x2="47.552" y2="252.5"/>
+    <text class="c" transform="translate(23.152 252.5)">0.2</text>
+    <line class="b" x1="51.152" y1="180.5" x2="47.552" y2="180.5"/>
+    <text class="c" transform="translate(23.152 180.5)">0.4</text>
+    <line class="b" x1="51.152" y1="108.5" x2="47.552" y2="108.5"/>
+    <text class="c" transform="translate(23.152 108.5)">0.6</text>
+    <line class="b" x1="51.152" y1="36.5" x2="47.552" y2="36.5"/>
+    <text class="c" transform="translate(23.152 36.5)">0.8</text>
+    <text class="e" transform="translate(1.152 180.5)">y</text>
+    <text class="c" transform="translate(112.535 313.125)">450</text>
+    <rect class="f" x="105.528" y="316.128" width="4" height="4"/>
+    <text class="c" transform="translate(95.605 288.25)">475</text>
+    <rect class="f" x="88.608" y="291.252" width="4" height="4"/>
+    <text class="c" transform="translate(59.105 125.672)">500</text>
+    <rect class="f" x="52.104" y="128.676" width="4" height="4"/>
+    <text class="c" transform="translate(97.269 22.07)">525</text>
+    <rect class="f" x="90.264" y="25.068" width="4" height="4"/>
+    <text class="c" transform="translate(164.73 70.273)">550</text>
+    <rect class="f" x="157.728" y="73.272" width="4" height="4"/>
+    <text class="c" transform="translate(228.527 132.227)">575</text>
+    <rect class="f" x="221.52" y="135.228" width="4" height="4"/>
+    <text class="c" transform="translate(281.871 185.398)">600</text>
+    <rect class="f" x="274.872" y="188.4" width="4" height="4"/>
+    <text class="c" transform="translate(320.644 223.992)">660-780</text>
+    <rect class="f" x="313.644" y="226.992" width="4" height="4"/>
+  </g>
+</svg>

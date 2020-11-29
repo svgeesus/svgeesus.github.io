@@ -1,0 +1,630 @@
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lato Regular'), local('Lato-Regular'), url(Lato.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Source Han Sans';
+    font-style: normal;
+    font-weight: 500;
+    src: url(fonts/SourceHanSansCN-Medium.woff);
+}
+
+@font-face {
+    font-family: 'Reenie Beanie';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Reenie Beanie'), local('ReenieBeanie'), url(fonts/ReenieBeanie.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: LinBio;
+    src: url(fonts/LinBiolinum_R.woff);
+}
+
+@font-face {
+    font-family: LinBio;
+    src: url(fonts/LinBiolinum_RB.woff);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Megalopolis;
+    src: url(fonts/MEgalopolisExtra.otf);
+}
+
+@font-face {
+    font-family: KafeelCOLR;
+    src: url(fonts/Kafeel/KafeelPainter-Layers-COLR.ttf);
+}
+
+@font-face {
+    font-family: KafeelSVG;
+    src: url(fonts/Kafeel/KafeelPainter-Layers-SVG.ttf);
+}
+
+@font-face {
+    font-family: 'Rochester';
+    src: url(fonts/Rochester-Regular.otf);
+}
+
+#devcon {
+    background: white;
+}
+
+#banner {
+    width: 1920px;
+}
+
+#for-browser {
+    background: #333;
+    background-image: linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));
+    background-repeat: no-repeat;
+    background-size: 1920px 1080px;
+}
+
+#intro {
+    background: linear-gradient(to right, transparent 20%, black), url("img/Colouring_pencils.jpg") left / cover;
+    background-blend-mode: multiply, normal;
+    text-align: right;
+    color: var(--tan);
+}
+
+#intro h1 {
+    position: absolute;
+    top: .4em;
+    right: .4em;
+    width: 7em;
+    margin: 0;
+    text-align: inherit;
+    font-size: 300%;
+    color: #FFF;
+    line-height: 1;
+    font-weight: normal;
+    // text-shadow: 3px 3px 3px var(--dark-green);
+}
+
+#intro h1 strong {
+    color: var(--tan);
+    font-size: 112%;
+}
+
+#intro h2 {
+    width: 8em;
+    margin: .4em 0 0;
+    font-size: 160%;
+    line-height: 1;
+    text-decoration: none;
+    position: absolute;
+    right: .8em;
+    bottom: .8em;
+    color: inherit;
+}
+
+#intro a {
+    text-decoration: none;
+}
+
+#intro .twitter {
+    font-weight: normal;
+    font-size: 102%;
+    /* To align with 1st line */
+}
+
+#intro .attribution {
+    position: absolute;
+    bottom: -.5em;
+    color: white;
+    font-size: 80%;
+}
+
+#intro .attribution a:not() {
+    text-decoration: none;
+}
+
+#webfonts h1 {
+    font-family: Rochester;
+    font-size: 320%;
+    color: white;
+    text-shadow: .025em .025em var(--pale-green), .05em .05em var(--orange);
+}
+
+#webfonts h1 .web {
+    color: var(--dark-green);
+}
+
+.activity {
+    text-align: center;
+    font: bold 400%/1 var(--heading-font);
+}
+
+.activity img {
+    height: 55vh;
+}
+
+.activity a:not(:hover) {
+    text-decoration: none;
+}
+
+.activity .de-emphasize {
+    font-weight: normal;
+}
+
+.activity ul {
+    list-style: none;
+    padding: 0;
+}
+
+.activity li {
+    margin: .9em 0;
+}
+
+#hi img {
+    border-radius: 50%;
+    border: .2em solid var(--darkgrey);
+}
+
+#css img {
+    height: 45vh;
+}
+
+#topics {
+    padding: 0;
+    font: bold 300% var(--heading-font);
+}
+
+#topics h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#topics ul {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#topics li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    background: center / cover no-repeat;
+    color: black;
+}
+
+#topics li:nth-of-type(2),
+#topics li:nth-of-type(4),
+#topics li:nth-of-type(5) {
+    color: white;
+}
+
+.titleslide {
+    padding: 0;
+    font: bold 300% var(--heading-font);
+}
+
+.titleslide h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#basics {}
+
+#basics h1 {
+    background: none;
+    color: black;
+}
+
+.definition dd>q {
+    font-style: italic;
+    color: var(--tan);
+}
+
+.split-definition,
+.definition {
+    padding: 0;
+    flex-flow: column;
+}
+
+.split-definition:target,
+.definition:target {
+    display: flex;
+}
+
+.split-definition dl,
+.split-definition pre,
+.definition dl {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.split-definition dl dt {
+    font-size: 250%;
+    line-height: 1.1;
+    font-family: var(--heading-font);
+    font-weight: bold;
+}
+
+.definition dl dt {
+    font-size: 250%;
+    line-height: 2;
+    font-family: var(--heading-font);
+    font-weight: bold;
+}
+
+.definition dl em {
+    color: var(--tan)
+}
+
+.definition dl strong {
+    color: var(--orange)
+}
+
+.split-definition dl+dl,
+#urange dl {
+    background: var(--buff);
+    color: var(--darkgrey);
+}
+
+.split-definition dl+dl dt,
+#urange dl dt {
+    color: var(--orange);
+}
+
+
+
+/* tooltip animation */
+
+.subject:not(.slide) {
+    position: relative;
+    z-index: 1;
+}
+
+.subject::before,
+.subject::after {
+    display: block;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    max-width: 90vw;
+    padding: .6em 1em;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .5em;
+    box-shadow: .1em .1em 1em rgba(0, 0, 0, .5) !important;
+    overflow: auto;
+    background: white;
+    font-size: 90%;
+}
+
+@keyframes show {
+    from {
+        opacity: .3;
+    }
+}
+
+.tooltip.active {
+    display: block;
+    animation: show .4s;
+}
+
+.tooltip > code {
+    white-space: pre-wrap;
+}
+
+
+/* Styling for individual code samples */
+
+#contrast-table {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 120%;
+}
+
+#contrast-table td, #contrast-table th {
+    padding: 0.5em;
+}
+
+/* styles for split example/code slides */
+
+.vsplit .figure {
+    position: absolute;
+    top: 200px;
+    left: -30px;
+    width: 50%;
+    height: 80%;
+    background: #4E5D58;
+    overflow: visible;
+}
+
+.vsplit textarea {
+    position: absolute;
+    top: 200px;
+    right: 0;
+    width: 50%;
+    height: 80%;
+    left: 50%;
+}
+
+.hsplit .figure {
+    position: absolute;
+    top: 200px;
+    left: -15px;
+    width: 100vw;
+    height: 40%;
+    background: #4E5D58;
+    overflow: hidden;
+}
+
+.hsplit textarea {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    left: 0%;
+}
+
+
+/* and for specific examples */
+
+
+
+
+.property.slide {
+    text-align: center;
+}
+
+.figure {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 400%;
+    line-height: 1.35;
+}
+
+.property.slide pre input[type="number"] {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+
+pre.inline + pre.inline {
+    margin-top: 1em;
+}
+
+
+
+
+
+footer.slide {
+    text-align: center;
+    padding-top: 1em;
+    color: #9E9D81;
+}
+
+footer.slide img {
+    border-radius: 50%;
+}
+
+footer.slide h1 {
+    margin-top: 0;
+}
+
+footer.slide > ul {
+    margin: auto;
+    width: 6em;
+    color: #D66039;
+    text-align: left;
+}
+
+footer.slide > ul a {
+    color: #F3D69B;
+    text-decoration: none;
+}
+
+.slide.browser-support {}
+
+.slide.browser-support h1 {
+    font-weight: 100;
+}
+
+.slide.browser-support h1 strong {
+    display: block;
+    font-size: 150%;
+}
+
+div.browser-support {
+    text-align: center;
+    margin-bottom: 2em;
+    white-space: nowrap;
+}
+
+.browser-support > dfn {
+    position: relative;
+    margin: 110px 0 0 110px;
+    display: inline-block;
+    min-width: 1em;
+    padding: .4em;
+    border: .2em solid transparent;
+    text-align: center;
+    font-size: 70%;
+    font-style: normal;
+    line-height: 1;
+    font-weight: 200;
+}
+
+.browser-support > dfn:empty {
+    opacity: .5;
+    filter: url(img/blur.svg#blur);
+    filter: blur(5px);
+}
+
+.browser-support > dfn:not(:empty) {
+    border-color: white;
+    background: yellowgreen;
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, .5));
+    color: white;
+    border-radius: 2em;
+    box-shadow: 0 3.8em 0 -3em hsla(0, 0%, 100%, .2) inset, .1em .1em .3em black;
+}
+
+.browser-support > dfn.partial {
+    background-color: #f90;
+}
+
+.browser-support > dfn:empty:after {
+    content: '\a0';
+}
+
+.browser-support > dfn:before {
+    position: absolute;
+    bottom: -10px;
+    right: -5px;
+    z-index: -1;
+    width: 150px;
+    height: 150px;
+    background: no-repeat center;
+}
+
+.browser-support > dfn.unreleased:before {
+    opacity: .5;
+}
+
+.browser-support > dfn[title="firefox"]:before {
+    content: url(img/firefox-logo.png);
+}
+
+.browser-support > dfn[title="opera"]:before {
+    content: url(img/opera-logo.png);
+}
+
+.browser-support > dfn[title="ie"]:before {
+    content: url(img/ie-logo.png);
+}
+
+.browser-support > dfn[title="chrome"]:before {
+    content: url(img/chrome-logo.png);
+}
+
+.browser-support > dfn[title="safari"]:before {
+    content: url(img/safari-logo.png);
+}
+
+.question.delayed {
+    position: relative;
+    display: inline-block;
+    opacity: 1;
+    border-bottom: .05em dotted var(--dark-green);
+    font: 300%/.6 var(--handwriting-font);
+}
+
+.question.delayed::after {
+    content: attr(data-answer);
+}
+
+.question.delayed:not(.current):not(.displayed)::before {
+    content: "?";
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--dark-green);
+}
+
+.question.delayed:not(.current):not(.displayed)::after {
+    visibility: hidden;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: inline;
+    background: transparent;
+    border: none;
+    font: inherit;
+    color: inherit;
+    vertical-align: middle;
+}
+
+.credits {
+    font-size: 150%;
+}
+
+.credits dt {
+    background: var(--dark-green);
+    padding: 6px 2em;
+    color: var(--buff);
+}
+
+.credits a {
+    text-decoration: none;
+}
+
+#font-credits {
+    font-size: 140%;
+}
+
+#font-credits dd {
+    font-family: var(--handwriting-font);
+    font-size: 100%;
+}
+
+.gamut:not(:target) {}
+
+.gamut iframe {
+    height: 80vh;
+    margin: auto;
+    display: block;
+    width: 120vh;
+    background: black;
+}
+
+.gamut iframe.p3 {
+    width: 140vh;
+}
+
+.swatches {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.swatches span {
+    display: inline-block;
+    width: 4em;
+    height: 4em;
+}
+
+#links a {
+    text-decoration: none;
+    color: var(--tan)
+}
+
+// 1920 x 180 hehe
+@page { size: 20in 11.25in }
