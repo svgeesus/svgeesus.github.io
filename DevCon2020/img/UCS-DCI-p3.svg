@@ -117,5 +117,5 @@ with the gamuts of sRGB and display-p3.
   <circle r="0.006" cx="0.20471" cy="-0.56377" fill="yellow" />
   <circle r="0.006" cx="0.12130" cy="-0.45365" fill="cyan" />
   <circle r="0.006" cx="0.32452" cy="-0.32869" fill="magenta" />
-
+  <circle r="0.006" cx="0.19076549210206561" cy="-0.47979951397326853" fill="#CFC" stroke="#777" stroke-width="0.002"/>
   </svg>
