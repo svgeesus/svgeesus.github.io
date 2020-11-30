@@ -132,6 +132,10 @@ textarea:not(.bottom) {
     padding: 2.5rem;
     background-color: #9E9D81;
     color: var(--darkgrey);
+    display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
 }
 
 @media (max-width: 1024px) {
