@@ -138,6 +138,10 @@ textarea:not(.bottom) {
 	justify-content: center;
 }
 
+.slide > * {
+    flex-shrink: 0;
+}
+
 @media (max-width: 1024px) {
     .slide {
         padding: 3vmin;
@@ -215,6 +219,7 @@ section > header.slide > h1 {
     background: transparent;
     text-shadow: none;
     font-weight: 100;
+    color: var(--pale-green);
 }
 
 ::selection {
