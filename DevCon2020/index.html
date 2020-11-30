@@ -290,12 +290,14 @@
             </dl>
         </section>
 
+        <section class="slide dark image" style="background-image: url(img/UCS-rec2020.svg); background-repeat: no-repeat; background-position: center;" id="ucs-2020"></section>
+
         <section class="slide dark definition" id="use-2020">
             <dl>
                 <dt>BT.2020 in practice</dt>
                 <dd>Content mostly mastered in DCI-P3</dd>
                 <dd>HDMI 2.0 supports BT.2020, 12bit</dd>
-                <dd>Content thus delivered in BT.2020</dd>
+                <dd>Content thus delivered in BT.2020 container</dd>
                 <dd>For HDR, metadata declares the mastering gamut volume</dd>
             </dl>
         </section>
@@ -399,7 +401,7 @@ color: lab(55.3% 83.1 15.0 / 75%, #F06);</code></pre>
    src: url('https://example.org/C_Fogra39L.icc');
 }
 .header {
-   background-color:   color(--fogra39 0% 70% 20% 0%);
+   background-color: color(--fogra39 0% 70% 20% 0%);
 }</code></pre>
         </section>
 
@@ -444,7 +446,9 @@ color: lab(55.3% 83.1 15.0 / 75%, #F06);</code></pre>
             <section class="slide dark" id="css5color-mix-component">
                 <h1>Mixing colors in CSS Color 5</h1>
                 <p>Individual components can be mixed</p>
-                <pre style="margin-top:12vh"><code class="language-css">color-mix(lch(52% 58.1 22.7) hue 75.23%, lch(56% 49.1 257.1));</code></pre>
+                <pre style="margin-top:12vh"><code class="language-css">--tomato: lch(52% 58.1 22.7);
+--sky: lch(56% 49.1 257.1);
+color-mix(var(--tomato) hue 75.23%, var(--sky));</code></pre>
             </section>
 
             <section class="image slide" style="background-color: white; background-image: url(img/CH-mixing2.svg); background-size: 60%"
@@ -458,7 +462,7 @@ color: lab(55.3% 83.1 15.0 / 75%, #F06);</code></pre>
                     <dd>Can be in different colorspaces</dd>
                     <dd>Space for mixing (LCH, Lab, XYZ)</dd>
                     <dd>Can specify long arc for hue mixing</dd>
-                    <dd>Result can be out of gamut, needs gamut mapping</dd>
+                    <dd>Result can be out of gamut, <em>needs gamut mapping</em></dd>
                 </dl>
             </section>
 
@@ -467,7 +471,7 @@ color: lab(55.3% 83.1 15.0 / 75%, #F06);</code></pre>
                 <p>Base color, list of alternates</p>
                 <pre style="margin-top:12vh"><code class="language-css">--myAccent: #b22222;
 color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e)</code></pre>
-                <p>Contrast = (Y<sub>b</sub> + 0.05) / (Y<sub>a</sub> + 0.05)</p>
+                <p>WCAG Contrast = (Y<sub>b</sub> + 0.05) / (Y<sub>a</sub> + 0.05)</p>
             </section>
 
             <section class="slide dark" id="css5color-contrast-example">
@@ -561,25 +565,26 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e)</code></pre>
                 </dl>
             </section>
 
+            <section class="slide dark definition" id="lab-problems">
+                <dl>
+                    <dt>Problems with CIE Lab</dt>
+                    <dd>Hue <em>non-linearity</em> in blue area</dd>
+                    <dd>Primarily designed for reflective, low-luminance (120 cd/m²), print gamuts</dd>
+                    <dd>Hard to extend for <em>specular whites</em> brighter than paper white</dd>
+                    <dd>Under-tested for <em>wide-gamut colors</em>, over-estimates ΔE</dd>
+                </dl>
+            </section>
+
+
             <section class="image slide top-heavy" style="background-image: url(img/css-color-hdr.png);"
             id="css-color-hdr">
                 <h1>CSS Color HDR: high dynamic range</h1>
             </section>
 
-            <section class="slide dark definition" id="lab-problems">
-                <dl>
-                    <dt>Problems with CIE Lab</dt>
-                    <dd>Hue non-linearity in blue area</dd>
-                    <dd>Primarily designed for reflective, low-luminance (120 cd/m²), print gamuts</dd>
-                    <dd>Hard to extend for specular whites brighter than paper white</dd>
-                    <dd>Under-tested for wide-gamut colors, over-estimates ΔE</dd>
-                </dl>
-            </section>
-
             <section class="slide definition dark" id=hdr-new-colorspaces>
                 <dl>
                     <dt>CSS Color HDR (unofficial draft)</dt>
-                    <dd>Adds BT.2100 (HLG &amp; PQ)</dd>
+                    <dd>Adds BT.2100 (both HLG &amp; PQ)</dd>
                     <dd>Adds J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> &amp; J<sub>z</sub>C<sub>z</sub>h<sub>z</sub> (PQ-like, on LMS)</dd>
                     <dd>Adds IC<sub>T</sub>C<sub>P</sub> (PQ on LMS)</dd>
                     <dd>Defines SDR &amp; HDR compositing (ITU Rpt BT.2408-0)</dd>

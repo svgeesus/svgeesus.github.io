@@ -101,12 +101,12 @@ with the gamuts of sRGB (or 709, same).
 
   <!-- sRGB  -->
   <polygon fill="none" stroke="#CCC" stroke-dasharray="0.004 0.003" stroke-width="0.004" points="0.45070, -0.522887 0.125, -0.5625 0.17544, -0.15789"/>
-  <circle r="0.006" cx="0.45070" cy="-0.522887" fill="red" fill-opacity="0.4"/>
-  <circle r="0.006" cx="0.12500" cy="-0.56250" fill="green"  fill-opacity="0.4"/>
-  <circle r="0.006" cx="0.17544" cy="-0.15789" fill="blue"  fill-opacity="0.4"/>
-  <circle r="0.006" cx="0.20394" cy="-0.552899" fill="yellow" fill-opacity="0.4"/>
-  <circle r="0.006" cx="0.13834" cy="-0.45550" fill="cyan"  fill-opacity="0.4"/>
-  <circle r="0.006" cx="0.30504" cy="-0.32975" fill="magenta"  fill-opacity="0.4"/>
+  <circle r="0.006" cx="0.45070" cy="-0.522887" fill="red" />
+  <circle r="0.006" cx="0.12500" cy="-0.56250" fill="green"  />
+  <circle r="0.006" cx="0.17544" cy="-0.15789" fill="blue"  />
+  <circle r="0.006" cx="0.20394" cy="-0.552899" fill="yellow" />
+  <circle r="0.006" cx="0.13834" cy="-0.45550" fill="cyan"  />
+  <circle r="0.006" cx="0.30504" cy="-0.32975" fill="magenta"  />
   <circle r="0.006" cx="0.19783" cy="-0.46832" fill="white" stroke="#777" stroke-width="0.002"/>
 
 

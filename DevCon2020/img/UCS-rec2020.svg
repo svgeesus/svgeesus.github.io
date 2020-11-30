@@ -4,7 +4,7 @@ with the gamuts of sRGB and ITU Rec BT.2020.
 </desc>
 
 <!-- tongue -->
-<path fill="none" stroke="black" stroke-width="0.003" d="M 0.256804  -0.016594
+<path fill="none" stroke="hsl(58, 13%, 56%)" stroke-width="0.003" d="M 0.256804  -0.016594
   L 0.256637  -0.016593
   L 0.256418  -0.016266
   L 0.256085  -0.016263
@@ -100,7 +100,7 @@ with the gamuts of sRGB and ITU Rec BT.2020.
   Z"/>
 
   <!-- sRGB  -->
-  <polygon fill="none" stroke="#CCC" stroke-dasharray="0.004 0.003" stroke-width="0.004" points="0.45070, -0.522887 0.125, -0.5625 0.17544, -0.15789"/>
+  <polygon fill="none" stroke="#555" stroke-dasharray="0.004 0.003" stroke-width="0.004" points="0.45070, -0.522887 0.125, -0.5625 0.17544, -0.15789"/>
   <circle r="0.006" cx="0.45070" cy="-0.522887" fill="red" fill-opacity="0.4"/>
   <circle r="0.006" cx="0.12500" cy="-0.56250" fill="green"  fill-opacity="0.4"/>
   <circle r="0.006" cx="0.17544" cy="-0.15789" fill="blue"  fill-opacity="0.4"/>
@@ -110,7 +110,7 @@ with the gamuts of sRGB and ITU Rec BT.2020.
   <circle r="0.006" cx="0.19783" cy="-0.46832" fill="white" stroke="#777" stroke-width="0.002"/>
 
 <!-- rec2020 -->
-  <polygon fill="none" stroke="#555" stroke-dasharray="0.006 0.003" stroke-width="0.004" points="0.55660, -0.51651 0.05563, -0.58680 0.15927, -0.12584"/>
+  <polygon fill="none" stroke="#CCC" stroke-dasharray="0.006 0.003" stroke-width="0.004" points="0.55660, -0.51651 0.05563, -0.58680 0.15927, -0.12584"/>
   <circle r="0.006" cx="0.55660" cy="-0.51651" fill="red" />
   <circle r="0.006" cx="0.05563" cy="-0.58680" fill="green" />
   <circle r="0.006" cx="0.15927" cy="-0.12584" fill="blue" />
