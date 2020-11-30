@@ -1,0 +1,63 @@
+/**
+ * Styles for the sample talk, you don’t need to copy this to use Inspire.js
+ * If you just want the theme of the sample talk, use theme.css
+ */
+
+
+#intro h1,
+#intro h2 {
+	margin: 0;
+	filter: drop-shadow(.1rem .1rem .5rem rgba(0,0,0,.5));
+}
+
+#intro h1 {
+	margin-top: auto;
+	color: var(--color-aqua);
+	letter-spacing: -.04em;
+	font-size: calc(400% + 15vh);
+}
+
+@supports (-webkit-background-clip: text) {
+	#intro h1 {
+		background: linear-gradient(to bottom right, var(--color1), var(--color2), var(--color3), var(--color2), var(--color1));
+		-webkit-background-clip: text;
+		color: transparent;
+	}
+}
+
+#intro h2 {
+	width: 12em;
+	font-size: calc(100% + 5vh);
+	color: white;
+	font-weight: 300;
+}
+
+	#intro h2::first-line {
+		font-size: 80%;
+	}
+
+#intro .attribution {
+	margin-top: auto;
+	font-weight: bold;
+	font-size: 80%;
+	color: var(--color-yellow);
+	text-align: center;
+}
+
+
+#media-plugin {
+	flex-flow: row;
+	padding: 2rem;
+}
+
+	#media-plugin > div:first-child {
+		margin-right: 1em;
+	}
+
+	#media-plugin h1 {
+		font-size: 200%;
+	}
+
+	#media-plugin .annotation {
+		font-weight: 300;
+	}

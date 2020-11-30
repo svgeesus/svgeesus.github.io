@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<title>Inspire.js: A brief introduction</title>
+
+	<link href="inspire.css" rel="stylesheet" />
+	<link href="theme.css" rel="stylesheet" />
+	<link href="talk.css" rel="stylesheet" />
+</head>
+<body class="language-markup" data-prism-plugins="normalize-whitespace">
+
+<header id="intro" class="slide">
+	<h1>
+		Inspire.js
+	</h1>
+	<h2>
+		Lean,&nbsp;hackable,&nbsp;extensible slide&nbsp;deck&nbsp;framework
+	</h2>
+	<p class="attribution">By <a href="http://lea.verou.me">Lea Verou</a> and <a href="https://github.com/LeaVerou/inspire.js/graphs/contributors">contributors</a></p>
+</header>
+<section>
+	<header class="slide">
+		<h1>Introduction</h1>
+	</header>
+
+	<article class="slide" title="Inspire.js: Introduction">
+		<h1>Main idea</h1>
+
+		<ul class="delayed-children">
+			<li>An HTML file contains the whole presentation</li>
+			<li>Themes as CSS files</li>
+			<li>Plugins for extra functionality, autoloaded when used</li>
+			<li>Nice JavaScript API for really custom things</li>
+		</ul>
+	</article>
+
+	<article class="slide">
+		<h1>History</h1>
+		<ul>
+			<li>Originally created in 2010 for my first talk, at <a href="http://front-trends.com">Front Trends 2010</a></li>
+			<li>By popular demand, it was released shortly after, named CSSS</li>
+			<li>Huge refactor and renaming to Inspire.js in Sep 2018</li>
+		</ul>
+	</article>
+
+	<article class="slide">
+		<h1>Syntax</h1>
+
+		<ul>
+			<li>Slides are defined by adding the <code>slide</code> class to any elements.</li>
+			<li><code>&lt;header class="slide"></code> is a header slide (relevant for the <a href="#overview">Overview</a>)</li>
+		</ul>
+	</article>
+
+	<article class="slide" id="navigation">
+		<h1>Keyboard Navigation</h1>
+		<ul>
+			<li><kbd>→</kbd> or <kbd>↓</kbd> to advance to the next slide or incrementally displayed item</li>
+			<li><kbd>←</kbd> or <kbd>↑</kbd> to go to the previous slide or incrementally displayed item</li>
+			<li><kbd>Ctrl</kbd><kbd>→</kbd> or <kbd>Ctrl</kbd><kbd>↓</kbd> to jump to the next slide</li>
+			<li><kbd>Ctrl</kbd><kbd>←</kbd> or <kbd>Ctrl</kbd><kbd>↑</kbd> to jump to the previous slide</li>
+			<li>Home to go to the first slide, End to go to the last</li>
+			<li><kbd>Ctrl</kbd><kbd>G</kbd> to jump to an arbitrary slide (by slide number or identifier)</li>
+		</ul>
+	</article>
+</section>
+
+<section>
+	<header class="slide">
+		<h1>Features</h1>
+	</header>
+
+	<article class="slide" id="data-insert">
+		<h1>Repeated slides</h1>
+
+		<ul>
+			<li>Use attribute <code>data-insert="#id"</code> on an empty slide to re-insert it later in the slideshow</li>
+			<li>Notice how this slide will also be re-inserted after the next one!</li>
+		</ul>
+	</article>
+
+	<article class="slide">
+		<h1>IDs and titles</h1>
+		<ul>
+			<li>IDs are dynamically assigned by JavaScript, but you can also use your own</li>
+			<li>Slide titles (used in the browser tab when the slide is active, and in the <a href="#overview">Overview</a>) via the <code>title</code> or <code>data-title</code> attributes or headings in the slide.</li>
+			<li>If only an id or only a title is provided, the other is extracted from it.</li>
+		</ul>
+	</article>
+
+	<article class="slide" data-insert="#data-insert"></article>
+
+	<article class="slide">
+		<h1>Incremental display</h1>
+
+		<ul class="delayed-children">
+			<li>Incremental display of slide contents (just add <code>class="delayed"</code>)</li>
+			<li>Use selector <code>.delayed:not(.current):not(.displayed)</code> to change the style of undisplayed items</li>
+			<li>Use selector <code>.delayed.displayed</code> to change the style of displayed items</li>
+			<li>Use selector <code>.delayed.current</code> to change the style of current items</li>
+			<li>Use <code>class="delayed-children"</code> to apply the <code>delayed</code> class to all of an element’s children</li>
+			<li>
+				Nested delayed items <strong class="delayed">are possible</strong>!
+			</li>
+		</ul>
+	</article>
+</section>
+
+<section>
+	<header class="slide">
+		<h1>Plugins</h1>
+	</header>
+
+	<article class="slide" id="overview">
+		<h1>Overview</h1>
+
+		<ul>
+			<li>Loaded automatically, use <code>&lt;code class="no-overview"></code> to prevent this.</li>
+			<li>Press <kbd>Ctrl</kbd>+<kbd>H</kbd> (or <kbd>Shift</kbd>+<kbd>H</kbd>) to trigger, <kbd>Esc</kbd> to close.</li>
+			<li class="delayed">Cool, huh? You can press <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>H</kbd> to see all slides</li>
+		</ul>
+	</article>
+
+	<article class="slide">
+		<h1>Syntax highlighting with PrismJS</h1>
+
+		<ul>
+			<li>Autoloads core & languages used</li>
+			<li>Load plugins by listing their ids in a <code>data-prism-plugins</code> attribute, on any element (first one will be used).</li>
+			<li>Automatically figures out dependencies & aliases</li>
+			<li>CSS is up to you!</li>
+		</ul>
+		<pre class="language-jsx"><code>var start = new Date().getTime();
+setInterval(function() {
+	React.render(
+		&lt;ExampleApplication elapsed={new Date().getTime() - start} />,
+		document.getElementById('container')
+	);
+}, 50);</code></pre>
+	</article>
+
+	<article class="slide" data-video="https://mavo.io/demos/eshop/video.mp4" style="--url: 'https://mavo.io/demos/eshop'" id="media-plugin">
+		<div>
+			<h1>Annotated videos</h1>
+			<ul>
+				<li><code>data-video</code> for URL</li>
+				<li><code>class="annotation"</code> for annotations</li>
+				<li><code>data-time</code> and <code>data-pause</code> on annotations</li>
+			</ul>
+		</div>
+		<span class="annotation top-pointer" style="top: 44%; left: 59.5%; --pointer-left: 4em;" data-time="3000 to 3500" data-pause>Click to dismiss & resume</span>
+		<span class="annotation top-pointer" style="top: 26%; left: 67.1%" data-time="5200 to 5700" data-pause="2000">Auto-resume after 2sec</span>
+	</article>
+
+	<article class="demo slide" id="livedemo">
+		<textarea class="language-html"><p>Live demo!</p></textarea>
+		<textarea class="language-css">
+			p {
+				font-size: 250%;
+				color: #f06;
+			}
+		</textarea>
+	</article>
+
+	<article class="isolated demo slide" id="isolated-livedemo">
+		<textarea class="language-html"><p>Live demo in iframe!</p></textarea>
+		<textarea class="language-css">
+			p {
+				font-size: 250%;
+				color: #f06;
+			}
+		</textarea>
+	</article>
+
+	<article class="slide">
+		<h1>Timer</h1>
+		<ul>
+			<li>Define the talk duration with the attribute <code>data-duration</code> on the <code>body</code>.</li>
+			<li>Timer in the form of a progress bar on the top</li>
+			<li>Style the timer and the end state with the selectors <code>#timer</code> and <code>#timer.end</code> respectively.</li>
+		</ul>
+	</article>
+
+	<article class="slide" data-resolution="1024 768">
+		<h1>Resolution</h1>
+		<ul>
+			<li>Design for a specific resolution, and have slides scale up and down based on the viewport.</li>
+			<li>Define with the attribute <code>data-resolution</code> on the <code>&lt;body></code> for all slides, a grouping element, or individual slides (like this one!).</li>
+			<li>Try resizing the viewport, note how the slide size adapts!</li>
+		</ul>
+	</article>
+
+	<article class="slide">
+		<h1>Presenter View</h1>
+
+		<ul>
+			<li>Use <code>&lt;p class="presenter-notes"></code> for presenter notes. You need at least one of these to have the plugin loaded.</li>
+			<li>Presenter view with <kbd>Ctrl</kbd><kbd>P</kbd> (or <kbd>Shift</kbd><kbd>P</kbd>)</li>
+			<li>Also timer, upcoming slide</li>
+		</ul>
+	</article>
+
+	<article class="slide" id="slidestyle">
+		<style data-slide>
+			.slide {
+				background: rebeccapurple;
+			}
+		</style>
+		<h1>Slide-specific CSS</h1>
+		<p>You can use the <code>data-slide</code> attribute on <code>&lt;style></code> elements in slides, to only style the current slide or inside sections that include multiple slides to style all of them and nothing else.</p>
+		<p>For example, run <code class="language-js">$('#slidestyle style').sheet.cssRules[0].selectorText</code> in the console to see how the original selector gets changed.</p>
+	</article>
+</section>
+
+<footer class="slide" title="The End">
+	<h1>Thank you!</h1>
+	<p>Get it or contribute at <a href="https://github.com/LeaVerou/inspire.js">github.com/LeaVerou/inspire.js</a></p>
+</footer>
+
+<script src="inspire.js"></script>
+
+</body>
+</html>
