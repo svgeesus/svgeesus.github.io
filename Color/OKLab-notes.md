@@ -19,7 +19,7 @@ Also like many such colorspaces, the cone fundamentals are not used directly but
 
 ## Transfer function
 
-A single cube-root nonlonearity is applied, similar to the curved portion of the CIE L* transfer function. This has three drawbacks:
+A single cube-root nonlinearity is applied, similar to the curved portion of the CIE L* transfer function. This has three drawbacks:
 
 1. At very low luminance levels, a power law increases noise This is why ITU Rec BT.709, sRGB and Display P3 use a small linear portion near zero. In addition, it does not model the HVS, which requires:
 
@@ -34,6 +34,13 @@ A single cube-root nonlonearity is applied, similar to the curved portion of the
 3. Luminance levels are capped at the diffuse (media) white, making it an SDR-only metric.
 
 The choice of a simple, easily invertible, transfer function is understandable from a computational and ease-of understanding viewpoint, but also limits the deepest blacks and the moderate to high luminance whites from being represented.
+
+The author of OKLab clarified:
+
+> One thing to note: While I agree with the drawback of the transfer function, it is important to note that those can only be adressed if the viewing conditions can be modelled accurately.
+> A danger in using models like JzAzBz and ICtCp is that if the viewing conditions are not accurately predicted, they will be incorrectly predict all colors.
+> Oklab/IPT and similar models will always predict colors well in the range close to the eye's luminance adaption.
+> -- Björn Ottosson
 
 The power function from the optimization step was 0.323, but that gave a blue concavity on the sRGB gamut hull and so a simpler 1/3 was chosen for OKLab, which restored convexity. The effect on the gamut hull of other RGB spaces such as Display P3 and Rec BT.2020 was not stated in the origina article and remains to be investigated.
 
@@ -50,6 +57,11 @@ Also, the dataset used to derive OKLab included matched (in CIECAM16 with a brig
 > Colors were limited to be within Pointer’s Gamut – the set of possible surface colors
 
 This limits representation to diffusely illuminated surface colors. This seems odd, because the stated aim of OKLab is for color manipulation in image processing; and images whether natural or computer generated would typically contain colors from specular lighting, and direct view of illumination sources.
+
+The author of OKLab clarified:
+
+> The choice of using the Pointer gamut has more to do with Ciecam than Oklab, and the experiments used to derive it. Didn't want to fit a model to parts of Ciecam that aren't valid. More wide gamut data is needed to do better.
+> -- Björn Ottosson
 
 ## Use of DeltaE 2000
 
