@@ -1,0 +1,117 @@
+# Notes on OKLab
+
+
+[OKLab](https://bottosson.github.io/posts/oklab/), by Björn Ottosson is a CIE Lab replacement which transforms D65-adapted, whitepoint-relative XYZ to an LMS space, then uses a cube-root nonlinearity to produce an opponent colorspace. It is claimed to
+
+> be simple to use
+
+and to do
+
+> a good job at predicting perceived lightness, chroma and hue
+
+These notes are my nitial impressions on reading.
+
+## LMS basis
+
+Like many modern perceptually uniform colorspaces (Jzazbz, ICtCp), XYZ values are first transformed into an LMS cone space. This has the benefit that no chromatic adapatation step is needed for moderate illuminant changes. In CIE Lab, in contrast, to avoid the well-known "wrong von Kries" effect, when the illuminant changes a Bradford transform is applied, which goes Lab > XYZ > LMS -> scaled LMS > XYZ > Lab.
+
+Also like many such colorspaces, the cone fundamentals are not used directly but are modified (by sharpening to increase cone separation, by crosstalk, or by direct numerical optimization to minimize errors on assumed-constant datasets). In OKLab, numerical optimization was used.
+
+## Transfer function
+
+A single cube-root nonlonearity is applied, similar to the curved portion of the CIE L* transfer function. This has three drawbacks:
+
+1. At very low luminance levels, a power law increases noise This is why ITU Rec BT.709, sRGB and Display P3 use a small linear portion near zero. In addition, it does not model the HVS, which requires:
+
+    > square-root behavior (Rose-Devries law) for less than 0:001cd/m2
+    > (Choudhury)
+
+2. At moderate to high luminance levels, a logarithmic response is desired to model the HVS. For example the Hybrid Log-Gamma function from BT.2100 uses ths approach.
+
+    > log behavior (Weber’s Law) for greater than 200cd/m2,
+    > (Choudhury)
+
+3. Luminance levels are capped at the diffuse (media) white, making it an SDR-only metric.
+
+The choice of a simple, easily invertible, transfer function is understandable from a computational and ease-of understanding viewpoint, but also limits the deepest blacks and the moderate to high luminance whites from being represented.
+
+The power function from the optimization step was 0.323, but that gave a blue concavity on the sRGB gamut hull and so a simpler 1/3 was chosen for OKLab, which restored convexity. The effect on the gamut hull of other RGB spaces such as Display P3 and Rec BT.2020 was not stated in the origina article and remains to be investigated.
+
+CIE Lab has been experimentally extended to L=400 (Fairchild & Chen), but the extension past L=100 does not follow Weber's Law.
+
+## Restriction to Surface colors
+
+A limitation of CIE Lab has been that it is primarily used with, and evaluated using, reflective surface colors such as printed or painted samples, at moderate diffuse illumination levels (e.g. 120 cd/m2). This limitation becomes apparent when self-luminous colors such as computer displays are analyzed, either SDR (up to 300 cd/m2) or HDR (up to 4,000 cd/m2).
+
+When deriving OKLab, XYZ values were normalized such the D65 Y = 1.0
+
+Also, the dataset used to derive OKLab included matched (in CIECAM16 with a bright viewing environment) pairs of colors:
+
+> Colors were limited to be within Pointer’s Gamut – the set of possible surface colors
+
+This limits representation to diffusely illuminated surface colors. This seems odd, because the stated aim of OKLab is for color manipulation in image processing; and images whether natural or computer generated would typically contain colors from specular lighting, and direct view of illumination sources.
+
+## Use of DeltaE 2000
+
+DeltaE 2000 is a good, if complex, metric which accounts for the human eye's perceptual sensitivity at different colors (in contrast to earler Lab-based metrics such as DeltaE76 and DeltaE94). For example, it has a correction term for the CIE Lab blue-purple non-linearity. It was used to compute the errors which would be minimized in the matrix optimization step.
+
+However
+
+> While the CIE L*a*b*-based metrics have been shown to perform well for many SDR applications (product surface colors, graphic arts printing), they are known to have significant problems with new image characteristics enabled by HDR, such as shadow detail spanning several log units, emissive colors, specular reflections, scenes of mixed illumination, and interscene adaptations (e.g., from scene changes like going into a cave, or turning on a light source).
+> (Choudhury)
+
+## Experimental comparisons
+
+### Matched CIECAM16 color pairs
+
+The computed error metrics for OKLab are very good. In particular, except for the H95 and Hrms hue metrics, they are significantly better than those for Jzazbz. On the two Hue metrics, Jzazbz is slightly better, but not by much. Note that (as confirmed with the author on twitter) the IPT value are for the original Ebener-Fairchipd IPT and not the Dolby ICtCp (whose error metric is termed ΔEITP, and the colorspace is often referred to as IPT).
+
+The error values for CAM16-UCS are also given, and are the lowest of all the studied colorspaces, except for the two hue metrics where OKLab does better. This is a noteworthy result, given the simplicity and invertibility of OKLab, and the difficulty of obtaining the surround luminance, background luminance, and adapted state data needed to fully utilize CIECAM16.
+
+The error values for sRGB HSV are also listed, presumably for comic relief.
+
+Comparison with ICtCp would be interesting to see.
+
+### Munsel renotation chroma uniformity
+
+OKlab does very well at maintaining a circular shape, better than CIE Lab and Jzazbz.
+
+### Luo-Rigg ellipses
+
+An improvement over the MacAdam ellipses, these should be equal-sized circles in a perfect uniform colorspace.
+
+An interesting observation is that:
+
+> CAM16 explicitly compresses chroma to better match experimental data, which makes this data look good, but makes color blending worse
+
+As often happens, optimising one aspect makes another worse and the answer to "what is the best colorspace" is "what are you trying to do?".
+
+### Gamut volume slices
+
+Slices of the sRGB gamut volume are shown. It would be interesting to see other RGB speces in particular Rec BT.2020.
+
+### Color blends
+
+Only blends of an unspecified blue color with white are presented. CIE Lab has the usual purple shift mid way through.  The Jzazbz blend does not exhibit the [greenish shift which I found](https://svgees.us/ICC%20July%202020/Towards%20an%20HDR-capable%20ICC%20PCS.html). CAM16-UCS exhibits an odd desaturation and slight purpling at the midpoint.
+
+## References
+
+Anustup Choudhury, Scott Daly
+_Comparing a spatial extension of ICTCP color representation with S-CIELAB and other recent color metrics for HDR and WCG quality assessment_
+IS&T International Symposium on Electronic Imaging 2020
+Color Imaging: Displaying, Processing, Hardcopy, and Applications
+pp. 162-1 - 162-9
+https://www.ingentaconnect.com/content/ist/ei/2020/00002020/00000015/art00005
+
+Mark Fairchild, Ping-Hsu Chen
+_Brightness, lightness, and specifying color in high-dynamic-range scenes and images._
+ SPIE/IS&T Electronic Imaging Conference, San Francisco, 78670O-1 -78670O-14, 2011
+ http://rit-mcsl.org/fairchild/PDFs/PRO37.pdf
+
+Chris Lilley
+_Towards an HDR-capable ICC PCS_
+https://svgees.us/ICC%20July%202020/Towards%20an%20HDR-capable%20ICC%20PCS.html
+
+Portrait Displays
+_About DeltaE_
+https://kb.portrait.com/help/about-deltae-e
