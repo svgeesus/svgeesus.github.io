@@ -134,6 +134,26 @@ This is similar to the ΔECMC and ΔE94 error metrics, calculating a Lightness d
 
 ΔEOK is always positive, as is ΔH, but the ΔL and ΔC terms are signed, and the sign is meaningful (a sample which is darker than the reference will have negative ΔL; a sample with lower Chroma will have negative ΔC).
 
+Note that, because OKLab lightness is [0-1] while CIE Lab Lightness is [0-100],
+ΔEOK values will be 100 times smaller, other things being equal.
+So a JND of 2.3 will be an OKLab JND of 0.023.
+
+## Standard values
+
+For checking implementations, these are the OKLab values for the sRGB primaries and secondaries, using the [provided C++ code](https://bottosson.github.io/posts/oklab/).
+
+| Color   |  OK L    |  OK a     | OK b      |
+|--:      |--:       |--:        |--:        |
+| white   | 0.999988 |  0.000008 | -0.000118 |
+| red     | 0.627915 |  0.224903 |  0.125803 |
+| green   | 0.866440 | -0.233920 |  0.179424 |
+| blue    | 0.452030 | -0.032379 | -0.311620 |
+| cyan    | 0.905403 | -0.149449 | -0.039508 |
+| magenta | 0.701648 |  0.274632 | -0.169274 |
+| yellow  | 0.967967 | -0.071385 |  0.198491 |
+| black   | 0.000000 |  0.000000 |  0.000000 |
+
+
 ## References
 
 Anustup Choudhury, Scott Daly
