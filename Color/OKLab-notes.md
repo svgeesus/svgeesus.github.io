@@ -106,6 +106,34 @@ Slices of the sRGB gamut volume are shown. It would be interesting to see other 
 
 Only blends of an unspecified blue color with white are presented. CIE Lab has the usual purple shift mid way through.  The Jzazbz blend does not exhibit the [greenish shift which I found](https://svgees.us/ICC%20July%202020/Towards%20an%20HDR-capable%20ICC%20PCS.html). CAM16-UCS exhibits an odd desaturation and slight purpling at the midpoint.
 
+## Color difference metric
+
+No color-difference (ΔE) metric is specified,
+but given that the irregularities of CIE Lab have been corrected,
+and in particular that hue differences and lightness differences
+are normalized to the same distance,
+it would seem appropriate to define a ΔE that works directly on OKLab.
+
+A Euclidean distance metric would work,
+but a ΔE which is a root-sum-of-squares of Lightness, Chroma and Hue terms
+would be better (because the three terms are meaningful
+and could be compared or optimised separately if required.)
+
+Thus, given a reference and a sample OKLab values L1 a1 b1 and L2 a2 b2, I suggest:
+
+- **ΔL** = L1 - L2
+- C1 = √(a1² + b1²)
+- C2 = √(a2² + b2²)
+- **ΔC** = C1 - C2
+- Δa = a1 - a2
+- Δb = b1 - b2
+- **ΔH** = √(Δa² + Δb² - ΔC²)
+- **ΔEOK** = √(ΔL² + ΔC² + ΔH²)
+
+This is similar to the ΔECMC and ΔE94 error metrics, calculating a Lightness difference, a Chroma difference (these two are lengths) and thirdly a Hue difference (starting from the two angles, it calculates the length of the angular arc). Unlike ΔE94 it doesn't need the various weighting factors; and unlike ΔE2000 it doesn't need all the correction terms for blue non-linearity and so on.
+
+ΔEOK is always positive, as is ΔH, but the ΔL and ΔC terms are signed, and the sign is meaningful (a sample which is darker than the reference will have negative ΔL; a sample with lower Chroma will have negative ΔC).
+
 ## References
 
 Anustup Choudhury, Scott Daly
