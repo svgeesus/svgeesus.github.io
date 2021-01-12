@@ -6,12 +6,16 @@
 			"talk": [
 				{
 					"title": "Colour on the web and broadcast",
-					"type": "Talk"
+					"type": "Talk",
+					"video": "https://www.youtube.com/watch?v=32LGlKwACfI",
+					"slides": "https://svgees.us/DevCon2020/index.html#hi",
+					"@context": "http://schema.org"
 				}
 			],
 			"url": "http://www.color.org/DevCon/devcon2020/index.xalter",
 			"name": "ICC DevCon 2020",
-			"date": "2020-11-30"
+			"date": "2020-11-30",
+			"@context": "http://schema.org"
 		},
 		{
 			"talk": [
