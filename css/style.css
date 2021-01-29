@@ -116,12 +116,11 @@ nav div.social a {
 	background: no-repeat center;
 	background-origin: content-box;
 	transition: .3s;
-	transition-property: -webkit-filter, filter;
+	transition-property: filter;
 	mix-blend-mode: multiply
 }
 
 nav div.social a:not(:hover):not(:focus) {
-	-webkit-filter: grayscale(100%);
 	filter: grayscale(100%);
 }
 
@@ -130,7 +129,6 @@ nav div.social a.twitter {
 }
 
 nav div.social a.twitter:not(:hover):not(:focus) {
-	-webkit-filter:  brightness(120%) grayscale(100%);
 	filter: brightness(120%) grayscale(100%);
 }
 
@@ -139,7 +137,6 @@ nav div.social a.github {
 }
 
 nav div.social a.github:not(:hover):not(:focus) {
-	-webkit-filter: brightness(800%) grayscale(100%);
 	filter: brightness(800%) grayscale(100%);
 }
 
