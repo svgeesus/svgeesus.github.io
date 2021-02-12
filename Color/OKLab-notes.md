@@ -100,7 +100,7 @@ As often happens, optimising one aspect makes another worse and the answer to "w
 
 ### Gamut volume slices
 
-Slices of the sRGB gamut volume are shown. It would be interesting to see other RGB speces in particular Rec BT.2020.
+Slices of the sRGB gamut volume are shown. It would be interesting to see other RGB spaces in particular Rec BT.2020.
 
 ### Color blends
 
