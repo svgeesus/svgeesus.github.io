@@ -9,7 +9,7 @@ and to do
 
 > a good job at predicting perceived lightness, chroma and hue
 
-These notes are my nitial impressions on reading.
+These notes are my initial impressions on reading.
 
 ## LMS basis
 
