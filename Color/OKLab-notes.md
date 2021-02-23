@@ -76,7 +76,7 @@ However
 
 ### Matched CIECAM16 color pairs
 
-The computed error metrics for OKLab are very good. In particular, except for the H95 and Hrms hue metrics, they are significantly better than those for Jzazbz. On the two Hue metrics, Jzazbz is slightly better, but not by much. Note that (as confirmed with the author on twitter) the IPT value are for the original Ebener-Fairchipd IPT and not the Dolby ICtCp (whose error metric is termed ΔEITP, and the colorspace is often referred to as IPT).
+The computed error metrics for OKLab are very good. In particular, except for the H95 and Hrms hue metrics, they are significantly better than those for Jzazbz. On the two Hue metrics, Jzazbz is slightly better, but not by much. Note that (as confirmed with the author on twitter) the IPT value are for the original Ebener-Fairchild IPT and not the Dolby ICtCp (whose error metric is termed ΔEITP, and the colorspace is often referred to as IPT).
 
 The error values for CAM16-UCS are also given, and are the lowest of all the studied colorspaces, except for the two hue metrics where OKLab does better. This is a noteworthy result, given the simplicity and invertibility of OKLab, and the difficulty of obtaining the surround luminance, background luminance, and adapted state data needed to fully utilize CIECAM16.
 
