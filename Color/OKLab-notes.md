@@ -140,7 +140,20 @@ So a JND of 2.3 will be an OKLab JND of 0.023.
 
 ## Standard values
 
-For checking implementations, these are the OKLab values for the sRGB primaries and secondaries, using the [provided C++ code](https://bottosson.github.io/posts/oklab/).
+For checking implementations, these are the OKLab values for the sRGB primaries and secondaries, using the [updated C++ code](https://bottosson.github.io/posts/oklab/) which converts directly from linear-light sRGB to LMS, then applies the cube root and finally applies M2 to convert to OKLab:
+
+| Color   |  OK L    |  OK a     | OK b      |
+|--:      |--:       |--:        |--:        |
+| white   | 1.000000 |  0.000000 |  0.000000 |
+| red     | 0.627955 |  0.224863 |  0.125846 |
+| green   | 0.86644  | -0.233888 |  0.179498 |
+| blue    | 0.452014 | -0.032457 | -0.311528 |
+| cyan    | 0.905399 | -0.149444 | -0.039398 |
+| magenta | 0.701674 |  0.274566 | -0.169156 |
+| yellow  | 0.967983 | -0.071369 |  0.198570 |
+| black   | 0.000000 |  0.000000 |  0.000000 |
+
+__Note:__ the originally published code was slightly different, and in particular did not give an exact 1.0 0.0 0.0 for D65 white. These are the older expected values:
 
 | Color   |  OK L    |  OK a     | OK b      |
 |--:      |--:       |--:        |--:        |
@@ -153,6 +166,37 @@ For checking implementations, these are the OKLab values for the sRGB primaries 
 | yellow  | 0.967967 | -0.071385 |  0.198491 |
 | black   | 0.000000 |  0.000000 |  0.000000 |
 
+## Comparing standard code to published matrices
+
+The matrix S, for converting linear-light sRGB to CIE XYZ. This was calculated directly from the primary chromaticities and D65 whitepoint. The published matrix from the sRGB standard is rounded to 8 decimal places. This matrix, when rounded to 8 decimal places, is identical in all digits:
+
+    [ 0.41239079926595934, 0.357584339383878,   0.1804807884018343  ],
+    [ 0.21263900587151027, 0.715168678767756,   0.07219231536073371 ],
+    [ 0.01933081871559182, 0.11919477979462598, 0.9505321522496607  ]
+
+The published matrix M1, for converting XYZ to LMS:
+
+    [  0.8189330101,  0.3618667424,  -0.1288597137 ],
+    [  0.0329845436,  0.9293118715,   0.0361456387 ],
+    [  0.0482003018,  0.2643662691,   0.6338517070 ]
+
+The result of multiplying these two:
+
+    [ 0.4121764591770371,  0.5362739742695891,  0.05144037229550143 ],
+    [ 0.21190919958804857, 0.6807178709823131,  0.10739984387775398 ],
+    [ 0.08834481407213204, 0.28185396309857735, 0.6302808688015096  ]
+
+Compared with the (updated 2021-01-25) published code:
+
+    float l = 0.4122214708f * c.r + 0.5363325363f * c.g + 0.0514459929f * c.b;
+	float m = 0.2119034982f * c.r + 0.6806995451f * c.g + 0.1073969566f * c.b;
+	float s = 0.0883024619f * c.r + 0.2817188376f * c.g + 0.6299787005f * c.b;
+
+Differences between the calculated result and the published code, highlighted
+
+    [ 0.412_1764591770371_,  0.536_2739742695891_,  0.05144_037229550143_ ],
+    [ 0.21190_919958804857_, 0.680_7178709823131_,  0.10739_984387775398_ ],
+    [ 0.0883_4481407213204_, 0.281_85396309857735_, 0.6_302808688015096_  ]
 
 ## References
 
