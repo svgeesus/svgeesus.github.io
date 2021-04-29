@@ -1,19 +1,6 @@
 const gulp = require("gulp");
 const rename = require("gulp-rename");
-const fileinclude = require("gulp-file-include");
 const postcss = require('gulp-postcss');
-
-gulp.task("html", function() {
-	return gulp.src(["**/*.tpl.html"])
-		.pipe(fileinclude({
-			basepath: "templates/"
-		}).on("error", function(error) {
-			console.error(error);
-		}))
-		.pipe(rename({ extname: "" }))
-		.pipe(rename({ extname: ".html" }))
-		.pipe(gulp.dest("."))
-});
 
 gulp.task('css', function () {
 	return gulp.src(["**/*.src.css", "!node_modules/**"])
@@ -37,7 +24,6 @@ gulp.task('css', function () {
 
 gulp.task("watch", function() {
 	gulp.watch(["**/*.src.css"], gulp.series("css"));
-	gulp.watch(["**/*.tpl.html", "./templates/*.html"], gulp.series("html"));
 });
 
-gulp.task("default", gulp.parallel("html", "css"));
+gulp.task("default", gulp.parallel("css"));

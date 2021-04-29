@@ -4,7 +4,10 @@
   "description": "Chris Lilley’s personal website",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:html": "npx @11ty/eleventy",
+    "build:css": "gulp css",
+    "build": "npm run build:html && npm run build:css"
   },
   "repository": {
     "type": "git",
@@ -17,9 +20,8 @@
   },
   "homepage": "https://github.com/svgeesus/svgeesus.github.io",
   "devDependencies": {
+    "@11ty/eleventy": "^1.0.0-canary.16",
     "autoprefixer": "^7.2.6",
-    "gulp": "^4.0.2",
-    "gulp-file-include": "^2.2.2",
     "gulp-postcss": "^7.0.1",
     "gulp-rename": "^1.4.0",
     "postcss-custom-properties": "^6.3.1",

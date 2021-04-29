@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" vocab="https://schema.org/">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ title }}{% if title %} &bull; {% endif %}Chris Lilley</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	{{ includes | safe }}
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
 <header>
 	<nav>
 		<div>
@@ -16,8 +28,20 @@
 		<img property="image" src="https://avatars2.githubusercontent.com/u/2506926?v=3&s=460" alt="">
 
 		<span property="name">
-			@@if (typeof title !== 'undefined') {@@title}
-			@@if (typeof title === 'undefined') {Chris Lilley}
+			{% if heading %}
+				{{ heading }}
+			{% elseif title %}
+				Chris Lilley’s {{ title }}
+			{% else %}
+				Chris Lilley
+			{% endif %}
 		</span>
 	</h1>
 </header>
+
+{{ content | safe }}
+
+<script src="sitewide.js"></script>
+
+</body>
+</html>
