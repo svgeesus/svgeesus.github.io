@@ -1,0 +1,31 @@
+.index article footer {
+	display: flex;
+}
+
+.tags > span {
+	padding: .2em .4em .2em 1.3em;
+	border-radius: .2em;
+	background: hsl(220 10% 50%) radial-gradient(circle, white 50%, transparent 0) .3em 50% / .4em .4em no-repeat;
+	font-size: smaller;
+	font-weight: bold;
+	color: white;
+}
+
+time {
+	margin-left: auto;
+}
+
+	time::before {
+		content: "📅";
+		margin-right: .3em;
+	}
+
+.date {
+	text-align: center;
+	font-style: italic;
+	color: hsl(220 10% 30%);
+}
+
+main {
+	text-align: left;
+}

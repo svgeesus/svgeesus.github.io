@@ -1,0 +1,36 @@
+---
+title: "Blog"
+base: ".."
+override:tags: []
+---
+
+<main class="index">
+
+{% for post in collections.blog | reverse %}
+	<article id="{{post.fileSlug}}">
+		<h2>
+			<a href="{{ post.url.slice(1) | url }}">{{ post.data.title }}</a>
+		</h2>
+		<div class="summary">
+			{% if post.data.summary %}
+				{{ post.data.summary | safe }}
+			{% else %}
+				{{ post.data.page.excerpt | safe }}
+			{% endif %}
+		</div>
+
+		<footer>
+			<div class="tags">
+				{% for tag in post.data.tags %}
+				{% if tag != "blog" %}<span>{{ tag }}</span>{% endif %}
+				{% endfor %}
+			</div>
+
+			<time datetime="{{ post.date.toISOString() }}">{{ post.date.toLocaleString("en-gb", {
+				dateStyle: "long"
+			}) }}</time>
+		</footer>
+	</article>
+{% endfor %}
+
+</main>

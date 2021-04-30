@@ -1,0 +1,15 @@
+---
+layout: "page.njk"
+---
+
+<main>
+
+<p class="date">
+	Published on
+	<time datetime="{{ page.date.toISOString() }}">{{ page.date.toLocaleString("en-gb", {
+		dateStyle: "long"
+	}) }}</time>
+</p>
+
+{{ content | safe }}
+</main>

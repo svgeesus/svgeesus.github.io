@@ -8,9 +8,17 @@ module.exports = config => {
 		config.addGlobalData(p, data[p]);
 	}
 
+	config.setDataDeepMerge(true);
+
+	config.setFrontMatterParsingOptions({
+		excerpt: true,
+		// Optional, default is "---"
+		excerpt_separator: "<!-- more -->"
+	});
+
 	return {
+		templateFormats: ["md", "njk"],
 		dir: {
-			input: "*.njk",
 			output: "."
 		}
 	};

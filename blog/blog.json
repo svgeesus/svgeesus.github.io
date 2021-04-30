@@ -1,0 +1,6 @@
+{
+	"tags": ["blog"],
+	"layout": "blog-post.njk",
+	"base": "..",
+	"includesAfterCSS": "<link href=\"css/blog.css\" rel=\"stylesheet\">"
+}

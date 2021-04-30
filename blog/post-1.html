@@ -2,13 +2,13 @@
 <html lang="en" vocab="https://schema.org/">
 <head>
 	<meta charset="UTF-8">
-	<title>{{ title }}{% if title %} &bull; {% endif %}Chris Lilley</title>
-	{% if base %}<base href="{{ base }}" />{% endif %}
+	<title>First post &bull; Chris Lilley</title>
+	<base href=".." />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	{{ includes | safe }}
+	
 	<link rel="stylesheet" href="css/style.css">
-	{{ includesAfterCSS | safe }}
+	<link href="css/blog.css" rel="stylesheet">
 </head>
 <body>
 
@@ -30,18 +30,25 @@
 		<img property="image" src="https://avatars2.githubusercontent.com/u/2506926?v=3&s=460" alt="">
 
 		<span property="name">
-			{% if heading %}
-				{{ heading }}
-			{% elseif title %}
-				Chris Lilley’s {{ title }}
-			{% else %}
-				Chris Lilley
-			{% endif %}
+			
+				Chris Lilley’s First post
+			
 		</span>
 	</h1>
 </header>
 
-{{ content | safe }}
+
+<main>
+
+<p class="date">
+	Published on
+	<time datetime="2021-04-16T00:00:00.000Z">16 April 2021</time>
+</p>
+
+<p>Hello world, this is my first blog post.</p>
+
+</main>
+
 
 <script src="sitewide.js"></script>
 
