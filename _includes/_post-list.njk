@@ -1,7 +1,7 @@
 {% if not post.data.draft %}
 <article id="{{post.fileSlug}}">
 	<h2>
-		<a href="{{ post.url.slice(1) | url }}">{{ post.data.title }}</a>
+		<a href="{{ post.url | url }}">{{ post.data.title }}</a>
 	</h2>
 	<div class="summary">
 		{% if post.data.summary %}
