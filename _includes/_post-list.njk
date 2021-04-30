@@ -1,3 +1,4 @@
+{% if not post.data.draft %}
 <article id="{{post.fileSlug}}">
 	<h2>
 		<a href="{{ post.url.slice(1) | url }}">{{ post.data.title }}</a>
@@ -14,3 +15,4 @@
 		{% include "_post-meta.njk" %}
 	</footer>
 </article>
+{% endif %}

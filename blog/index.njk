@@ -1,6 +1,5 @@
 ---
 title: "Blog"
-base: ".."
 override:tags: []
 layout: "page.njk"
 ---
@@ -8,9 +7,7 @@ layout: "page.njk"
 <main class="index">
 
 {% for post in collections.blog | reverse %}
-{% if not post.data.draft %}
 	{% include "_post-list.njk" %}
-{% endif %}
 {% endfor %}
 
 </main>
