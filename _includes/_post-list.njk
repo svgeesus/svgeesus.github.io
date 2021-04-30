@@ -1,0 +1,16 @@
+<article id="{{post.fileSlug}}">
+	<h2>
+		<a href="{{ post.url.slice(1) | url }}">{{ post.data.title }}</a>
+	</h2>
+	<div class="summary">
+		{% if post.data.summary %}
+			{{ post.data.summary | safe }}
+		{% else %}
+			{{ post.data.page.excerpt | safe }}
+		{% endif %}
+	</div>
+
+	<footer class="post-meta">
+		{% include "_post-meta.njk" %}
+	</footer>
+</article>

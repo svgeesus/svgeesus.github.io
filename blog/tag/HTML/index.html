@@ -2,12 +2,12 @@
 <html lang="en" vocab="https://schema.org/">
 <head>
 	<meta charset="UTF-8">
-	<title>{{ title }}{% if title %} &bull; {% endif %}Chris Lilley</title>
+	<title>Search by tag &bull; Chris Lilley</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	{{ includes | safe }}
+	
 	<link rel="stylesheet" href="/css/style.css">
-	{{ includesEnd | safe }}
+	<link href="/css/blog.css" rel="stylesheet">
 </head>
 <body>
 
@@ -29,18 +29,51 @@
 		<img property="image" src="https://avatars2.githubusercontent.com/u/2506926?v=3&s=460" alt="">
 
 		<span property="name">
-			{% if heading %}
-				{{ heading }}
-			{% elseif title %}
-				Chris Lilley’s {{ title }}
-			{% else %}
-				Chris Lilley
-			{% endif %}
+			
+				 
+			
 		</span>
 	</h1>
 </header>
 
-{{ content | safe }}
+
+<main>
+<h1>Posts Tagged “HTML”</h1>
+
+
+
+
+	<article id="second-post">
+	<h2>
+		<a href="blog/second-post.html">Second post</a>
+	</h2>
+	<div class="summary">
+		
+			
+Hello world, this is my <em>second</em> blog post. Eleventy is kinda cool!
+
+
+		
+	</div>
+
+	<footer class="post-meta">
+		<div class="tags">
+	
+	
+	<a href="/blog/tag/HTML">HTML</a>
+	<a href="/blog/tag/History">History</a></div>
+
+<p class="date">
+	Published on
+	<time datetime="2021-04-30T13:46:05.556Z">30 April 2021</time>
+</p>
+
+	</footer>
+</article>
+
+
+</main>
+
 
 <script src="sitewide.js"></script>
 

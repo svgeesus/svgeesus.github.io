@@ -1,6 +1,5 @@
 {
 	"tags": ["blog"],
 	"layout": "blog-post.njk",
-	"base": "..",
-	"includesEnd": "<link href=\"css/blog.css\" rel=\"stylesheet\">"
+	"includesEnd": "<link href=\"/css/blog.css\" rel=\"stylesheet\">"
 }

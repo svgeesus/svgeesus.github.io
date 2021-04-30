@@ -1,16 +1,23 @@
-.index article footer,
 .post-meta {
 	display: flex;
 }
 
-.tags > span {
+.tags > a {
 	padding: .2em .4em .2em 1.3em;
 	border-radius: .2em;
-	background: hsl(220 10% 50%) radial-gradient(circle, white 50%, transparent 0) .3em 50% / .4em .4em no-repeat;
+	--background-lightness: 60%;
+	background: hsl(220 10% var(--background-lightness)) radial-gradient(circle, white 50%, transparent 0) .4em 50% / .4em .4em no-repeat;
+	--cutout-x: .4em;
+	--cutout-y: .7em;
+	clip-path: polygon(0 var(--cutout-y), var(--cutout-x) 0, 100% 0, 100% 100%, var(--cutout-x) 100%, 0 calc(100% - var(--cutout-y)));
 	font-size: smaller;
 	font-weight: bold;
 	color: white;
 }
+
+	.tags > a:hover {
+		--background-lightness: 40%;
+	}
 
 time {
 	margin-left: auto;

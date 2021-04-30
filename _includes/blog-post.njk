@@ -5,18 +5,7 @@ layout: "page.njk"
 <main>
 
 <header class="post-meta">
-	<div class="tags">
-		{% for tag in tags %}
-		{% if tag != "blog" %}<span>{{ tag }}</span>{% endif %}
-		{% endfor %}
-	</div>
-	<p class="date">
-
-		Published on
-		<time datetime="{{ page.date.toISOString() }}">{{ page.date.toLocaleString("en-gb", {
-			dateStyle: "long"
-		}) }}</time>
-	</p>
+	{% include "_post-meta.njk" %}
 </header>
 
 
