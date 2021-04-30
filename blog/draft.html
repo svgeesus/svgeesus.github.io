@@ -2,13 +2,13 @@
 <html lang="en" vocab="https://schema.org/">
 <head>
 	<meta charset="UTF-8">
-	<title>{{ title }}{% if title %} &bull; {% endif %}Chris Lilley</title>
-	{% if base %}<base href="{{ base }}" />{% endif %}
+	<title>Draft post &bull; Chris Lilley</title>
+	<base href=".." />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	{{ includes | safe }}
+	
 	<link rel="stylesheet" href="css/style.css">
-	{{ includesEnd | safe }}
+	<link href="css/blog.css" rel="stylesheet">
 </head>
 <body>
 
@@ -30,18 +30,34 @@
 		<img property="image" src="https://avatars2.githubusercontent.com/u/2506926?v=3&s=460" alt="">
 
 		<span property="name">
-			{% if heading %}
-				{{ heading }}
-			{% elseif title %}
-				Chris Lilley’s {{ title }}
-			{% else %}
-				Chris Lilley
-			{% endif %}
+			
+				Chris Lilley’s Draft post
+			
 		</span>
 	</h1>
 </header>
 
-{{ content | safe }}
+
+<main>
+
+<header class="post-meta">
+	<div class="tags">
+		
+		
+		
+	</div>
+	<p class="date">
+
+		Published on
+		<time datetime="2021-04-30T12:49:38.135Z">30 April 2021</time>
+	</p>
+</header>
+
+
+<p>This should not be displayed, as it is a draft.</p>
+
+</main>
+
 
 <script src="sitewide.js"></script>
 

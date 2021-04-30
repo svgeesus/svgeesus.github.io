@@ -1,4 +1,5 @@
-.index article footer {
+.index article footer,
+.post-meta {
 	display: flex;
 }
 
@@ -21,6 +22,8 @@ time {
 	}
 
 .date {
+	margin: 0;
+	margin-left: auto;
 	text-align: center;
 	font-style: italic;
 	color: hsl(220 10% 30%);
