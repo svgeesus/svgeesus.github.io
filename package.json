@@ -29,6 +29,7 @@
     "postcss-selector-matches": "^3.0.1"
   },
   "dependencies": {
-    "eslint": "^4.16.0"
+    "eslint": "^4.16.0",
+    "gulp": "^4.0.2"
   }
 }
