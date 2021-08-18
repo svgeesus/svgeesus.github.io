@@ -22,6 +22,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^1.0.0-canary.16",
     "autoprefixer": "^7.2.6",
+    "gulp": "^4.0.2",
     "gulp-postcss": "^7.0.1",
     "gulp-rename": "^1.4.0",
     "postcss-custom-properties": "^6.3.1",
@@ -29,7 +30,6 @@
     "postcss-selector-matches": "^3.0.1"
   },
   "dependencies": {
-    "eslint": "^4.16.0",
-    "gulp": "^4.0.2"
+    "eslint": "^4.16.0"
   }
 }

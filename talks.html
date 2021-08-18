@@ -48,16 +48,7 @@
 		<h1 mv-multiple property="talk">
 			<div class="mv-item-bar mv-ui"></div>
 			<span property="title" mv-default>TBD</span>
-			<span property class="type">
-				<select>
-					<option selected>Talk</option>
-					<option>Keynote</option>
-					<option>Workshop</option>
-					<option>Panel</option>
-					<option>Round Table</option>
-					<option>Paper</option>
-					<option>Tutorial</option>
-				</select></span>
+			<span property class="type" mv-editor="#talk-type"></span>
 			<a property class="video" target="_blank">Video</a>
 			<a property class="audio" target="_blank">Audio</a>
 			<a property class="paper" target="_blank">Paper</a>
@@ -71,7 +62,7 @@
 		<p class="date"><time property="date"></time></p>
 		<address class="flag-[country]">
 			<span property="city"></span>,
-			<span property="country" mv-edit="#countries"></span>
+			<span property="country" mv-editor="#countries"></span>
 		</address>
 		<p class="comment" property></p>
 		<p class="comment" style="display: [iff(feedback, block, none)]">
@@ -85,6 +76,16 @@
 <div hidden  mv-app="countries" mv-source="https://github.com/svgeesus/svgeesus.github.io/countries.json" class="mavo mv-keep-unhandled">
 	<select id="countries">
 		<option value="[code]" property="country" mv-multiple typeof>[name]</option>
+	</select>
+
+	<select id="talk-type">
+		<option selected>Talk</option>
+		<option>Keynote</option>
+		<option>Workshop</option>
+		<option>Panel</option>
+		<option>Round Table</option>
+		<option>Paper</option>
+		<option>Tutorial</option>
 	</select>
 </div>
 
