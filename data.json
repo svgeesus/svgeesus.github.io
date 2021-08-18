@@ -9,13 +9,13 @@
 					"type": "Talk",
 					"video": "https://www.youtube.com/watch?v=32LGlKwACfI",
 					"slides": "https://svgees.us/DevCon2020/index.html#hi",
-					"@context": "http://schema.org"
+					"@context": "https://schema.org/"
 				}
 			],
 			"url": "http://www.color.org/DevCon/devcon2020/index.xalter",
 			"name": "ICC DevCon 2020",
 			"date": "2020-11-30",
-			"@context": "http://schema.org"
+			"@context": "https://schema.org/"
 		},
 		{
 			"talk": [
@@ -28,7 +28,8 @@
 			"name": "KharkivCSS",
 			"date": "2019-04-20",
 			"city": "Kharkiv",
-			"@context": "http://schema.org"
+			"@context": "http://schema.org",
+			"country": "ua"
 		},
 		{
 			"talk": [
@@ -1198,5 +1199,5 @@
 	"description": "\tChris Lilley is a Technical Director at the World Wide Web Consortium (W3C).\tConsidered “the father of SVG”, he also co-authored PNG, was co-editor of CSS2, chaired the group that developed @font-face, and co-developed WOFF. Ex Technical Architecture Group.\tChris is still trying to get Color Management on the Web, sigh.\tCurrently working on CSS levels 3/4/5 (no, really), Web Audio, and WOFF2.",
 	"twitter": "http://twitter.com/svgeesus",
 	"github": "http://github.com/svgeesus",
-	"@context": "http://schema.org"
+	"@context": "https://schema.org/"
 }
