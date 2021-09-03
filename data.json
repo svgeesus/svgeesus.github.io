@@ -5,6 +5,30 @@
 		{
 			"talk": [
 				{
+					"title": "Better than Lab? Gamut reduction CIE Lab & OKLab",
+					"type": "Talk"
+				}
+			],
+			"url": "https://www.w3.org/Graphics/Color/Workshop/talks.html#color4",
+			"name": "W3C Workshop on WCG & HDR",
+			"date": "2021-09-14"
+		},
+		{
+			"talk": [
+				{
+					"title": "There and back again, a Web Tale",
+					"type": "Talk"
+				}
+			],
+			"url": "https://www.devbreak.io/#Speakers",
+			"name": "DevBreak",
+			"date": "2021-09-09",
+			"city": "Château de Farcheville",
+			"country": "fr"
+		},
+		{
+			"talk": [
+				{
 					"title": "Colour on the web and broadcast",
 					"type": "Talk",
 					"video": "https://www.youtube.com/watch?v=32LGlKwACfI",
