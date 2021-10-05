@@ -6,18 +6,23 @@
 			"talk": [
 				{
 					"title": "Better than Lab? Gamut reduction CIE Lab & OKLab",
-					"type": "Workshop"
+					"type": "Workshop",
+					"video": "https://www.w3.org/Graphics/Color/Workshop/slides/talk/lilley",
+					"slides": "https://www.w3.org/Graphics/Color/Workshop/slides/lilley/lilley.html#cover",
+					"@context": "https://schema.org/"
 				}
 			],
 			"url": "https://www.w3.org/Graphics/Color/Workshop/talks.html#color4",
 			"name": "W3C Workshop on WCG & HDR",
-			"date": "2021-09-14"
+			"date": "2021-09-14",
+			"@context": "https://schema.org/"
 		},
 		{
 			"talk": [
 				{
 					"title": "There and back again, a Web Tale",
-					"type": "Keynote"
+					"type": "Keynote",
+					"slides": "https://svgees.us/Talks/there-back/#intro"
 				}
 			],
 			"url": "https://www.devbreak.io/#Speakers",
