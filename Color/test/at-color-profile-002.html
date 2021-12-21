@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>CSS Color 5:  Specifying a color profile: the @color-profile at-rule</title>
+<link rel="author" title="Chris Lilley" href="mailto:chris@w3.org">
+<link rel="help" href="https://drafts.csswg.org/css-color-5/#at-profile">
+<link rel="help" href="https://drafts.csswg.org/css-color-5/#cmyk-to-lab">
+<link rel="help" href="https://drafts.csswg.org/css-color-4/#oklab-lab-to-predefined">
+<link rel="match" href="at-color-profile-002-ref.html">
+<meta name="assert" content="custom colorspace, cmyk ICC profile">
+<style>
+    /* tiny ICC v2.3 perceptual reference medium CMYK profile */
+    @color-profile --foo {
+        src: url(tinyPRMG.icc);
+    }
+    div {width: 12em; height: 4em; margin-top: 0; margin-bottom: 0; }
+    .test, .labref { background-color: red; }
+    .ref { background-color: rgb(29.5% 51.7% 25.3%);  }
+    .labref {background-color: lab(50% -30 30);}
+
+    /*
+    to calculate, use ArgylCMS
+    xicclu -f b tinyPRMG.icc
+    then type L a b values (one per line, no percent, no commas)
+    */
+    .test { background-color: color(--foo 0.505590 0.002922 0.770288 0.4028
+30); }
+</style>
+<body>
+    <p>Test passes if you see a green square, and no red.</p>
+    <div class="ref"></div>
+    <div class="test"></div>
+    <div class="labref"></div>
+</body>
