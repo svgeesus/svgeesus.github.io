@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>CSS Color 5:  Specifying a color profile: the @color-profile at-rule</title>
+<link rel="author" title="Chris Lilley" href="mailto:chris@w3.org">
+<link rel="help" href="https://drafts.csswg.org/css-color-5/#device-cmyk">
+<!-- <link rel="match" href="at-color-profile-002-ref.html"> -->
+<meta name="assert" content="device-cmyk with no ICC profile">
+
+<style>
+    div {width: 12em; height: 4em; margin-top: 0; margin-bottom: 0; }
+    .test, .labref { background-color: red; }
+    .ref { background-color: rgb(25.3% 55.5% 36.5%);  }
+    .labref {background-color: lab(53.0120%  -33.6120   18.3197);}
+
+    /*
+    converted using iccApplyNamedCmm with a FOGRA39 color profile
+    input was cmky 0.7 0.0 0.7 0.3
+    result is lab(53.0120% -33.6120 18.3197) = rgb(25.3% 55.5% 36.5%)
+
+    command line was
+    iccApplyNamedCmm cmykFloat.txt 0 1 ICC_Profile_Registry_01_11_2013/Coated_Fogra39L_VIGC_300.icc  1
+
+    https://github.com/InternationalColorConsortium/DemoIccMAX
+    */
+    @supports (color: device-cmyk(0 0 0 0)) {
+        .test { background-color: device-cmyk(0.7 0.0 0.7 0.3); }
+    }
+</style>
+<body>
+    <p>Test passes if the central third of the square is green (any shade of green will do), and no red.</p>
+    <div class="ref"></div>
+    <div class="test"></div>
+    <div class="labref"></div>
+</body>
