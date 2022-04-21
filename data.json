@@ -5,6 +5,19 @@
 		{
 			"talk": [
 				{
+					"title": "Escaping the sRGB Prison",
+					"type": "Talk"
+				}
+			],
+			"url": "https://cssday.nl/2022/speakers",
+			"name": "CSS Day",
+			"date": "2022-06-09",
+			"city": "Amsterdam",
+			"country": "nl"
+		},
+		{
+			"talk": [
+				{
 					"title": "Better than Lab? Gamut reduction CIE Lab & OKLab",
 					"type": "Workshop",
 					"video": "https://www.w3.org/Graphics/Color/Workshop/slides/talk/lilley",
