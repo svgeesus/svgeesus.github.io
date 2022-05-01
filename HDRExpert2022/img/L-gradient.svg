@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-2 -2 104 34">
+<!--
+xyY at increments of Y, from Lab 50 0 0
+
+0		0
+.05		
+.1		89
+.2		124
+.3		149
+.4		170
+.5		188
+.6		
+.7		218
+.8		
+.9		243
+.95		
+1		255
+-->
+	<linearGradient id="L" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="0">
+		<stop offset="0%" stop-color="black"/>
+		<stop offset="5%" stop-color="rgb(17,17,17)"/>
+		<stop offset="10%" stop-color="rgb(27,27,27)"/>
+		<stop offset="20%" stop-color="rgb(48,48,48)"/>
+		<stop offset="30%" stop-color="rgb(71,71,71)"/>
+		<stop offset="40%" stop-color="rgb(94,94,94)"/>
+		<stop offset="50%" stop-color="rgb(119,119,119)"/>
+		<stop offset="60%" stop-color="rgb(145,145,145)"/>
+		<stop offset="70%" stop-color="rgb(171,171,171)"/>
+		<stop offset="80%" stop-color="rgb(198,198,198)"/>
+		<stop offset="90%" stop-color="rgb(226,226,226)"/>
+		<stop offset="95%" stop-color="rgb(241,241,241)"/>
+		<stop offset="100%" stop-color="white"/>
+	</linearGradient>
+	<rect x="0" y="0" width="100" height="30" fill="url(#L)" stroke="black" stroke-width="4"/>
+	<rect x="48.5" y="-1" width="3" height="32" fill="none" stroke="#E79D5E" stroke-width="0.5"/>
+</svg>

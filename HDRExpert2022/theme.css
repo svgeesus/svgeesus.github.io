@@ -1,0 +1,369 @@
+@font-face {
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Arvo'), url(fonts/Arvo.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Arvo-Bold'), url(fonts/Arvo-Bold.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Free Sans';
+    src: url(fonts/FreeSans.woff);
+}
+
+@font-face {
+    font-family: 'Free Sans';
+    src: url(fonts/FreeSansBold.woff);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'amp';
+    src: url(fonts/Rochester-Regular.otf);
+    unicode-range: U+26;
+    /* aargh the Firefox unicode-range bug strikes again ffs */
+}
+
+:root {
+    /* Colors */
+    --dark-green: hsl(160, 9%, 34%);
+    --mid-green: hsl(160, 18%, 45%);
+    --pale-green: hsl(58, 13%, 56%);
+    --buff: #F3D69B;
+    --tan: #E79D5E;
+    --orange: hsl(15, 65%, 53%);
+    --red: #d00;
+    /* use only with a multiply blend mode! */
+    --darkgrey: #2D2C2C;
+    --midgrey: #474748;
+    /* Fonts */
+    --heading-font: Calibri, serif;
+    --body-font: Calibri, 'Helvetica Neue', 'Free Sans', serif, sans-serif;
+    --handwriting-font: 'Reenie Beanie', cursive;
+    --ampersand-font: amp, Arvo, serif;
+}
+
+body {
+    font: 140%/1.5 var(--body-font);
+    background: linear-gradient(45deg, silver 25%, transparent 25%, transparent 75%, silver 75%), linear-gradient(45deg, silver 25%, transparent 25%, transparent 75%, silver 75%) 20px 20px;
+    background-color: #eee;
+    background-size: 40px 40px;
+}
+
+h1 {
+    font-weight: bold;
+    line-height: 1.2;
+    font-family: var(--heading-font);
+}
+
+a {
+    color: inherit;
+}
+
+strong,
+b {
+    font-weight: bold;
+    /* FF is weird */
+}
+
+code,
+textarea,
+pre {
+    margin: 0;
+    font: 100%/1.4 Consolas, Monaco, 'Andale Mono', monospace;
+    tab-size: 4;
+}
+
+pre + pre {
+    margin-top: 1.5em;
+}
+
+input {
+    font: inherit;
+    color: inherit;
+    border: 0;
+    background: transparent;
+    outline: none;
+}
+
+input[type="range"][orient="vertical"] {
+    x-webkit-appearance: slider-vertical;
+    writing-mode: bt-lr;
+}
+
+textarea,
+pre.styled {
+    border: 0;
+    outline: none;
+    padding: .6em 1em;
+    box-sizing: border-box;
+    background: var(--darkgrey) linear-gradient(rgba(0, 0, 0, .1) 50%, transparent 0);
+    background-origin: content-box;
+    background-size: auto 3em;
+    background-attachment: local;
+    color: white;
+    line-height: 1.5;
+}
+
+textarea:not(.bottom) {
+    padding-left: calc(1em + 8rem);
+    padding-right: 0;
+    box-shadow: .1em 0 .2em rgba(0, 0, 0, .3) inset;
+    font-size: 90%;
+}
+
+@media (max-width: 1024px) {
+    textarea:not(.bottom) {
+        width: 77%;
+        padding-left: calc(1em + 6.5rem);
+        font-size: 24px;
+        tab-size: 3;
+        overflow: auto;
+    }
+}
+
+.slide {
+    padding: 2.5rem;
+    background-color: #9E9D81;
+    color: var(--darkgrey);
+    display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.slide > * {
+    flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+    .slide {
+        padding: 3vmin;
+    }
+}
+
+.slide[data-source]::after {
+    color: black;
+    text-shadow: none;
+}
+
+.dark.slide,
+header.slide {
+    background: var(--darkgrey);
+    color: var(--buff);
+}
+
+.black.slide {
+    background: #000;
+    color: var(--buff);
+}
+
+.white.slide {
+    background: white;
+    color: var(--darkgrey);
+}
+
+.slide > h1 {
+    text-align: center;
+    margin: 0 0 .6em;
+    font-size: 140%;
+}
+
+.slide h2 {
+    color: #E79D5E;
+    font-size: 120%;
+}
+
+.image.slide > h1:only-child,
+.image.slide > .caption,
+.iframe.slide > h1 {
+    /*bottom: .5em;
+	margin: 0;*/
+    background: rgba(0, 0, 0, .6);
+    text-shadow: none;
+    font-family: var(--heading-font);
+    font-weight: bold;
+}
+
+.delayed.displayed,
+.delayed-children > .displayed {
+    opacity: 1;
+}
+
+section > header.slide {
+    align-items: center;
+    justify-content: center;
+    background: url(img/piettern.png);
+}
+
+section > header.slide:target {
+    display: flex;
+}
+
+section > header.slide > h1 {
+    margin: auto;
+    padding: .5em .7em;
+    background: black;
+    text-align: center;
+    line-height: 1.2;
+    font-weight: 100;
+}
+
+#indicator {
+    background: transparent;
+    text-shadow: none;
+    font-weight: 100;
+    color: var(--pale-green);
+}
+
+::selection {
+    background: #D66039;
+    color: #9E9D81;
+}
+
+footer.ref a {
+    position: absolute;
+    bottom: 5vmin;
+    text-decoration: none;
+    font-size: 75%;
+}
+
+
+/* Syntax highlighting */
+
+code.de-emphasize {
+    opacity: .4;
+}
+
+.hint {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    font-size: .8rem;
+    line-height: 1;
+    color: #ccc;
+}
+
+.note {
+    font-family: var(--handwriting-font);
+    color: var(--red);
+    mix-blend-mode: multiply;
+}
+
+
+/*
+ * Prism
+ */
+
+code[class*="language-"],
+pre {
+    color: white;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    tab-size: 4;
+    hyphens: none;
+}
+
+.slide:not(.dark) pre {
+    background-color: var(--darkgrey);
+    box-shadow: 2em 0 0 1em var(--darkgrey), -2em 0 0 1em var(--darkgrey);
+}
+
+
+/* Code blocks */
+
+pre {
+    overflow: auto;
+}
+
+
+/* Inline code */
+
+:not(pre) > code[class*="language-"] {
+    padding: .15em .1em .05em;
+    white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: var(--pale-green);
+}
+
+.comment {
+    font-family: var(--handwriting-font);
+    font-size: 110%;
+}
+
+.token.punctuation {
+    opacity: .7;
+}
+
+.namespace {
+    opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol {
+    color: var(--orange);
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+    color: var(--buff);
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+    color: var(--tan);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+    color: hsl(350, 40%, 70%);
+}
+
+.token.regex,
+.token.important {
+    color: #e90;
+}
+
+.token.important,
+.token.bold {
+    font-weight: bold;
+}
+
+.token.italic {
+    font-style: italic;
+}
+
+.token.entity {
+    cursor: help;
+}
+
+.token.deleted {
+    color: red;
+}

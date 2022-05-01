@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -55 100 80">
+	<title>CIE Lab a values</title>
+	<style>
+		text {
+			font-family: Helvetica Neue;
+			font-size: 5px;
+			text-anchor: middle; 
+			fill: #F3D69B;
+		}
+		.oog {
+			fill: black;
+			fill-opacity: 0.5;
+			stroke-color: #999;
+			stroke-width: 0.5px;
+		}
+	</style>
+	<rect x="-0.5" y="-50" width="1" height="50" fill="#F3D69B"/>
+	<g>
+	<!-- L axis scaled by -50% -->
+		<circle r="3" fill="rgb(59, 59, 59)" cx="0" cy="-12.5"/>
+		<circle r="3" fill="rgb(119, 119, 119)" cx="0" cy="-25"/>
+		<circle r="3" fill="rgb(185, 185, 185)" cx="0" cy="-37.5"/>
+		<circle r="3" fill="white" cx="0" cy="-50"/>
+	</g>
+	<g transform="rotate(30)">
+	<rect x="-45" y="-0.4" width="90" height="1" fill="#F3D69B"/>
+	<g stroke-color="black" stroke-width="0.1">
+		<circle class="oog" r="3" fill="white" cx="-40"/>
+		<circle r="3" fill="rgb(45, 133, 118)" cx="-30"/>
+		<circle r="3" fill="rgb(77, 129, 118)" cx="-20"/>
+		<circle r="3" fill="rgb(100, 124, 119)" cx="-10"/>
+		<circle r="3" fill="rgb(136, 113, 119)" cx="10"/>
+		<circle r="3" fill="rgb(151, 106, 120)" cx="20"/>
+		<circle r="3" fill="rgb(166, 98, 120)" cx="30"/>
+		<circle r="3" fill="rgb(179, 89, 121)" cx="40"/>
+	</g>
+	</g>
+	<g transform="rotate(-30)">
+	<rect x="-45" y="-0.4" width="90" height="1" fill="#F3D69B"/>
+	<g stroke-color="black" stroke-width="0.1">
+		<circle r="3" fill="rgb(77, 121, 187)" cx="-40"/>
+		<circle r="3" fill="rgb(93, 120, 170)" cx="-30"/>
+		<circle r="3" fill="rgb(104, 120, 153)" cx="-20"/>
+		<circle r="3" fill="rgb(112, 119, 136)" cx="-10"/>
+		<circle r="3" fill="rgb(124, 119, 102)" cx="10"/>
+		<circle r="3" fill="rgb(128, 118, 85)" cx="20"/>
+		<circle r="3" fill="rgb(131, 118, 67)" cx="30"/>
+		<circle r="3" fill="rgb(134, 118, 47)" cx="40"/>
+	</g>
+	</g>
+	<!-- this one is at L=0 though, placed here to cover up the axes -->
+		<circle r="3" fill="black" cx="0"/>
+	<g class="labels">
+		<text x="7" y="-50" text-anchor="left">L</text>
+		<text x="45" y="20" text-anchor="left">+a</text>
+		<text x="-45" y="20" text-anchor="right">-b</text>
+		<text x="45" y="-20" text-anchor="left">+b</text>
+		<text x="-45" y="-20" text-anchor="right">-a</text>
+	</g>
+	<!-->
+	<rect x="-50" y="-55" width="100" height="80" fill="none" stroke="red"/>
+	-->
+</svg>

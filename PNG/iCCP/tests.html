@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<style>
+    body {
+        margin: 3em;
+        font-family: sans-serif;
+        }
+</style>
+<h1>PNG `iCCP` tests</h1>
+
+<p>These tests check that
+PNG files containing an ICC profile
+in the `iCCP` chunk
+are displayed by applying the ICC profile to the image RGB data
+(as <a href="https://drafts.csswg.org/css-color-4/#tagged-images">required by the CSS Color 4 specification</a>)
+and not by just throwing the image data at the screen.</p>
+
+<p>Images are in the support directory, as required by WPT.</p>
+
+<h2>Initial, sanity-check tests</h2>
+
+<p>Ensure that <a href="https://drafts.csswg.org/css-color-4/#tagged-images">untagged images (assumed sRGB)</a>
+are displayed the same as
+<a href="https://drafts.csswg.org/css-color-4/#tagged-images">tagged images with an sRGB ICC profile</a>
+or, equivalently,
+as images with an <a href="https://w3c.github.io/PNG-spec/#11sRGB">sRGB chunk</a>.
+
+<p>If either test fails, don't bother with the remaining tests.</p>
+
+<ul>
+    <li><a href="./tests/sRGB-relcolor.html">`sRGB` chunk, relative colorimetric intent</a></li>
+    <li><a href="./tests/sRGB-untagged.html">untagged image, must be treated as sRGB</a></li>
+</ul>
+
+<h2>Embedded ICC v2 profiles</h2>
+
+<ul>
+    <li><a href="./tests/iCCP-v2-rgswap.html">sRGB with red and green colorants swapped</a></li>
+    <li><a href="./tests/iCCP-v2-CIE-Lstar.html">CIE RGB, L* TRC</a></li>
+    <li><a href="./tests/iCCP-v2-ProPhoto.html">ProPhoto RGB, gamma 1.8</a></li>
+</ul>
+
+
+<h2>Embedded ICC v4 profiles</h2>
+
+<ul>
+    <li><a href="./tests/iCCP-v4-CIE-Lstar.html">CIE RGB, L* TRC</a></li>
+    <li><a href="./tests/iCCP-v4-ProPhoto.html">ProPhoto RGB, gamma 1.8</a></li>
+    <li><a href="./tests/iCCP-v4-DisplayP3.html">Display P3</a></li>
+</ul>
+
+
+<h2>Embedded iccMAX profiles</h2>
+
+<p><em>none yet</em></p>

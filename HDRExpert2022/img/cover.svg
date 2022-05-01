@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080" overflow="hidden">
+<desc>DevCon 2020 title slide
+Compatible with powerpoint template.
+</desc>
+<style>
+.tagline {
+    text-spacing: 1em;
+    font-weight: 800;
+    font-stretch: semi-expanded;
+}
+</style>
+<image xlink:href="devcon.png" x="20" y="60" width="1920" />
+<image xlink:href="devcon.png" y="-130" width="1920"/>
+<!-- 2174 x 949 -->
+<rect x="0" y="660" width="1920" height="60" fill="#23AF76"/>
+<image xlink:href="iccMAX.png" x="1500" y="760" width="120"/>
+<text x="990" y="400" font-family="Impact" font-size="100">Color<tspan x="990" dy="110">on the Web<tspan x="990" dy="110">and Broadcast</tspan></tspan></text>
+<text class="tagline" x="990" y="815" font-family="Myriad Pro" font-weight="800" font-size="54">T H E   F U T U R E<tspan x="990" dy="70">O F   C O L O R<tspan x="990" dy="70">M A N A G E M E N T</tspan></tspan></text>
+</svg>

@@ -1,0 +1,65 @@
+sRGB
+Cinema, entertainment (camera)
+    wcg
+    hdr
+    framerate
+    audio
+DCI P3, REC2020
+(WCG comes to Web -  images, css, canvas)
+    display-p3
+
+HDR concepts
+
+Viewing environment, cinema/tv vs Web (pictures)
+    rec2100
+    PQ standard viewing environment
+    OOTF (luminance-only overall system gamma)
+    BT23.90 "There is also an improvement in the ability to show details in dark areas; this feature is dependent on the black level of the display and the viewing environment."
+    BT.2390 9.4 The typical home viewing environment
+        200 lux incident light, 2% screen reflectance, so 4 cd/m2 black level
+        dim, not dark
+    HD mastering vs. cinema or home (TV) viewing vs. Web usage environments (images)
+HDR vs WCG requirements
+    mainly video, images, some graphics
+    little need for DR in UI, general text content,
+Relative vs absolute HDR
+    HLG vs PQ
+    Adjustment for viewing conditions
+    where adjustment happens
+    figures from https://colab.research.google.com/drive/1UJvajR9mh7u5lWWzHMIyncQFsiIZykRm?usp=sharing#scrollTo=m_xKnkDH8G_j
+
+HDR on the Web
+
+Colorspace and transfer function signalling (CICP, H.273)
+HDR video & images
+    HTML picture and source elements to serve different image formats
+    AVIF and HDR (CICP not ICCC)
+        (AVIF spec) https://aomediacodec.github.io/av1-avif/
+        H.273
+        use by Netfix
+            https://netflixtechblog.com/avif-for-next-generation-image-coding-b1d75675fe4
+        https://www.freecodecamp.org/news/how-to-use-avif-images-on-your-website/
+        https://docs.krita.org/en/general_concepts/file_formats/file_heif.html
+        https://avif.io/blog/faq/avif-hdr/
+        https://caniuse.com/avif
+        "supported" does not mean "renders well"
+        samples https://github.com/AOMediaCodec/av1-avif/tree/master/testFiles/Netflix/avif
+    HDR in PNG
+        (PNG spec)
+        rechartered
+        APNG, cICP, newICCP
+        https://docs.krita.org/en/general_concepts/file_formats/file_png.html
+        early spec work, no sample images or testable code yet
+Canvas HDR proposal
+    https://chromestatus.com/feature/5703719636172800#details
+    https://groups.google.com/a/chromium.org/g/blink-dev/c/S609KGTkSSk/m/1EW4CWn3BgAJ
+WebCodecs and HDR (WPT for HDR images)
+    depends on Canvas HDR
+    https://github.com/w3c/webcodecs/issues/384
+    https://wpt.fyi/results/html/canvas/element/wide-gamut-canvas?label=experimental&label=master&aligned
+
+
+Future
+
+Tone mapping underspecified, application dependent
+CSS Color HDR

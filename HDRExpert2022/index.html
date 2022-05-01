@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 16px">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>HDR implementation on the web</title>
+    <!-- <link href="https://inspirejs.org/inspire.css" rel="stylesheet" data-noprefix /> -->
+    <link rel="stylesheet" href="../inspire.js/extras.css">
+    <link rel="stylesheet" href="../inspire.js/inspire.css">
+    <link href="theme.css" rel="stylesheet" />
+    <link href="talk.css" rel="stylesheet" />
+
+
+</head>
+
+<body class="language-css">
+
+    <header id="hdrexperts" class="image slide" style="margin:0; background-image: url(img/colour-1885352_1920.jpg);">
+        <!-- <object style="margin:0" type="image/svg+xml" data="img/cover.svg" width="1920px" height="1080px" alt="Color on the Web and Broadcast : The Future of Color Management"></object> -->
+        <!-- <img src="img/colour-1885352_1920.jpg" alt="" id="banner">
+        <div id="separator"></div> -->
+        <h1 id="event">ICC HDR Experts' Day<br>2022</h1>
+        <h2 id="title">HDR implementation on the web</h2>
+        <h2 id="author"><a href="http://svgees.us">Chris Lilley</a> <a href="http://twitter.com/svgeesus"
+	class="twitter">@svgeesus</a></h2>
+    </header>
+
+    <section id="me">
+        <section class="slide activity dark" id="hi">
+            <img id="mypic" src="img/chris-av.jpg" alt="me">
+            <p>Hello! <br /><span class="de-emphasize">I’m Chris or @svgeesus</span></p>
+        </section>
+
+        <section class="slide activity dark" id="w3c">
+            <img src="img/w3c-logo.svg" />
+            <p><a href="http://www.w3.org/People/#clilley">Technical Director at W3C <br /><span class="de-emphasize">Strategy lead, Core Web Technologies</span></a></p>
+        </section>
+<!--
+        <section class="slide activity" id="svg">
+            <img src="img/svg-logo.svg" />
+            <p><a href="http://www.w3.org/Graphics/SVG/WG/wiki/Secret_Origin_of_SVG#Drivers_and_Deployment">Started SVG <span class="de-emphasize">(1996)</span></a></p>
+            <p><a href="http://www.w3.org/2001/12/tag-pressrelease.html.en">SVG WG Chair <span class="de-emphasize">(1998-2006)</span></a></p>
+        </section>
+
+        <section class="slide activity" id="png">
+            <img src="img/png-icon.png" />
+            <p><a href="http://www.w3.org/TR/PNG/">Co-authored PNG <span class="de-emphasize">(1996)</span></a></p>
+        </section>
+
+        <section class="slide activity" id="webfonts">
+            <h1><span class="web">Web</span>Fonts</h1>
+            <ul>
+                <li>Fonts WG Chair <span class="de-emphasize">(1996-1998)</span></li>
+                <li><a href="http://www.w3.org/Fonts/WG/">WOFF 1.0, WOFF 2.0</a></li>
+                <li><a href="https://www.w3.org/community/svgopentype/">Chromatic Fonts</a></li>
+            </ul>
+        </section>
+
+        <section class="slide activity" id="css">
+            <img src="img/woolly.svg" />
+
+            <ul>
+                <li>CSS WG: <a href="https://lists.w3.org/Archives/Member/w3c-ac-members/2001JulSep/0007.html">Chair <span class="de-emphasize">(1997-2002)</span></a>, Staff contact</li>
+                <li><a href="http://www.w3.org/TR/REC-CSS2/">CSS2 co-editor <span class="de-emphasize">(@font-face, descriptors)</span></a></li>
+                <li><a href="http://www.w3.org/TR/css3-color/">CSS3 Color co-editor</a></li>
+                <li><a href="http://www.w3.org/TR/css4-color/">CSS4 Color co-editor</a></li>
+            </ul>
+        </section> -->
+
+        <!-- end of hello -->
+
+    </section>
+
+    <section class="slide darker" id="topics">
+        <h1>Topics for today</h1>
+        <ul class="delayed-children">
+            <!-- filled via js -->
+        </ul>
+    </section>
+
+    <section>
+        <header class="image slide" style="background-image: url(img/Dispersive_Prism_Illustration_by_Spigget.jpg);" id="basics">
+            <h1>The Prehistoric Web</h1>
+        </header>
+
+        <section class="slide dark definition" id="bt709">
+            <dl>
+                <dt>ITU Rec BT.709 (1990) part 2</dt>
+                <dd>1080i and 1080p High Definition TV</dd>
+                <dd>Defines chromaticities, D65 white</dd>
+                <dd>OETF with linear segment</dd>
+                <dd>Scene referred</dd>
+                <dd>Overall system gamma 1.2 (dim surround)</dd>
+            </dl>
+        </section>
+
+        <section class="slide dark image" style="background-image: url(img/UCS-sRGB-709.svg); background-repeat: no-repeat; background-position: center;" id="ucs-709"></section>
+
+        <section class="image slide" style="background-image: url(img/17_inch_CRT_Monitor.jpg);" id="crt">
+            <h1>CRT monitor</h1>
+        </section>
+
+        <section class="slide dark definition" id="indexed">
+            <dl>
+                <dt>Indexed-color displays</dt>
+                <dd>16 color VGA displays. <strong>256 colors common</strong>.</dd>
+                <dd>“Truecolor” for the lucky few</dd>
+            </dl>
+        </section>
+
+        <section class="slide dark definition" id="gamma">
+            <dl>
+                <dt>Gamma mayhem</dt>
+                <dd class="delayed"><strong>Mac:</strong> 2.6/1.45 = 1.79</dd>
+                <dd  class="delayed"><strong>SGI:</strong> 2.4/1.7 = 1.4</dd>
+                <dd class="delayed"><strong>PC, Unix:</strong> 2.2 (ish)</dd>
+            </dl>
+        </section>
+
+        <section class="image slide top-heavy" style="background-image: url(img/print-workshop.png);" id="printws">
+            <h1>W3C Print Workshop</h1>
+        </section>
+
+        <section class="image slide bottom-heavy" style="background-image: url(img/print-workshop-srgb.png);" id="srgb-prop">
+            <h1>sRGB proposal</h1>
+        </section>
+
+        <section class="slide dark definition" id="srgb">
+            <dl>
+                <dt>sRGB</dt>
+                <dd>Same chromaticities, D65 white as BT.709</dd>
+                <dd>“Inverse OETF” with linear segment</dd>
+                <dd>Display referred</dd>
+                <dd>Overall system gamma 1.0 (normal surround)</dd>
+                <dd>Assumes 5% viewing flare</dd>
+            </dl>
+        </section>
+
+        <section class="slide dark image" style="background-image: url(img/UCS-sRGB-709.svg); background-repeat: no-repeat; background-position: center;" id="ucs-709"></section>
+
+        <section class="image slide top-heavy" style="background-image: url(img/css-1.png);" id="css1">
+            <h1>Cascading Style Sheets</h1>
+        </section>
+
+        <section class="image slide bottom-heavy" style="background-image: url(img/css-1-srgb.png);" id="css1srgb">
+            <h1>CSS1 uses sRGB</h1>
+        </section>
+
+    </section>
+
+    <section>
+        <header class="image dark slide" style="background-image: url(img/calibrated-match_1920.jpg); background-position: 50% 50%; background-repeat: no-repeat" id="displays">
+                <h1>Color managed screens</h1>
+        </header>
+
+        <section class="slide dark definition" id="cms">
+                <dl>
+                    <dt>Color Management arrives</dt>
+                    <dd class="delayed"><strong>Mac:</strong> ColorSync</dd>
+                    <dd  class="delayed"><strong>Win95/NT:</strong> Kodak CMS (aftermarket)</dd>
+                    <dd class="delayed"><strong>Win98/2000:</strong> ICM</dd>
+                    <dd class="delayed"><strong>WinXP:</strong> ICM 2.0</dd>
+                    <dd class="delayed"><strong>Linux/GNOME:</strong> GNOME Color Manager</dd>
+                    <dd class="delayed"><strong>Linux/KDE:</strong> colord-kde</dd>
+                </dl>
+        </section>
+
+         <section class="image slide top-heavy" style="background-image: url(img/ColorfulFireworks.png);" id="success">
+                <h1>Success!</h1>
+         </section>
+
+         <section class="image slide top-heavy" style="background-image: url(img/smartphone.jpg);" id="mobile">
+            <h1>Not so fast</h1>
+        </section>
+
+        <!-- but iPad, iPhone, color managed. android color manageement (slowly) -->
+    </section>
+
+    <section>
+        <header class="image slide" style="background-image: url(img/hands-1513742_1920.jpg); background-position: 50% 50%; background-repeat: no-repeat" id="web-different">
+            <h1>Web vs. Everything Else</h1>
+        </header>
+
+        <section class="slide dark" id="cms-industry">
+            <h1>Color Management in Industry</h1>
+            <p>Commercial printing, production of paint, plastics, fabric, 3D print</p>
+            <ul>
+                <li>There is a <strong>paying</strong> customer</li>
+                <li>Design is <strong>finished</strong> before production</li>
+                <li>Production is <strong>centralized</strong></li>
+                <li>Reliable, <strong>calibrated</strong> instruments for color QA</li>
+            </ul>
+        </section>
+
+        <section class="slide image" id="com-print" style="background-image: url(img/printing-2159700_1920.jpg);"></section>
+
+        <section class="slide dark" id="cms-web">
+            <h1>Color Management on the Web</h1>
+            <p>Even with color-managed screens:</p>
+            <ul>
+                <li>Content &amp; browsers are <strong>free</strong></li>
+                <li>Design <strong>customized</strong> to end-user display</li>
+                <li>Production is <strong>distributed</strong></li>
+                <li>End-user calibration <strong>rare</strong></li>
+            </ul>
+        </section>
+
+        <section class="slide image" id="web-messy" style="background-image: url(img/messy-hands.jpg);"></section>
+
+        <section class="slide dark" id="before">
+            <h1>CSS Color 3 (2011)</h1>
+            <p>sRGB only, 8 bits per component</p>
+            <p>Chrome, Safari color managed; Firefox threw data at screen</p>
+            <pre><code class="language-css" >fill: rgb(243, 214, 155);
+// looks fine on sRGB,
+// too saturated on P3 wide gamut</code></pre>
+            <p class="swatches">
+                <span style="background-color: rgb(243, 214, 155)"> </span>
+                <span style="background-color: rgb(97.6%, 83.4% ,57.44%)"> </span>
+            </p>
+        </section>
+
+    </section>
+
+    <section>
+        <header class="image slide" style="background-image: url(img/broadcast-1920.jpg);" id="broadcast">
+            <h1>Broadcast</h1>
+        </header>
+
+        <section class="slide image" id="digital-cinema" style="background-image: url(img/red-camera.jpg);"></section>
+
+        <section class="slide dark definition" id="dcip3">
+            <dl>
+                <dt>DCI P3 - SMPTE EG 432</dt>
+                <dd>Digital Cinema Initiative</dd>
+                <dd>Projectors for digital cinema</dd>
+                <dd>Defines chromaticities, <strong>weird</strong> white</dd>
+                <dd>Monochromatic red, 615nm</dd>
+                <dd>White luminance 48 cd/m²</dd>
+                <!-- <dd>OETF with linear segment</dd>
+                <dd>Scene referred</dd> -->
+                <dd>Dark surround</dd>
+            </dl>
+        </section>
+
+        <section class="slide dark image" style="background-image: url(img/UCS-DCI-p3.svg); background-repeat: no-repeat; background-position: center;" id="ucs-dci"></section>
+
+        <section class="slide dark definition" id="uhd-p3">
+            <dl>
+                <dt>UltraHD Premium</dt>
+                <dd>Conforming devices required to display at least 90% of DCI P3</dd>
+                <dd style="margin-top: 1em"><img src="img/ultra-hd-premium-logo-2.jpg" alt="UHD Premium logo"></dd>
+            </dl>
+        </section>
+
+        <section class="slide white definition" id="dhdr-p3">
+            <dl>
+                <dt>VESA DisplayHDR</dt>
+                <dd>(For <a href="https://displayhdr.org/performance-criteria-cts1-1/">tier 500</a> and greater)</dd>
+                <dd>Conforming devices required to display at least 90% of DCI P3</dd>
+                <dd style="margin-top: 1em"><img style="width:710px; margin-top: 1em" src="img/DisplayHDR-logo.svg" alt="Display HDR logo"></dd>
+            </dl>
+        </section>
+
+        <section class="slide dark definition" id="display-p3">
+            <dl>
+                <dt>Apple Display P3</dt>
+                <dd>White, EOTF, viewing conditions same as sRGB</dd>
+                <dd>Primaries same as DCI-P3</dd>
+
+                <dd>Display-referred</dd>
+                <dd>Factory-calibrated phones, tablets, laptops, <em>watches</em></dd>
+                <dd><em>All</em> color managed</dd>
+                <!-- https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html -->
+            </dl>
+        </section>
+
+        <section class="slide dark image" style="background-image: url(img/UCS-display-p3.svg); background-repeat: no-repeat; background-position: center;" id="ucs-dp3"></section>
+
+        <section class="slide dark definition" id="bt2020">
+            <dl>
+                <dt>ITU Rec BT.2020 (2012)</dt>
+                <dd>Ultrawide gamut</dd>
+                <dd>Monochromatic primaries (630, 532, 467nm)</dd>
+                <dd>10 or 12 bits per component</dd>
+                <dd>OETF, and non-matching EOTF (gamma 2.4)</dd>
+                <dd>D65 white, dim surround</dd>
+                <dd>Display-referred</dd>
+                <dd>UltraHD (4k, 8k) broadcast, streaming</dd>
+            </dl>
+        </section>
+
+        <section class="slide dark image" style="background-image: url(img/UCS-rec2020.svg); background-repeat: no-repeat; background-position: center;" id="ucs-2020"></section>
+
+        <section class="slide dark definition" id="use-2020">
+            <dl>
+                <dt>BT.2020 in practice</dt>
+                <dd>Content mostly mastered in DCI-P3</dd>
+                <dd>HDMI 2.0 supports BT.2020, 12bit</dd>
+                <dd>Content thus delivered in BT.2020 container</dd>
+                <dd>For HDR, metadata declares the mastering gamut volume</dd>
+            </dl>
+        </section>
+
+    </section>
+
+
+    <section>
+        <header class="image white slide" style="background-image: url(img/Quantum_Dots.jpg);" id="css4color">
+            <h1>CSS Color 4</h1>
+        </header>
+
+        <section class="image slide top-heavy" style="background-image: url(img/css-color-4.png);"
+        id="css-color-4">
+            <h1>CSS Color 4</h1>
+        </section>
+
+        <section class="slide dark" id="changed">
+            <h1>What changed?</h1>
+            <ul class="delayed-children">
+                <li style="text-decoration: line-through"><span style="color: var(--tan)">Wider color gamuts in digital SLR photography</li></li>
+                <li>Apple Display P3 devices</li>
+                <li>Dell, HP, Microsoft wide gamut laptop screens </li>
+                <li>Samsung, Pixel, OnePlus wide gamut phones </li>
+                <li>Wide gamut, HDR TV/movies/streaming</li>
+                <li>Mobile CMS, <em>finally</em></li>
+                <li>Safari support for CSS Color 4 display-p3</li>
+            </ul>
+        </section>
+
+
+        <section class="slide dark" id="predefined">
+            <h1>Predefined Colorspaces</h1>
+            <pre><code class="language-css" >fill: color(display-p3 0.9341 0.8433 0.6361)
+fill: color(prophoto-rgb 0.8474 0.8103 0.5824)
+fill: color(rec2020 0.9151 0.8359 0.5960)
+// these are the same color, L=87.16 C=38.25 H=79.93</code></pre>
+                <p class="swatches"><span style="background-color: rgb(243, 214, 155)"> </span>
+                <span style="background-color: rgb(243, 214, 155)"> </span>
+                <span style="background-color: rgb(243, 214, 155)"> </span>
+            </p>
+        </section>
+
+        <!-- <section class="slide dark" id="MQhack">
+            <h1>MQ4 hack</h1>
+            <pre style="margin-top:12vh"><code class="language-css" >@media dci-p3 {
+fill: rgb(243, 214, 155);
+}
+// hack in a better match for sRGB
+fill: rgb(248, 207, 133);
+// ewww, really?</code></pre>
+            <p class="swatches"><span style="background-color: rgb(248, 207, 133)"> </span>
+                <span style="background-color: rgb(248, 207, 133)"> </span></p>
+        </section> -->
+
+        <!-- <section class="slide dark" id="lch_is_better">
+            <h1>LCH is device independent</h1>
+            <pre style="margin-top:12vh"><code class="language-css" >fill: lch(87.16% 38.25 79.93);
+// browser calculates rgb for your screen</code></pre>
+            <p class="swatches"><span style="background-color: rgb(97.59%, 83.4%, 57.44%)"> </span>
+                <span style="background-color: rgb(97.59%, 83.4%, 57.44%)"> </span>
+                <span style="background-color: rgb(97.59%, 83.4%, 57.44%)"> </span>
+                <span style="background-color: rgb(97.59%, 83.4%, 57.44%)"> </span>
+                <span style="background-color: rgb(97.59%, 83.4%, 57.44%)"> </span></p>
+        </section> -->
+
+        <section class="slide white" id="CIE-CH">
+            <h1>CIE Hue, Chroma (LCH)</h1>
+            <p class="figure" style="margin-top:0; margin-bottom: 0;"><img src="img/Cielab-circle.png" style="height:70vh" /></p>
+        </section>
+
+     <section class="slide dark" id="css4color-lch">
+        <h1>LCH in CSS Color 4</h1>
+        <pre><code class="language-css">background: lch(50% 0 0);
+border-color: lch(65% 30 180 / 50%);
+color: lch(55.3% 84.5 10.25, #F06);</code></pre>
+            <p>Hue can be NaN for neutrals</p>
+    </section>
+
+    <section class="slide dark" id="CIE-ab">
+        <h1>CIE a &amp; b</h1>
+
+        <p style="margin-top: 8vh; margin-left:auto; margin-right: auto; text-align: center;">
+            <img src="img/Lab-a.svg" alt="Lab a scale" style="width:80vw" />
+            <img src="img/Lab-b.svg" alt="Lab b scale" style="width:80vw" />
+
+        </p>
+    </section>
+
+        <section class="slide dark" id="css4color-lab">
+            <h1>Lab in CSS Color 4</h1>
+            <pre><code class="language-css" >background: lab(50% 0 0);
+border-color: lab(65% 46 -8 / 50%);
+color: lab(55.3% 83.1 15.0 / 75%, #F06);</code></pre>
+        </section>
+
+        <section class="slide dark" id="css4color-cmyk">
+            <h1><a href="https://drafts.csswg.org/css-color-4/#cal-cmyk">CMYK</a>: ICC Color in CSS Color 4</h1>
+            <p>At-rule (like <em>@font-face</em>) points to ICC profile</p>
+            <pre><code class="language-css">@color-profile --fogra39 {
+   src: url('https://example.org/C_Fogra39L.icc');
+}
+.header {
+   background-color: color(--fogra39 0% 70% 20% 0%);
+}</code></pre>
+        </section>
+
+        <section class="slide dark" id="css4color-7col">
+            <h1>CMYKOGV: ICC Color in CSS Color 4</h1>
+            <p>Not limited to 4 components</p>
+            <pre><code class="language-css">@color-profile --fogra55beta {
+  src: url('https://example.org/FOGRA55beta_CL.icc');
+}
+.bluish_green {
+  background-color:
+  color(--fogra55beta 0.397575 0.010047 0.223682
+        0.031140 0.000000 0.317066 0.000000);
+}</code></pre>
+        </section>
+
+    </section>
+
+
+        <section>
+            <header class="image dark slide" style="background: url(img/color-mixing_1920.jpg) center white no-repeat; background-size: cover;" id="mixing">
+                <h1>Mixing &amp; manipulating colors</h1>
+            </header>
+
+            <section class="image slide" style="background-image: url(img/CSS-Color-5.png)"
+            id="css-color-5">
+                <h1>CSS Color 5: manipulating color</h1>
+            </section>
+
+            <section class="slide dark" id="css5color-mix">
+                <h1><a href="https://drafts.csswg.org/css-color-5/#color-mix">Mixing colors</a> in CSS Color 5</h1>
+                <p>Two colors can be mixed in any colorspace; default is LCH</p>
+                <pre style="margin-top:12vh"><code class="language-css">color-mix(teal 65%, olive);</code></pre>
+            </section>
+
+            <section class="image slide" style="background-color: white; background-image: url(img/CH-mixing3.svg); background-size: 60%"
+            id="css-color-5-mix-diagram">
+                <!-- <h1>Mixing on the CH plane (shortest arc)</h1> -->
+            </section>
+
+            <section class="slide dark" id="css5color-mix-component">
+                <h1>Mixing colors in CSS Color 5</h1>
+                <p>Individual components can be mixed</p>
+                <pre><code class="language-css">--tomato: lch(52% 58.1 22.7);
+--sky: lch(56% 49.1 257.1);
+color-mix(var(--tomato) hue 75.23%, var(--sky));</code></pre>
+            </section>
+
+            <section class="image slide" style="background-color: white; background-image: url(img/CH-mixing2.svg); background-size: 60%"
+            id="css-color-5-mix-diagram2">
+                <!-- <h1>Mixing on the CH plane (shortest arc)</h1> -->
+            </section>
+
+            <section class="slide dark definition" id="css-color-5-mix-summary">
+                <dl>
+                    <dt>Mix colors</dt>
+                    <dd>Can be in different colorspaces</dd>
+                    <dd>Space for mixing (LCH, Lab, XYZ)</dd>
+                    <dd>Can specify long arc for hue mixing</dd>
+                    <dd>Result can be out of gamut, <em>needs gamut mapping</em></dd>
+                </dl>
+            </section>
+
+            <section class="slide dark" id="css5color-contrast">
+                <h1><a href="https://drafts.csswg.org/css-color-5/#colorcontrast">Most contrasting color</a> in CSS Color 5</h1>
+                <p>Base color, list of alternates</p>
+                <pre><code class="language-css">--myAccent: #b22222;
+color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e)</code></pre>
+                <p>WCAG Contrast = (Y<sub>b</sub> + 0.05) / (Y<sub>a</sub> + 0.05)</p>
+            </section>
+
+            <section class="slide dark" id="css5color-contrast-example">
+                <table id="contrast-table">
+                    <tr>
+                        <th>Color</th>
+                        <th>Luminance</th>
+                        <th style="background: #f5deb3; color: var(--dark-green)">Contrast</th>
+                    </tr>
+                    <tr>
+                        <td style="background: #f5deb3"> &nbsp; &nbsp; </td>
+                        <td>0.749</td>
+                        <td><b></b></td>
+                    </tr>
+                    <tr>
+                        <td style="background: #d2b48c"> &nbsp; &nbsp; </td>
+                        <td>0.482</td>
+                        <td><b>1.501</b></td>
+                    </tr>
+                    <tr>
+                        <td style="background: #a0522d"> &nbsp; &nbsp; </td>
+                        <td>0.137</td>
+                        <td><b>4.273</b></td>
+                    </tr>
+                    <tr>
+                        <td style="background:#b22222"> &nbsp; &nbsp; </td>
+                        <td>0.107</td>
+                        <td style="color:#3F5;"><b>5.081</b></td>
+                    </tr>
+                    <tr>
+                        <td style="background: #d2691e"> &nbsp; &nbsp; </td>
+                        <td>0.305</td>
+                        <td><b>2.249</b></td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- <section class="slide white" id="css5color-">
+                <h1><a href="https://drafts.csswg.org/css-color-5/#">foo</a>: in CSS Color 5</h1>
+                <p>foo</p>
+                <pre style="margin-top:12vh"><code class="language-css"></code></pre>
+            </section> -->
+
+        </section>
+
+
+
+        <section>
+            <header class="image white slide" style="background: url(img/HDR-photo.jpg) center white no-repeat; background-size: cover;" id="HDR">
+                <h1>High Dynamic Range</h1>
+            </header>
+
+            <section id="need" class="slide dark">
+                <h1>Need for HDR</h1>
+                <p>Consumer WCG, HDR films, series, news, sports (BT.2100 PQ, HLG)</p>
+                <p>Consumer HDR gaming consoles</p>
+                <p>Consumer WCG, HDR-ready TVs commonplace</p>
+                <p>Consumer WCG (P3) laptops, tablets, phones; HDR coming </p>
+                <p>WCG, HDR still images coming (AVIF)</p>
+            </section>
+
+            <section class="slide dark definition" id="bt2100">
+                <dl>
+                    <dt>ITU Rec BT.2100 (2016)</dt>
+                    <dd>BT.2020 gamut</dd>
+                    <dd>10 or 12 bits per component</dd>
+                    <dd>D65 white, dim surround</dd>
+                    <dd>PQ or HLG</dd>
+                </dl>
+            </section>
+
+            <section class="slide dark definition" id="HLG">
+                <dl>
+                    <dt>Hybrid Log Gamma</dt>
+                    <dd>Scene-referred, relative luminance</dd>
+                    <dd>Diffuse white at 0.75</dd>
+                    <dd>2.5 stops highlights</dd>
+                    <dd>Range of viewing environments (dim to bright)</dd>
+                    <dd><q><i>Brighter displays for brighter environments</i></q></dd>
+                </dl>
+            </section>
+
+            <section class="slide dark definition" id="PQ">
+                <dl>
+                    <dt>Perceptual Quantizer</dt>
+                    <dd>Reference display referred, absolute luminance</dd>
+                    <dd>Diffuse white varies (0.54, 0.58, 0.66)?</dd>
+                    <dd>5.5 stops highlights</dd>
+                    <dd>Dim viewing environment</dd>
+                    <dd><q><i>Brighter displays for more highlights</i></q></dd>
+                </dl>
+            </section>
+
+            <section class="slide dark definition" id="lab-problems">
+                <dl>
+                    <dt>Problems with CIE Lab</dt>
+                    <dd>Hue <em>non-linearity</em> in blue area</dd>
+                    <dd>Primarily designed for reflective, low-luminance (120 cd/m²), print gamuts</dd>
+                    <dd>Hard to extend for <em>specular whites</em> brighter than paper white</dd>
+                    <dd>Under-tested for <em>wide-gamut colors</em>, over-estimates ΔE</dd>
+                </dl>
+            </section>
+
+
+            <section class="image slide top-heavy" style="background-image: url(img/css-color-hdr.png);"
+            id="css-color-hdr">
+                <h1>CSS Color HDR: high dynamic range</h1>
+            </section>
+
+            <section class="slide definition dark" id=hdr-new-colorspaces>
+                <dl>
+                    <dt>CSS Color HDR (unofficial draft)</dt>
+                    <dd>Adds BT.2100 (both HLG &amp; PQ)</dd>
+                    <dd>Adds J<sub>z</sub>a<sub>z</sub>b<sub>z</sub> &amp; J<sub>z</sub>C<sub>z</sub>h<sub>z</sub> (PQ-like, on LMS)</dd>
+                    <dd>Adds IC<sub>T</sub>C<sub>P</sub> (PQ on LMS)</dd>
+                    <dd>Defines SDR &amp; HDR compositing (ITU Rpt BT.2408-0)</dd>
+                </dl>
+            </section>
+
+        </section>
+
+
+
+
+
+        <section>
+            <header class="image white slide" style="background: url(img/vr-ar.jpg) center white no-repeat; background-size: cover;" id="future">
+                <h1>Future challenges</h1>
+            </header>
+
+            <!-- <section class="slide dark definition" id="working">
+                <dl>
+                    <dt>Working color space</dt>
+                    <dd><strong>sRGB default</strong>, for Web compatibility</dd>
+                    <dd><strong>scRGB? Lab?</strong></dd>
+                </dl>
+            </section> -->
+
+            <section class="slide dark definition" id="compositing">
+                <dl>
+                    <dt>CSS Compositing</dt>
+                    <dd>Currently <strong>gamma-encoded sRGB default</strong>, for legacy Web/Photoshop compatibility</dd>
+                    <dd><strong>Porter-Duff compositing operators</strong></dd>
+                    <dd>Ideal is compositing in linear-light, such as XYZ</dd>
+                </dl>
+            </section>
+
+            <section class="slide dark definition" id="gradients">
+                <dl>
+                    <dt>CSS gradients</dt>
+                    <dd>Currently interpolate in <strong>alpha-premultiplied gamma-encoded sRGB </strong> space</dd>
+                    <dd>Ideal is alpha-premultiplied, perceptually linear, chroma-preserving
+                        (LCH or J<sub>z</sub>C<sub>z</sub>h<sub>z</sub>)</dd>
+                    <dd></dd>
+                    <dd></dd>
+                </dl>
+            </section>
+
+            <section class="slide dark definition" id="canvas">
+                <dl>
+                    <dt>Canvas (2D rendering context)</dt>
+                    <dd>Currently <strong>gamma-encoded sRGB default</strong>, 8bits/component</dd>
+                    <dd>Now adding other colorspaces from CSS Color 4</dd>
+                    <dd>Adding 16-bit and half-float sRGB for WCG (and HDR?)</dd>
+                    <dd></dd>
+                </dl>
+            </section>
+
+            <section class="slide dark definition" id="object-model">
+                <dl>
+                    <dt>CSS Object Model</dt>
+                    <dd>Assumes colors are 8-bit sRGB</dd>
+                    <dd>String (serialization) based</dd>
+                    <dd><strong>Huge</strong> legacy JS codebase</dd>
+                    <dd>CSS Color 4 extends with serialization of color()</dd>
+                    <dd>CSS Typed Object Model (in development)</dd>
+                </dl>
+            </section>
+
+            <!-- <section class="slide dark definition" id="whyHDR">
+                <dl>
+                    <dt>High Dynamic Range</dt>
+                    <dd>Driven by movie &amp; TV industries</dd>
+                    <dd>Rec.2020, <strong>PQ or HLG</strong> transfer function</dd>
+                    <dd>Compositing SDR &amp; HDR</dd>
+                    <dd>iccMAX for HDR</dd>
+                </dl>
+            </section> -->
+
+            <section class="slide dark definition" id="review">
+                <dl>
+                    <dt>Expert review</dt>
+                    <dd>W3C <strong>Colorweb Community Group</strong></dd>
+                    <dd>W3C <em>joined ICC</em></dd>
+                </dl>
+            </section>
+
+            <section class="dark slide definition" id="workshop">
+                <dl>
+                    <dt>W3C Workshop on WCG &amp; HDR</dt>
+                    <dd>Virtual, April 2021</dd>
+                    <dd>Speaker submissions welcome</dd>
+                    <dd><img src="img/w3c.svg" alt="W3C" width="720px"></dd>
+                </dl>
+            </section>
+
+            <footer class="dark slide" id="goodbye">
+                <img src="img/chris-av.jpg" alt="me" />
+                <h1>Thank you!</h1>
+                <ul>
+                    <li><a href="mailto:chris@w3.org">chris@w3.org</a></li>
+                    <li><a href="http://svgees.us">svgees.us</a></li>
+                    <li><a href="http://twitter.com/svgeesus">@svgeesus</a></li>
+                </ul>
+            </footer>
+
+
+            <script src="https://blissfuljs.com/bliss.shy.js"></script>
+            <script src="../inspire.js/inspire.js"></script>
+            <script src="talk.js"></script>
+
+</body>
+
+</html>
