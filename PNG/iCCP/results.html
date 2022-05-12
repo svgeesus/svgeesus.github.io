@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<style>
+    body {
+        margin: 3em;
+        font-family: sans-serif;
+        }
+    .deets {
+        font-size: 70%;
+    }
+    table {
+        border-spacing: 5px 3px;;
+    }
+    th.type {
+        text-align: left;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        padding-left: 1em;
+        background: #444;
+        color: #DDD;
+    }
+    th.test {
+        text-align: left;
+    }
+    th.test > a {
+        text-decoration: none;
+    }
+    th.type > h2{
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 120%
+    }
+    .pass {
+        background: #7B3;
+        text-align: center;
+    }
+</style>
+<h1>PNG `iCCP` test results</h1>
+
+<p>These tests check that
+tagged PNG files (containing an ICC profile
+in the `iCCP` chunk)
+are displayed by applying the ICC profile to the image RGB data
+(as <a href="https://drafts.csswg.org/css-color-4/#tagged-images">required by the CSS Color 4 specification</a>)
+and not by just throwing the image data at the screen.</p>
+
+<p>They also test that untagged images are displayed as sRGB,
+    (as <a href="https://drafts.csswg.org/css-color-4/#untagged-images">required by the CSS Color 4 specification</a>)
+    and that both ICC <b>v.2</b> and <b>v.4</b> profiles are supported,
+    as required by the <a href="https://w3c.github.io/PNG-spec/#11iCCP">PNG specification</a>.
+</p>
+
+<table style="width: 90%">
+    <tr>
+        <th></th>
+        <th><img src="./img/chrome-dev_64x64.png" alt=""><br></th>
+        <th><img src="./img/edge-dev_64x64.png" alt=""><br></th>
+        <th><img src="./img/firefox-nightly_64x64.png" alt=""><br></th>
+        <th><img src="./img/safari-preview_64x64.png" alt=""><br></th>
+    </tr>
+    <tr>
+        <th>Test</th>
+        <th>Chrome 102 <br><span class="deets">102.0.4999.0</span><br>Windows 10</th>
+        <th>Edge 100<br><span class="deets">100.0.1185.39</span><br>Windows 10</th>
+        <th>Firefox  100<br><span class="deets">100.0a1</span><br>Windows 10</th>
+        <th>Safari 143 Preview<br><span class="deets">(Safari 15.4, WebKit 17614.1.7.7)</span><br>OS X 12.2.1</th>
+    </tr>
+    <tr>
+        <th class="type" colspan="5"><h2>Initial, sanity-check tests</h2></th>
+    </tr>
+    <tr>
+        <th class="test"><a href="./tests/sRGB-relcolor.html">`sRGB` chunk, relative colorimetric intent</a></th>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+    </tr>
+    <tr>
+        <th class="test"><a href="./tests/sRGB-untagged.html">untagged image, must be treated as sRGB</a></th>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+    </tr>
+    <tr>
+        <th class="type" colspan="5"><h2>Embedded ICC.1 v2 profiles</h2></th>
+    </tr>
+    <tr>
+        <th class="test"><a href="./tests/iCCP-v2-rgswap.html">sRGB with red and green colorants swapped</a></th>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+    </tr>
+    <tr>
+        <th class="test"><a href="./tests/iCCP-v2-CIE-Lstar.html">CIE RGB, L* TRC</a></th>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+    </tr>
+    <tr>
+        <th class="test"><a href="./tests/iCCP-v2-ProPhoto.html">ProPhoto RGB, gamma 1.8</a></th>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+    </tr>
+    <tr>
+        <th class="type" colspan="5"><h2>Embedded ICC.1 v4 profiles</h2></th>
+    </tr>
+    <tr>
+        <th class="test"><a href="./tests/iCCP-v4-CIE-Lstar.html">CIE RGB, L* TRC</a></th>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+    </tr>
+    <tr>
+        <th class="test"><a href="./tests/iCCP-v4-ProPhoto.html">ProPhoto RGB, gamma 1.8</a></th>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+    </tr>
+    <tr>
+        <th class="test"><a href="./tests/iCCP-v4-DisplayP3.html">Display P3</a></th>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+        <td class="pass">pass</td>
+    </tr>
+    <tr>
+        <th class="type" colspan="5"><h2>Embedded ICC.2 (iccMAX) profiles</h2></th>
+    </tr>
+    <tr>
+        <th class="test"><i>(no tests yet)</i></th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+<p><a href="https://github.com/svgeesus/PNG-ICC-tests#readme">About these tests</a> (<a href="https://github.com/svgeesus/PNG-ICC-tests">on GitHub</a>)</p>
+
+<hr>
+<address>Chris Lilley<br>12 May 2022</address>
