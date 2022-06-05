@@ -154,7 +154,27 @@
 		<pre style="margin-top:12vh"><code class="language-css">color-mix(in oklab, teal 65%, olive);</code></pre>
 	</article>
 
-	<article class="slide language-none" title="" id="colmix-app">
+	<article class="slide">
+		<h1><a href="https://codepen.io/svgeesus/pen/QWQrQqr">Worked example</a>, color-mix()</h1>
+		<p><span class="swatch" style="--color: teal"></span>  teal in oklab is color(oklab 0.5431 -0.09 -0.024)</p>
+		<p><span class="swatch" style="--color: olive"></span>  olive in oklab is color(oklab 0.5807 -0.043 0.1191)</p>
+		<p>mix = <span class="swatch" style="--color: rgb(27.85% 50.81% 39.12%)"></span>  color(oklab 0.5563 -0.073 0.0263)</p>
+		<p>= <span class="swatch" style="--color: rgb(27.85% 50.81% 39.12%)"></span>  rgb(27.85% 50.81% 39.12%)</p>
+		<p></p>
+	</article>
+
+	<article class="slide">
+		<h1>How color-mix() works</h1>
+
+		<ol>
+			<li>Colors converted to mixing color space, without gamut mapping</li>
+			<li>Mixed by specified percentage</li>
+			<li>Result is in the mixing color space</li>
+			<li>Result may be out of gamut for display (especially polar color spaces)</li>
+		</ol>
+	</article>
+
+	<article class="slide prism-ignore" title="" id="colmix-app">
 		<h1>Live color-mix()</h1>
 
 		<div mv-app="color_mix" mv-mode="edit" style="--color1: [Color.get(color1).to('srgb') & '']; --color2: [Color.get(color2).to('srgb') & '']; --color-mix: [Color.get(color_mix).to('srgb') & '']">
@@ -231,6 +251,6 @@
 <script src="https://inspirejs.org/inspire.mjs" type="module"></script>
 
 <script  type="module">import "https://colorjs.io/color.js";</script>
-
+<script  type="module">import "talk.js";</script>
 </body>
 </html>
