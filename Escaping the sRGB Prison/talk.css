@@ -1,0 +1,125 @@
+/**
+ * Styles for the sample talk, you don’t need to copy this to use Inspire.js
+ * If you just want the theme of the sample talk, use theme.css
+ */
+
+
+#intro h1,
+#intro h2 {
+	margin: 0;
+	filter: drop-shadow(.1rem .1rem .5rem rgba(0,0,0,.5));
+}
+
+#intro h1 {
+	margin-top: auto;
+	color: var(--color-aqua);
+	letter-spacing: -.04em;
+	font-size: calc(400% + 15vh);
+}
+
+@supports (-webkit-background-clip: text) {
+	#intro h1 {
+		background: linear-gradient(to bottom right, var(--color1), var(--color2), var(--color3), var(--color2), var(--color1));
+		-webkit-background-clip: text;
+		color: transparent;
+	}
+}
+
+#intro h2 {
+	width: 12em;
+	font-size: calc(100% + 5vh);
+	color: white;
+	font-weight: 300;
+}
+
+	#intro h2::first-line {
+		font-size: 80%;
+	}
+
+#intro .attribution {
+	margin-top: auto;
+	font-weight: bold;
+	font-size: 80%;
+	color: var(--color-yellow);
+	text-align: center;
+}
+
+
+#media-plugin {
+	flex-flow: row;
+	padding: 2rem;
+}
+
+	#media-plugin > div:first-child {
+		margin-right: 1em;
+	}
+
+	#media-plugin h1 {
+		font-size: 200%;
+	}
+
+	#media-plugin .annotation {
+		font-weight: 300;
+	}
+
+.swatch {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	vertical-align: calc(-.1em - 3px);
+	padding: .6em;
+	background-color: var(--color);
+	border: 3px solid white;
+	border-radius: 3px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.15);
+}
+
+.swatch.oog {
+	border: 3px solid #f06;
+	box-shadow: 0px 0px 18px #f06;;
+}
+
+.definition dd>q {
+	font-style: italic;
+}
+
+.definition dl dt {
+	font-size: 250%;
+	line-height: 2;
+	font-family: var(--heading-font);
+	font-weight: bold;
+	color: var(--color-aqua);
+
+}
+
+
+/* specific examples */
+
+#colmix-app span[property=color1] {--color: var(--color1); }{
+
+}
+
+#colmix-app span[property=color2] {--color: var(--color2); }{
+
+}
+
+#colmix-app [property="color_mix"],[property="color_mix_srgb"] { --color: var(--color-mix); }{
+
+}
+
+#colmix-app :is([property=color1],
+#colmix-app span[property=color2],
+#colmix-app [property="color_mix"],
+#colmix-app [property="color_mix_srgb"])::before {
+	content: "";
+	background: var(--color);
+	width: 1.2em;
+	height: 1.2em;
+	vertical-align: -.15em;
+	margin-right: .3em;
+	display: inline-block;
+	border-radius: .15em;
+	box-shadow: 0 0 0 2px white inset, 0 0 0 1px hsl(0 0% 50%);
+} {
+
+}

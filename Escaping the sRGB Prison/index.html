@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<title>Escaping the sRGB Prison</title>
+
+	<link href="https://inspirejs.org/inspire.css" rel="stylesheet" />
+	<link href="theme.css" rel="stylesheet" />
+	<link href="talk.css" rel="stylesheet" />
+</head>
+<body class="language-markup" data-prism-plugins="normalize-whitespace">
+
+<header id="intro" class="slide">
+	<h1>
+		Escaping the sRGB Prison
+	</h1>
+	<h2>
+		Chris Lilley, W3C
+	</h2>
+</header>
+<section>
+	<header class="image slide" style="background: url(img/colorwhirl.jpg) left / cover;" id="whatis">
+		<h1>What is Color</h1>
+	</header>
+
+	<article class="slide" title="">
+		<h1>Getting started</h1>
+
+		<ul class="delayed-children">
+			<li>Copy this blank.html somewhere</li>
+		</ul>
+	</article>
+
+</section>
+
+<section>
+	<header class="image slide" style="background: url(img/prison.jpg)  left / cover;" id="prison">
+		<h1>the Prison</h1>
+	</header>
+
+	<article class="slide" title="">
+		<h1>Lots of color formats</h1>
+
+		<ul>
+			<li> <span class="swatch" style="--color: rgb(49.02% 13.73% 16.08%)"></span> #7D2329</li>
+			<li> <span class="swatch" style="--color: rgb(77.61% 36.34% 2.45%)"></span> rgb(77.61% 36.34% 2.45%)</li>
+			<li> <span class="swatch" style="--color: rgb(61.65% 57.51% 9.28%)"></span> hsl(55.257 73.833% 35.465%)</li>
+			<li> <span class="swatch" style="--color: rgb(40.73% 65.12% 22.35%)"></span> hwb(94.22 22.35% 34.88%)</li>
+			<li> <span class="swatch" style="--color: #66AAEE"></span> #6AE</li>
+			<li> <span class="swatch" style="--color: rgb(128, 0, 128)"></span> rgb(128, 0, 128)</li>
+		</ul>
+	</article>
+
+	<article class="slide image" style="background-image: url(img/UCS-all-sRGB.svg); background-repeat: no-repeat; background-position: center;" id="all-srgb"></article>
+
+</section>
+
+<section>
+	<header class="image slide" style="background: url(img/swatches.jpg)  left / cover;" id="specifying">
+		<h1>Escaping:<br>specifying color</h1>
+	</header>
+
+	<article class="image slide" style="background: url(img/broadcast-1920.jpg) left / cover;" id="broadcast">
+		<!-- <h1>Broadcast</h1> -->
+	</article>
+
+	<article class="slide definition" id="dcip3">
+		<dl>
+			<dt>DCI P3 - SMPTE EG 432</dt>
+			<dd>Digital Cinema Initiative</dd>
+			<dd>Projectors for digital cinema</dd>
+			<dd>Defines chromaticities, <strong>weird</strong> white</dd>
+			<dd>Monochromatic red, 615nm</dd>
+			<dd>White luminance 48 cd/m²</dd>
+			<!-- <dd>OETF with linear segment</dd>
+			<dd>Scene referred</dd> -->
+			<dd>Dark surround</dd>
+		</dl>
+	</article>
+
+	<article class="slide dark image" style="background-image: url(img/UCS-DCI-p3.svg); background-repeat: no-repeat; background-position: center;" id="ucs-dci"></article>
+
+        <article class="slide definition" id="uhd-p3">
+            <dl>
+                <dt>UltraHD Premium</dt>
+                <dd>Conforming devices required to display at least 90% of DCI P3</dd>
+                <dd style="margin-top: 1em"><img src="img/ultra-hd-premium-logo-2.jpg" alt="UHD Premium logo"></dd>
+            </dl>
+        </article>
+
+        <article class="slide white definition" id="dhdr-p3">
+            <dl>
+                <dt>VESA DisplayHDR</dt>
+                <dd>(For <a href="https://displayhdr.org/performance-criteria-cts1-1/">tier 500</a> and greater)</dd>
+                <dd>Conforming devices required to display at least 90% of DCI P3</dd>
+                <dd style="margin-top: 1em; background: white;"><img style="width:710px; margin-top: 1em" src="img/DisplayHDR-logo.svg" alt="Display HDR logo"></dd>
+            </dl>
+        </article>
+
+        <article class="slide definition" id="display-p3">
+            <dl>
+                <dt>Apple Display P3</dt>
+                <dd>White, EOTF, viewing conditions <em>same as</em> sRGB</dd>
+                <dd>Primaries <em>same as</em> DCI-P3</dd>
+			</dl>
+		</article>
+
+		<article class="slide image" style="background-image: url(img/UCS-display-p3.svg); background-repeat: no-repeat; background-position: center;" id="ucs-dp3"></article>
+
+		<article class="slide delayed" id="p3-csscolor4">
+			<h1>Using display-p3 in CSS Color 4</h1>
+
+				<div class="delayed-children">
+
+					<p><span class="swatch" style="--color: rgb(20.4% 56.8% 75.7%)"></span> <code class="language-css"> color(display-p3 0.31 0.56 0.74);</code></p>
+					<p><span class="swatch" style="--color: rgba(20.4%, 56.8%, 75.7%, 60%)"></span> <code class="language-css"> color(display-p3 0.31 0.56 0.74 / 0.6);</code></p>
+					<p>Minimum 10 bit precision per component</p>
+				</div>
+
+		</article>
+
+		<article class="slide image" style="background-image: url(img/UCS-p3-in-sRGB.svg); background-repeat: no-repeat; background-position: center;" id="ucs-p3-ingamut-srgb"></article>
+
+		<article class="slide delayed" id="p3-oog">
+			<h1>Using display-p3 in CSS Color 4</h1>
+
+				<div class="delayed-children">
+
+					<p><span class="swatch oog" style="--color: rgb(0% 99.8% 0%)"></span> <code class="language-css"> color(display-p3 0 1 0);</code></p>
+					<p>Inside display-p3 gamut, outside sRGB</p>
+					<p>Will use <em>gamut mapping</em> if not displayable</p>
+					<p><span class="swatch oog" style="--color: white"></span> <code class="language-css"> color(display-p3 -0.1 1.2 0);</code></p>
+					<p>Yes you can do that</p>
+				</div>
+
+		</article>
+
+		<article class="slide image" style="background-image: url(img/UCS-oog-display-p3.svg); background-repeat: no-repeat; background-position: center;" id="ucs-p3-oog-srgb"></article>
+
+		<!-- explain gamut mappng here?  -->
+
+</section>
+
+<section>
+	<header class="image slide" style="background: url(img/gradient.jpg)  left / cover;" id="mixing">
+		<h1>Escaping:<br>mixing colors</h1>
+	</header>
+
+	<article class="slide" id="css5color-mix">
+		<h1><a href="https://drafts.csswg.org/css-color-5/#color-mix">Mixing colors</a> in CSS Color 5</h1>
+
+		<p>Two colors can be mixed in any colorspace</p>
+		<pre style="margin-top:12vh"><code class="language-css">color-mix(in oklab, teal 65%, olive);</code></pre>
+	</article>
+
+	<article class="slide language-none" title="" id="colmix-app">
+		<h1>Live color-mix()</h1>
+
+		<div mv-app="color_mix" mv-mode="edit" style="--color1: [Color.get(color1).to('srgb') & '']; --color2: [Color.get(color2).to('srgb') & '']; --color-mix: [Color.get(color_mix).to('srgb') & '']">
+			<code>color-mix(in <span property="interpolation_space" mv-options="oklab, lab, lch, oklch, xyz, srgb, srgb-linear, hsl">oklab</span>, <span property="color1">lime</span> <span property="percent" mv-editor-type="range" mv-edit-type="popup">50</span>%, <span property="color2">lch(50% 100 40)</span>)</code>
+		<details>
+			<summary>Show workings</summary>
+
+			<p>
+				<code>[color1]</code> in [interpolation_space] is <code>[Color.to(color1, interpolation_space) & ""]</code>
+			</p>
+			<p>
+				<code>[color2]</code> in [interpolation_space] is <code>[Color.to(color2, interpolation_space) & ""]</code>
+
+		<p>mix =
+			<code property="color_mix">[Color.to(Color.mix(color1, color2, (100 - percent)/100, space: interpolation_space), interpolation_space) & ""]</code>
+			</p>
+
+		</details>
+			<br>=
+			<code property="color_mix_srgb">[Color.to(Color.mix(color1, color2, (100 - percent)/100, space: interpolation_space), interpolation_space).to('srgb') & ""]</code>
+
+
+			</p>
+		</div>
+
+	</article>
+
+</section>
+
+<section>
+	<header class="image slide" style="background: url(img/paints.jpg)  left / cover;" id="modifying">
+		<h1>Escaping:<br>modifying colors</h1>
+	</header>
+
+	<article class="slide" title="">
+
+	</article>
+
+</section>
+
+<section>
+	<header class="image slide" style="background: url(img/color-words.jpg)  left / cover;" id="contrast">
+		<h1>Contrasting colors</h1>
+	</header>
+
+	<article class="slide" title="">
+
+	</article>
+
+</section>
+
+<section>
+	<header class="image slide" style="background: url(img/questions.jpg)  left / cover;" id="caniuse">
+		<h1>Can I Use It ???</h1>
+	</header>
+
+	<article class="slide" title="">
+
+	</article>
+
+</section>
+
+<section>
+	<header class="image slide" style="background: url(img/HDR-photo.jpg)  left / cover;" id="hdr">
+		<h1>High Dynamic Range</h1>
+	</header>
+
+	<article class="slide" title="">
+
+	</article>
+
+</section>
+
+<script src="https://inspirejs.org/inspire.mjs" type="module"></script>
+
+<script  type="module">import "https://colorjs.io/color.js";</script>
+
+</body>
+</html>

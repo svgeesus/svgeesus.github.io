@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>sRGB approximation errors</title>
+<style>
+ body {
+     margin: 4em;
+     font-family: 'Helvetica Neue', Helvetica, Segoe UI, sans-serif;
+ }
+</style>
+</head>
+
+<body>
+
+<h1>sRGB (and display-p3) approximation errors</h1>
+
+<p>The Electro-Optical Transfer function (EOTF, or informally "gamma") for sRGB, and also for display-p3 which uses the same one, is defined in the sRGB standard, which (like many other broadcast-derived color space standards) uses a linear portion at very dark levels, to limit noise amplification, followed by a power function for medium-dark to lightest levels.</p>
+
+<p>Here is a sample implementation, over the extended range:</p>
+
+<pre>function lin_sRGB(RGB) {
+	// convert an array of sRGB values
+	// where in-gamut values are in the range [0 - 1]
+	// to linear light (un-companded) form.
+	// https://en.wikipedia.org/wiki/SRGB
+	// Extended transfer function:
+	// for negative values,  linear portion is extended on reflection of axis,
+	// then reflected power function is used.
+	return RGB.map(function (val) {
+		let sign = val < 0? -1 : 1;
+		let abs = Math.abs(val);
+
+		if (abs < 0.04045) {
+			return val / 12.92;
+		}
+
+		return sign * (Math.pow((abs + 0.055) / 1.055, 2.4));
+	});</pre>
+
+<p>Some people approximate this transfer function with a simple power law. The best fit (lowest error) is an overall gamma of 2.223.
+The relative luminance error is symmetric, and bounded to <strong>-0.517% to 0.5127%</strong>.</p>
+
+<p>Other people (and this applies to the APCA algorithm) simply copy the 2.4 exponent value from the full sRGB equation, without considering how the piecewise formula affects it, producing much larger errors. The relative luminance error is asymmetric, and bounded by <strong>-2.517% to 0%</strong>.</p>
+
+<p>Both approximations under-estimate the relative luminance for dark colors. The 2.4 approximation greatly under estimates it for <em>all</em> colors, being worst in the mid range.</p>
+
+<output id=""></output>
+
+
+<p><object data id="output"></object></p>
+
+<details>
+    <summary>view source</summary>
+    <textarea id="textarea" style="width: 100%; min-height: 10em;"></textarea>
+</details>
+<a href="" download="slice.svg" id="downloadLink">Download SVG</a>
+<script type="module" src="./sRGB_TRC-errors.js" width="100%"></script>
+</body>
+</html>

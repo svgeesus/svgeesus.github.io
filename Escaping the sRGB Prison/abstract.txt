@@ -1,0 +1,34 @@
+
+Escaping the sRGB Prison
+
+Imagine that I told you that you are only allowed to use
+two-thirds of the colors that your screen can display.
+All the brightest and most vivid shades are not allowed.
+Unacceptable, right?!
+Welcome to Web design for the last seven years.
+You might not know it but compared to native apps,
+you are in the sRGB Prison.
+After attending this talk you will understand
+the measurable, reproducible sensation we call color.
+You will understand Lab and OKLab color spaces,
+be comfortable with gamut volume plots,
+and be able to laugh at snake-oil claims
+about color gamut coverage in advertising.
+Having broken out of jail,
+and knowing the basics of perceptual uniformity,
+you will be really looking forward to seeing
+CSS Color 4 and 5 implemented in all browsers.
+This is an intermediate to advanced talk
+about the  current state and near future
+of cutting edge color on the Web.
+
+
+bio
+
+Chris Lilley is a Technical Director at the World Wide Web Consortium (W3C).
+Considered “the father of SVG”, he also co-authored PNG,
+was co-editor of CSS2,
+chaired the group that developed @font-face,
+and co-developed WOFF and WOFF2. Ex Technical Architecture Group.
+Chris is co-editor of CSS Color levels 3, 4 and 5,
+and is the W3C representative to the International Color Consortium.
