@@ -35,7 +35,7 @@ for (let i = 0; i <= 1024; i += 128) {
 };
 
 for (let i =-3; i<2; i++) {
-    let v = i *50;
+    let v = i *50; // 5000 scaling factor, divided by 100 for percentage
     yaxis.push(`<text x='-30' y='${-v}' text-anchor='right'>${Math.round(i * 100)/100}%</text>`)
 }
 
