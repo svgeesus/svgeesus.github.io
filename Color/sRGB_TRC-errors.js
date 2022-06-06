@@ -31,7 +31,7 @@ for (let i =0; i<1024; i++) {
 
 for (let i = 0; i <= 1024; i += 128) {
     let v = i / 1023;
-    xaxis.push(`<text x='${i}' y='20' text-anchor='middle'>${Math.round(v * 100)/100}</text>`);
+    xaxis.push(`<text x='${i}' y='20' text-anchor='middle'>${Math.round(v * 1000)/1000}</text>`);
 };
 
 for (let i =-3; i<2; i++) {

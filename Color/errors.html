@@ -21,30 +21,30 @@
 <p>Here is a sample implementation, over the extended range:</p>
 
 <pre>function lin_sRGB(RGB) {
-	// convert an array of sRGB values
-	// where in-gamut values are in the range [0 - 1]
-	// to linear light (un-companded) form.
-	// https://en.wikipedia.org/wiki/SRGB
-	// Extended transfer function:
-	// for negative values,  linear portion is extended on reflection of axis,
-	// then reflected power function is used.
-	return RGB.map(function (val) {
-		let sign = val < 0? -1 : 1;
-		let abs = Math.abs(val);
+  // convert an array of sRGB values
+  // where in-gamut values are in the range [0 - 1]
+  // to linear light (un-companded) form.
+  // https://en.wikipedia.org/wiki/SRGB
+  // Extended transfer function:
+  // for negative values,  linear portion is extended on reflection of axis,
+  // then reflected power function is used.
+  return RGB.map(function (val) {
+    let sign = val < 0? -1 : 1;
+    let abs = Math.abs(val);
 
-		if (abs < 0.04045) {
-			return val / 12.92;
-		}
+    if (abs < 0.04045) {
+      return val / 12.92;
+    }
 
-		return sign * (Math.pow((abs + 0.055) / 1.055, 2.4));
-	});</pre>
+    return sign * (Math.pow((abs + 0.055) / 1.055, 2.4));
+  });</pre>
 
 <p>Some people approximate this transfer function with a simple power law. The best fit (lowest error) is an overall gamma of 2.223.
 The relative luminance error is symmetric, and bounded to <strong>-0.517% to 0.5127%</strong>.</p>
 
 <p>Other people (and this applies to the APCA algorithm) simply copy the 2.4 exponent value from the full sRGB equation, without considering how the piecewise formula affects it, producing much larger errors. The relative luminance error is asymmetric, and bounded by <strong>-2.517% to 0%</strong>.</p>
 
-<p>Both approximations under-estimate the relative luminance for dark colors. The 2.4 approximation greatly under estimates it for <em>all</em> colors, being worst in the mid range.</p>
+<p>Both approximations under-estimate the relative luminance for dark colors. The 2.4 approximation greatly under estimates it for <em>all</em> colors, being worst in the mid range. Here is a graph of the error, over the in-gamut range:</p>
 
 <output id=""></output>
 
