@@ -1,0 +1,204 @@
+/**
+ * Styles for the sample talk, you don’t need to copy this to use Inspire.js
+ * If you just want the theme of the sample talk, use theme.css
+ */
+
+
+#intro h1,
+#intro h2 {
+	margin: 0;
+	filter: drop-shadow(.1rem .1rem .5rem rgba(0,0,0,.5));
+}
+
+#intro h1 {
+	margin-top: auto;
+	color: var(--color-aqua);
+	letter-spacing: -.04em;
+	font-size: calc(400% + 15vh);
+}
+
+@supports (-webkit-background-clip: text) {
+	#intro h1 {
+		background: linear-gradient(to bottom right, var(--color1), var(--color2), var(--color3), var(--color2), var(--color1));
+		-webkit-background-clip: text;
+		color: transparent;
+	}
+}
+
+#intro h2 {
+	width: 12em;
+	font-size: calc(100% + 5vh);
+	color: white;
+	font-weight: 300;
+}
+
+	#intro h2::first-line {
+		font-size: 80%;
+	}
+
+#intro .attribution {
+	margin-top: auto;
+	font-weight: bold;
+	font-size: 80%;
+	color: var(--color-yellow);
+	text-align: center;
+}
+
+
+#media-plugin {
+	flex-flow: row;
+	padding: 2rem;
+}
+
+	#media-plugin > div:first-child {
+		margin-right: 1em;
+	}
+
+	#media-plugin h1 {
+		font-size: 200%;
+	}
+
+	#media-plugin .annotation {
+		font-weight: 300;
+	}
+
+.swatch {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	vertical-align: calc(-.1em - 3px);
+	padding: .6em;
+	background-color: var(--color);
+	border: 3px solid white;
+	border-radius: 3px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.15);
+}
+
+.swatch.oog {
+	border: 3px solid #f06;
+	box-shadow: 0px 0px 18px #f06;;
+}
+
+.definition dd>q {
+	font-style: italic;
+}
+
+.definition dl dt {
+	font-size: 250%;
+	line-height: 2;
+	font-family: var(--heading-font);
+	font-weight: bold;
+	color: var(--color-aqua);
+
+}
+
+/* topics */
+
+#topics {
+    padding: 0;
+    font: bold 300% var(--heading-font);
+}
+
+#topics h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#topics ul {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#topics li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    background: center / cover no-repeat;
+    color: black;
+}
+
+#topics li:nth-of-type(2),
+#topics li:nth-of-type(4),
+#topics li:nth-of-type(5) {
+    color: white;
+}
+
+
+/* specific examples */
+
+#colmix-app span[property=color1] {--color: var(--color1); }{
+
+}
+
+#colmix-app span[property=color2] {--color: var(--color2); }{
+
+}
+
+#colmix-app [property="color_mix"],[property="color_mix_srgb"] { --color: var(--color-mix); }{
+
+}
+
+#colmix-app :is([property=color1],
+#colmix-app span[property=color2],
+#colmix-app [property="color_mix"],
+#colmix-app [property="color_mix_srgb"])::before {
+	content: "";
+	background: var(--color);
+	width: 1.2em;
+	height: 1.2em;
+	vertical-align: -.15em;
+	margin-right: .3em;
+	display: inline-block;
+	border-radius: .15em;
+	box-shadow: 0 0 0 2px white inset, 0 0 0 1px hsl(0 0% 50%);
+}
+
+/* gradient examples */
+
+#rg div.gradient,
+#wb div.gradient {
+    width: 800px;
+    height: 240px;
+    margin: 0;
+	color: white;
+}
+
+#rg div.gradient span {
+	margin: 3em;
+}
+
+/* red-green gradient example */
+
+
+#rg #srgb {
+    background: linear-gradient(to right, rgb(100% 0% 6.67%), rgb(98.33% 0.89% 6.67%), rgb(96.67% 1.78% 6.67%), rgb(95% 2.67% 6.67%), rgb(93.33% 3.56% 6.67%), rgb(91.67% 4.44% 6.67%), rgb(90% 5.33% 6.67%), rgb(88.33% 6.22% 6.67%), rgb(86.67% 7.11% 6.67%), rgb(85% 8% 6.67%), rgb(83.33% 8.89% 6.67%), rgb(81.67% 9.78% 6.67%), rgb(80% 10.67% 6.67%), rgb(78.33% 11.56% 6.67%), rgb(76.67% 12.44% 6.67%), rgb(75% 13.33% 6.67%), rgb(73.33% 14.22% 6.67%), rgb(71.67% 15.11% 6.67%), rgb(70% 16% 6.67%), rgb(68.33% 16.89% 6.67%), rgb(66.67% 17.78% 6.67%), rgb(65% 18.67% 6.67%), rgb(63.33% 19.56% 6.67%), rgb(61.67% 20.44% 6.67%), rgb(60% 21.33% 6.67%), rgb(58.33% 22.22% 6.67%), rgb(56.67% 23.11% 6.67%), rgb(55% 24% 6.67%), rgb(53.33% 24.89% 6.67%), rgb(51.67% 25.78% 6.67%), rgb(50% 26.67% 6.67%), rgb(48.33% 27.56% 6.67%), rgb(46.67% 28.44% 6.67%), rgb(45% 29.33% 6.67%), rgb(43.33% 30.22% 6.67%), rgb(41.67% 31.11% 6.67%), rgb(40% 32% 6.67%), rgb(38.33% 32.89% 6.67%), rgb(36.67% 33.78% 6.67%), rgb(35% 34.67% 6.67%), rgb(33.33% 35.56% 6.67%), rgb(31.67% 36.44% 6.67%), rgb(30% 37.33% 6.67%), rgb(28.33% 38.22% 6.67%), rgb(26.67% 39.11% 6.67%), rgb(25% 40% 6.67%), rgb(23.33% 40.89% 6.67%), rgb(21.67% 41.78% 6.67%), rgb(20% 42.67% 6.67%), rgb(18.33% 43.56% 6.67%), rgb(16.67% 44.44% 6.67%), rgb(15% 45.33% 6.67%), rgb(13.33% 46.22% 6.67%), rgb(11.67% 47.11% 6.67%), rgb(10% 48% 6.67%), rgb(8.33% 48.89% 6.67%), rgb(6.67% 49.78% 6.67%), rgb(5% 50.67% 6.67%), rgb(3.33% 51.56% 6.67%), rgb(1.67% 52.44% 6.67%), rgb(0% 53.33% 6.67%));
+}
+#rg #oklab {
+    background: linear-gradient(to right, rgb(100% 0% 6.67%), rgb(95.76% 17% 6.69%), rgb(91.47% 24.2% 6.71%), rgb(87.12% 29.28% 6.72%), rgb(82.69% 33.26% 6.73%), rgb(78.17% 36.56% 6.74%), rgb(73.53% 39.36% 6.75%), rgb(68.75% 41.78% 6.75%), rgb(63.79% 43.89% 6.75%), rgb(58.6% 45.76% 6.75%), rgb(53.09% 47.41% 6.74%), rgb(47.14% 48.89% 6.73%), rgb(40.53% 50.2% 6.72%), rgb(32.82% 51.37% 6.7%), rgb(22.79% 52.41% 6.69%), rgb(0% 53.33% 6.67%));
+}
+#rg #cielab {
+    background: linear-gradient(to right, rgb(100% 0% 6.67%), rgb(95.43% 17.85% 5.84%), rgb(90.82% 25.26% 5.08%), rgb(86.17% 30.43% 4.39%), rgb(81.47% 34.46% 3.8%), rgb(76.7% 37.74% 3.37%), rgb(71.85% 40.5% 3.1%), rgb(66.88% 42.86% 2.98%), rgb(61.77% 44.89% 3.02%), rgb(56.47% 46.66% 3.21%), rgb(50.9% 48.19% 3.55%), rgb(44.95% 49.53% 4.02%), rgb(38.41% 50.7% 4.6%), rgb(30.88% 51.71% 5.25%), rgb(21.22% 52.58% 5.94%), rgb(0% 53.33% 6.67%))
+}
+
+/* white blue gradient example  */
+#wb #srgb {
+    background: linear-gradient(to right, rgb(100% 100% 100%), rgb(95.24% 95.56% 99.68%), rgb(90.48% 91.11% 99.37%), rgb(85.71% 86.67% 99.05%), rgb(80.95% 82.22% 98.73%), rgb(76.19% 77.78% 98.41%), rgb(71.43% 73.33% 98.1%), rgb(66.67% 68.89% 97.78%), rgb(61.9% 64.44% 97.46%), rgb(57.14% 60% 97.14%), rgb(52.38% 55.56% 96.83%), rgb(47.62% 51.11% 96.51%), rgb(42.86% 46.67% 96.19%), rgb(38.1% 42.22% 95.87%), rgb(33.33% 37.78% 95.56%), rgb(28.57% 33.33% 95.24%), rgb(23.81% 28.89% 94.92%), rgb(19.05% 24.44% 94.6%), rgb(14.29% 20% 94.29%), rgb(9.52% 15.56% 93.97%), rgb(4.76% 11.11% 93.65%), rgb(0% 6.67% 93.33%));
+}
+#wb #oklab {
+    background: linear-gradient(to right, rgb(100% 100% 100%), rgb(94.66% 96.59% 100%), rgb(89.36% 93.16% 100%), rgb(84.09% 89.72% 100%), rgb(78.86% 86.27% 100%), rgb(73.67% 82.79% 100%), rgb(68.52% 79.28% 100%), rgb(63.41% 75.75% 100%), rgb(58.33% 72.17% 100%), rgb(53.29% 68.56% 100%), rgb(48.28% 64.9% 100%), rgb(43.3% 61.17% 99.88%), rgb(38.36% 57.36% 99.47%), rgb(33.44% 53.47% 98.99%), rgb(28.54% 49.45% 98.46%), rgb(23.64% 45.27% 97.88%), rgb(18.74% 40.9% 97.24%), rgb(13.8% 36.23% 96.55%), rgb(8.75% 31.14% 95.82%), rgb(3.46% 25.37% 95.04%), rgb(0.08% 18.25% 94.21%), rgb(0% 6.67% 93.33%));
+}
+#wb #cielab {
+    background: linear-gradient(to right, rgb(100% 100% 100%), rgb(98.56% 97.74% 99.99%), rgb(97.11% 95.5% 99.96%), rgb(95.65% 93.25% 99.93%), rgb(94.18% 91.02% 99.89%), rgb(92.7% 88.79% 99.84%), rgb(91.2% 86.57% 99.78%), rgb(89.7% 84.36% 99.72%), rgb(88.18% 82.15% 99.64%), rgb(86.64% 79.95% 99.56%), rgb(85.1% 77.76% 99.47%), rgb(83.54% 75.58% 99.38%), rgb(81.96% 73.4% 99.27%), rgb(80.37% 71.23% 99.16%), rgb(78.76% 69.07% 99.04%), rgb(77.13% 66.91% 98.92%), rgb(75.48% 64.76% 98.79%), rgb(73.81% 62.61% 98.65%), rgb(72.12% 60.47% 98.5%), rgb(70.41% 58.34% 98.35%), rgb(68.67% 56.21% 98.19%), rgb(66.91% 54.09% 98.03%), rgb(65.11% 51.98% 97.86%), rgb(63.29% 49.86% 97.68%), rgb(61.42% 47.76% 97.5%), rgb(59.53% 45.65% 97.31%), rgb(57.58% 43.55% 97.11%), rgb(55.6% 41.45% 96.91%), rgb(53.56% 39.35% 96.71%), rgb(51.46% 37.24% 96.5%), rgb(49.3% 35.14% 96.28%), rgb(47.06% 33.03% 96.06%), rgb(44.74% 30.9% 95.84%), rgb(42.31% 28.77% 95.6%), rgb(39.77% 26.62% 95.37%), rgb(37.07% 24.45% 95.13%), rgb(34.19% 22.24% 94.89%), rgb(31.07% 19.99% 94.64%), rgb(27.62% 17.67% 94.38%), rgb(23.7% 15.25% 94.13%), rgb(19.01% 12.7% 93.87%), rgb(12.74% 9.91% 93.6%), rgb(0% 6.67% 93.33%));

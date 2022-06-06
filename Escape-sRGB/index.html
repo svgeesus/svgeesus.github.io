@@ -19,6 +19,26 @@
 		Chris Lilley, W3C
 	</h2>
 </header>
+
+<section id="me">
+	<article class="slide activity" id="hi">
+		<img id="mypic" src="img/chris-av.jpg" alt="me">
+		<p>Hello! <br /><span class="de-emphasize">I’m Chris or @svgeesus</span></p>
+	</article>
+
+	<article class="slide activity" id="w3c">
+		<img src="img/w3c-logo.svg" />
+            <p><a href="http://www.w3.org/People/#clilley">Technical Director at W3C <br /><span class="de-emphasize">Strategy lead, Core Web Technologies</span></a></p>
+	</article>
+
+	<section class="slide" id="topics">
+        <h1>Topics for today</h1>
+        <ul class="delayed-children">
+            <!-- filled via js -->
+        </ul>
+    </section>
+</section>
+
 <section>
 	<header class="image slide" style="background: url(img/colorwhirl.jpg) left / cover;" id="whatis">
 		<h1>What is Color</h1>
@@ -42,14 +62,13 @@
 	<article class="slide" title="">
 		<h1>Lots of color formats</h1>
 
-		<ul>
-			<li> <span class="swatch" style="--color: rgb(49.02% 13.73% 16.08%)"></span> #7D2329</li>
-			<li> <span class="swatch" style="--color: rgb(77.61% 36.34% 2.45%)"></span> rgb(77.61% 36.34% 2.45%)</li>
-			<li> <span class="swatch" style="--color: rgb(61.65% 57.51% 9.28%)"></span> hsl(55.257 73.833% 35.465%)</li>
-			<li> <span class="swatch" style="--color: rgb(40.73% 65.12% 22.35%)"></span> hwb(94.22 22.35% 34.88%)</li>
-			<li> <span class="swatch" style="--color: #66AAEE"></span> #6AE</li>
-			<li> <span class="swatch" style="--color: rgb(128, 0, 128)"></span> rgb(128, 0, 128)</li>
-		</ul>
+		<p> <span class="swatch" style="--color: rgb(49.02% 13.73% 16.08%)"></span> #7D2329</p>
+		<p> <span class="swatch" style="--color: rgb(77.61% 36.34% 2.45%)"></span> rgb(77.61% 36.34% 2.45%)</p>
+		<p> <span class="swatch" style="--color: rgb(61.65% 57.51% 9.28%)"></span> hsl(55.257 73.833% 35.465%)</p>
+		<p> <span class="swatch" style="--color: rgb(40.73% 65.12% 22.35%)"></span> hwb(94.22 22.35% 34.88%)</p>
+		<p> <span class="swatch" style="--color: #66AAEE"></span> #6AE</p>
+		<p> <span class="swatch" style="--color: rgb(128, 0, 128)"></span> rgb(128, 0, 128)</p>
+
 	</article>
 
 	<article class="slide image" style="background-image: url(img/UCS-all-sRGB.svg); background-repeat: no-repeat; background-position: center;" id="all-srgb"></article>
@@ -117,7 +136,6 @@
 					<p><span class="swatch" style="--color: rgba(20.4%, 56.8%, 75.7%, 60%)"></span> <code class="language-css"> color(display-p3 0.31 0.56 0.74 / 0.6);</code></p>
 					<p>Minimum 10 bit precision per component</p>
 				</div>
-
 		</article>
 
 		<article class="slide image" style="background-image: url(img/UCS-p3-in-sRGB.svg); background-repeat: no-repeat; background-position: center;" id="ucs-p3-ingamut-srgb"></article>
@@ -130,7 +148,8 @@
 					<p><span class="swatch oog" style="--color: rgb(0% 99.8% 0%)"></span> <code class="language-css"> color(display-p3 0 1 0);</code></p>
 					<p>Inside display-p3 gamut, outside sRGB</p>
 					<p>Will use <em>gamut mapping</em> if not displayable</p>
-					<p><span class="swatch oog" style="--color: white"></span> <code class="language-css"> color(display-p3 -0.1 1.2 0);</code></p>
+					<p><span class="swatch oog" style="--color: rgb(29.7% 21.1% 100%)"></span> <code class="language-css"> color(display-p3 -0.34 -0.08 1.387)</code></p>
+					<p><span class="swatch oog" style="--color: rgb(100% 48.9% 0%)"></span> <code class="language-css"> color(display-p3 -0.1 1.2 0);</code></p>
 					<p>Yes you can do that</p>
 				</div>
 
@@ -138,7 +157,42 @@
 
 		<article class="slide image" style="background-image: url(img/UCS-oog-display-p3.svg); background-repeat: no-repeat; background-position: center;" id="ucs-p3-oog-srgb"></article>
 
-		<!-- explain gamut mappng here?  -->
+		<article class="slide">
+			<h1>We will talk about gamut mapping</h1>
+			<h2 class="delayed"><em>later</em></h2>
+		</article>
+
+		<article class="slide delayed" id="other-predefined">
+			<h1>Predefined color spaces in CSS Color 4</h1>
+
+				<div class="delayed-children">
+					<p><span class="swatch" style="--color: rgb(20.4% 56.8% 75.7%)"></span> <code class="language-css"> color(display-p3 0.31 0.56 0.74);</code></p>
+					<p><span class="swatch" style="--color: rgb(20.4% 56.8% 75.7%)"></span> <code class="language-css"> color(prophoto-rgb 0.393 0.478 0.677);</code></p>
+					<p><span class="swatch" style="--color: rgb(20.4% 56.8% 75.7%)"></span> <code class="language-css"> color(rec2020 0.351 0.508 0.708);</code></p>
+					<p><span class="swatch" style="--color: rgb(20.4% 56.8% 75.7%)"></span> <code class="language-css"> oklch(0.623 0.112 235.8);</code></p>
+					<p><span class="swatch" style="--color: rgb(20.4% 56.8% 75.7%)"></span> <code class="language-css"> /*CIE*/ lch(56.29% 37.11 245.1);</code></p>
+
+				</div>
+		</article>
+
+		<article class="slide" id="gamutMQ">
+			<h1>Defensive CSS</h1>
+
+			<!-- we should honestly have called the mq wide and ultrawide -->
+
+			<pre><code class="language-css" >
+			@media (color-gamut: p3) {
+				// is this a wide-gamut screen?
+				color: color(display-p3 0.31 0.56 0.74);
+			}
+			@supports (background: color(display-p3 1 1 1)) {
+				// is the syntax supported?
+				color: color(display-p3 0.31 0.56 0.74);
+			}
+			</code></pre>
+		</article>
+
+		<!-- explain gamut mapping here?  -->
 
 </section>
 
@@ -163,14 +217,39 @@
 		<p></p>
 	</article>
 
+	<article class="slide" id="gradient">
+		<h1>Gradients, mixing in sRGB</h1>
+
+		<p>gamma-encoded sRGB is a <em>poor</em> space for mixing</p>
+
+		<div id="rg" class="delayed-children">
+			<div class="gradient" id="cielab"><span>CIE Lab</span></div>
+			<div class="gradient" id="srgb"><span>sRGB</span></div>
+			<div class="gradient" id="oklab"><span>OKLab</span></div>
+		</div>
+	</article>
+
+	<article class="slide" id="gradient2">
+		<h1>Gradients, mixing in sRGB</h1>
+
+		<p>CIE Lab has poor hue linearity for blues</p>
+
+		<div id="wb"  class="delayed-children">
+			<div class="gradient" id="cielab"><span>CIE Lab</span></div>
+			<div class="gradient" id="srgb"><span>sRGB</span></div>
+			<div class="gradient" id="oklab"><span>OKLab</span></div>
+		</div>
+	</article>
+
 	<article class="slide">
 		<h1>How color-mix() works</h1>
 
-		<ol>
-			<li>Colors converted to mixing color space, without gamut mapping</li>
+		<ol class="delayed-children">
+			<li>Colors to mix can be in any color space</li>
+			<li>Colors converted to mixing color space, <em>without</em> gamut mapping</li>
 			<li>Mixed by specified percentage</li>
 			<li>Result is in the mixing color space</li>
-			<li>Result may be out of gamut for display (especially polar color spaces)</li>
+			<li>Result may be out of gamut for display (especially with polar color spaces)</li>
 		</ol>
 	</article>
 
@@ -209,7 +288,11 @@
 		<h1>Escaping:<br>modifying colors</h1>
 	</header>
 
-	<article class="slide" title="">
+	<article class="slide" title="RCS-intro">
+		<h1>Relative Color Syntax</h1>
+
+		<p class="language-css"><span class="swatch" style="--color: teal"></span> <code>--mycolor:  teal;</code><br>
+			<span class="swatch" style="--color: rgb(53.755% 41.245% 23.517%)"></span> <code>background: oklch(from var(--mycolor) l calc(0.8 * c) calc(h -120));</code></p>
 
 	</article>
 
@@ -251,6 +334,6 @@
 <script src="https://inspirejs.org/inspire.mjs" type="module"></script>
 
 <script  type="module">import "https://colorjs.io/color.js";</script>
-<script  type="module">import "talk.js";</script>
+<script  type="module" src="talk.js"></script>
 </body>
 </html>
