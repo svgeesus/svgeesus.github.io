@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.1 -0.7 0.8 0.8" overflow="visible">
 <desc>Show u*,v* UCS diagram
 with the gamuts of sRGB (or 709, same).
-and the swatches from a p3 sample
+and the swatches from the all sRGB examples
 </desc>
 
 <rect x="-0.1" y="-100%" width="100%" height="100%" fill="rgb(17% 21% 23%)"/>
@@ -101,7 +101,7 @@ and the swatches from a p3 sample
   L 0.623393  -0.506491
   Z"/>
 
-  <!-- sRGB  -->
+<!-- sRGB  -->
   <polygon fill="none" stroke="#555" stroke-dasharray="0.004 0.003" stroke-width="0.004" points="0.45070, -0.522887 0.125, -0.5625 0.17544, -0.15789"/>
   <circle r="0.006" cx="0.45070" cy="-0.522887" fill="red" fill-opacity="0.4"/>
   <circle r="0.006" cx="0.12500" cy="-0.56250" fill="green"  fill-opacity="0.4"/>
@@ -120,7 +120,14 @@ and the swatches from a p3 sample
   <circle r="0.006" cx="0.12130" cy="-0.45365" fill="cyan" />
   <circle r="0.006" cx="0.32452" cy="-0.32869" fill="magenta" />
 
-  <circle r="0.01" cx="0.1523" cy="-0.4015" fill="rgb(20.4% 56.8% 75.7%)" stroke="#777" stroke-width="0.002"/>
+<g opacity="0.6">
+  <circle r="0.01" cx="0.3658" cy="-0.49805" fill="#7D2329" stroke="#777" stroke-width="0.002"/>
+  <circle r="0.01" cx="0.3279" cy="-0.53688" fill="rgb(77.61% 36.34% 2.45%)" stroke="#777" stroke-width="0.002"/>
+  <circle r="0.01" cx="0.2131" cy="-0.5486" fill="rgb(61.65% 57.51% 9.28%)" stroke="#777" stroke-width="0.002"/>
+  <circle r="0.01" cx="0.1593" cy="-0.5450" fill="rgb(40.73% 65.12% 22.35%)" stroke="#777" stroke-width="0.002"/>
 
+  <circle r="0.01" cx="0.1640" cy="-0.3948" fill="#66AAEE" stroke="#777" stroke-width="0.002"/>
+  <circle r="0.01" cx="0.3050" cy="-0.3297" fill="rgb(128, 0, 128)" stroke="#777" stroke-width="0.002"/>
+</g>
 
   </svg>

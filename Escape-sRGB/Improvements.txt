@@ -1,0 +1,7 @@
+Improvements
+
+add a named color to the 'all srgb' slide
+
+introduce chromaticity diagrams, animated? tongue with spectral colors, purple line, mixes on straight lines (additivity). Somewhat perceptually uniform but not very good. BONUS: its in 2D
+
+expand opponent colors, add lightness, develop polar model (OKLab/OKLCH)

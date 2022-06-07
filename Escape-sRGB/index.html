@@ -33,7 +33,7 @@
 
 	<section class="slide" id="topics">
         <h1>Topics for today</h1>
-        <ul class="delayed-children">
+        <ul class="delayed-children nofade">
             <!-- filled via js -->
         </ul>
     </section>
@@ -44,12 +44,32 @@
 		<h1>What is Color</h1>
 	</header>
 
-	<article class="slide" title="">
-		<h1>Getting started</h1>
+	<article class="slide dark black" id="opponent">
+		<h1>Opponent colors</h1>
+		<div class="figure">
+			<img class="split-image" src="img/lab-40-50-0.svg" style="height:80vh" />
+		</div>
+	</article>
 
-		<ul class="delayed-children">
-			<li>Copy this blank.html somewhere</li>
-		</ul>
+	<article class="slide white" id="opponent2">
+		<h1>Opponent colors</h1>
+		<div class="figure">
+			<img class="split-image" src="img/dot.svg" style="height:80vh" />
+		</div>
+	</article>
+
+	<article class="slide dark black" id="opponent3">
+		<h1>Opponent colors</h1>
+		<div class="figure">
+			<img class="split-image" src="img/lab-40-0--48.svg" style="height:80vh" />
+		</div>
+	</article>
+
+	<article class="slide white" id="opponent4">
+		<h1>Opponent colors</h1>
+		<div class="figure">
+			<img class="split-image" src="img/dot.svg" style="height:80vh" />
+		</div>
 	</article>
 
 </section>
@@ -59,7 +79,28 @@
 		<h1>the Prison</h1>
 	</header>
 
-	<!-- add where sRGB came from -->
+	<section class="slide dark definition" id="bt709">
+		<dl>
+			<dt>ITU Rec BT.709 (1993)</dt>
+			<dd>Parameter values for the HDTV standards </dd>
+			<dd>Standard, narrow gamut</dd>
+			<dd>OETF, and non-matching EOTF (gamma 2.4)</dd>
+			<dd>D65 white, dim surround</dd>
+		</dl>
+	</section>
+
+	<article class="slide dark definition" id="srgb">
+		<dl>
+			<dt>sRGB (1996)</dt>
+			<dd>Same chromaticities, D65 white as BT.709</dd>
+			<dd>“Inverse OETF” with linear segment</dd>
+			<dd>Display referred</dd>
+			<dd>Overall system gamma 1.0 (normal surround)</dd>
+			<dd>Assumes 5% viewing flare</dd>
+		</dl>
+	</article>
+
+	<article class="slide image" style="background-image: url(img/UCS-sRGB-709.svg); background-repeat: no-repeat; background-position: center;" id="srgb-gamut"></article>
 
 	<article class="slide" title="">
 		<h1>Lots of color formats</h1>
@@ -75,20 +116,14 @@
 
 	<article class="slide image" style="background-image: url(img/UCS-all-sRGB.svg); background-repeat: no-repeat; background-position: center;" id="all-srgb"></article>
 
-</section>
 
-<section>
-	<header class="image slide" style="background: url(img/swatches.jpg)  left / cover;" id="specifying">
-		<h1>Escaping:<br>specifying color</h1>
-	</header>
-
-	<article class="image slide" style="background: url(img/broadcast-1920.jpg) left / cover;" id="broadcast">
+	<article class="image slide" style="background: url(img/cinema.jpg) left / cover;" id="broadcast">
 		<!-- <h1>Broadcast</h1> -->
 	</article>
 
 	<article class="slide definition" id="dcip3">
 		<dl>
-			<dt>DCI P3 - SMPTE EG 432</dt>
+			<dt>DCI P3 - SMPTE EG 432 (2005)</dt>
 			<dd>Digital Cinema Initiative</dd>
 			<dd>Projectors for digital cinema</dd>
 			<dd>Defines chromaticities, <strong>weird</strong> white</dd>
@@ -127,10 +162,31 @@
 			</dl>
 		</article>
 
-		<article class="slide image" style="background-image: url(img/UCS-display-p3.svg); background-repeat: no-repeat; background-position: center;" id="ucs-dp3"></article>
+		<article class="slide dark image" style="background-image: url(img/UCS-display-p3.svg); background-repeat: no-repeat; background-position: center;" id="display-p3-gamut"></article>
+
+		<article class="slide image" style="background-image: url(img/colorwhirl.jpg); background-repeat: no-repeat; background-position: center;" id="colorful"></article>
+
+
+		<article class="slide dark image" style="background-image: url(img/UCS-not-p3.svg); background-repeat: no-repeat; background-position: center;" id="not-p3"></article>
+
+		<article class="slide image" style="background-image: url(img/colorwhirl-desat.jpg); background-repeat: no-repeat; background-position: center;" id="lesscolorful"></article>
+
+		<article class="slide image" style="background: url(img/prison.jpg) left / cover;" id="welcome">
+		<h2>Welcome to Web development</h2>
+		</article>
+
+	</section>
+
+	<section>
+		<header class="image slide" style="background: url(img/swatches.jpg)  left / cover;" id="specifying">
+			<h1>Escaping:<br>specifying color</h1>
+		</header>
+
 
 		<article class="slide delayed" id="p3-csscolor4">
 			<h1>Using display-p3 in CSS Color 4</h1>
+
+			<h2>New: <code class="language-css">color()</code> function</h2>
 
 				<div class="delayed-children">
 
@@ -212,10 +268,10 @@
 
 	<article class="slide">
 		<h1><a href="https://codepen.io/svgeesus/pen/QWQrQqr">Worked example</a>, color-mix()</h1>
-		<p><span class="swatch" style="--color: teal"></span>  teal in oklab is color(oklab 0.5431 -0.09 -0.024)</p>
-		<p><span class="swatch" style="--color: olive"></span>  olive in oklab is color(oklab 0.5807 -0.043 0.1191)</p>
-		<p>mix = <span class="swatch" style="--color: rgb(27.85% 50.81% 39.12%)"></span>  color(oklab 0.5563 -0.073 0.0263)</p>
-		<p>= <span class="swatch" style="--color: rgb(27.85% 50.81% 39.12%)"></span>  rgb(27.85% 50.81% 39.12%)</p>
+		<p><span class="swatch" style="--color: teal"></span>  teal in oklab is <code class="language-css" >color(oklab 0.5431 -0.09 -0.024)</code></p>
+		<p><span class="swatch" style="--color: olive"></span>  olive in oklab is <code class="language-css" >color(oklab 0.5807 -0.043 0.1191)</code></p>
+		<p>mix = <span class="swatch" style="--color: rgb(27.85% 50.81% 39.12%)"></span>  <code class="language-css" >color(oklab 0.5563 -0.073 0.0263)</code></p>
+		<p>= <span class="swatch" style="--color: rgb(27.85% 50.81% 39.12%)"></span>  <code class="language-css" >rgb(27.85% 50.81% 39.12%)</code></p>
 		<p></p>
 	</article>
 
@@ -223,7 +279,7 @@
 		<h1>How color-mix() works</h1>
 
 		<ol class="delayed-children">
-			<li>Colors to mix can be in any color space</li>
+			<li>Colors to mix can be in <em>any color space</em></li>
 			<li>Colors converted to mixing color space, <em>without</em> gamut mapping</li>
 			<li>Mixed by specified percentage</li>
 			<li>Result is in the mixing color space</li>
@@ -260,7 +316,7 @@
 	</article>
 
 	<article class="slide" id="gradient">
-		<h1>Gradients, mixing in sRGB</h1>
+		<h1>Gradients, mixing in different color spaces</h1>
 
 		<p>gamma-encoded sRGB is a <em>poor</em> space for mixing</p>
 
@@ -272,7 +328,7 @@
 	</article>
 
 	<article class="slide" id="gradient2">
-		<h1>Gradients, mixing in sRGB</h1>
+		<h1>Gradients, mixing in different color spaces</h1>
 
 		<p>CIE Lab has poor hue linearity for blues</p>
 
@@ -283,6 +339,20 @@
 		</div>
 	</article>
 
+	<article class="slide" id="gradient3">
+		<h1>Specifying interpolation color space</h1>
+
+		<h2>New: <code class="language-css" >color-interpolation method</code></h2>
+
+		<div class="delayed-children">
+		<p><code class="language-css" >linear-gradient(to right, #F01, #081)</code></p>
+		<p><code class="language-css" >linear-gradient(in oklab to right, #F01, #081)</code></p>
+		<p>Polar color spaces can also specify the shorter or longer direction</p>
+		<p><code class="language-css" >linear-gradient(in oklch longer to right, #F01, #081)</code></p>
+		</div>
+
+	</article>
+
 </section>
 
 <section>
@@ -290,11 +360,12 @@
 		<h1>Escaping:<br>modifying colors</h1>
 	</header>
 
-	<article class="slide" title="RCS-intro">
+	<article class="slide" id="RCS-intro">
 		<h1>Relative Color Syntax</h1>
 
 		<p class="language-css"><span class="swatch" style="--color: teal"></span> <code>--mycolor:  teal;</code><br>
 			<span class="swatch" style="--color: rgb(53.755% 41.245% 23.517%)"></span> <code>background: oklch(from var(--mycolor) l calc(0.8 * c) calc(h -120));</code></p>
+		<p>Beware, in RGB spaces, values are gamma-encoded</p>
 
 	</article>
 
@@ -305,8 +376,50 @@
 		<h1>Contrasting colors</h1>
 	</header>
 
-	<article class="slide" title="">
+	<article class="slide dark" id="css5color-contrast">
+		<h1><a href="https://drafts.csswg.org/css-color-5/#colorcontrast">Most contrasting color</a> in CSS Color 5</h1>
+		<div class="delayed-children">
+		<p>Base color, list of alternates</p>
+		<pre><code class="language-css">--myAccent: #b22222;
+color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
+		<p>WCAG 2.1 Contrast = (Y<sub>light</sub> + 0.05) / (Y<sub>dark</sub> + 0.05)</p>
+		<pre><code class="language-css">color-contrast(wheat vs tan, #d2691e, oklch(0.3 0.2 64.2) to AA);</code></pre>
+	</div>
+	</article>
 
+	<article class="slide dark" id="css5color-contrast-example">
+		<table id="contrast-table">
+			<tr>
+				<th>&nbsp;Color&nbsp;</th>
+				<th>&nbsp;Luminance&nbsp;</th>
+				<th style="background: #f5deb3; color: #444">&nbsp;Contrast&nbsp;</th>
+			</tr>
+			<tr>
+				<td style="background: #f5deb3"> &nbsp; &nbsp; </td>
+				<td>0.749</td>
+				<td><b></b></td>
+			</tr>
+			<tr>
+				<td style="background: #d2b48c"> &nbsp; &nbsp; </td>
+				<td>0.482</td>
+				<td><b>1.501</b></td>
+			</tr>
+			<tr>
+				<td style="background: #a0522d"> &nbsp; &nbsp; </td>
+				<td>0.137</td>
+				<td><b>4.273</b></td>
+			</tr>
+			<tr>
+				<td style="background:#b22222"> &nbsp; &nbsp; </td>
+				<td>0.107</td>
+				<td style="color:#3F5;"><b>5.081</b></td>
+			</tr>
+			<tr>
+				<td style="background: #d2691e"> &nbsp; &nbsp; </td>
+				<td>0.305</td>
+				<td><b>2.249</b></td>
+			</tr>
+		</table>
 	</article>
 
 </section>
@@ -327,8 +440,76 @@
 		<h1>High Dynamic Range</h1>
 	</header>
 
-	<article class="slide" title="">
+	<article class="slide" title="UWG">
+		<h1>High Dynamic Range</h1>
+		<h2>and ultra-wide gamut</h2>
 
+	</article>
+
+	<article class="slide dark definition" id="bt2020">
+		<dl>
+			<dt>ITU Rec BT.2020 (2012)</dt>
+			<dd>Ultrawide gamut</dd>
+			<dd>Monochromatic primaries (630, 532, 467nm)</dd>
+			<dd>10 or 12 bits per component</dd>
+			<dd>OETF, and non-matching EOTF (gamma 2.4)</dd>
+			<dd>D65 white, dim surround</dd>
+			<dd>Display-referred</dd>
+			<dd>UltraHD (4k, 8k) broadcast, streaming</dd>
+		</dl>
+	</article>
+
+	<article class="slide dark image" style="background-image: url(img/UCS-rec2020.svg); background-repeat: no-repeat; background-position: center;" id="ucs-2020"></article>
+
+	<article class="slide dark definition" id="use-2020">
+		<dl>
+			<dt>BT.2020 in practice</dt>
+			<dd>Content mostly mastered in DCI-P3</dd>
+			<dd>HDMI 2.0 supports BT.2020, 12bit</dd>
+			<dd>Content thus delivered in BT.2020 container</dd>
+			<dd>For HDR, metadata declares the mastering gamut volume</dd>
+		</dl>
+	</article>
+
+	<article id="need" class="slide dark">
+		<h1>Need for HDR</h1>
+		<p>Consumer WCG, HDR films, series, news, sports (BT.2100 PQ, HLG)</p>
+		<p>Consumer HDR gaming consoles</p>
+		<p>Consumer WCG, HDR-ready TVs commonplace</p>
+		<p>Consumer WCG (P3) laptops, tablets, phones; HDR coming </p>
+		<p>WCG, HDR still images coming (AVIF)</p>
+	</article>
+
+	<article class="slide dark definition" id="bt2100">
+		<dl>
+			<dt>ITU Rec BT.2100 (2016)</dt>
+			<dd>BT.2020 gamut</dd>
+			<dd>10 or 12 bits per component</dd>
+			<dd>D65 white, dim surround</dd>
+			<dd>PQ or HLG</dd>
+		</dl>
+	</article>
+
+	<article class="slide dark definition" id="HLG">
+		<dl>
+			<dt>Hybrid Log Gamma</dt>
+			<dd>Scene-referred, relative luminance</dd>
+			<dd>Diffuse white at 0.75</dd>
+			<dd>2.5 stops highlights</dd>
+			<dd>Range of viewing environments (dim to bright)</dd>
+			<dd><q><i>Brighter displays for brighter environments</i></q></dd>
+		</dl>
+	</article>
+
+	<article class="slide dark definition" id="PQ">
+		<dl>
+			<dt>Perceptual Quantizer</dt>
+			<dd>Reference display referred, absolute luminance</dd>
+			<dd>Diffuse white varies (0.54, 0.58, 0.66)?</dd>
+			<dd>5.5 stops highlights</dd>
+			<dd>Dim viewing environment</dd>
+			<dd><q><i>Brighter displays for more highlights</i></q></dd>
+		</dl>
 	</article>
 
 </section>

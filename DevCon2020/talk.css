@@ -295,12 +295,6 @@
     color: var(--orange);
 }
 
-/* non-faded delayed items*/
-
-.nofade > .delayed.displayed,
-.nofade.delayed-children > .displayed {
-    opacity: 1;
-}
 
 /* tooltip animation */
 

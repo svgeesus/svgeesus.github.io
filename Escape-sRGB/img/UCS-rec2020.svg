@@ -1,12 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.1 -0.7 0.8 0.8" overflow="visible">
 <desc>Show u*,v* UCS diagram
-with the gamuts of sRGB (or 709, same).
-and the swatches from a p3 sample
+with the gamuts of sRGB and ITU Rec BT.2020.
 </desc>
 
-<rect x="-0.1" y="-100%" width="100%" height="100%" fill="rgb(17% 21% 23%)"/>
 <!-- tongue -->
-<path fill="none" stroke="hsl(58, 13%, 76%)" stroke-width="0.003" d="M 0.256804  -0.016594
+<path fill="none" stroke="hsl(58, 13%, 56%)" stroke-width="0.003" d="M 0.256804  -0.016594
   L 0.256637  -0.016593
   L 0.256418  -0.016266
   L 0.256085  -0.016263
@@ -111,16 +109,13 @@ and the swatches from a p3 sample
   <circle r="0.006" cx="0.30504" cy="-0.32975" fill="magenta"  fill-opacity="0.4"/>
   <circle r="0.006" cx="0.19783" cy="-0.46832" fill="white" stroke="#777" stroke-width="0.002"/>
 
-<!-- display-p3 -->
-  <polygon fill="none" stroke="#CCC" stroke-dasharray="0.006 0.003" stroke-width="0.004" points="0.49635, -0.52554 0.09860, -0.57767 0.17544, -0.15789"/>
-  <circle r="0.006" cx="0.49635" cy="-0.52554" fill="red" />
-  <circle r="0.006" cx="0.09860" cy="-0.57767" fill="green" />
-  <circle r="0.006" cx="0.17544" cy="-0.15789" fill="blue" />
-  <circle r="0.006" cx="0.20471" cy="-0.56377" fill="yellow" />
-  <circle r="0.006" cx="0.12130" cy="-0.45365" fill="cyan" />
-  <circle r="0.006" cx="0.32452" cy="-0.32869" fill="magenta" />
-
-  <circle r="0.01" cx="0.1523" cy="-0.4015" fill="rgb(20.4% 56.8% 75.7%)" stroke="#777" stroke-width="0.002"/>
-
+<!-- rec2020 -->
+  <polygon fill="none" stroke="#CCC" stroke-dasharray="0.006 0.003" stroke-width="0.004" points="0.55660, -0.51651 0.05563, -0.58680 0.15927, -0.12584"/>
+  <circle r="0.006" cx="0.55660" cy="-0.51651" fill="red" />
+  <circle r="0.006" cx="0.05563" cy="-0.58680" fill="green" />
+  <circle r="0.006" cx="0.15927" cy="-0.12584" fill="blue" />
+  <circle r="0.006" cx="0.20875" cy="-0.56531" fill="yellow" />
+  <circle r="0.006" cx="0.08565" cy="-0.45325" fill="cyan" />
+  <circle r="0.006" cx="0.36551" cy="-0.32862" fill="magenta" />
 
   </svg>
