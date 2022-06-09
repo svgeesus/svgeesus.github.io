@@ -283,8 +283,16 @@
 			</code></pre>
 		</article>
 
-		<!-- explain gamut mapping here?  -->
-
+		<article class="slide" id="p3canvas">
+			<h1>Display-p3 in Canvas</h1>
+			<pre><code class="language-js">
+	let canvas = document.getElementById("foo");
+	let context = canvas.getContext("2d", { colorSpace: "display-p3" });
+	context.fillStyle = `color(display-p3 0.43313 0.50108 0.37950)`;
+	context.fillRect(10, 10, 50, 50);
+	context.fillStyle = `color(sRGB 0.41587 0.503670 0.36664)`;
+	context.fillRect(60, 10, 50, 50);</code></pre>
+		</article>
 </section>
 
 <section>
@@ -538,7 +546,7 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
 			</tr>
 			<tr>
 				<th><code class="language-css">color-contrast()</code></th>
-				<td class="fail"></td>
+				<td class="pass"></td>
 				<td class="fail"></td>
 				<td class="pass"></td>
 				<td class="pass"></td>
@@ -557,6 +565,7 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
 	<article class="slide" id="interop">
 		<h1>Interop 2022</h1>
 		<h2>Color spaces and CSS color functions</h2>
+		<div class="figure"><a href="https://wpt.fyi/interop-2022"><img src="img/interop2022.png" alt="" styl="height: 40vh"></a></div>
 	</article>
 
 </section>
@@ -568,11 +577,13 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
 
 	<article id="need" class="slide dark">
 		<h1>Need for HDR</h1>
+		<div class="delayed-children">
 		<p>Consumer WCG, HDR films, series, news, sports (BT.2100 PQ, HLG)</p>
 		<p>Consumer HDR gaming consoles</p>
 		<p>Consumer WCG, HDR-ready TVs commonplace</p>
 		<p>Consumer WCG (P3) laptops, tablets, phones; HDR coming </p>
 		<p>WCG, HDR still images coming (AVIF)</p>
+		</div>
 	</article>
 
 	<article class="slide" title="UWG">
@@ -642,9 +653,20 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
 	<article class="slide">
 		<h1>HDR in HTML Canvas</h1>
 		<div class="delayed-children">
-			<h2>Proposal in Color on the Web Community Group</h2>
+			<h2><a href="https://github.com/w3c/ColorWeb-CG/blob/master/hdr_html_canvas_element.md">Proposal</a> in Color on the Web Community Group</h2>
 			<h2>Experimental implementation in Chrome</h2>
 		</div>
+	</article>
+
+	<article class="slide" id="canvasHDR">
+		<h1>HDR in HTML Canvas</h1>
+		<ul class="delayed-children">
+			<li>Querying high dynamic range headroom</li>
+			<li>Querying screen wide color gamut</li>
+			<li>Enabling HDR on a canvas element</li>
+			<li>Going beyond 8 bits (10bit, float)</li>
+			<li>Add <code>srgb-linear</code>, <code>rec2100-hlg</code>, <code>rec2100-pq</code></li>
+		</ul>
 	</article>
 
 </section>
@@ -653,8 +675,9 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
 	<img src="img/chris-av.jpg" alt="me" />
 	<h1>Thank you!</h1>
 	<ul>
+		<li><a href="https://svgees.us/Escape-sRGB/#intro">svgees.us/Escape-sRGB/</a></li>
 		<li><a href="mailto:chris@w3.org">chris@w3.org</a></li>
-		<li><a href="http://svgees.us">svgees.us</a></li>
+		<!-- <li><a href="http://svgees.us">svgees.us</a></li> -->
 		<li><a href="http://twitter.com/svgeesus">@svgeesus</a></li>
 	</ul>
 </footer>

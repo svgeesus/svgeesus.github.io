@@ -149,6 +149,16 @@
     color: white;
 }
 
+/* figures */
+.figure {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.figure img {
+	text-align: center;
+}
+
 /* custom slides */
 
 #hi img {
@@ -160,6 +170,7 @@
     text-align: center;
 }
 
+/* browser suppot matrix */
 #support table {
 	border-spacing: 5px 3px;;
 }
