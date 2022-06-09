@@ -30,7 +30,8 @@
 		<img src="img/w3c-logo.svg" />
             <p>Technical Director at W3C <br />
 				<span class="de-emphasize">Strategy lead, Core Web Technologies</span>
-				<br /><span class="de-emphasize">W3C liaison to ICC</span></p>
+				<br /><span class="de-emphasize">W3C liaison to ICC</span>
+				<br /><span class="de-emphasize">co-editor, CSS Color 3,4,5</span></p>
 	</article>
 
 	<section class="slide" id="topics">
@@ -52,12 +53,10 @@
 		<h2>what do we need from a color model</h2>
 	</article>
 
-	<article class="slide" id="lightness">
+	<article class="slide nofade" id="lightness">
 		<h1>Light and Dark</h1>
-		<div class="delayed-children nofade figure">
-			<img class="split-image" src="img/Y-gradient.svg" style="height:40vh" />
-			<img class="split-image" src="img/L-gradient.svg" style="height:40vh" />
-		</div>
+			<img class="split-image delayed" src="img/Y-gradient.svg" style="height:40vh" />
+			<img class="split-image delayed" src="img/L-gradient.svg" style="height:40vh" style="padding-top: 5vh"/>
 	</article>
 
 	<article class="slide dark black" id="opponent">
@@ -90,10 +89,8 @@
 
 	<article class="slide" id="chroma-axes">
 		<h1>A pair of chromatic axes</h1>
-		<div class="figure">
 			<img class="split-image" src="img/Lab-a.svg" style="height:30vh" />
 			<img class="split-image" src="img/Lab-b.svg" style="height:30vh" />
-		</div>
 	</article>
 
 	<article class="slide white" id="polar">
@@ -102,6 +99,18 @@
 			<img class="split-image" src="img/Cielab-circle.png" style="height:80vh" />
 		</div>
 	</article>
+
+	<article class="slide" id="x3d">
+		<h1>Now we can see a color gamut</h1>
+		<iframe src="./hackedDisplayP3-D50.x3d.html" frameborder="0" style="width:60vw; height: 80vw"></iframe>
+	</article>
+
+	<article class="slide" id="chromaticity">
+		<h1>Chromaticity</h1>
+		<h2>Because 3D is hard</h2>
+		<div class="figure"><img src="img/UCS-explained.svg" alt="" style="height:70vh"></div>
+	</article>
+
 </section>
 
 <section>
@@ -250,7 +259,7 @@
 
 		<article class="slide">
 			<h1>We will talk about gamut mapping</h1>
-			<h2 class="delayed"><em>later</em></h2>
+			<h2 class="delayed"><a href="#gamut-map"><em>later</em></a></h2>
 		</article>
 
 		<article class="slide delayed" id="other-predefined">
@@ -405,9 +414,12 @@
 		<h1>Relative Color Syntax</h1>
 
 		<p class="language-css"><span class="swatch" style="--color: teal"></span> <code>--mycolor:  teal;</code><br>
-			<span class="swatch" style="--color: rgb(53.755% 41.245% 23.517%)"></span> <code>background: oklch(from var(--mycolor) l calc(0.8 * c) calc(h -120));</code></p>
+			<span class="swatch" style="--color: rgb(53.755% 41.245% 23.517%)"></span> <code class="language-css">background: oklch(from var(--mycolor) l calc(0.8 * c) calc(h -120));</code></p>
 		<p>Beware, in RGB spaces, values are gamma-encoded</p>
+	</article>
 
+	<article class="slide" id="gamutmap">
+		<h1>Gamut Mapping</h1>
 	</article>
 
 </section>
@@ -682,6 +694,7 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
 	</ul>
 </footer>
 
+<script src="https://blissfuljs.com/bliss.shy.min.js" type="module"></script>
 <script src="https://inspirejs.org/inspire.mjs" type="module"></script>
 
 <script  type="module">import "https://colorjs.io/color.js";</script>
