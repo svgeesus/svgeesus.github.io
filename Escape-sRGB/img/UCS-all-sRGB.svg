@@ -115,7 +115,7 @@ and the swatches from the all sRGB examples
   <circle r="0.01" cx="0.3279" cy="-0.53688" fill="rgb(77.61% 36.34% 2.45%)" stroke="#777" stroke-width="0.002"/>
   <circle r="0.01" cx="0.2131" cy="-0.5486" fill="rgb(61.65% 57.51% 9.28%)" stroke="#777" stroke-width="0.002"/>
   <circle r="0.01" cx="0.1593" cy="-0.5450" fill="rgb(40.73% 65.12% 22.35%)" stroke="#777" stroke-width="0.002"/>
-
+<circle r="0.01" cx="0.1697" cy="-0.3055" fill="royalblue" stroke="#777" stroke-width="0.002"/>
   <circle r="0.01" cx="0.1640" cy="-0.3948" fill="#66AAEE" stroke="#777" stroke-width="0.002"/>
   <circle r="0.01" cx="0.3050" cy="-0.3297" fill="rgb(128, 0, 128)" stroke="#777" stroke-width="0.002"/>
 

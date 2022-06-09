@@ -1,7 +1,17 @@
 Improvements
 
-add a named color to the 'all srgb' slide
+DONE add a named color to the 'all srgb' slide and to the sRGB chromaticity scatterplot
 
 introduce chromaticity diagrams, animated? tongue with spectral colors, purple line, mixes on straight lines (additivity). Somewhat perceptually uniform but not very good. BONUS: its in 2D
 
-expand opponent colors, add lightness, develop polar model (OKLab/OKLCH)
+DONE expand opponent colors, add lightness, develop polar model (OKLab/OKLCH)
+
+add Canvas display-p3 example (from the book) just before mixing section
+
+add gamut mapping sides at end of manipulating section
+
+add another defensive css slide to show guarding for beyond-sRGB gradients
+
+maybe add an oog diagram for mixing in polar color spaces (from spec)
+
+add a closing questions slide, with url of slides and promise of video to come.

@@ -149,6 +149,53 @@
     color: white;
 }
 
+/* custom slides */
+
+#hi img {
+    border-radius: 50%;
+    border: .2em solid var(--darkgrey);
+}
+
+.activity {
+    text-align: center;
+}
+
+#support table {
+	border-spacing: 5px 3px;;
+}
+#support .deets {
+	font-size: 30%;
+}
+#support .logos {
+	text-align: center;
+}
+#support th.type {
+	text-align: left;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding-left: 1em;
+	background: #444;
+	color: #DDD;
+}
+#support th.test {
+	text-align: left;
+}
+#support th.test > a {
+	text-decoration: none;
+}
+#support th.type > h2{
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 120%
+}
+#support .pass {
+	background: #7B3;
+	text-align: center;
+}
+#support .fail {
+	background: maroon;
+	text-align: center;
+}
 
 /* specific examples */
 

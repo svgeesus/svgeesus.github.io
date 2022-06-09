@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-45 -9 90 18">
+	<title>CIE Lab b values</title>
+	<style>
+		text {
+			font-family: Helvetica Neue;
+			font-size: 2.5px;
+			text-anchor: middle; 
+			fill: white;
+		}
+		.oog {
+			fill: black;
+			fill-opacity: 0.5;
+			stroke-color: #999;
+			stroke-width: 0.5px;
+		}
+	</style>
+	<rect x="-45" y="-0.4" width="90" height="0.8" fill="white"/>
+	<g stroke-color="black" stroke-width="0.1">
+		<circle r="3" fill="rgb(77, 121, 187)" cx="-40"/>
+		<circle r="3" fill="rgb(93, 120, 170)" cx="-30"/>
+		<circle r="3" fill="rgb(104, 120, 153)" cx="-20"/>
+		<circle r="3" fill="rgb(112, 119, 136)" cx="-10"/>
+		<circle r="3" fill="rgb(119, 119, 119)" cx="0"/>
+		<circle r="3" fill="rgb(124, 119, 102)" cx="10"/>
+		<circle r="3" fill="rgb(128, 118, 85)" cx="20"/>
+		<circle r="3" fill="rgb(131, 118, 67)" cx="30"/>
+		<circle r="3" fill="rgb(134, 118, 47)" cx="40"/>
+	</g>
+		<text x="0" y="5">b</text>
+
+	<g>
+		<text x="-40" y="8">-40</text>
+		<text x="-30" y="8">-30</text>
+		<text x="-20" y="8">-20</text>
+		<text x="-10" y="8">-10</text>
+		<text x="0" y="8">0</text>
+		<text x="10" y="8">10</text>
+		<text x="20" y="8">20</text>
+		<text x="30" y="8">30</text>
+		<text x="40" y="8">40</text>
+	</g>
+</svg>

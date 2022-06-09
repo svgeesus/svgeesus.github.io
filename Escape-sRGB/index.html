@@ -20,7 +20,7 @@
 	</h2>
 </header>
 
-<section id="me">
+<section id="hi">
 	<article class="slide activity" id="hi">
 		<img id="mypic" src="img/chris-av.jpg" alt="me">
 		<p>Hello! <br /><span class="de-emphasize">I’m Chris or @svgeesus</span></p>
@@ -28,7 +28,9 @@
 
 	<article class="slide activity" id="w3c">
 		<img src="img/w3c-logo.svg" />
-            <p><a href="http://www.w3.org/People/#clilley">Technical Director at W3C <br /><span class="de-emphasize">Strategy lead, Core Web Technologies</span></a></p>
+            <p>Technical Director at W3C <br />
+				<span class="de-emphasize">Strategy lead, Core Web Technologies</span>
+				<br /><span class="de-emphasize">W3C liaison to ICC</span></p>
 	</article>
 
 	<section class="slide" id="topics">
@@ -43,6 +45,20 @@
 	<header class="image slide" style="background: url(img/colorwhirl.jpg) left / cover;" id="whatis">
 		<h1>What is Color</h1>
 	</header>
+
+	<article class="slide" id="basics">
+		<h1>Color Science is very complicated!</h1>
+		<h2>But (don't worry!)</h2>
+		<h2>what do we need from a color model</h2>
+	</article>
+
+	<article class="slide" id="lightness">
+		<h1>Light and Dark</h1>
+		<div class="delayed-children nofade figure">
+			<img class="split-image" src="img/Y-gradient.svg" style="height:40vh" />
+			<img class="split-image" src="img/L-gradient.svg" style="height:40vh" />
+		</div>
+	</article>
 
 	<article class="slide dark black" id="opponent">
 		<h1>Opponent colors</h1>
@@ -72,6 +88,20 @@
 		</div>
 	</article>
 
+	<article class="slide" id="chroma-axes">
+		<h1>A pair of chromatic axes</h1>
+		<div class="figure">
+			<img class="split-image" src="img/Lab-a.svg" style="height:30vh" />
+			<img class="split-image" src="img/Lab-b.svg" style="height:30vh" />
+		</div>
+	</article>
+
+	<article class="slide white" id="polar">
+		<h1>Chroma and Hue</h1>
+		<div class="figure">
+			<img class="split-image" src="img/Cielab-circle.png" style="height:80vh" />
+		</div>
+	</article>
 </section>
 
 <section>
@@ -109,6 +139,7 @@
 		<p> <span class="swatch" style="--color: rgb(77.61% 36.34% 2.45%)"></span> rgb(77.61% 36.34% 2.45%)</p>
 		<p> <span class="swatch" style="--color: rgb(61.65% 57.51% 9.28%)"></span> hsl(55.257 73.833% 35.465%)</p>
 		<p> <span class="swatch" style="--color: rgb(40.73% 65.12% 22.35%)"></span> hwb(94.22 22.35% 34.88%)</p>
+		<p> <span class="swatch" style="--color: royalblue"></span> royalblue</p>
 		<p> <span class="swatch" style="--color: #66AAEE"></span> #6AE</p>
 		<p> <span class="swatch" style="--color: rgb(128, 0, 128)"></span> rgb(128, 0, 128)</p>
 
@@ -116,6 +147,8 @@
 
 	<article class="slide image" style="background-image: url(img/UCS-all-sRGB.svg); background-repeat: no-repeat; background-position: center;" id="all-srgb"></article>
 
+	<article class="slide image bottom-heavy" style="background: url(img/desert.jpg)  left / cover;" id="desert">
+	<h1>&nbsp;and so it remained …&nbsp;</h1></article>
 
 	<article class="image slide" style="background: url(img/cinema.jpg) left / cover;" id="broadcast">
 		<!-- <h1>Broadcast</h1> -->
@@ -145,7 +178,7 @@
             </dl>
         </article>
 
-        <article class="slide white definition" id="dhdr-p3">
+        <article class="slide  definition" id="dhdr-p3">
             <dl>
                 <dt>VESA DisplayHDR</dt>
                 <dd>(For <a href="https://displayhdr.org/performance-criteria-cts1-1/">tier 500</a> and greater)</dd>
@@ -347,7 +380,7 @@
 		<div class="delayed-children">
 		<p><code class="language-css" >linear-gradient(to right, #F01, #081)</code></p>
 		<p><code class="language-css" >linear-gradient(in oklab to right, #F01, #081)</code></p>
-		<p>Polar color spaces can also specify the shorter or longer direction</p>
+		<p>Polar color spaces can also specify the shorter or longer hue direction</p>
 		<p><code class="language-css" >linear-gradient(in oklch longer to right, #F01, #081)</code></p>
 		</div>
 
@@ -429,8 +462,101 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
 		<h1>Can I Use It ???</h1>
 	</header>
 
-	<article class="slide" title="">
+	<article class="slide" title="support">
+		<h1>Current browser support</h1>
 
+		<table style="width: 90%">
+			<tr class="logos">
+				<th></th>
+				<th><img src="./img/chrome-dev_64x64.png" alt=""><br></th>
+				<th><img src="./img/edge-dev_64x64.png" alt=""><br></th>
+				<th><img src="./img/firefox-nightly_64x64.png" alt=""><br></th>
+				<th><img src="./img/safari-preview_64x64.png" alt=""><br></th>
+			</tr>
+			<tr>
+				<th>Feature</th>
+				<th>Chrome 102</th>
+				<th>Edge 100</th>
+				<th>Firefox  100</th>
+				<th>Safari 15.4</th>
+			</tr>
+			<tr>
+				<th><code class="language-css">color()</code></th>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="pass"></td>
+			</tr>
+			<tr>
+				<th><code class="language-css">color(display-p3)</code></th>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="pass"></td>
+			</tr>
+			<tr>
+				<th><code class="language-css">lab(), lch()</code></th>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="pass"></td>
+			</tr>
+			<tr>
+				<th><code class="language-css">oklab(), oklch()</code></th>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="pass"></td>
+			</tr>
+			<tr>
+				<th><code class="language-css">display-p3 canvas</code></th>
+				<td class="pass"></td>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="pass"></td>
+			</tr>
+			<tr>
+				<th><code class="language-css">color-mix()</code></th>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="pass"></td>
+				<td class="pass"></td>
+			</tr>
+			<tr>
+				<th><code class="language-css">*-gradient(in colorspace )</code></th>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="pass"></td>
+			</tr>
+			<tr>
+				<th><code class="language-css">Relative Color Syntax</code></th>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="pass"></td>
+			</tr>
+			<tr>
+				<th><code class="language-css">color-contrast()</code></th>
+				<td class="fail"></td>
+				<td class="fail"></td>
+				<td class="pass"></td>
+				<td class="pass"></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+
+	</article>
+
+	<article class="slide" id="interop">
+		<h1>Interop 2022</h1>
+		<h2>Color spaces and CSS color functions</h2>
 	</article>
 
 </section>
@@ -439,6 +565,15 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
 	<header class="image slide" style="background: url(img/HDR-photo.jpg)  left / cover;" id="hdr">
 		<h1>High Dynamic Range</h1>
 	</header>
+
+	<article id="need" class="slide dark">
+		<h1>Need for HDR</h1>
+		<p>Consumer WCG, HDR films, series, news, sports (BT.2100 PQ, HLG)</p>
+		<p>Consumer HDR gaming consoles</p>
+		<p>Consumer WCG, HDR-ready TVs commonplace</p>
+		<p>Consumer WCG (P3) laptops, tablets, phones; HDR coming </p>
+		<p>WCG, HDR still images coming (AVIF)</p>
+	</article>
 
 	<article class="slide" title="UWG">
 		<h1>High Dynamic Range</h1>
@@ -471,14 +606,6 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
 		</dl>
 	</article>
 
-	<article id="need" class="slide dark">
-		<h1>Need for HDR</h1>
-		<p>Consumer WCG, HDR films, series, news, sports (BT.2100 PQ, HLG)</p>
-		<p>Consumer HDR gaming consoles</p>
-		<p>Consumer WCG, HDR-ready TVs commonplace</p>
-		<p>Consumer WCG (P3) laptops, tablets, phones; HDR coming </p>
-		<p>WCG, HDR still images coming (AVIF)</p>
-	</article>
 
 	<article class="slide dark definition" id="bt2100">
 		<dl>
@@ -512,7 +639,25 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
 		</dl>
 	</article>
 
+	<article class="slide">
+		<h1>HDR in HTML Canvas</h1>
+		<div class="delayed-children">
+			<h2>Proposal in Color on the Web Community Group</h2>
+			<h2>Experimental implementation in Chrome</h2>
+		</div>
+	</article>
+
 </section>
+
+<footer class="slide" id="goodbye">
+	<img src="img/chris-av.jpg" alt="me" />
+	<h1>Thank you!</h1>
+	<ul>
+		<li><a href="mailto:chris@w3.org">chris@w3.org</a></li>
+		<li><a href="http://svgees.us">svgees.us</a></li>
+		<li><a href="http://twitter.com/svgeesus">@svgeesus</a></li>
+	</ul>
+</footer>
 
 <script src="https://inspirejs.org/inspire.mjs" type="module"></script>
 
