@@ -102,7 +102,7 @@
 
 	<article class="slide" id="x3d">
 		<h1>Now we can see a color gamut</h1>
-		<iframe src="./hackedDisplayP3-D50.x3d.html" frameborder="0" style="width:60vw; height: 80vw"></iframe>
+		<iframe src="./hackedDisplayP3-D50.x3d.html" frameborder="0" style="width:80vw; height: 50vw"></iframe>
 	</article>
 
 	<article class="slide" id="chromaticity">
@@ -271,7 +271,7 @@
 					<p><span class="swatch" style="--color: rgb(20.4% 56.8% 75.7%)"></span> <code class="language-css"> color(rec2020 0.351 0.508 0.708);</code></p>
 					<p><span class="swatch" style="--color: rgb(20.4% 56.8% 75.7%)"></span> <code class="language-css"> oklch(0.623 0.112 235.8);</code></p>
 					<p><span class="swatch" style="--color: rgb(20.4% 56.8% 75.7%)"></span> <code class="language-css"> /*CIE*/ lch(56.29% 37.11 245.1);</code></p>
-
+					<p>P.S. Handy <a href="https://colorjs.io/apps/convert/">color space converter</p>
 				</div>
 		</article>
 
@@ -415,12 +415,49 @@
 
 		<p class="language-css"><span class="swatch" style="--color: teal"></span> <code>--mycolor:  teal;</code><br>
 			<span class="swatch" style="--color: rgb(53.755% 41.245% 23.517%)"></span> <code class="language-css">background: oklch(from var(--mycolor) l calc(0.8 * c) calc(h -120));</code></p>
+		<p>Predefined variables per color space: here <code>l</code>, <code>c</code> and <code>h</code></p>
+	</article>
+
+	<article class="slide" id="RCS-xyzrgb">
+		<h1>Relative Color Syntax</h1>
+
+		<p class="language-css"><span class="swatch" style="--color: teal"></span> <code>--mycolor:  teal;</code><br>
+			<span class="swatch oog" style="--color: rgb(53.755% 41.245% 23.517%)"></span> <code class="language-css">color: color(xyz-d65 from var(--mycolor) calc(0.8 * x) y calc(1.2 * z));</code><br>
+			<span class="swatch" style="--color: rgb(25.1% 36.63% 19.35%)"></span> <code class="language-css">color: color(prophoto-rgb from var(--mycolor) calc(0.8 * r) calc(0.7) calc(0.4 * b));</code></p>
 		<p>Beware, in RGB spaces, values are gamma-encoded</p>
 	</article>
 
 	<article class="slide" id="gamutmap">
 		<h1>Gamut Mapping</h1>
+
+		<div class="delayed-children">
+			<p>Colors can be specified out of gamut</p>
+			<p>or calculations give out of gamut results</p>
+			<p>Those colors must be modified</p>
+			<p>(by the browser, not by you)</p>
+			<p>to look <em>similar</em> but in gamut of display</p>
+		</div>
 	</article>
+
+	<article class="slide image" style="background-image: url(img/LCH-rotation-oog.svg); background-repeat: no-repeat; background-position: center;" id="rotate-oog"></article>
+
+	<article class="slide">
+		<h1>Constant-hue chroma reduction</h1>
+
+		<div class="delayed-children">
+			<p>Change in hue very noticeable</p>
+			<p>Change in lightness less so</p>
+			<p>Reduction in hue is least noticeable</p>
+			<p>Color space matters (hue uniformity, linearity</p>
+			<p><a href="https://www.w3.org/Graphics/Color/Workshop/slides/talk/lilley">(see talk)</a></p>
+		</div>
+	</article>
+
+	<article class="slide image" style="background-image: url(img/subdivision.svg); background-repeat: no-repeat; background-position: center;" id="chroma-reduce"></article>
+
+	<article class="slide image" style="background-image: url(img/CIELCH-blue-slice.png); background-repeat: no-repeat; background-position: center; background-size: contain" id="cielch-reduce"></article>
+
+	<article class="slide image" style="background-image: url(img/OKLCH-blue-slice.png); background-repeat: no-repeat; background-position: center; background-size: contain" id="oklch-reduce"></article>
 
 </section>
 
