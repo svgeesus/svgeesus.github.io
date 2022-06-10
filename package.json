@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/svgeesus/svgeesus.github.io",
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.0-canary.16",
+    "@11ty/eleventy": "^1.0.0-canary.46",
     "autoprefixer": "^7.2.6",
     "gulp": "^4.0.2",
     "gulp-postcss": "^7.0.1",
