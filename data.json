@@ -6,14 +6,17 @@
 			"talk": [
 				{
 					"title": "Escaping the sRGB Prison",
-					"type": "Talk"
+					"type": "Talk",
+					"slides": "https://svgees.us/Escape-sRGB/#intro",
+					"@context": "https://schema.org/"
 				}
 			],
 			"url": "https://cssday.nl/2022/speakers",
 			"name": "CSS Day",
 			"date": "2022-06-09",
 			"city": "Amsterdam",
-			"country": "nl"
+			"country": "nl",
+			"@context": "https://schema.org/"
 		},
 		{
 			"talk": [
