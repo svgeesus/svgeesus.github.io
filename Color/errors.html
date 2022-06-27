@@ -44,7 +44,7 @@ The relative luminance error is then symmetric, and bounded to <strong>-0.517% t
 
 <p>Other people (and this applies to the APCA algorithm) simply copy the 2.4 exponent value from the full sRGB equation, without considering how the piecewise formula affects it, producing much larger errors. The relative luminance error is asymmetric, and bounded by <strong>-2.517% to 0%</strong>.</p>
 
-<p>Both approximations under-estimate the relative luminance for dark colors. The 2.4 approximation greatly under estimates it for <em>all</em> colors, being worst in the mid range. Here is a graph of the error, over the in-gamut range:</p>
+<p>Both approximations under-estimate the relative luminance for dark colors. The 2.4 approximation greatly under estimates it for <em>all</em> colors, being worst in the mid range. Here is a graph of the error, over the in-gamut range: The 2.223 approximation is in black, the 2.4 approximation in red. In addition, if the 2.4 approximation is considered as a deliberate midtone shaper, the effect of a (2.4/2.223) power law after conversion to luminance is shown in green.</p>
 
 <output id=""></output>
 
@@ -56,6 +56,15 @@ The relative luminance error is then symmetric, and bounded to <strong>-0.517% t
     <textarea id="textarea" style="width: 100%; min-height: 10em;"></textarea>
 </details>
 <a href="" download="slice.svg" id="downloadLink">Download SVG</a>
+
+<hr>
+
+<h2>Further reading</h2>
+
+<p>Further information on this hotly debated topic (includes quotes from people like Jack Holm, technical secretary IEC/TC 100/TA 2 which developed the sRGB standard, and noted expert Charles Poynton):
+
+<p><a href="https://www.colour-science.org/posts/srgb-eotf-pure-gamma-22-or-piece-wise-function/">sRGB EOTF: Pure Gamma 2.2 Function or Piece-Wise Function?</a></p>
+
 <script type="module" src="./sRGB_TRC-errors.js" width="100%"></script>
 </body>
 </html>
