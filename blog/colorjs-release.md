@@ -8,9 +8,9 @@ tags: [
 ]
 ---
 
-## Announcement
+<img src="./img/colorjs-logo.png" style="width: 50vw"/>
 
-It has taken us far too long –
+It has taken [Lea](https://lea.verou.me/?p=3463) and I far too long –
 there is always something more that _really should_ be added,
 always some conversion that _really needs_ an authoritive
 set of data
@@ -116,7 +116,7 @@ linear-gradient(in srgb to right, white, #01E)
 linear-gradient(in oklab to right, white, #01E)
 ```
 
-![gradients in three color spaces](./img/rectangular-fff-01e.png)
+<img src="./img/rectangular-fff-01e.png" style="width: 50vw"/>
 
 The middle gradient of these three, in sRGB, is too dark and a bit purplish.
 The top one, in CIE Lab, is way too purple while the bottom one
