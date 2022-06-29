@@ -116,7 +116,7 @@ linear-gradient(in srgb to right, white, #01E)
 linear-gradient(in oklab to right, white, #01E)
 ```
 
-<img src="./img/rectangular-fff-01e.png" style="width: 80vw"/>
+<img src="./img/rectangular-fff-01e.png" style="width: 50vw"/>
 
 The middle gradient of these three, in sRGB, is too dark and a bit purplish.
 The top one, in CIE Lab, is way too purple while the bottom one
