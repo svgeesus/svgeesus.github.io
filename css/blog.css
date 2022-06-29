@@ -2,10 +2,12 @@
 	display: flex;
 }
 
-a {
+main a {
 	padding: 0.1em;
+	text-decoration-color: rgb(0 0 0 / .3);
 }
-a:hover {
+
+main a:hover {
 	color: inherit;
 	background: #ec8;
 	text-decoration: underline;
@@ -22,6 +24,7 @@ a:hover {
 	font-size: smaller;
 	font-weight: bold;
 	color: white;
+	text-decoration: none;
 }
 
 	.tags > a:hover {
