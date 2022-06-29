@@ -10,7 +10,7 @@ tags: [
 
 <img src="./img/colorjs-logo.png" style="width: 50vw"/>
 
-It has taken [Lea](https://lea.verou.me/?p=3463) and I far too long –
+It has taken [Lea](https://lea.verou.me/2022/06/releasing-colorjs/) and I far too long –
 there is always something more that _really should_ be added,
 always some conversion that _really needs_ an authoritive
 set of data
