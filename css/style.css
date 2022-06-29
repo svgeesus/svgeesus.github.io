@@ -48,7 +48,9 @@ code {
 	padding: .3em .3em .2em;
 }
 
-
+img {
+	max-width: 100%;
+}
 
 main {
 	width: 37rem;

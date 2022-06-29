@@ -46,7 +46,9 @@ code {
 	}
 }
 
-
+img {
+	max-width: 100%;
+}
 
 main {
 	width: var(--content-width);
