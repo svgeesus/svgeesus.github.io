@@ -5,9 +5,9 @@
 	</h2>
 	<div class="summary">
 		{% if post.data.summary %}
-			{{ post.data.summary | safe }}
+			{{ post.data.summary | md | safe }}
 		{% else %}
-			{{ post.data.page.excerpt | safe }}
+			{{ post.data.page.excerpt | md | safe }}
 		{% endif %}
 	</div>
 

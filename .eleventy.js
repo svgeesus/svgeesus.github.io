@@ -1,3 +1,7 @@
+// .eleventy.js
+const markdownIt = require("markdown-it");
+
+
 module.exports = config => {
 
 	const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
@@ -20,6 +24,11 @@ module.exports = config => {
 		excerpt: true,
 		// Optional, default is "---"
 		excerpt_separator: "<!-- more -->"
+	});
+
+	config.addFilter("md", function (content = "") {
+		console.log(content)
+		return markdownIt({ html: true }).render(content);
 	});
 
 	return {
