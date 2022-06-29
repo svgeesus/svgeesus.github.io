@@ -10,7 +10,9 @@ tags: [
 
 ## Announcement
 
-It has taken us far too long –
+![color.js logo](./img/colorjs-logo.png)
+
+It has taken [Lea](https://lea.verou.me/?p=3463) and I far too long –
 there is always something more that _really should_ be added,
 always some conversion that _really needs_ an authoritive
 set of data
