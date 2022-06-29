@@ -27,7 +27,6 @@ module.exports = config => {
 	});
 
 	config.addFilter("md", function (content = "") {
-		console.log(content)
 		return markdownIt({ html: true }).render(content);
 	});
 
