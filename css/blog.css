@@ -9,7 +9,7 @@ main a {
 
 main a:hover {
 	color: inherit;
-	background: #ec8;
+	background: hsl(40 75% 73.33%);
 	text-decoration: underline;
 }
 
