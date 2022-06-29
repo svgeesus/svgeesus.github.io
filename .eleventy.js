@@ -1,4 +1,10 @@
 module.exports = config => {
+
+	const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+
+	config.addPlugin(syntaxHighlight);
+
+
 	let data = {
 		"layout": "page.njk",
 		"permalink": "{{ page.filePathStem }}.html"

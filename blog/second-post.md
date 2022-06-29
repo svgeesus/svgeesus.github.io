@@ -1,5 +1,6 @@
 ---
 title: Second post
+draft: true
 tags: [
 	"HTML",
 	"History"
