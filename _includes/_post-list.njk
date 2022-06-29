@@ -12,7 +12,19 @@
 	</div>
 
 	<footer class="post-meta">
-		{% include "_post-meta.njk" %}
+		<div class="tags">
+			{% for tag in post.data.tags %}
+			{% if tag != "blog" %}<a href="/blog/tag/{{ tag }}">{{ tag }}</a>{% endif %}
+			{%- endfor -%}
+		</div>
+
+		<p class="date">
+			Published on
+			<time datetime="{{ post.date.toISOString() }}">{{ post.date.toLocaleString("en-gb", {
+				dateStyle: "long"
+			}) }}</time>
+		</p>
+
 	</footer>
 </article>
 {% endif %}
