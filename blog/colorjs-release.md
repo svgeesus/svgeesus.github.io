@@ -1,6 +1,6 @@
 ---
 title: Color.js Released
-date: "2022-06-29"
+date: 2022-06-29
 tags: [
 	"Color",
     "CSS",
