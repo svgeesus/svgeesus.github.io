@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<title>CIE Lab explorer</title>
+
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 4em;
+    }
+</style>
+
+<h1>Explore CIE Lab gamut mapping in oklch</h1>
+
+<p>
+    Explore a constant-lightness plane of CIE Lab
+    (which includes out of gamut colors,
+    and indeed imaginary colors),
+    mapped to sRGB using (on the left) the
+    proposed new CSS Color 4 GMA
+    which operates in OKLCH with detaEOK
+    and avoids un-needed deltaE calls.
+</p>
+
+<p>
+    Compared to (on the right)
+    current color.js gamut mapping algorithm,
+    which operates in CIE LCH
+    with deltaE 2000.
+    Exploring and mapping in the same space means
+    the mapping space is evenly sampled.
+</p>
+
+<p>Lightness: <input type="range" id="lightness"> <span id="out">50</span></p>
+
+<canvas id="ok" width="400" height="400"></canvas>
+
+<canvas id="cjs" width="400" height="400"></canvas>
+
+<script type="module">
+    import Color from "https://colorjs.io/color.js";
+    import serialize from "https://colorjs.io/src/serialize.js";
+    import to from "https://colorjs.io/src/to.js";
+    import clone from "https://colorjs.io/src/clone.js";
+    import inGamut from "https://colorjs.io/src/inGamut.js";
+    import toGamut from "https://colorjs.io/src/toGamut.js";
+    import deltaEOK from "https://colorjs.io/src/deltaE/deltaEOK.js";
+
+    const JND = 0.02;
+    const ε = 0.0001;
+
+    const Light = document.getElementById('out');
+
+    const canvas1 = document.getElementById('ok');
+    const ctx = canvas1.getContext('2d');
+    ctx.fillStyle = "grey";
+    ctx.fillRect(0, 0, 400, 400);
+
+    const canvas2 = document.getElementById('cjs');
+    const ctx2 = canvas2.getContext('2d');
+    ctx2.fillStyle = "grey";
+    ctx2.fillRect(0, 0, 400, 400);
+
+    render_ok();
+    render_cjs();
+
+    lightness.addEventListener("change", evt => {
+        Light.textContent = lightness.value;
+        render_ok(+lightness.value);
+        render_cjs(+lightness.value);
+    });
+
+    function render_ok(L=50) {
+        // using oklch with MINDE, deOK
+
+        let timeTaken = 0;
+
+        for (let a = -125; a <= 125; a+=5) {
+            for (let b = -125; b <= 125; b+=5) {
+                let Lab = {space: "lab", coords: [L, a, b]};
+                let color = {space: "srgb", coords: []};
+                let start = performance.now();
+                color = CSSgamutMap (Lab, 'srgb');
+                timeTaken += performance.now() - start;
+                plot(ctx, color, a, b);
+            }
+        }
+
+        console.log("oklch+MINDE: " + timeTaken + "ms");
+    }
+
+    function render_cjs(L=50) {
+        // using current color.js GMA,
+        // in default CIE LCH, dE2000
+
+        let timeTaken2 = 0;
+
+        for (let a = -125; a <= 125; a+=5) {
+            for (let b = -125; b <= 125; b+=5) {
+                let Lab2 = {space: "lab", coords: [L, a, b]};
+                // let color2 = {space: "srgb", coords: []};
+                let color = to(Lab2, 'srgb');
+                let start2 = performance.now();
+                toGamut(color, 'srgb');
+                timeTaken2 += performance.now() - start2;
+                plot(ctx2, color, a, b);
+            }
+        }
+
+        console.log("colorjs GMA: " + timeTaken2 + "ms");
+    }
+
+
+
+    function plot (context, color, a, b) {
+        let f = serialize(color, {format: "hex", inGamut: false});
+        context.fillStyle = f;
+        // first patch is center at a -125, b -125
+        // 8px wide so top left of 0,0 width,height 8
+        let t = 8* (125 + b)/5;
+        let l = 8* (125 + a)/5;
+        context.fillRect(t, l, 8, 8);
+    }
+
+
+    function CSSgamutMap (origin, destination) {
+        // OKLCH is the CSS GMA working space
+        let origin_OKLCH = to(origin, 'oklch');
+        // console.log(origin_OKLCH);
+        // console.log("starting chroma: ", origin_OKLCH.coords[1]);
+        let L = origin_OKLCH.coords[0];
+        // return media white or black, if lightness is out of range
+        if (L >= 1) return {space: destination, coords: [1, 1, 1], alpha: origin.alpha};
+        if (L <= 0) return {space: destination, coords: [0, 0, 0], alpha: origin.alpha};
+        // otherwise, return origin in destination, if in gamut
+        if (inGamut(origin, destination)) return to(origin, destination);
+        // set up for OKLCH chroma reduction
+        let min = 0;
+        let max = origin_OKLCH.coords[1];
+        let min_inGamut = true;
+        let current = clone(origin_OKLCH);
+        let clipped = clip(current, destination);
+        // but first check if we are "close" to in gamut
+        let E = deltaEOK(clipped, current);
+        if (E < JND) return clipped;
+        // now actually binary search for the in-gamut chroma value
+        // console.log("pre-checks complete, still here, doing actual gamut mapping");
+        while (max - min > ε) {
+            let chroma = (min + max) / 2;
+            // console.log(chroma);
+            current.coords[1] = chroma;
+            if (min_inGamut && inGamut(current, destination)) {
+                min = chroma
+            } else {
+                clipped = clip(current, destination);
+                E = deltaEOK(clipped, current);
+                if (E < JND) {
+                    if (E - JND < ε) {
+                        return clipped;
+                    } else {
+                        min_inGamut =  false;
+                        min = chroma
+                    }
+                } else {
+                    max = chroma;
+                }
+            }
+        } //  end of chroma reduction loop
+    }
+
+    function clip (color, destination) {
+
+        let destColor = to(color, destination);
+
+        let destSpace = Color.Space.get(destination);
+        let bounds = Object.values(destSpace.coords).map(c => c.range || []);
+
+		destColor.coords = destColor.coords.map((c, i) => {
+			let [min, max] = bounds[i];
+
+			if (min !== undefined) {
+				c = Math.max(min, c);
+			}
+
+			if (max !== undefined) {
+				c = Math.min(c, max);
+			}
+
+			return c;
+		});
+        return destColor;
+    }
+    </script>
