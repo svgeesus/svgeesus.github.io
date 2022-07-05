@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
 <title>OKLab explorer</title>
 <!--
 lab(50% 125 125)   =  oklab(60.58% 0.357 0.152)
@@ -155,6 +156,7 @@ lab(50% 125 -125)  =  oklab(65.4% 0.257 -0.35)
 
 
     function plotok (context, color, a, b) {
+        // if (a = 0.4) console.log(color);
         let f = serialize(color, {format: "hex", inGamut: false});
         context.fillStyle = f;
         // first patch is center at a -0.4, b -0.4
@@ -197,7 +199,7 @@ lab(50% 125 -125)  =  oklab(65.4% 0.257 -0.35)
                 clipped = clip(current, destination);
                 E = deltaEOK(clipped, current);
                 if (E < JND) {
-                    if (E - JND < ε) {
+                    if (JND - E < ε) {
                         return clipped;
                     } else {
                         min_inGamut =  false;
@@ -208,6 +210,7 @@ lab(50% 125 -125)  =  oklab(65.4% 0.257 -0.35)
                 }
             }
         } //  end of chroma reduction loop
+        return current;
     }
 
     function clip (color, destination) {
