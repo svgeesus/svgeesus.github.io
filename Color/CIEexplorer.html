@@ -7,6 +7,13 @@
         font-family: sans-serif;
         margin: 4em;
     }
+    th {
+        text-align: center;
+        font-weight: bold;
+        color: white;
+        padding: 3px;
+        background: #444;
+    }
 </style>
 
 <h1>Explore CIE Lab gamut mapping in oklch</h1>
@@ -22,6 +29,11 @@
 </p>
 
 <p>
+    In the middle, simple coordinate clipping
+    (fast, but severe hue and lightness shifts).
+</p>
+
+<p>
     Compared to (on the right)
     current color.js gamut mapping algorithm,
     which operates in CIE LCH
@@ -32,9 +44,18 @@
 
 <p>Lightness: <input type="range" id="lightness"> <span id="out">50</span></p>
 
-<canvas id="ok" width="400" height="400"></canvas>
-
-<canvas id="cjs" width="400" height="400"></canvas>
+<table>
+    <tr>
+        <td><canvas id="ok" width="400" height="400"></canvas></td>
+        <td><canvas id="clip" width="400" height="400"></canvas></td>
+        <td><canvas id="cjs" width="400" height="400"></canvas></td>
+    </tr>
+    <tr>
+        <th>OKLCH, ΔEOK</th>
+        <th>Clip</th>
+        <th>CIE LCH, ΔE2000</th>
+    </tr>
+</table>
 
 <script type="module">
     import Color from "https://colorjs.io/color.js";
@@ -55,17 +76,24 @@
     ctx.fillStyle = "grey";
     ctx.fillRect(0, 0, 400, 400);
 
+    const canvas3 = document.getElementById('clip');
+    const ctx3 = canvas3.getContext('2d');
+    ctx3.fillStyle = "grey";
+    ctx3.fillRect(0, 0, 400, 400);
+
     const canvas2 = document.getElementById('cjs');
     const ctx2 = canvas2.getContext('2d');
     ctx2.fillStyle = "grey";
     ctx2.fillRect(0, 0, 400, 400);
 
     render_ok();
+    render_clip();
     render_cjs();
 
     lightness.addEventListener("change", evt => {
         Light.textContent = lightness.value;
         render_ok(+lightness.value);
+        render_clip(+lightness.value);
         render_cjs(+lightness.value);
     });
 
@@ -86,6 +114,24 @@
         }
 
         console.log("oklch+MINDE: " + timeTaken + "ms");
+    }
+
+    function render_clip(L=50) {
+        // using coordinate clip
+
+        let timeTaken = 0;
+
+        for (let a = -125; a <= 125; a+=5) {
+            for (let b = -125; b <= 125; b+=5) {
+                let Lab3 = {space: "lab", coords: [L, a, b]};
+                let start = performance.now();
+                let color3 = clip(Lab3, 'srgb');
+                timeTaken += performance.now() - start;
+                plot(ctx3, color3, a, b);
+            }
+        }
+
+        console.log("clip: " + timeTaken + "ms");
     }
 
     function render_cjs(L=50) {

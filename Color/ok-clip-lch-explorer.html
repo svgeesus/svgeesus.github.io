@@ -12,6 +12,13 @@ lab(50% 125 -125)  =  oklab(65.4% 0.257 -0.35)
         font-family: sans-serif;
         margin: 4em;
     }
+    th {
+        text-align: center;
+        font-weight: bold;
+        color: white;
+        padding: 3px;
+        background: #444;
+    }
 </style>
 
 <h1>Explore OKLab gamut mapping in oklch</h1>
@@ -40,11 +47,17 @@ lab(50% 125 -125)  =  oklab(65.4% 0.257 -0.35)
 
 <p>Lightness: <input type="range" id="lightness"> <span id="out">0.50</span></p>
 
-<canvas id="ok" width="400" height="400"></canvas>
-
-<canvas id="clip" width="400" height="400"></canvas>
-
-<canvas id="cjs" width="400" height="400"></canvas>
+<table>
+    <tr>
+        <td><canvas id="ok" width="400" height="400"></canvas></td>
+        <td><canvas id="clip" width="400" height="400"></canvas></td>
+        <td><canvas id="cjs" width="400" height="400"></canvas></td>
+    </tr>
+    <tr>
+        <th>OKLCH, ΔEOK</th>
+        <th>Clip</th>
+        <th>CIE LCH, ΔE2000</th>
+    </tr>
 
 <p>
     Typical gamut mapping times (mean over for 2,500 mappings ie a 50 x 50 grid):
