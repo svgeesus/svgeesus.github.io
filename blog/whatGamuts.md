@@ -251,14 +251,14 @@ No, those don't look like constant-sized circles to me, either.
 
 ### OKLab to the rescue
 
-Invented by Björn Ottosson [^OKlab] in 2020, OKLab works much like CIE Lab
+Invented by Björn Ottosson [^OKLab] in 2020, OKLab works much like CIE Lab
 in that there is a central lightness axis,
 _a_ and _b_ chromatic axes,
 which are more easily manipulated as chroma and hue.
 But it does a better job of being perceptually uniform,
 so much so that we can go back to a simple, geometric-distance color difference formula.
 
-Now this is a three-dimensional space but we can draw a gamut in two dimensions
+Now this is a three-dimensional space, but we can draw a gamut in two dimensions
 by projecting onto the _a,b_ plane. Like this:
 
 <object data="./img/3gamuts-oklab.svg" ></object>
@@ -416,7 +416,7 @@ But that is for a follow-up post.
         at 1nm intervals from 380 to 700nm. They have been gamut mapped for display.</p>
     ```
 
-[^notreally]: OK you realize we are two levels deep in footnotes, right? But since you are here: a surface of equal chroma is a cylinder in Lab space while a surface of equal saturation is a cone with the apex at black, because Saturation = Chroma / Lightness. [More details](https://munsell.com/color-blog/difference-chroma-saturation/)
+[^notreally]: A surface of equal chroma is a cylinder in Lab space while a surface of equal saturation is a cone with the apex at black, because Saturation = Chroma / Lightness. [More details](https://munsell.com/color-blog/difference-chroma-saturation/)
 
     Come on let me play fast and loose with illustrative terminology before this blog post turns into a novel.
 
