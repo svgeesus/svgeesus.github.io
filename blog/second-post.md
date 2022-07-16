@@ -1,13 +1,14 @@
 ---
-title: Second post
+title: What are color gamuts
 draft: true
 tags: [
-	"HTML",
-	"History"
+	"CSS",
+	"Color Science"
 ]
 ---
 
-Hello world, this is my <em>second</em> blog post. Eleventy is kinda cool!
+So, CSS Color 4 add <strong>Wide Color Gamut</strong> colors to CSS.
+But what is a gamut, anyway?
 
 <!-- more -->
 

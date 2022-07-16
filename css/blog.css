@@ -13,6 +13,10 @@ main a:hover {
 	text-decoration: underline;
 }
 
+.footnote-ref > a {
+	text-decoration: none;
+}
+
 .tags > a {
 	padding: .2em .4em .2em 1.3em;
 	border-radius: .2em;

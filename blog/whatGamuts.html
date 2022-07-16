@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" vocab="https://schema.org/">
+<head>
+	<meta charset="UTF-8">
+	<title>What are color gamuts &bull; Chris Lilley</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link href="/css/blog.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+	<nav>
+		<div>
+			<a href="/index.html">Home</a>
+			<a href="/blog">Blog</a>
+			<a href="/talks.html">Speaking</a>
+			<a href="/publications.html">Publications</a>
+			<a href="/cv.html" target="_blank">CV</a>
+		</div>
+		<div class="social">
+			<a class="twitter" href="http://twitter.com/svgeesus" target="_blank" title="Twitter">Twitter</a>
+			<a class="github" href="http://github.com/svgeesus" target="_blank" title="Github">Github</a>
+		</div>
+	</nav>
+
+	<h1>
+		<img property="image" src="https://avatars2.githubusercontent.com/u/2506926?v=3&s=460" alt="">
+
+		<span property="name">
+			
+				What are color gamuts
+			
+		</span>
+	</h1>
+</header>
+
+
+<main>
+
+<header class="post-meta">
+	<div class="tags">
+		</div>
+
+	<p class="date">
+		Published on
+		<time datetime="2022-07-06T17:09:15.673Z">6 July 2022</time>
+	</p>
+
+</header>
+
+
+<p>So, <a href="https://drafts.csswg.org/css-color-4/">CSS Color 4 adds <strong>Wide Color Gamut</strong> colors to CSS</a>.
+But what is a gamut, anyway?</p>
+<p>The <strong>gamut</strong> of a color space is the <em>range of colors that can be represented</em>,
+given the constraint that color component values can't be negative or greater than 100%.</p>
+<p>That is a complete definition
+but if you really want to understand, in depth, what that means,
+the rest of this blog post is for you.</p>
+<h2>Color space of a display</h2>
+<p>While it is certainly possible and reasonable to use component values outside that range <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>
+(the math still works, for example for for mixing colors),
+the time comes when a color value has to be actually presented to the user
+(on a display, or printed) and at that point these constraints are purely physical:
+you can't display more than some maximum amount of light (100%),
+and you certainly can't <em>suck light back in</em> (negative values).</p>
+<p>Which brings us to the concept of displays, standard ones and wide gamut ones.
+(There are also <em>ultrawide gamut</em> ones, as we will see shortly).
+All displays can produce a white, and a black <sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>; so the difference between them is
+the limit on how colorful (bright, saturated, vibrant) the displayed colors can be.
+This quantity is called <strong>chroma</strong>, and the maximum chroma of a display varies with <strong>hue</strong>.</p>
+<h2>Show me the gamut</h2>
+<p>Well, now we have a problem. There you are, somewhere on the internet,
+but not here with me so I can't point to two monitors and say “see the difference?”
+nor do I know if you have a wide gamut monitor <sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> so I can't use a wide gamut,
+ICC-tagged image to show you, on your monitor.</p>
+<p>The next-best thing would be to show you a 3D rendering of the color gamut,
+plotted in some perceptually-uniform colorspace like <strong>CIE Lab</strong> or, better, <strong>OKLab</strong>.</p>
+<p>However, comparing the internal structure of two 3D models
+(ideally, we want to see the intersection of the two volumes)
+is difficult.</p>
+<h2>Plot the gamut: chromaticity diagrams</h2>
+<p>Reluctantly we turn to 2D diagrams, which are <em>a whole lot easier</em> to create and examine
+(but, as we will see later, can be actively misleading).
+The most commonly used one is called the x,y chromaticity diagram and it looks like an elongated horseshoe.
+Less commonly, the <em>u,v chromaticity diagram</em> is used, which looks like a broader horseshoe <sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>. Here is one:</p>
+<img src="./img/UCS-3gamuts.svg">
+<p>OK what are we looking at here.</p>
+<h3>Gamut triangles</h3>
+<p>Well there are three triangles,
+and each one has a red corner, a green corner, and a blue corner.</p>
+<p>The smallest triangle, drawn in blue, shows
+the highest chroma colors that can be mixed
+with some combination of the red, green and blue primaries
+used in High Definition Television (HDTV),
+which is defined by ITU standard BT.709.
+Oh and, more relevant for Web developers,
+the same range of colors is produced by the sRGB standard,
+which from the birth of the Web up until 2016
+was the best you could get on the Web.
+It also represented the typical gamut of CRT and LCD screens,
+(except for very expensive special-purpose ones),
+up until 2014 or so.</p>
+<p>The medium sized triangle, drawn in green, shows
+the highest chroma colors that can be mixed
+with some combination of the red, green and blue primaries
+used in reference Digital Cinema projectors
+which is defined by the DCI P3 standard.
+The same primaries <sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup>
+are used by Display P3, a wide gamut color space
+which has increasingly (since 2015 or so) become the design target
+for moderately wide (but not ultrawide) gamut displays
+on everything from laptops to phones to smart watches.
+Display P3 also describes the gamut of the typical reference monitor
+used in creating and grading content for TV and movies.</p>
+<p>The largest triangle, shown in red,
+illustrates the ultrawide gamut of
+another broadcast standard,
+ITU standard BT.2020.
+Content for Ultra HD (4k and 8k) TV and streaming services
+is typically transferred using the BT.2020 primaries <sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup>
+although currently, the full gamut is rarely used.
+Indeed there are significant problems creating
+a physical display with those primaries <sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup>.</p>
+<p>The reason we are able to use just two dimensions here is that
+Luminance, or Lightness, has been factored out.
+If you have two colored lights,
+identical except one is twice as bright,
+they will have the exact same chromaticity
+and be plotted at exactly the same point on this diagram.</p>
+<h3>Additivity and chromaticity diagrams</h3>
+<p>Now to point out some things which might seem obvious,
+but have important consequences.
+The three triangles use <em>straight lines</em>, not curved ones.
+The secondary colors yellow, cyan and magenta lie <em>exactly on</em> those lines.
+These are consequences of Grassman's Additivity Law <sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup>
+and the chromaticity diagram was specifically designed to preserve additivity.</p>
+<p>And thus, given the chromaticity of <em>any</em> two colored lights
+(there is nothing special about red, green and blue)
+the color produced by mixing them
+will lie on the straight line connecting them.
+Indeed, before the advent of widely available computers,
+this is how color mixtures were predicted for things like stage lighting:
+by drawing chromaticity diagrams on graph paper.</p>
+<p>So we can correctly say that, if a color is outside the traingle
+describng the gamut of a particular monitor,
+that color cannot be displayed
+(is <strong>out of gamut</strong>) for that monitor.
+Because there is no positive combination of the primaries
+that could produce it.</p>
+<p>What we <em>can't</em> say, though,
+is that if a color is <em>inside</em> a given triangle,
+it is <strong>in gamut</strong>.
+It might be,
+but it also might be too bright or too dark
+to be mixable by some posiive combination of the primaries.</p>
+<p>And this is why statements (often found in adverts) <sup class="footnote-ref"><a href="#fn9" id="fnref9">[9]</a></sup>
+that a particular monitor covers “95% of the gamut of”
+some target gamut are <em>bogus</em>.
+They are simply calculating the area of the intersection of two triangles,
+while assuming that all colors inside the triangle are in gamut.
+(We will see a practial demonstration of this later on).</p>
+<h3>The spectral locus</h3>
+<p>Enough about triangles. What about that curved loop around the outside?
+This represents the <strong>boundary of human vision</strong> or,
+if you like,
+the gamut of the human visual system.
+Points outside that loop are <em>imaginary colors</em>.
+No physical color can have a chromaticity outside that loop.<sup class="footnote-ref"><a href="#fn10" id="fnref10">[10]</a></sup></p>
+<p>Each point on the curve corresponds to a specific single wavelength,
+going from the deepest but darkest reds
+(conventionally at at 780nm,
+although wavelengths greater than 680nm are increasingly dark;
+wavelengths greater than 780nm are infra-red and thus, invisible)
+through oranges, yellows at 575nm, greens from 560 to 500nm,
+blues to 450nm
+then increasingly dark violets
+to 380nm.
+(Wavelengths shorter than 380nm are ultra-violet
+and thus, invisible).</p>
+<p>The straight line joining the two ends of the loop
+corresponds to the additive combination
+of two colors:
+the deepest red, and the deepest violet.
+It thus represents purples.</p>
+<p>Note that it is <strong>not</strong> possible to accurately display the colors along the spectral locus,
+They are all outside the gamut of an sRGB display
+(indeed, all but three points are outside the gamut of Rec BT.2020).
+It is however possible to convert the color of each wavelength to CIE XYZ <sup class="footnote-ref"><a href="#fn11" id="fnref11">[11]</a></sup>
+and then produce an approximate,
+<strong>highly desaturated</strong>, version <sup class="footnote-ref"><a href="#fn12" id="fnref12">[12]</a></sup> of that color.</p>
+<img src="./img/UCS-locus.svg">
+<h3>(Lack of) perceptual uniformity, and chromaticity diagrams</h3>
+<p>So far we have been concentrating on the good part of chromaticity diagrams –
+additive color mixtures lie on straight lines.</p>
+<p>We already learned that lightness has been factored out.
+What other problems are there?</p>
+<p>Yu may well have been tempted,
+looking at the diagram of the three display gamuts,
+to start comparing distances.
+The Display P3 green looks fairly close to the sRGB one,
+while the Rec BT.2020 one looks further away.
+In other words you probably assumed
+(and you would not be the only one)
+that the distance apart of two points
+corresponds exactly to
+how different the two colors look.</p>
+<p>Sadly, that is not the case at all.</p>
+<p>It used to be worse
+(the old <em>x,y</em> chromaticity diagram was hugely stretched out in the green area)
+but is still not great
+(the <em>u',v'</em> diagram under-estimates distances around yellow,
+and over-estimates distances n the blue to purple area).</p>
+<p>If we want to compare the sizes of two gamuts
+(and without going to three dimensions)
+can we do any better.</p>
+<p>Yes, we can.</p>
+<h2>The OKLab (OKLCH) color space</h2>
+<h3>CIE Lab</h3>
+<p>Since 1976, the CIE Lab color space
+which is <a href="https://drafts.csswg.org/css-color-4/#cie-lab">available in CSS Color 4</a>
+has been the go-to perceptually uniform space.
+It has a lightness axis which goes from 0 (black) to 100 (white)
+and, by design, the grey at L=50
+is exactly mid-way, visually.</p>
+<p>There are also <em>a</em> and <em>b</em> axes,
+which it is easier to understand and use in terms of polar coordinates:
+hue angle (angle from the positive a axis)
+and chroma (distance from the central neutral axis,
+in other words a measure of colorfulness or saturation) <sup class="footnote-ref"><a href="#fn13" id="fnref13">[13]</a></sup>.</p>
+<p>So the distance between two points is supposed to directly relate to how different the colors appear
+and that is true, up to a point.
+But then people started making ever-more-complex color difference formulae <sup class="footnote-ref"><a href="#fn14" id="fnref14">[14]</a></sup>
+to account for the non-linearities:</p>
+<ul>
+<li>over-prediction of color differences at high chroma</li>
+<li>breakdown of hue-linearity for blues (they become purple as chroma is reduced)</li>
+<li>skewing of blues away from the neutral axis</li>
+</ul>
+<p>and at some point, it looked like a better bet to just make a new color space,
+broadly the same as Lab/LCH but without the problems <sup class="footnote-ref"><a href="#fn15" id="fnref15">[15]</a></sup>.</p>
+<p>To illustrate the problem, here are some circles of constant deltaE2000 radius, in CIE Lab:</p>
+<img src="./img/Lab-uniformity.png">
+<p>No, those don't look like constant-sized circles to me, either.</p>
+<h3>OKLab to the rescue</h3>
+<p>Invented by Björn Ottosson [^OKlab] in 2020, OKLab works much like CIE Lab
+in that there is a central lightness axis,
+<em>a</em> and <em>b</em> chromatic axes,
+which are more easily manipulated as chroma and hue.
+But it does a better job of being perceptually uniform,
+so much so that we can go back to a simple, geometric-distance color difference formula.</p>
+<p>Now this is a three-dimensional space but we can draw a gamut in two dimensions
+by projecting onto the <em>a,b</em> plane. Like this:</p>
+<p><object data="./img/3gamuts-oklab.svg" ></object></p>
+<p>Here we have the same three display gamuts –
+sRGB, Display P3, and Rec BT.2020 –
+drawn on the OKLab <em>a,b</em> plane.
+The distances between points now directly relate to how different the colors are,
+which means we can finally compare the range of highest-chroma colors that can be displayed.</p>
+<p>Notice too that this is not additive;
+the secondary colors don't lie on straight lines connecting the primaries.</p>
+<p>We start to see that Display P3 is indeed significantly bigger than sRGB.
+We can see that the cyan secondary in sRGB is really very low chroma
+(which is why swinging out of gamut is such a problem for cyans)
+and how Display P3 helps there.</p>
+<p>And of course we see that Rec BT.2020 is <em>so much bigger</em> than either of them.</p>
+<p>Which brings up the question of <em>how big a gamut do we actually need?</em></p>
+<p>But that is for a follow-up post.</p>
+<h2>Geeknotes</h2>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>All the <a href="https://drafts.csswg.org/css-color-4/#predefined">Predefined Color Spaces</a> in CSS Color 4 are defined over the extended range. You can use negative values, or values greater than 1 (100%).</p>
+<p>So finding out of gamut colors is easy: they use negative values, or values greater than 1.0:</p>
+<pre class="language-css"><code class="language-css"><span class="token function">color</span><span class="token punctuation">(</span>display-p3 1 1 0<span class="token punctuation">)</span> is <span class="token function">color</span><span class="token punctuation">(</span>srgb<span class="token punctuation">,</span> 1.0 1.0 -0.346<span class="token punctuation">)</span></code></pre>
+ <a href="#fnref1" class="footnote-backref">↩︎</a></li>
+<li id="fn2" class="footnote-item"><p>To a first approximation. All displays reflect some of the ambient light in the room, called viewing flare. This mixes a tiny bit of white light in with the displayed black, making it lighter than a true, luminance = 0, black.</p>
+<p>For CMYK printers, the problem is even worse: they can't print a rich, deep black and in fact the ICC profile for that printer will have a measurement of the deepest black that can be printed, using 100% of black ink and a fair bit (around 30%) of cyan, magenta and yellow as well.
+Let's ignore printers for now, though. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>There is a <a href="https://drafts.csswg.org/mediaqueries-5/#color-gamut"><code>color-gamut</code> media query</a> which has three possible values: <code>srgb</code>, <code>p3</code> and <code>rec2020</code> which are broad categories meaning normal, wide, and ultrawide respectively. So you could try:</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">color-gamut</span><span class="token punctuation">:</span> p3<span class="token punctuation">)</span></span> <span class="token punctuation">{</span><br>    // do some wide gamut stuff here<br><span class="token punctuation">}</span></code></pre>
+<p>Currently implemented in Safari and Chrome, but not yet in Firefox.</p>
+<p>I said these are <em>broad categories</em>: a display that can reproduce most of Adobe 1998 RGB, for example, but covers less than 90% of Display P3, will still match the p3 media query. <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p>The <em>u,v chromaticity diagram</em>, dating to 1976, improves on the old 1931 <em>x,y chromaticity diagram</em>. It is a bit more perceptually even (but not much). If you want to play with these, the equations are very simple:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">XYZ_to_uv</span><span class="token punctuation">(</span><span class="token parameter"><span class="token constant">XYZ</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br><span class="token comment">// Convert an array of three XYZ values</span><br><span class="token comment">// to u*,v* chromaticity coordinates</span><br><br>    <span class="token keyword">let</span> <span class="token punctuation">[</span><span class="token constant">X</span><span class="token punctuation">,</span> <span class="token constant">Y</span><span class="token punctuation">,</span> <span class="token constant">Z</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">XYZ</span><span class="token punctuation">;</span><br>    <span class="token keyword">let</span> denom <span class="token operator">=</span> <span class="token constant">X</span> <span class="token operator">+</span> <span class="token number">15</span><span class="token operator">*</span><span class="token constant">Y</span> <span class="token operator">+</span><span class="token number">3</span><span class="token operator">*</span><span class="token constant">Z</span><span class="token punctuation">;</span><br>    <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token operator">*</span><span class="token constant">X</span> <span class="token operator">/</span> denom<span class="token punctuation">,</span> <span class="token number">9</span><span class="token operator">*</span><span class="token constant">Y</span> <span class="token operator">/</span> denom<span class="token punctuation">]</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p><a href="https://colorjs.io/">color.js</a> has a function to compute u,v values for you, starting with any color in any color space. <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p>The same primaries, but not the same white, or transfer function, or viewing conditions. On a chromaticity diagram though DCI P3 and Display P3 draw the same triangle. <a href="#fnref5" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn6" class="footnote-item"><p>Standard Dynamic Range (SDR) content uses BT.2020. High Dynamic Range (HDR) uses BT.2100, which has the same primaries as BT.2020. So the gamut is the same, in terms of hue and chroma; but the brightnesses possible are very different. <a href="#fnref6" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn7" class="footnote-item"><p>All three primaries are right on the spectral locus, which means they are single-wavelength sources at 630nm, 532nm, and 467.1nm. They are physically realizable, for example by three lasers, but getting the requisite purity is difficult. This also means that they exacerbate <em>observer metamerism</em>, the individual small differences between people with normal color vision; and they tend to suffer from <em>speckle</em>, a wavering shimmering effect with very high-purity lights.</p>
+<p>For people with protanopia (a form of atypical color vision, often called “color blindness”) the red primary will be very dim, and possibly invisible. <a href="#fnref7" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn8" class="footnote-item"><p>Originally described by Grassman in 1853 on the basis of color matching experiments, and succinctly restated by Wyszecki and Styles (2000):</p>
+<ul>
+<li><strong>Symmetry Law</strong> If color stimulus A matches color stimulus B, then color stimulus B matches color stimulus A.</li>
+<li><strong>Transitivity Law</strong> If A matches B and B matches C, then A matches C.</li>
+<li><strong>Proportionality Law</strong> If A matches B, then <em>x</em> A matches <em>x</em> B, where <em>x</em> is any positive factor by which the <em>radiant power</em> of the color stimulus is increased or reduced, while its <em>relative spectral distribution</em> is kept the same.</li>
+<li><strong>Additivity Law</strong> If A, B, C, D are any four color stimuli, then if any of two of the following three conceivable color matches A matches B, C matches D, and (A + C) matches (B + D) holds good, then so does the remaining match (A + D) matches (B + C) where (A + C), (B + D), (A + D), (B + C) denote, respectively additive mixtures of A and C, B and D, A and D and B and C.</li>
+</ul>
+<p>As usual there are some caveats for the laws to hold true:</p>
+<ul>
+<li>All color matches must be made under similar <em>viewing conditions</em>.</li>
+<li>The eye's <em>previous exposure to light</em> affects the state of <em>adaptation</em>, influencing the spectral sensitivity of the eye.</li>
+<li>If a field diameter larger than 10° is used in a color match, a failure of the proportionality law may be found.</li>
+</ul>
+ <a href="#fnref8" class="footnote-backref">↩︎</a></li>
+<li id="fn9" class="footnote-item"><p>“A popular method to evaluate display gamuts is to compare the triangle area connecting the chromaticity points of the RGB primaries to those of some standard RGBs on the CIE xy or u′v′ chromaticity diagram. It is easy to calculate the area, and most display manufacturers define color gamut coverage in areal dimensions. However, it is not reasonable that the whole area is taken into account even if the triangle protrudes outside the standard RGB ones to be compared. Further, some manufacturers exploit their advertisement of the larger ratio calculated in the two diagrams to market their product.”</p>
+<p>Kenichiro Masaoka <em>et. al.</em> <a href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-22-16-19069&amp;id=297313"><em>Designing display primaries with currently available light sources for UHDTV wide-gamut system colorimetry</em></a> Optics Express Vol. 22, Issue <strong>16</strong>, pp. 19069-19077 (2014) <a href="#fnref9" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn10" class="footnote-item"><p>In the same way that mathematics can do useful things with imaginary numbers, color science can do useful things with imaginary colors. Examples include the ProPhoto RGB color space <strong>add diagram</strong> <a href="#fnref10" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn11" class="footnote-item"><p>The CIE 1931 2-degree observer color matching functions (CMF) consists of <a href="../Color/spectral/CMF.js">a table of three numbers</a> (xbar, ybar, zbar) at 1nm intervals. Normaly, to convert a measured color spectrum to CIE XYZ, the spectrum amplitude is multiplied by the color matching functions and these values are summed over all wavelengths.</p>
+<p>In this case, where only a single wavelength is used, the (xbar, ybar, zbar) values at that wavelength can simply be used directly as XYZ. Here is a <a href="../Color/spectral/rainbowTongue.html">quick and dirty program</a> to do that:</p>
+<pre class="language-html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>meta</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./multiply-matrices.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./conversions.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./utilities.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./spectral_locus.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./CMF.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript"><br>    <span class="token comment">// line up the arrays. Luckily they are both 1nm spacing</span><br>    <span class="token keyword">let</span> CMFstart <span class="token operator">=</span> CMF_1931_2degree<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>    <span class="token keyword">let</span> locusStart <span class="token operator">=</span> spectral_locus_uv<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>    <span class="token keyword">let</span> locusEnd <span class="token operator">=</span> spectral_locus_uv<span class="token punctuation">[</span>spectral_locus_uv<span class="token punctuation">.</span>length<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>    <span class="token keyword">let</span> offset <span class="token operator">=</span> CMFstart <span class="token operator">-</span> locusStart<span class="token punctuation">;</span><br><br>    <span class="token comment">// un-gamut-mapped sRGB colors</span><br>    <span class="token keyword">let</span> results <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>    <span class="token comment">// individual color</span><br>    <span class="token keyword">let</span> testXYZ <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br><br>    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> wavelength <span class="token operator">=</span> locusStart<span class="token punctuation">;</span> wavelength <span class="token operator">&lt;</span> locusEnd<span class="token punctuation">;</span> wavelength<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">let</span> testXYZ <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>        testXYZ <span class="token operator">=</span> CMF_1931_2degree<span class="token punctuation">[</span>wavelength <span class="token operator">-</span> CMFstart<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token keyword">let</span> testRGB <span class="token operator">=</span> <span class="token function">gam_sRGB</span><span class="token punctuation">(</span><span class="token function">XYZ_to_lin_sRGB</span><span class="token punctuation">(</span>testXYZ<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        results<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">[ </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>testRGB<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>testRGB<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>testRGB<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> ],</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token punctuation">}</span><br><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>results<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>View console for an array of sRGB coordinate values for the spectral locus<br>    at 1nm intervals from 380 to 700nm. They will need to be gamut mapped for display.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
+ <a href="#fnref11" class="footnote-backref">↩︎</a></li>
+<li id="fn12" class="footnote-item"><p>The XYZ values are then converted to sRGB for display; the values are all out of gamut and so they must be gamut mapped (their chroma is reduced, keeping lightness and hue constant, until they are in gamut).</p>
+<p>We can combine that with a <a href="../Color/spectral/spectral_locus.js">table of the u'v' coordinates at each wavelength</a> to generate some SVG polylines to make the diagram. Here is <a href="../Color/spectral/tongueToGamut.html">what I threw together</a> to do that:</p>
+<pre class="language-html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>meta</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./spectral_locus.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./tongueColorsUnMapped.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://colorjs.io/dist/color.global.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript"><br>    <span class="token keyword">let</span> offset <span class="token operator">=</span> <span class="token number">380</span><span class="token punctuation">;</span><br>    <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> wavelength <span class="token operator">=</span> <span class="token number">380</span><span class="token punctuation">;</span> wavelength <span class="token operator">&lt;</span> <span class="token number">700</span><span class="token punctuation">;</span> wavelength<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">let</span> i <span class="token operator">=</span> wavelength <span class="token operator">-</span> offset<span class="token punctuation">;</span><br>        <span class="token keyword">let</span> c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Color</span><span class="token punctuation">(</span><span class="token string">"sRGB"</span><span class="token punctuation">,</span> tongueColorsUnMapped<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        Color<span class="token punctuation">.</span><span class="token function">toGamut</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span><br>        result<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;polyline points="</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>spectral_locus_uv<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">,</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">*</span>spectral_locus_uv<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>spectral_locus_uv<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">,</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">*</span>spectral_locus_uv<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">" stroke="rgb(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token number">100</span><span class="token operator">*</span>c<span class="token punctuation">.</span>coords<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">%,</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token number">100</span><span class="token operator">*</span>c<span class="token punctuation">.</span>coords<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">%,</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token number">100</span><span class="token operator">*</span>c<span class="token punctuation">.</span>coords<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">%)"/></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>View console for set of SVG polylines for the spectral locus<br>    at 1nm intervals from 380 to 700nm. They have been gamut mapped for display.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
+ <a href="#fnref12" class="footnote-backref">↩︎</a></li>
+<li id="fn13" class="footnote-item"><p>OK you realize we are two levels deep in footnotes, right? But since you are here: a surface of equal chroma is a cylinder in Lab space while a surface of equal saturation is a cone with the apex at black, because Saturation = Chroma / Lightness. <a href="https://munsell.com/color-blog/difference-chroma-saturation/">More details</a></p>
+<p>Come on let me play fast and loose with illustrative terminology before this blog post turns into a novel. <a href="#fnref13" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn14" class="footnote-item"><p>Culminating in deltaE 2000, which is really pretty accurate but also <a href="https://drafts.csswg.org/css-color-4/#color-difference-2000">remarkably complex</a> and often implemented incorrectly. <a href="#fnref14" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn15" class="footnote-item"><p>I covered the problems with CIE Lab (specifically in the case of gamut mapping), the search for a better color space, and the eventual selection of OKLab, in a <a href="https://www.w3.org/Graphics/Color/Workshop/slides/talk/lilley">presentation at the W3C Color workshop in September 2021</a> <a href="#fnref15" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+</main>
+
+
+<script src="sitewide.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+    <meta charset="utf-8"></meta>
+    <script src="./multiply-matrices.js"></script>
+    <script src="./conversions.js"></script>
+    <script src="./utilities.js"></script>
+    <script src="./spectral_locus.js"></script>
+    <script src="./CMF.js"></script>
+    <script>
+        // line up the arrays. Luckily they are both 1nm spacing
+        let CMFstart = CMF_1931_2degree[0][0];
+        let locusStart = spectral_locus_uv[0][0];
+        let locusEnd = spectral_locus_uv[spectral_locus_uv.length-1][0];
+        let offset = CMFstart - locusStart;
+
+        // un-gamut-mapped sRGB colors
+        let results = [];
+        // individual color
+        let testXYZ = [];
+
+        for(let wavelength = locusStart; wavelength < locusEnd; wavelength++) {
+            let testXYZ = [];
+            testXYZ = CMF_1931_2degree[wavelength - CMFstart].slice(1);
+            let testRGB = gam_sRGB(XYZ_to_lin_sRGB(testXYZ));
+            results.push(`[ ${testRGB[0]}, ${testRGB[1]}, ${testRGB[2]} ],`);
+            }
+
+        console.log(results.join("\n"));
+    </script>
+    <p>View console for an array of sRGB coordinate values for the spectral locus
+        at 1nm intervals from 380 to 700nm. They will need to be gamut mapped for display.</p>
