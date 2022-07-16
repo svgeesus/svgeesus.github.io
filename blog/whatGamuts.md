@@ -1,6 +1,5 @@
 ---
 title: What are color gamuts
-draft: true
 tags: [
 	"CSS",
 	"Color Science"
