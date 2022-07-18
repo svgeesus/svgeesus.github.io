@@ -189,7 +189,7 @@ additive color mixtures lie on straight lines.
 We already learned that lightness has been factored out.
 What other problems are there?
 
-Yu may well have been tempted,
+You may well have been tempted,
 looking at the diagram of the three display gamuts,
 to start comparing distances.
 The Display P3 green looks fairly close to the sRGB one,
@@ -206,11 +206,11 @@ It used to be worse
 (the old _x,y_ chromaticity diagram was hugely stretched out in the green area)
 but is still not great
 (the _u',v'_ diagram under-estimates distances around yellow,
-and over-estimates distances n the blue to purple area).
+and over-estimates distances in the blue to purple area).
 
 If we want to compare the sizes of two gamuts
 (and without going to three dimensions)
-can we do any better.
+can we do any better?
 
 Yes, we can.
 
@@ -229,7 +229,7 @@ There are also _a_ and _b_ axes,
 which it is easier to understand and use in terms of polar coordinates:
 hue angle (angle from the positive a axis)
 and chroma (distance from the central neutral axis,
-in other words a measure of colorfulness or saturation) [^notreally].
+in other words a measure of colorfulness (or saturation) [^notreally]).
 
 So the distance between two points is supposed to directly relate to how different the colors appear
 and that is true, up to a point.
@@ -240,7 +240,9 @@ to account for the non-linearities:
 - breakdown of hue-linearity for blues (they become purple as chroma is reduced)
 - skewing of blues away from the neutral axis
 
-and at some point, it looked like a better bet to just make a new color space,
+because they were finding a simple geometric-distance error metric gave inaccurage preictions
+and at some point, it looked like a better bet to fix the problem at source:
+just make a new color space,
 broadly the same as Lab/LCH but without the problems [^betterThan].
 
 To illustrate the problem, here are some circles of constant deltaE2000 radius, in CIE Lab:
