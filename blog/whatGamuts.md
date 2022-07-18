@@ -178,7 +178,7 @@ It is however possible to convert the color of each wavelength to CIE XYZ [^CMF]
 and then produce an approximate,
 **highly desaturated**, version [^creating-spectral] of that color.
 
-<img src="./img/UCS-locus.svg">
+<img src="./img/UCS-locus-Safari.svg">
 
 
 ### (Lack of) perceptual uniformity, and chromaticity diagrams

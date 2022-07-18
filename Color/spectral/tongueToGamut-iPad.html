@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+    <title>Safari bug avoiding version (can't handle viewbox width/height less than 1.0)</title>
+    <meta charset="utf-8"></meta>
+    <script src="./spectral_locus.js"></script>
+    <script src="./tongueColorsUnMapped.js"></script>
+    <script src="https://colorjs.io/dist/color.global.js"></script>
+    <script>
+        let offset = 380;
+        let result = [];
+
+        for (let wavelength = 380; wavelength < 700; wavelength++) {
+            let i = wavelength - offset;
+            let c = new Color("sRGB", tongueColorsUnMapped[i]);
+            Color.toGamut(c);
+            result.push(`<polyline points="${100*spectral_locus_uv[i][1]},${-100*spectral_locus_uv[i][2]} ${100*spectral_locus_uv[i+1][1]},${-100*spectral_locus_uv[i+1][2]}" stroke="rgb(${100*c.coords[0]}%,${100*c.coords[1]}%,${100*c.coords[2]}%)"/>`);
+        }
+        console.log(result.join("\n"));
+    </script>
+    <p>View console for set of SVG polylines for the spectral locus
+        at 1nm intervals from 380 to 700nm. They have been gamut mapped for display.</p>
