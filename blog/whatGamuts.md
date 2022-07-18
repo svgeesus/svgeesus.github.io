@@ -54,7 +54,7 @@ Reluctantly we turn to 2D diagrams, which are _a whole lot easier_ to create and
 The most commonly used one is called the x,y chromaticity diagram and it looks like an elongated horseshoe.
 Less commonly, the _u,v chromaticity diagram_ is used, which looks like a broader horseshoe [^uv]. Here is one:
 
-<img src="./img/UCS-3gamuts.svg">
+<img src="./img/UCS-3gamuts-Safari.svg">
 
 OK what are we looking at here.
 

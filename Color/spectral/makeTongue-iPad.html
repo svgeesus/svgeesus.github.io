@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+    <title>Safari bug avoiding version (can't handle viewbox width/height less than 1.0)</title>
+    <meta charset="utf-8"></meta>
+    <script src="./spectral_locus.js"></script>
+    <script>
+        let offset = 380;
+        let result = [];
+
+        result.push(`<polyline points="`);
+        for (let wavelength = 380; wavelength < 700; wavelength++) {
+            let i = wavelength - offset;
+
+            result.push(`${100*spectral_locus_uv[i][1]},${-100*spectral_locus_uv[i][2]}`);
+        }
+        result.push(`"/>`);
+        console.log(result.join("\n"));
+    </script>
+    <p>View console for set of SVG polylines for the spectral locus
+        at 1nm intervals from 380 to 700nm.</p>
