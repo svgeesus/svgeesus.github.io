@@ -8,7 +8,8 @@
 					"title": "Escaping the sRGB Prison",
 					"type": "Talk",
 					"slides": "https://svgees.us/Escape-sRGB/#intro",
-					"@context": "https://schema.org/"
+					"@context": "https://schema.org/",
+					"video": "https://www.youtube.com/watch?v=zkun6wAPc1s"
 				}
 			],
 			"url": "https://cssday.nl/2022/speakers",
