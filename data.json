@@ -6,13 +6,15 @@
 			"talk": [
 				{
 					"title": "Escaping the sRGB Prison",
-					"type": "Talk"
+					"type": "Talk",
+					"@context": "https://schema.org/"
 				}
 			],
 			"url": "https://www.weyweyweb.com/",
 			"name": "WeyWeyWeb",
 			"date": "2022-12-16",
-			"city": "Malaga, Spain"
+			"city": "Málaga, Spain",
+			"@context": "https://schema.org/"
 		},
 		{
 			"talk": [
