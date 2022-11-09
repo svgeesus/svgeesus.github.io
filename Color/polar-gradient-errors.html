@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Errors from clip/gam in OKLCH gradient explorer</title>
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 4em;
+    }
+    #header {
+        display: flex;
+        flex-direction: row;
+    }
+    #header div {
+        margin: 0.3em;
+    }
+    #projection {
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+    .label {
+        display: inline-block;
+        width: 4em;
+    }
+    h1 {
+        color: #444;
+    }
+    #gradient h2 {
+        color: white;
+        font-size: 110%;
+        background: #444;
+        padding: 0.3em 0.5em;
+        width: calc(600px - 1em);
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    #clip  {
+        margin-bottom: 0;
+    }
+    span.oog {
+        font-weight: bold;
+        color: #FF6666;
+    }
+</style>
+
+<h1>Explore errors from clipping &amp; gamut mapping in OKLCH gradients</h1>
+
+<p>
+    Explore a projection of OKLCH
+    showing positions of the start and end colors
+    (which are in-gamut for sRGB),
+    plus the interpolation path
+    when interpolated in OKLCH.
+    The path is <span class="oog">colored</span>
+    to indicate out-of-sRGB gamut portions.
+    Also graphs of the hue, lightness and chroma errors
+    between the calculated and gamut-mapped (or clipped) colors.
+</p>
+
+<div id="header">
+<div id="form">
+<p><span class="label">Start: </span><input type="color" id="start" value="#56DD47"></p>
+<p><span class="label">End: </span><input type="color" id="end" value="#8850C7"></p>
+<!-- <fieldset>
+    <legend>Handling of OOG colors</legend>
+    <div><input type="radio" id="css" name="gma" checked><label for="css">CSS Color 4 GMA</label></div>
+    <div><input type="radio" id="clip" name="gma"><label for="clip">Per-component clip</label></div>
+</fieldset> -->
+<fieldset>
+    <legend>Arc</legend>
+    <div><input type="radio" id="short" name="arc" checked><label for="short">Shorter</label></div>
+    <div><input type="radio" id="long" name="arc"><label for="long">Longer</label></div>
+</fieldset>
+</div>
+<div id="projection">
+    <canvas id="ok" width="400" height="400"></canvas>
+</div>
+<div id="gradient">
+    <h2>CSS Gamut mapping algorithm</h2>
+    <canvas id="gma" width="600" height="100"></canvas>
+    <canvas id="clip" width="600" height="100"></canvas>
+    <h2>Per-component clip</h2>
+
+</div>
+</div>
+
+
+<script type="module">
+    import Color from "https://colorjs.io/color.js";
+    import serialize from "https://colorjs.io/src/serialize.js";
+    import to from "https://colorjs.io/src/to.js";
+    import clone from "https://colorjs.io/src/clone.js";
+    import inGamut from "https://colorjs.io/src/inGamut.js";
+    import toGamut from "https://colorjs.io/src/toGamut.js";
+    import deltaEOK from "https://colorjs.io/src/deltaE/deltaEOK.js";
+
+    const JND = 0.02;
+    const ε = 0.0001;
+
+    const canvas1 = document.getElementById('ok');
+    const ctx = canvas1.getContext('2d');
+    ctx.fillStyle = "grey";
+    ctx.fillRect(0, 0, 400, 400);
+
+    const canvas2 = document.getElementById('gma');
+    const gmtx = canvas2.getContext('2d');
+
+    const canvas3 = document.getElementById('clip');
+    const cltx = canvas3.getContext('2d');
+
+    let startColor = new Color('#56DD47');
+    let endColor = new Color('#8850C7')
+    let startOK = startColor.to('oklab');
+    let endOK = endColor.to('oklab');
+    let direction = 'shorter';
+    let range = startColor.range(endColor, {
+        space: 'oklch',
+        outputSpace: 'srgb',
+        hue: 'shorter'
+    });
+    plotproj(startColor, startOK, endColor, endOK);
+    plotGradients();
+
+    let start = document.getElementById('start');
+    start.addEventListener("change", evt => {
+        let s = start.value;
+        startColor.coords = Color.parse(s).coords;
+        startOK = startColor.to('oklab');
+        range = startColor.range(endColor, {
+            space: 'oklch',
+            outputSpace: 'srgb',
+            hue: 'shorter'
+        });
+        // console.log ({startOK});
+        plotproj(startColor, startOK, endColor, endOK);
+        plotGradients ();
+    });
+
+
+    let end = document.getElementById('end');
+    end.addEventListener("change", evt => {
+        let e = end.value;
+        endColor.coords = Color.parse(e).coords;
+        endOK = endColor.to('oklab');
+        range = startColor.range(endColor, {
+            space: 'oklch',
+            outputSpace: 'srgb',
+            hue: 'shorter'
+        });
+        // console.log ({endOK});
+        plotproj(startColor, startOK, endColor, endOK);
+        plotGradients ()
+    });
+
+    function ab2px (coord) {
+        // convert OKLab a or b coordinates
+        // to pixel coordinates for  a 400-square canvas
+        return 8* (0.4 + coord) * 62.5;
+
+    }
+
+    function plotCircle (context, color, a, b) {
+        let f = serialize(color, {format: "hex", inGamut: false});
+        context.fillStyle = f;
+        let centerX = ab2px(b);
+        let centerY = ab2px(a);
+        const radius = 8;
+        context.beginPath();
+        context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        context.fill();
+    }
+
+    function plotproj (startColor, startOK, endColor, endOK) {
+        // background
+        ctx.fillStyle = "grey";
+        ctx.fillRect(0, 0, 400, 400);
+        // axes
+        ctx.strokeStyle = "white";
+        ctx.lineWidth="2";
+        ctx.beginPath();
+        ctx.moveTo(0, 200);
+        ctx.lineTo(400, 200);
+        ctx.stroke();
+        ctx.moveTo(200, 0);
+        ctx.lineTo(200, 400);
+        ctx.stroke();
+        // interpolation arc
+        ctx.lineWidth="4";
+        let prev = [startOK.coords[2], startOK.coords[1]];
+        for (let i=0; i <=1; i+=0.01) {
+            let c;
+            let col = range(i);
+            let colOK = col.to('oklab');
+            let current = [colOK.coords[2], colOK.coords[1]];
+            col.inGamut()? c= 'white': c='#FF6666';
+            ctx.beginPath();
+            let f = serialize(c, {format: "hex", inGamut: false});
+            ctx.strokeStyle = f;
+            ctx.moveTo(ab2px(prev[0]), ab2px(prev[1]));
+            ctx.lineTo(ab2px(current[0]), ab2px(current[1]))
+            ctx.stroke();
+            prev = current;
+        }
+        // start, end colors
+        let f = serialize(startColor, {format: "hex", inGamut: false});
+        ctx.lineWidth="3";
+        ctx.strokeStyle = f;
+        ctx.beginPath();
+        ctx.moveTo(200, 200);
+        ctx.lineTo(ab2px(startOK.coords[2]), ab2px(startOK.coords[1]));
+        ctx.stroke();
+        plotCircle(ctx, startColor, startOK.coords[1], startOK.coords[2]);
+        f = serialize(endColor, {format: "hex", inGamut: false});
+        ctx.strokeStyle = f;
+        ctx.beginPath();
+        ctx.moveTo(200, 200);
+        ctx.lineTo(ab2px(endOK.coords[2]), ab2px(endOK.coords[1]));
+        ctx.stroke();
+        plotCircle(ctx, endColor, endOK.coords[1], endOK.coords[2]);
+    }
+
+    function plotGradients () {
+        // overlap to avoid aliasing artifacts
+        gmtx.lineWidth="1.1";
+        cltx.lineWidth="1.1";
+        for (let i=0; i<=600; i++) {
+            let p = i / 600;
+            let c = range(p);
+            let cgm = CSSgamutMap (c, 'sRGB');
+            let f = serialize(cgm, {format: "hex", inGamut: false});
+            gmtx.strokeStyle = f;
+            gmtx.beginPath();
+            gmtx.moveTo(i, 0);
+            gmtx.lineTo(i, 100);
+            gmtx.stroke();
+            let ccl = clip(c, 'sRGB');
+            f = serialize(ccl, {format: "hex", inGamut: false});
+            cltx.strokeStyle = f;
+            cltx.beginPath();
+            cltx.moveTo(i, 0);
+            cltx.lineTo(i, 100);
+            cltx.stroke();
+        }
+    }
+
+    // function render_ok(L=0.5) {
+    //     // using oklch with MINDE, deOK
+
+    //     for (let a = -0.4; a <= 0.4; a+=0.016) {
+    //         for (let b = -0.4; b <= 0.4; b+=0.016) {
+    //             let OKLab = {space: "oklab", coords: [L, a, b]};
+    //             let color = {space: "srgb", coords: []};
+    //             let start = performance.now();
+    //             color = CSSgamutMap (OKLab, 'srgb');
+    //             timeTaken += performance.now() - start;
+    //             plotok(ctx, color, a, b);
+    //         }
+    //     }
+
+    //     console.log("oklch+MINDE: " + timeTaken + "ms");
+    // }
+
+
+
+    function CSSgamutMap (origin, destination) {
+        // OKLCH is the CSS GMA working space
+        let origin_OKLCH = to(origin, 'oklch');
+        let L = origin_OKLCH.coords[0];
+        // return media white or black, if lightness is out of range
+        if (L >= 1) return {space: destination, coords: [1, 1, 1], alpha: origin.alpha};
+        if (L <= 0) return {space: destination, coords: [0, 0, 0], alpha: origin.alpha};
+        // otherwise, return origin in destination, if in gamut
+        if (inGamut(origin, destination)) return to(origin, destination);
+        // set up for OKLCH chroma reduction
+        let min = 0;
+        let max = origin_OKLCH.coords[1];
+        let min_inGamut = true;
+        let current = clone(origin_OKLCH);
+        let clipped = clip(current, destination);
+        // but first check if we are "close" to in gamut
+        let E = deltaEOK(clipped, current);
+        if (E < JND) return clipped;
+        // now actually binary search for the in-gamut chroma value
+        while (max - min > ε) {
+            let chroma = (min + max) / 2;
+            // console.log(chroma);
+            current.coords[1] = chroma;
+            if (min_inGamut && inGamut(current, destination)) {
+                min = chroma
+            } else {
+                clipped = clip(current, destination);
+                E = deltaEOK(clipped, current);
+                if (E < JND) {
+                    if (JND - E < ε) {
+                        return clipped;
+                    } else {
+                        min_inGamut =  false;
+                        min = chroma
+                    }
+                } else {
+                    max = chroma;
+                }
+            }
+        } //  end of chroma reduction loop
+        return current;
+    }
+
+    function clip (color, destination) {
+
+        let destColor = to(color, destination);
+
+        let destSpace = Color.Space.get(destination);
+        let bounds = Object.values(destSpace.coords).map(c => c.range || []);
+
+		destColor.coords = destColor.coords.map((c, i) => {
+			let [min, max] = bounds[i];
+
+			if (min !== undefined) {
+				c = Math.max(min, c);
+			}
+
+			if (max !== undefined) {
+				c = Math.min(c, max);
+			}
+
+			return c;
+		});
+        return destColor;
+    }
+    </script>
