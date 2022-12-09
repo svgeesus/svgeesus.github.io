@@ -447,7 +447,7 @@
 		<div class="delayed-children">
 			<p>Change in hue very noticeable</p>
 			<p>Change in lightness less so</p>
-			<p>Reduction in hue is least noticeable</p>
+			<p>Reduction in chroma is <em>least</em> noticeable</p>
 			<p>Color space matters (hue uniformity, linearity)</p>
 			<p><a href="https://www.w3.org/Graphics/Color/Workshop/slides/talk/lilley">(see talk)</a></p>
 		</div>
@@ -461,6 +461,7 @@
 
 </section>
 
+<!-- 
 <section>
 	<header class="image slide" style="background: url(img/color-words.jpg)  left / cover;" id="contrast">
 		<h1>Contrasting colors</h1>
@@ -512,7 +513,7 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
 		</table>
 	</article>
 
-</section>
+</section> -->
 
 <section>
 	<header class="image slide" style="background: url(img/questions.jpg)  left / cover;" id="caniuse">
@@ -532,36 +533,36 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
 			</tr>
 			<tr>
 				<th>Feature</th>
-				<th>Chrome 102</th>
-				<th>Edge 100</th>
-				<th>Firefox  100</th>
-				<th>Safari 15.4</th>
+				<th>Chrome 110</th>
+				<th>Edge 110</th>
+				<th>Firefox  109</th>
+				<th>Safari 15.5</th>
 			</tr>
 			<tr>
 				<th><code class="language-css">color()</code></th>
-				<td class="fail"></td>
-				<td class="fail"></td>
+				<td class="pass"></td>
+				<td class="pass"></td>
 				<td class="fail"></td>
 				<td class="pass"></td>
 			</tr>
 			<tr>
 				<th><code class="language-css">color(display-p3)</code></th>
-				<td class="fail"></td>
-				<td class="fail"></td>
+				<td class="pass"></td>
+				<td class="pass"></td>
 				<td class="fail"></td>
 				<td class="pass"></td>
 			</tr>
 			<tr>
 				<th><code class="language-css">lab(), lch()</code></th>
-				<td class="fail"></td>
-				<td class="fail"></td>
+				<td class="pass"></td>
+				<td class="pass"></td>
 				<td class="fail"></td>
 				<td class="pass"></td>
 			</tr>
 			<tr>
 				<th><code class="language-css">oklab(), oklch()</code></th>
-				<td class="fail"></td>
-				<td class="fail"></td>
+				<td class="pass"></td>
+				<td class="pass"></td>
 				<td class="fail"></td>
 				<td class="pass"></td>
 			</tr>
@@ -574,14 +575,14 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
 			</tr>
 			<tr>
 				<th><code class="language-css">color-mix()</code></th>
-				<td class="fail"></td>
-				<td class="fail"></td>
+				<td class="pass"></td>
+				<td class="pass"></td>
 				<td class="pass"></td>
 				<td class="pass"></td>
 			</tr>
 			<tr>
 				<th><code class="language-css">*-gradient(in colorspace )</code></th>
-				<td class="fail"></td>
+				<td class="pass"></td>
 				<td class="fail"></td>
 				<td class="fail"></td>
 				<td class="pass"></td>
@@ -593,13 +594,13 @@ color-contrast(wheat vs tan, sienna, var(--myAccent), #d2691e);</code></pre>
 				<td class="fail"></td>
 				<td class="pass"></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<th><code class="language-css">color-contrast()</code></th>
 				<td class="pass"></td>
 				<td class="fail"></td>
 				<td class="pass"></td>
 				<td class="pass"></td>
-			</tr>
+			</tr> -->
 			<tr>
 				<th></th>
 				<td></td>
