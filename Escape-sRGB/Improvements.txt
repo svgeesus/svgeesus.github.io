@@ -1,5 +1,11 @@
 Improvements
 
+Use the better colored chromaticity diagram from my Wiley book, update the gamut diagrams to use that also
+
+Update current browser support to latest versions
+
+Add palette interpolation for color fonts (very new)
+
 DONE add a named color to the 'all srgb' slide and to the sRGB chromaticity scatterplot
 
 DONE introduce chromaticity diagrams, animated? tongue with spectral colors, purple line, mixes on straight lines (additivity). Somewhat perceptually uniform but not very good. BONUS: its in 2D
