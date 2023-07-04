@@ -403,6 +403,31 @@
 
 	</article>
 
+	<article class="slide" id="font_palette">
+		<h1>Colored fonts, interpolating palettes</h1>
+		<h2>New: <code class="language-css">font-palette property</code></h2>
+
+		<pre><code>
+			@font-palette-values --grey-palette { 
+				font-family: "Nabla"; 
+				base-palette: 3; 
+			} 
+			@font-palette-values --pink-palette { 
+			font-family: "Nabla"; 
+			base-palette: 1; 
+			}
+			@keyframes anim {
+				from { font-palette: --grey-palette; }
+				to { font-palette: --pink-palette; }
+			}
+			.animated-palette {
+				animation: anim 2s infinite;
+			}
+				
+		</code></pre>
+
+	</article>
+
 </section>
 
 <section>
