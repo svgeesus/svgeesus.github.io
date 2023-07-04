@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" vocab="https://schema.org/">
+<head>
+	<meta charset="UTF-8">
+	<title>Are we there yet? &bull; Chris Lilley</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link href="/css/blog.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+	<nav>
+		<div>
+			<a href="/index.html">Home</a>
+			<a href="/blog">Blog</a>
+			<a href="/talks.html">Speaking</a>
+			<a href="/publications.html">Publications</a>
+			<a href="/cv.html" target="_blank">CV</a>
+		</div>
+		<div class="social">
+			<a class="twitter" href="http://twitter.com/svgeesus" target="_blank" title="Twitter">Twitter</a>
+			<a class="github" href="http://github.com/svgeesus" target="_blank" title="Github">Github</a>
+		</div>
+	</nav>
+
+	<h1>
+		<img property="image" src="https://avatars2.githubusercontent.com/u/2506926?v=3&s=460" alt="">
+
+		<span property="name">
+			
+				Are we there yet?
+			
+		</span>
+	</h1>
+</header>
+
+
+<main>
+
+<header class="post-meta">
+	<div class="tags">
+		</div>
+
+	<p class="date">
+		Published on
+		<time datetime="2023-07-04T15:50:03.463Z">4 July 2023</time>
+	</p>
+
+</header>
+
+
+<p>CSS Color 4 is now widely implemented. But it has been a long and bumpy ride!
+Why did it take so long, and why did it finally succeed?</p>
+<h2>20 years of pain</h2>
+<p>In October 2018 I gave a talk entitled <em>&quot;Color at W3C&quot;</em>. The overall tone can be judged from the subtitle, which was <strong>&quot;20 years of pain&quot;</strong>. It was a historical recounting of many attempts, over the years, to get color on the Web to catch up with color in print-oriented graphic arts, where color management was ubiquitous. (<a href="https://www.w3.org/Talks/2017/css4-color-talk/20years.html#intro">Slides</a>, for anyone interested).</p>
+<p><img src="./img/20years-small.png" alt="slides"></p>
+<p>The talk ended up with a summary of the earliest drafts of CSS Color 4, which was starting to get CSS Working Group consensus and the earliest glimmerings of developer and implementer interest.</p>
+<p>Despite the depressive subtitle, I was told that I actually delivered a fairly amusing and informative keynote; but truth be told, I was still not sure that we would make it this time.</p>
+<h2>So what had changed</h2>
+<p>One difference from earlier attempts was that I provided <a href="https://drafts.csswg.org/css-color-4/#color-conversion-code">sample JavaScript code</a> to implement colorspace conversions, which are actually relatively straightforward, to encourage potential implementers who might assume that this was all <em>fearsomely complex</em>.</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">lin_P3_to_XYZ</span><span class="token punctuation">(</span><span class="token parameter">rgb</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>	<span class="token comment">// convert an array of linear-light display-p3 values to CIE XYZ</span><br>	<span class="token comment">// using  D65 (no chromatic adaptation)</span><br>	<span class="token keyword">var</span> <span class="token constant">M</span> <span class="token operator">=</span> <span class="token punctuation">[</span><br>		<span class="token punctuation">[</span> <span class="token number">608311</span> <span class="token operator">/</span> <span class="token number">1250200</span><span class="token punctuation">,</span> <span class="token number">189793</span> <span class="token operator">/</span> <span class="token number">714400</span><span class="token punctuation">,</span>  <span class="token number">198249</span> <span class="token operator">/</span> <span class="token number">1000160</span> <span class="token punctuation">]</span><span class="token punctuation">,</span><br>		<span class="token punctuation">[</span>  <span class="token number">35783</span> <span class="token operator">/</span>  <span class="token number">156275</span><span class="token punctuation">,</span> <span class="token number">247089</span> <span class="token operator">/</span> <span class="token number">357200</span><span class="token punctuation">,</span>  <span class="token number">198249</span> <span class="token operator">/</span> <span class="token number">2500400</span> <span class="token punctuation">]</span><span class="token punctuation">,</span><br>		<span class="token punctuation">[</span>      <span class="token number">0</span> <span class="token operator">/</span>       <span class="token number">1</span><span class="token punctuation">,</span>  <span class="token number">32229</span> <span class="token operator">/</span> <span class="token number">714400</span><span class="token punctuation">,</span> <span class="token number">5220557</span> <span class="token operator">/</span> <span class="token number">5000800</span> <span class="token punctuation">]</span><span class="token punctuation">,</span><br>	<span class="token punctuation">]</span><span class="token punctuation">;</span><br><br>	<span class="token keyword">return</span> <span class="token function">multiplyMatrices</span><span class="token punctuation">(</span><span class="token constant">M</span><span class="token punctuation">,</span> rgb<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>Another difference was that Wide Color Gamut screens had, around 2017, finally broken out of the super expensive, only-for-pro-photographers niche and P3 screens were being widely deployed in laptops, tablets and phones. Even watches!</p>
+<p>While that sample code was easy to read and understand, it was also a bunch of small, low-level functions so actually using it involved making many nested function calls in precisely the right order.</p>
+<img src="./img/colorjs-logo.png">
+<p>Together with <a href="https://lea.verou.me/">Lea Verou</a> we made an object-oriented library with good defaults, <a href="https://colorjs.io/">Color.js</a>, so colorspace conversion became trivial. Compare (yes, I had to look this up):</p>
+<pre class="language-js"><code class="language-js">    <span class="token comment">// Convert a display-p3 color RGB, to D50 CIE Lab</span><br>    <span class="token keyword">let</span> lab <span class="token operator">=</span> <span class="token function">XYZ_to_Lab</span><span class="token punctuation">(</span><span class="token function">D65_to_D50</span><span class="token punctuation">(</span><span class="token function">lin_P3_to_XYZ</span><span class="token punctuation">(</span><span class="token function">lin_P3</span><span class="token punctuation">(</span><span class="token constant">RGB</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>with</p>
+<pre class="language-js"><code class="language-js">    <span class="token comment">// Convert a display-p3 color RGB, to D50 CIE Lab</span><br>    <span class="token keyword">let</span> lab <span class="token operator">=</span> <span class="token constant">RGB</span><span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span><span class="token string">"p3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>As a bonus, Color.js helped myself and others to make spec examples and web platform tests, and functioned as a sanity check for early browser implementations.</p>
+<p>Color.js has continued to evolve and expand, and has cross-pollinated with implementations in other languages like Rust or Python (we raise issues on each other's repos).</p>
+<h2>Safari: the first in-browser implementation</h2>
+<p>Talking of implementation-led spec development, CSS Color 4 started to show up in Safari Technology Previews, starting with <a href="https://developer.apple.com/documentation/safari-technology-preview-release-notes/stp-release-120">release 120 in February 2021</a>. Sam Weinig  did a stellar job tracking a changing specification, giving detailed feedback, and creating tests.</p>
+<p>By March 2022 the new CSS Color 4 colorspaces <em>plus</em> the  <a href="https://drafts.csswg.org/css-color-5/#color-mix"><code>color-mix()</code> function from CSS Color 5</a> were part of <a href="https://web.dev/interop-2022/#color-spaces-and-css-color-functions">Interop 2022</a> - a cross-browser push for reliable and fully interoperable implementation. Which means Chrome and Firefox had started to implement, too.</p>
+<p>Follow the link to see that awesome wall of green (passing tests) in all major browsers!</p>
+<ul>
+<li><a href="https://wpt.fyi/results/css/css-color?product=chrome&amp;product=firefox&amp;product=safari&amp;aligned=&amp;view=interop&amp;q=label%3Ainterop-2022-color&amp;label=master&amp;label=experimental">current Interop 2022 results for color functions and formats</a>.</li>
+</ul>
+<p>So now, old/dead browsers and some minor browsers aside, this stuff is implemented everywhere! Here is the <a href="https://caniuse.com/css-color-function">CanIUse</a>. But wait! (you say, reasonably) I need fallback for those old dead zombie browsers. Of course you do, and <code>@supports</code> gives you some of that. But better: <a href="https://lightningcss.dev/">Lightning CSS</a> gives you a fast, Rust-based server-side rendering</p>
+<ul>
+<li><a href="https://lightningcss.dev/transpilation.html#color-function"><code>color()</code> function transpiling</a></li>
+<li><a href="https://lightningcss.dev/transpilation.html#lab-colors"><code>lab()</code> function transpiling</a></li>
+<li><a href="https://lightningcss.dev/transpilation.html#color-mix"><code>color-mix()</code> function transpiling</a></li>
+</ul>
+<p>Also, <a href="https://github.com/sass/sass/issues/2831">sass is working on it</a>, too.</p>
+<h2>What is missing?</h2>
+<p>Great so what is missing? <strong>Understanding</strong>. Not &quot;what syntax can I use&quot; but &quot;what should I do, and why; what are the trade-offs?&quot;</p>
+<p>As an example: <em>wide gamut color</em>. What is a gamut, why should I care?</p>
+<p>I <a href="https://svgees.us/blog/whatGamuts.html">wrote a thing to explain that</a>, and it is positively bristling with footnotes (yay!).</p>
+<p>Sadly, I am seeing blog posts and documentation which <em>entirely miss the point</em> and boil down to &quot;here are 12 more syntaxes to specify a color&quot;.</p>
+<p>Yeah but <em>why</em> would you use one over the other? What does it get you? What are the benefits and drawbacks?</p>
+<p><strong>I think this is the current barrier to adoption.</strong></p>
+<p>I do plan to write more blog posts on this stuff (a couple are in progress) but they take a lot of time and effort to get right.</p>
+<img src="./img/fronteers.jpg">
+<p>I'm also giving a talk about this at <a href="https://fronteersconf.org/">Fronteers conference</a> Sept 21-22 2023 in Utrecht, NL so if a European CSS/Frontend conference sounds interesting, you could learn about it there!</p>
+
+</main>
+
+
+<script src="sitewide.js"></script>
+
+</body>
+</html>

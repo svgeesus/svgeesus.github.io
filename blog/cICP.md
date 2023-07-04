@@ -1,3 +1,12 @@
+---
+title: cICP explained
+draft: true
+tags: [
+	"Image Formats",
+	"Color Science"
+]
+---
+
 Blog post taking apart the H.273 values in cICP and distilling down to the useful ones, 
 ignoring historical/undefined/reserved/useless.
 
