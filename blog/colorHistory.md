@@ -3,7 +3,8 @@ title: Are we there yet?
 draft: false
 tags: [
 	"CSS",
-	"Color Science"
+	"Color Science",
+    "History"
 ]
 ---
 
@@ -56,7 +57,7 @@ with
 
 ```js
     // Convert a display-p3 color RGB, to D50 CIE Lab
-    let lab = RGB.to("p3");
+    let lab = RGB.to("lab");
 ```
 
 As a bonus, Color.js helped myself and others to make spec examples and web platform tests, and functioned as a sanity check for early browser implementations.

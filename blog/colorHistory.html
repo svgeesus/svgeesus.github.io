@@ -46,7 +46,7 @@
 
 	<p class="date">
 		Published on
-		<time datetime="2023-07-04T15:50:03.463Z">4 July 2023</time>
+		<time datetime="2023-07-04T17:08:17.226Z">4 July 2023</time>
 	</p>
 
 </header>
@@ -68,7 +68,7 @@ Why did it take so long, and why did it finally succeed?</p>
 <p>Together with <a href="https://lea.verou.me/">Lea Verou</a> we made an object-oriented library with good defaults, <a href="https://colorjs.io/">Color.js</a>, so colorspace conversion became trivial. Compare (yes, I had to look this up):</p>
 <pre class="language-js"><code class="language-js">    <span class="token comment">// Convert a display-p3 color RGB, to D50 CIE Lab</span><br>    <span class="token keyword">let</span> lab <span class="token operator">=</span> <span class="token function">XYZ_to_Lab</span><span class="token punctuation">(</span><span class="token function">D65_to_D50</span><span class="token punctuation">(</span><span class="token function">lin_P3_to_XYZ</span><span class="token punctuation">(</span><span class="token function">lin_P3</span><span class="token punctuation">(</span><span class="token constant">RGB</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>with</p>
-<pre class="language-js"><code class="language-js">    <span class="token comment">// Convert a display-p3 color RGB, to D50 CIE Lab</span><br>    <span class="token keyword">let</span> lab <span class="token operator">=</span> <span class="token constant">RGB</span><span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span><span class="token string">"p3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class="language-js"><code class="language-js">    <span class="token comment">// Convert a display-p3 color RGB, to D50 CIE Lab</span><br>    <span class="token keyword">let</span> lab <span class="token operator">=</span> <span class="token constant">RGB</span><span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span><span class="token string">"lab"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>As a bonus, Color.js helped myself and others to make spec examples and web platform tests, and functioned as a sanity check for early browser implementations.</p>
 <p>Color.js has continued to evolve and expand, and has cross-pollinated with implementations in other languages like Rust or Python (we raise issues on each other's repos).</p>
 <h2>Safari: the first in-browser implementation</h2>
