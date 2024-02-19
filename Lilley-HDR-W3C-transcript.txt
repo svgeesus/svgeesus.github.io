@@ -1,0 +1,205 @@
+(title slide)
+
+Hi, I'm Chris Lilley. I'm a Technical Director at the 
+World Wide Web Consortium (W3C) and the W3C representative to the ICC. 
+I am also co-editor of CSS Color 3,4,5 and editor of CSS Color HDR.
+
+(slide 2, Overview)
+
+Current activity on HDR at W3C was spearheaded by a workshop we did
+in 2021 on Wide Color Gamut and High Dynamic Range on the Web.
+
+Around the same time, work was restarted on the image format 
+Portable Network Graphics (PNG); 
+there was a proposal to extend HTMl Canvas for HDR,
+and another for Cascading Style Sheets, which had already been 
+extended to WCG starting in 2016.
+
+(slide 3, Selected workshop outcomes)
+
+The workshop report
+https://www.w3.org/Graphics/Color/Workshop/report.htm
+identified a number of next steps, including:
+
+- the need for browsers to support ile formats for 2D image HDR distribution
+- further investigation of HDR tone mapping
+- prototyping to proposal for HDR in Canvas
+- improving WCG Interoperability for CSS
+
+(slide 4, Portable Network Graphics)
+
+The PNG specification, whose second edition was jointly published in 2003
+by W3C and by ISO (as  ISO/IEC 15948:2003), was in need of maintenance
+for clarification, corrections and errata
+(for example due to the age of the specification, it only allowed 
+version 2 ICC profiles, although in practice implementations accepted v4 as well); 
+there was also a desire to incorporate the widely implemented, 
+but unofficial, extensions for Animated PNG, 
+to add EXIF to the main specification 
+(it had been loosely defined in an extensions document)
+and as already said,to extend PNG to support HDR imagery.
+
+Compatibility with existing images and decoders was seen as critical.
+
+(slide 5, PNG)
+
+Labelling of HDR content was done by referring to Coding Independent Code Points,
+defined in the freely available specification ITU-T H.273
+which is widely used for video content and also 
+in still image or image-sequence formats such as AVIF and JPEG-XL.
+
+Numerical codes identify the primary and white chromaticities,
+the transfer function,
+the matrix to convert to RGB (if applicable)
+and whether the data is narrow-range or full-range.
+For example, Hybrid Log Gamma BT.2100 content uses the (decimal) values
+9 for chromaticities (same for PQ and for BT.2020 SDR),
+18 for the HLG transfer function,
+00 to indicate the data is already RGB,
+and in this case 01 to indicate full-range data.
+
+The same signalling method can identify some SDR formats;
+for example Display P3.
+
+In contrast to ICC profiles, only a select number of formats can be labelled;
+for example ProPhoto RGB cannot be so described.
+However, the labelling is very compact, with only four data bytes.
+
+Chrome and Safari already implement CICP in PNG and other image formats;
+Firefox supports it in AVIF and is expected to add PNG support soon.
+
+(slide 6, PNG)
+
+It's common for image and video content  not to use the 
+entire theoretical color volume. 
+Not just for artistic reasons, but also because the delivery method
+might mandate a larger color space.
+
+Calculating the actual frame-by-frame or scene-by scene color usage
+is computationally expensive and not necessarily desirable
+if that would cause gamut or tone mapping to vary.
+
+A useful and content-independent upper bound can be established
+simply by recording the characteristics
+(chromaticities, minimum and maximum luminance)
+of the reference display used for content creation or final grading.
+This is specified by SMPTE ST 2086,
+a specification which (following a request from W3C) is now freely available.
+
+For example,
+content is often graded on a display with DCI P3 primaries, a D65 white point,
+with a maximum peak luminance of 2,000 cd/m² and 
+a minimum black luminance of 0.02 cd/m.
+It is then delivered as BT.2100 PQ,
+which has a significantly wider color gamut
+and a theoretical peak luminance of 10,000 cd/m².
+
+PNG Third Edition enables MDCV to be recorded,
+adding only 24 data bytes and fitting into existing content workflows.
+
+(slide 7, PNG)
+
+Consistent tone mapping is aided by summary information on 
+content luminance levels. 
+It would not be practical, particularly for animations or for streaming content,
+to analyze this in real time.
+
+SMPTE ST-2067-21 defines two mmetrics:
+the mean luminance of the brightest frame,
+and the luminance of the brightest pixel
+(in practice, typically filtered to remove outliers).
+
+PNG Third Edition enables CLLI to be recorded,
+adding only 8 data bytes.
+
+(slide 8, HDR in HTML Canvas)
+
+This will be covered by Christopher Cameron in a separate presentation.
+
+(slide 9, Cascading Style Sheets)
+
+Turning now from image formats to CSS, which is used
+to describe the color and formatting of web pages.
+
+(slide 10, CSS Color 4)
+
+The early web was a firmly sRGB-only environment.
+
+In 2016, with the widespread availability of WCG screens
+on laptops, tablets and phones,
+CSS Color 4 defined how to use WCG colors in CSS.
+The focus was (deliberately) on standard dynamic range 
+and media white-relative colorimetry.
+
+In addition to sRGB it also added Display P3, ProPhoto RGB,
+BT.2020, and CIE XYZ (with either D50 or D65 white points).
+
+To permit color manipulation in a perceptually uniform space,
+CIE Lab and LCH(ab) were added and then, later,
+Oklab and Oklch which have improved hue linearity and hue uniformity,
+avoiding the need to use computationally complex ΔE2000
+
+(slide 11, CSS Color 4)
+
+In addition to defining these various color models,
+sample code was provided for color conversion.
+In the case of differing white points,
+the linear Bradford CAT is used, as with ICC.
+
+Color interpolation is also defined between any two colors;
+the color definitions and the color space used for interpolation
+need not be the same.
+Special attention is given to interpolating in polar spaces
+with near-neutrals, whose hue is ill-conditioned.
+
+CSS Images 4 uses this to specify the color space used 
+for color gradient interpolation.
+
+(slide 12, Media Queries 5)
+
+Conditional logic allows broad categories of displau device
+to be distinguished:
+standard, wide, and ultrawide gamuts,
+and standard or high dynamic range.
+
+(slide 13, CSS Color HDR)
+
+When defining CSS Color 4 as SDR-only,
+it was necessary to verify that later expansion to HDR was possible,
+in other words, to check we were not painting ourselves into a corner.
+
+I wrote an unofficial draft which proposed the use of BT.2100 (both RGB forms, 
+and also ICtCp as a perceptually uniform space).
+Jzazbz and the corresponding polar form, JzCzHz, were also defined.
+
+ICtCp could be used for color mixing and distance estimation (ΔEITP)
+
+This draft was recently adopted by the CSS Working Group,
+and a linear-light form of BT.2100 was also added at that time.
+
+It is too early to see browser implementations,
+although all these color spaces are implemented 
+in the JavaScript library color.js
+https://colorjs.io/
+
+(last slide 14,  CSS Color HDR)
+
+Even more recently (last week), the CSS WG
+adopted a proposal by Christopher Cameron
+to define a property to limit the degree of HDR
+on a per-page or even per-element basis.
+
+The constrained-high value is defined to be
+"enough HDR" to allow comfortable viewing of SDR and HDR content side by side,
+for example in an image gallery.
+
+For privacy reasons the exact number of stops of HDR headroom
+is not exposed to the platform
+(otherwise a web page could track, for example, when a user moves outdoors)
+but the implementation has access to this internally,
+so that the values may be smoothly animated.
+For example, in an image gallery,
+hovering over an image or displaying it larger
+could smoothly bring it to full HDR.
+
+Thank you for your attention.

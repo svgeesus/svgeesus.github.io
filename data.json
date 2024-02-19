@@ -5,6 +5,21 @@
 		{
 			"talk": [
 				{
+					"title": "HDR at W3C",
+					"type": "Talk",
+					"slides": "https://svgees.us/Lilley-HDR-W3C.pdf",
+					"@context": "https://schema.org/"
+				}
+			],
+			"name": "ICC HDR Stills Expert Day",
+			"date": "2024-02-19",
+			"city": "Tokyo",
+			"country": "jp",
+			"@context": "https://schema.org/"
+		},
+		{
+			"talk": [
+				{
 					"title": "Escaping the sRGB Prison",
 					"type": "Talk",
 					"@context": "https://schema.org/"
@@ -14,6 +29,7 @@
 			"name": "WeyWeyWeb",
 			"date": "2022-12-16",
 			"city": "Málaga, Spain",
+			"country": "es",
 			"@context": "https://schema.org/"
 		},
 		{
