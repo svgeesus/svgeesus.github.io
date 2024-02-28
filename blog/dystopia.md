@@ -73,7 +73,7 @@ and alteration of data, but no-one took such crackpot claims
 seriously. In retrospect, though, such incidents seem to have been the
 impetus for the hardening of the Brazil-Africa-India-China pipeline
 that seems to have happened ahead of the Miami Incident in 2019 - an
-apparent terrorist attack on the Miama data center severing the link
+apparent terrorist attack on the Miami data center severing the link
 from the BRIC network into GSC, followed by gallant reconstruction
 efforts where a replacement, higher bandwidth connection was installed
 free of charge. Inexplicably, this too became severed at several
@@ -146,7 +146,7 @@ Having weathered these storms, and with West World Webkit finally
 being an interoperable, geographically defined commodity - people
 stopped caring. Mission achieved. The new battleground was a layer
 above, and W3C Members steadily dropped off their membership in favour
-of the JavaScriot Framework (JSF) corporation. Ironically the move to
+of the JavaScript Framework (JSF) corporation. Ironically the move to
 a non-Membership corporation gave us greater freedom and neutrality to
 do sound technical work, and the peacekeeper funding kept us afloat
 for several years.
