@@ -1,0 +1,1044 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+
+<!-- edited acording to ORA copyediting and structural guidelines -->
+<!-- this is the single file, greyscale graphics version for paper publication -->
+<!-- on NO ACCOUNT is this version to be used online -->
+
+<title>WWW4: Not Just Decoration: quality graphics for the Web</title>
+
+<meta NAME="Topics" CONTENT="OTHER Quality and Portability Considerations 
+for 2D Graphical Information">
+<meta NAME="Keywords" CONTENT="WWW Web Graphics Images Quality Portability 
+Inline CIE Color Colour Fidelity Gamma Transparency Alpha PNG">
+</head>
+
+<body>
+<h1>Not Just Decoration: quality graphics for the Web</h1>
+
+<p><a href="http://info.mcc.ac.uk/CGU/staff/lilley/lilley.html">
+Chris Lilley</a></p>
+
+<dl>
+<dt>Abstract:</dt> 
+
+<dd>In some applications, high quality graphics are essential.  This
+paper reviews factors affecting the display of accurate
+graphical information in a heterogenous networked environment,
+concentrating on the areas that must be addressed to implement Web user
+agents which offer good colour fidelity.  Image rendition strategies for
+a colour-scarce environment are described and the colour allocation
+strategies of several popular Web browsers are examined.  Given current
+trends in provision of device independent colour, projected future needs
+for Web user agents are described.  Lastly, the implications of embedded
+image metadata are discussed.</dd>
+
+<dt>Keywords:</dt>
+
+<dd>WWW Web Graphics Images Quality Portability Inline 
+CIE Color Colour Fidelity Gamma Transparency Alpha PNG</dd>
+</dl>
+
+
+<h2>Introduction</h2>
+
+<p>The means of providing and using high quality textual information on
+the Web has received a great deal of attention.  Of course, there is
+still plenty of low-grade textual information out there.  But the
+requirements are well understood and the infrastructure is in place for
+those who wish to generate or use quality text.</p>
+
+<p>Much graphical material on the Web is also of poor quality, but in
+contrast the requirements for high quality graphics on the Web have
+received much less attention.  Granted, many graphics are mere
+adornment, but some are not.  Graphics can be valid information in their
+own right.</p>
+
+<p>It would also be dangerous and limiting to assume that browsing
+constitutes the totality of present and future Web use.  In some
+applications, the graphical component can be essential.  Thus, it makes
+sense to evaluate the particular requirements for quality Web
+graphics.</p>
+
+<h3>Application areas</h3>
+
+<p>A sample of existing and potential application areas dependent on high
+quality images:</p>
+
+<ul>
+<li>Inline graphics were first added to the web because they were needed
+for a distributed, collaborative <em>scientific visualisation</em> application.
+Thus, NCSA Mosaic [<a href="#01">1</a>] was born.  Scientific
+visualisation remains an application where high quality graphics are an
+essential requirement and where graphics constitute the bulk of the
+information.
+
+<li>Commercial applications such as <em>product design</em> and collaborative
+evaluation of prototypes clearly benefit from using the Web, and also
+require a high level of colour fidelity in rendition of images.
+
+<li>In the <em>medical</em> and <em>veterinary</em> fields, clear and portable images are
+essential if clinical decisions are to be made using them; there is also
+the need for tightly coupled image metadata for safety and liability
+reasons.
+
+<li>Accurate, repeatable device independent colour representation is an
+emerging key requirement in <em>advertising</em>.  Extreme care is currently
+taken with printed materials to ensure consistent colours for such
+things as brand identification and corporate identity, but the
+infrastructure is only slowly being put in place to assure a similar
+level of fidelity on the Web.
+
+<li>Last but not least, computer graphics research has a clear need for
+the dissemination of accurate images for viewing and analysis by
+colleagues worldwide.
+</ul>
+
+<h3>Scope</h3> 
+
+<p>This paper will survey some major areas affecting 2 dimensional,
+static, raster graphics quality.  Vector graphics (such as CGM), 3
+dimensional graphics (such as VRML), animations and movies are not
+considered.</p>
+
+<p>It will focus on areas such as accurate colour and tonal rendition
+which may as yet be unfamiliar to developers of Web user agents.  Topics
+which are important for Web graphics in general, but do not strictly
+relate to graphics <em>quality</em> - such as compression efficiency -
+are also outside the scope of this paper.</p>
+
+<h2>Effect on Web user agents</h2>
+
+<p>Computer Graphics can be seen as a somewhat specialised area -
+particularly where accurate rendition is required.  Yet parts of it need
+to be understood to produce good graphics.  Experience has shown that
+users can be harshly critical of browsers with poor image quality, even
+if these same browsers excel in other areas.  The thrust of this paper
+is to pull together separate strands of computer graphics as they relate
+to Web user agents, to make it easier to provide the increasingly high
+levels of graphical quality that users are demanding.</p>
+
+
+<p>A number of different quality requirements are discussed in this
+paper.  Attempting to implement a single one of these in isolation can
+be difficult, as there are strong interactions between them.  Partial
+implementation still requires an awareness of the other factors.  This
+paper highlights known interdependencies to make the implementors job
+easier and  prevent nasty surprises.</p>
+
+
+<h2>Anti-aliasing - what is it?</h2>
+
+<p>Aliasing is an artefact caused by inadequate sampling frequency
+(<a href="#alias">1</a>).  The term is most commonly applied to
+spatial aliasing, which manifests as visible pixelation - a blocky or
+jagged effect - especially with near horizontal or near vertical lines
+of high contrast.  It is thus particularly noticed with textual
+annotation of images.  Figure 1 shows a sample image, converted from a
+PostScript file with one sample per pixel, that displays severe spatial
+aliasing.</p>
+
+<!-- Do NOT redraw this image. The defects are meant to be there -->
+<p><img src="1perpix.gif"><br>
+<i>Figure 1: A severely aliased image.</i></p>
+
+<h3>How is aliasing reduced?</h3>
+
+<p>Aliasing may be reduced by taking multiple samples of the underlying
+information.  In the case of a computer graphics technique such as
+raytracing, this involves shooting multiple rays through different parts
+of each pixel.  In the case of PostScript conversion to images, this is
+achieved by rasterising at a higher resolution then resampling down to
+the intended resolution.  Figure 2 shows the same PostScript file
+rendered with 16 samples per pixel.  Much less aliasing is seen.
+Careful examination of the edges of lettering and the coloured blocks
+shows that the background and foreground colours have been blended together based on their sub-pixel coverage.</p>
+
+<p><img src="16perpix.gif"><br>
+<i>Figure 2: An anti-aliased image.</i></p>
+
+
+<h2>What is transparency?</h2>
+
+<p>Image file formats that support transparency are able to make certain
+designated pixels wholly or partially transparent, so that the
+background colour or texture shows through.  In this way,
+non-rectangular images may be simulated regardless of the background
+colour or texture of the user agent, as in seen in Figure 3.</p>
+
+<!-- different from online version, to show transparent gif *effect* -->
+<p><img src="paper/02.tif">  <img src="paper/04.tif">  <img src="paper/03.tif"><br>
+<i>Figure 3: An image with binary transparency, on different backgrounds.</i></p>
+
+<p>The simplest type of transparency is binary - each pixel is either
+<em>on</em> or <em>off</em>.  This may be specified by a binary
+transparency mask, or (particularly with palette-based formats) by
+nominating a particular colour or group of colours to be transparent.
+The latter method is used by the GIF89a format [<a href =
+"#04">4</a>] and is widely supported in current Web user
+agents.</p>
+
+<h2>The problem</h2>
+
+<p>There is a <strong>severe interaction</strong> between anti-aliasing
+and binary transparency.  Because the background colour of the image is
+mixed in with the foreground colours, simply replacing a single
+background colour with another is not enough to simulate transparency.
+There will be a whole host of shades which are <em>mixtures</em> of
+background and foreground colours, as Figure 4 shows.  The effect in
+this case is a white halo around objects, because the original image was
+anti-aliased to a white background colour.</p>
+
+<!-- Do NOT redraw this image. The defects are meant to be there -->
+<p><img src="16perpix-halo.gif"><br>
+<i>Figure 4: Halo effect caused by anti-aliased edges.</i></p>
+
+<h2>The solution</h2>
+
+<p>An improvement on binary transparency is variable transparency, also
+known as an alpha mask or alpha channel.  Here each pixel can take any
+value between fully opaque and fully transparent, and this value is
+independent of the colour of that pixel.  Besides allowing smooth
+transitions between a graphic and the background, this permits a
+different type of antialiasing.</p>
+
+<p>Foreground colours contributing to a particular pixel are mixed
+together according to their sub-pixel foreground coverage,
+<em>ignoring</em> contribution from the background.  The alpha channel
+value is used to express the fractional contribution of the original
+background, irrespective of that background's colour.  When rendered,
+this alpha channel specifies for each pixel what proportion of the
+existing background is to be mixed with the forground image data to
+produce the final colour of each pixel.  In this way, the anti-aliased
+image can be displayed on any background or texture, or indeed
+composited on top of another arbitrary image, without the artefacts seen
+with binary transparency.</p>
+ 
+
+<h2>Notes to implementors</h2>
+
+<h3>Interactions</h3>
+
+<p>There has been an increase in the number of anti-aliased images as
+people strive for better quality, and this brings to the fore a number
+of interations.  That between anti-aliasing and binary transparency has
+already been noted.  Also, anti-aliased images contain a lot more
+colours than aliased ones, which puts pressure on the colour allocation 
+strategy.</p>
+
+<p>Variable transparency is most easily implemented with a truecolour
+display, because if any image pixel may be mixed with the user agent's
+background colour or texture in any proportion, the total number of
+colours in a displayed image can become quite large.  It can be
+implemented in a colour-scarce environment provided an off screen buffer
+is provided to composite the image before reducing it to the current
+palette.</p>
+
+<h3>Recommendations</h3>
+
+<p>Future Web user agents should permit as inline images formats that
+support variable transparency, to allow quality anti-aliased images that
+are independent of the background colour or texture.  Suitable formats
+include extended TIFF [<a href="#05">5</a>] and PNG [<a
+href="#06">6</a>].  This will encourage information
+providers to migrate away from formats that only support binary
+transparency, such as GIF89a.</p>
+
+<p>This will also allow the OVERLAY attribute of the draft HTML 3.0 FIG
+element [<a href="#07">7</a>] to be deployed more effectively.
+Overlays are only of use if one can also see what is being overlaid.</p>
+
+
+<h2>Gamma correction</h2>
+
+<p>When expressing a colour in RGB, what we are trying to specify is the
+amount of light which will be emitted from each phosphor, as a fraction
+of full power.  What we are <em>actually</em> specifying is however the
+voltage which will be applied to each electron gun.</p>
+
+<p> The two are not linearly related, because the amount of light
+emitted is proportional to the beam power rather than the voltage.  The
+beam power is the product of voltage and current, and current turns out
+to be roughly proportional to the grid voltage to the power 1.5.  Thus,
+the light emitted is proportional to the voltage to the power 2.5 or so.
+The actual value of the exponent, called <i>gamma</i>, varies somewhat
+and the power law is only an an approximate model of the real situation,
+albeit a good one.  An additional optical effect caused by viewing
+images against a dim surround is that the effective gamma value is
+somewhat reduced, from a theoretical 2.5 to around 2.2</p>
+
+<!--   Oh for some real equations! Roll on the incorporation of 
+       HTML 3.0 maths into HTML 2.x he said wistfully            -->
+
+<p>To deal with this non-linearity, the inverse power function (1/2.2)
+is applied to the RGB data before display, compensating for the
+non-linearities which will be introduced.  Figure 5 shows a typical
+correction curve, which is a mirror image about the line <tt>Input =
+Output</tt> of the display non-linearity.  (In other words, the display
+non-linearity curves down from a straight line and so the gamma
+correction curves up from that line [<a href="#08">8</a>].
+
+
+<p><img src="paper/gamma.eps"><br>
+<i>Fig 5: A typical gamma correction curve.</i></p>
+
+
+<p>There are a number of places at which this correction could be
+applied, and this affects how Web user agents handle image data.</p>
+
+<ol>
+<li>In the image data itself, in other words a correction has been
+applied at the server end.
+
+<li>In the user agent software, correction being applied as the image is
+streamed in.
+
+<li>In the software of the underlying platform.  The Apple Mac and SGI
+workstations are examples of systems which apply some correction at this
+stage, using corrections of 1/1.8 and 1/1.7 (by default)
+respectively.
+
+<li>In the hardware of the underlying platform, using
+variable attenuation or amplification.  The Barco Calibrator is an
+example of a monitor which performs correction at this stage, using
+test signals and measured luminance values to correct itself.
+</ol>
+
+<p>The end result of all these potential corrections, plus the display
+non-linearity, must equal a linear transformation for accurate tonal
+reproduction to be obtained.  The Web user agent must therefore be aware
+of the amount of correction from step one (in the image file received
+from the server) and from steps two and three (provided by the
+underlying platform) so that the appropriate correction can be made.
+
+<h2>Gamma: Avoiding Guesswork</h2>
+
+<p>With most image formats there is no way to determine if any
+correction has been applied at step one, and if so, what value was used.
+This results in considerable uncertainty among information providers as
+to how to proceed.  The <a href =
+"http://www.halcyon.com/coolbrz/psycho.html"> following quote</a> is
+typical:</p>
+
+<blockquote>We have no real stats on what people on the nets have and
+what looks best.  Most Mac's wash out the colors while Windows 3.1 make
+everything look dark.  We need to know what is the best approach to
+providing free graphics.  Please let us know what you want!</blockquote>
+
+<p>What is needed is for the image file to contain machine-readable
+details of the correction that has been applied.  This facility has been
+part of the Utah RLE format [<a href="#09">9</a>] for
+several years.  TIFF files [<a href="#05">5</a>]
+<em>can</em> contain very precise transfer curves although most in
+practice do not.  PNG [<a href="#06">6</a>]also has the
+facility to record any gamma correction that has been applied.  Kodak
+PhotoCD [<a href="#10">10</a>] uses a single standard
+transfer function.  Clearly, such formats make the user agent
+implementor's job much easier.</p>
+
+
+<h2>Notes to implementors</h2>
+<h3>Interactions</h3>
+
+<p>If an image is under or over gamma corrected, this also affects the
+colour balance.  Over correction (in addition to making mid-tones too
+light) shifts colours towards neutral grey, while under correction (in
+addition to making mid-tones too dark) shifts colours towards the
+display primaries.</p>
+
+<p>Viewing on screen and printing on paper are two process with very
+different transfer characteristics, so what is right for one is not
+right for the other.  The extent of the mismatch depends on how much of
+the required correction has already been done to the image, how much is
+done in the viewing software, and how much (if any) is done by the
+software or hardware of the underlying platform.</p>
+
+
+<h3>Recommendations</h3>
+
+<p>User agents should provide some sort of gamma correction which does
+the right thing in as many cases as possible.  This might be done
+by, in order of importance:</p>
+
+<ul>
+
+<li>Honouring explicit source gamma declarations in those image files
+that support them - currently TIFF, Utah RLE and PNG.  Encouraging use
+of such formats to avoid guesswork.
+
+<li>Providing well chosen default settings, appropriate to the
+underlying platform.
+
+<li>Using suitable heuristics based on the Internet Media type for image
+formats without explicit source gamma declarations.  For example, GIF
+images typically have a source gamma of 0.45 (<i>ie</i> they are already
+corrected, for most displays) while JPEG JFIF [<a
+href="#11">11</a>] files often have a source gamma of 1.0
+(<i>ie</i> they are uncorrected).  Yes, this is a guess.  It <em>will</em>
+sometimes be wrong.  It is however an improvement on providing no gamma
+correction at all, or a blanket gamma correction on all types of images.
+
+<li>Allowing setting of gamma in the preferences, for example by
+providing a slider to adjust the screen gamma by eye, for example until
+a user-agent-generated tone reproduction chart looks correct on screen,
+and saving this value for future use.
+
+<li>Allowing customisation by knowledgable users or those with stringent
+requirements, for example by inputting measured transfer characteristics
+or providing an interface for external programs to be called to aid in
+accurate reproduction.</ul>
+
+<p>User agents which offer printing should be aware of the different
+gamma requirements for screen and print and might offer similar
+facilities (allowing customisation, printing a test chart) to adjust
+gamma for printing.</p>
+
+
+<h2>Colour display</h2>
+
+<p>A quick spot of colour theory before we can move on.  The 
+bare minimum, really!  (<a href="#fncol">1</a>)</p>
+
+<h3>The problem</h3>
+
+<p>The colour of an object depends not only on the precise spectrum of
+light emitted or reflected from it but also on the observer - their
+species, what else they can see, even what they have recently looked
+at! Colour is not an objective property of real-world objects; it is a 
+subjective, biological sensation.</p>
+
+
+<h3>So what is colour, anyway</h3>
+
+<p>Given the preceeding description of colour sensation, one might be
+forgiven for assuming that there is no way to cope with these
+vagarities.  However, by treating the entire human eye/brain system as a
+black box and performing colour matching experiments upon it, it has
+been possible to arrive at a surprisingly objective, measurable and
+repeatable <em>model</em> of colour that corresponds in large measure
+with how we see colour.  This system, invented and standardised in the
+1930s by the International Commission on Lighting (Commission
+Internationale de l'clairage, or CIE) [<a href="#14">14</a>]
+is called CIE XYZ [<a href="#15">15</a>] and is capable of
+representing all colours that can be seen by the human visual system.
+The XYZ value of a colour can be measured by physical instruments or
+calculated from the spectrum of light given off by an object.</p>
+
+<p><a name="different">When</a> we look at an image on a computer
+screen, what we see depends on the precise colour and intensity of light
+emitted by each of the three phosphors in a computer monitor; this in
+turn depends on the make and the model, plus less tangible factors (such
+as the age, blue phosphors degrade faster than the other two).  In the
+limit, each monitor is unique.  This means that the same R,G,B values
+applied to two different monitors will give different colours;
+similarly, to produce exactly the same colour on two different monitors,
+different R,G,B values must be applied.</p>
+
+<h2>Gamut</h2>
+
+<p>Provided the CIE XYZ measured colours of the red, green and blue
+phosphors are available for a particular monitor, any RGB colour on that
+monitor can be converted to CIE XYZ.  Similarly, any measured CIE XYZ
+colour can be reproduced on that monitor, provided it falls within the
+range of displayable colours - the <i>gamut</i> - bounded by the
+monitor primaries.</p>
+
+<p>Figure 6 shows the triangular gamut of one particular monitor, drawn
+on a chromaticity diagram.  This is a way of reducing the three
+dimensional CIE XYZ space to two dimensions by removing the brightness
+information (light orange and dark orange map the the same
+chromaticities).  Different monitors will have different gamuts.</p>
+
+<p><img src="paper/hp3.eps" ><br>
+<i>Figure 6: The colour gamut of a sample monitor (an HP A1097C).</i></p>
+
+<h2>Perceptual colour space</h2>
+
+<p>CIE XYZ is the fundamental system for colour <em>measurement</em>,
+but (like RGB space) it is not <i>perceptually uniform</i>.  That is, the
+geometric distance apart of two colours does not relate to how different
+those colours appear.  However, in 1976 the CIE came up with a
+transformation of CIE XYZ space that is (fairly) uniform.  This is CIE
+LUV space, which will be used in the next section.</p>
+
+<p>The L parameter stands for lightness.  A grey scale with even
+numerical steps along the L axis will look even, and a mid grey will be
+at exactly the middle of the L axis.  It is easier to think of the other
+two axes in terms of polar coordinates.  The further a colour is from
+the central L axis, the more saturated it is.  The angle round from the
+positive U axis relates to hue.</p>
+
+<p>And, in summary, if we plot a series of colours in CIE LUV colour
+space, we can tell how evenly spaced those colours are from each other.</p>
+
+
+<h2>Colour allocation strategies</h2>
+
+<h3>How many colours?</h3>
+
+<p>Graphical workstations and high-end personal computers are generally
+equiped with 24 bit <i>truecolour</i> displays - pixels can
+independently be set to any desired colour.  8 bits (256 levels) of
+red, green, and blue are available giving 16.7 million displayable
+colours.  This is enough to eliminate most banding except for large,
+slowly varying dark areas, or when gamma correction is done by lookup
+table.  Higher quality systems use 10 or 12 bits per pixel, which is
+enough to eliminate visible banding from all areas of the RGB colour
+space.  Such systems are capable of displaying multiple high quality
+images.</p>
+
+<p>16 bit displays are also typically used in a truecolour mode.  This
+gives slightly worse results than <i>indexed</i> mode with single images
+containing 256 colours or less, but vastly better results with multiple
+images.  A fine compromise between the somewhat inadequate 8 bit
+displays and the luxury of 24, 30 or 36 bit displays, they are now
+common on current PCs and Macs.</p>
+
+<p>With an 8 bit indexed display, each pixel holds an index into a table
+of colour cells.  There can be at most 256 distinct colours on screen at
+once, although these colours are not fixed and can be set to any desired
+colour.  This system saves on expensive screen memory and is fine for
+non graphics-intensive tasks such as displaying single images.  It
+starts to struggle when multiple images are to be displayed
+concurrently, a common situation for a Web browser.  8 bit displays are
+common on current X terminals and on older computers.</p>
+
+<h3>The problem</h3>
+
+<p>Systems with insufficient colours to display multiple arbitrary
+images have to <i>allocate</i> a small number of colours, which are then
+used to approximately represent the needed colours.  This process is
+termed <i>quantisation</i>.  A number of strategies have been developed
+for this; each has it's merits in certain situations, but none is
+universally suitable.  <i>Dithering</i>, or trading spatial resolution for an
+increase in the apparent number of colours, can be used to mask the
+effect of the colour shortage. A poor choice of dithering algorithm
+can cause objectionable graininess or spotting on an image.</p>
+
+
+<h3>First come first served</h3>
+
+<p>The simplest strategy is to start allocating colours with the first
+inline image and continue until you run out; then map all remaining
+colours to the nearest of those previously allocated.  This works well
+when there is only a single inline image, or multiple images with few
+colours (such as hand-drawn icons), or when there are a number of images
+with similar colours such as several greyscale images.</p>
+
+<p>This strategy falls down when:</p> 
+
+<ul>
+<li>there are several inline images which contain very dissimilar palettes
+<li>there are inline truecolour images
+<li>a multi-threaded browser streams in several images concurrently
+</ul>
+
+<p>Symptoms of this scheme breaking down are severe and objectionable
+colour casts on those images which loaded last.  Early versions of NCSA
+Mosaic for X [<a href="#01">1</a>] employed this approach.
+The latest versions appear to be using some sort of adaptive palette
+management, optimised for those inline images which are currently
+visible, although this has problems with rapid scrolling.</p>
+
+<h3>Colour cuboid, without gamma correction</h3>
+
+<p>In an attempt to prevent the problems just described, this method
+allocates a <em>fixed</em> range of colour cells in advance, and then
+maps all colours of all images to the nearest allocated colour.  The
+same colour map is used for every HTML page.</p>
+
+<p>In effect, it treats part of the 256 element lookup table as a
+truecolour display.  With an even (in RGB space) allocation, colours
+from each inline images are speedily mapped to palette colours by
+multiplication and masking.  The problem with this approach is that
+coverage of the device colour space is necessarily sparse.  Six levels
+of each of red, green and blue (the maximum that can be used) requires
+216 un-allocated colour cells.</p>
+
+<p>Seen in CIE LUV colour space, some clumping of the allocated colours
+is evident in Figure 7.  The necessarily sparse sprinkling through the
+colour gamut is clearly seen.</p>
+
+<p>
+<img src="paper/luv-666-nogamma-oblique.tif"><br>
+<i>Figure 7: A 6x6x6 colour cube without gamma correction.</i></p>
+
+<p>When other concurrent applications are also utilising the colour map,
+it frequently happens that 216 un-allocated cells are not available.
+The cube must be contracted down to a 5x5x5 cube (125 colours) or even a
+sparse 4x4x4 (64 colours) cube shown in Figure 8.  Huge gaps can clearly
+be seen.  Dark greens, for example, will show severe specking as the
+nearest colours, dithered together to approximate the desired hue, will
+be very dissimilar.</p>
+
+<p>
+<img src="paper/luv-444-nogamma-oblique.tif"><br>
+<i>Fig 8: A 4x4x4 colour cube without gamma correction.</i></p>
+
+
+<p>A colour palette allocated by Netscape 1.1N for X [<a
+href="#16">16</a>] is shown in Figure 9.  A 6x6x6 cube has
+been allocated in this instance.  The cells used by Netscape start with
+the four greys at the end of the third row.</p>
+
+<p><img src="netscape-6-palette.gif"><br>
+<i>Fig 9: Sample colour palette used by Netscape 1.1N for X.</i></p>
+
+
+<h3>Colour cuboid, with gamma correction</h3>
+
+<p>There are two changes here.  Firstly, the number of shades of green
+has been increased, to fill in the large perceptual range from black to
+green and from green to white; secondly the colours have been gamma
+corrected before being allocated (this assumes the underlying platform
+does not provide any hardware gamma correction, which is frequently the
+case).  The effect, sen in Figure 10, is to move all the colours up the
+lightness axis. Compare this with Figure 7.</p>
+
+<p>
+<img src="paper/luv-484-gamma-oblique.tif"><br>
+<i>Fig 10: A 4x8x4 colour cuboid with gamma correction.</i></p>
+
+<p>This plot shows a more even colour distribution, although with a
+slight lack of the darker colours.  In practice, ambient lighting, glare,
+electron scattering and similar factors increase the lightness of
+the darkest visible colour, making this less noticeable.</p>
+
+<p>Because of the different interval between adjacent green intensities
+<!-- feel free to substiture real fraction for these -->
+(1/7th of the range) compared to red and blue (1/3rd the range), at no
+point within this cuboid is there a colour with equal red, green and blue
+values (apart from black and white).  Thus, there are no greys.</p>
+
+<p>The human eye is particularly sensitive to small changes in grey
+colours; steps in intensity, or deviations in hue from a pure grey.  So
+as it stands the cuboid in would give especially bad display of
+greyscale images.  The addition of a 16-element greyscale ramp to the
+scheme in Figure 11 attends to this shortfall.</p>
+
+<p>
+<img src="paper/luv-484+16-gamma-oblique.tif"><br>
+<i>Fig 11: A 4x8x4 colour cuboid plus 16-element grey ramp, with 
+gamma correction.</i></p>
+
+<p>This sort of scheme is used by current versions of Arena [<a
+href="#17">17</a>] (0.96s and 0.97g) as the typical
+colourmap in Figure 12 shows.  The cells used by Arena start with the
+four greys at the end of the third row and finish at the end of the
+third last row.  Notice that the grey ramp is allocated <em>first</em>.
+In conditions of severe colour shortage, at least the grey ramp will
+have been allocated and Arena proceeds to convert all colour inline
+images to greyscale, preserving much of the graphical information and
+providing a pleasing apearance.</p>
+
+<p><img src="arena-palette.gif"><br>
+<i>Fig 12: Sample colour palette used by Arena 0.97g.</i></p>
+
+
+<h2>Improved allocation schemes</h2>
+
+<p>It would be possible to allocate a range of colours chosen to be
+evenly spaced in CIE LUV space, to minimise objectionable spotting when
+images are dithered.  There would be no simple relationship between the
+image colours and the allocated colours (as there is with a cuboid
+scheme) so the image would have to be quantised to the new palette.
+Quantisation is a slightly more time-consuming process than simple
+truncation or masking, and would make a browser feel slightly more
+sluggish.</p>
+
+<p>Quantising to a known fixed palette can be done as the image streams
+in.  Image formats which include popularity-sorted suggested palettes,
+such as PNG, can also be quantised as they stream in.  If the palette is
+not fixed, and the image provides no hints, quantisation cannot proceed
+until all the images have been loaded. </p>
+
+<p>Another possible improvement would be to re-quantise all the inline
+images to an optimal adaptive palette, <em>after</em> they have all been
+loaded and displayed.  This might be presented to the user as an
+<tt>optimise this page</tt> option, or a user agent might take advantage
+of idle CPU time while the user is reading and scrolling, to perform the
+quantisation.  The visual effect would be similar to the sharpening
+observed with interlaced GIF and PNG and progressive JPEG.  This would
+require storage of the un-quantised images, which many user agents
+already do as a local cacheing optimisation </p>
+
+<p>Some images with a limited number of colours, such as hand drawn
+icons with large areas of flat colour, do not necessarily require good
+colour fidelity.  The speckling introduced by trying to simulate the
+desired colour may be more objectionable than a change in hue.  Smart
+user agents might detect such images - perhaps ones with 32 or less
+colours - and disable their dithering on a case by case basis.</p>
+
+
+
+<h2>Truecolour displays</h2> 
+
+<p>Moving from an 8 bit indexed scheme to a 16 bit true colour scheme
+results in a marked improvement in colour fidelity.  Figure 13 shows a
+typical scheme with 5 bits for red and blue, 6 bits for green.  (Note
+that this implies that a pure grey ramp is not produced, only an
+approximation, though the deviations are small.)  The full range of the
+colour gamut is densely occupied by the 65 thousand colour points in
+this diagram, even though the size of each coloured sphere has been
+reduced to a third of that used in the other diagrams.</p>
+
+<p>
+<img src="paper/luv-326432-nogamma-oblique.tif"><br>
+<i>Fig 13: A 32x64x32 colour cuboid, without gamma correction.</i></p>
+
+
+<h2>Notes to implementors</h2>
+
+<h3>Interactions</h3>
+
+<p>User agents that use fixed colour allocation and support binary
+transparency may have problems if their background colour cannot be exactly
+represented.</p>
+
+<p>Implementation of full transparency, or binary
+transparency with background textures, requires large numbers of colours
+even if the original image contains few colours.</p>
+
+<p>Resampling (resizing) a limited colour image by any method other than
+pixel replication will increase the number of colours needed for the
+resized image.</p>
+
+<h3>Recommendations</h3>
+
+<p>User agents forced to use displays with inadequate colours cannot
+really display arbitrary multiple graphics with any sort of fidelity,
+regardless of how evenly spaced the colours are.  Whilst some
+improvement can be made by allocating a perceptually even set of
+colours, this is counterbalanced by slower image display as all 
+images are quantised. Thus, attempting to allocate a small fixed
+palette which is perceptually even is probably not worth the effort
+unless the underlying platform has a powerful CPU.</p>
+
+<p>In conditions of profound colour shortage, presenting all images to
+greyscale preserves the most detail and looks far better than attempting
+to quantise to 27 or less colours.  Ensuring that greyscale data can be
+adequately represented at all times is also a sound policy.</p>
+
+<p>The increasing availability of inexpensive truecolour displays should
+ease (and in time, eliminate) these problems.  Truecolour displays are
+the prerequisite for further advances in accurate image
+reproduction.</p>
+
+
+<h2>Portable colour graphics</h2>
+
+<h3>The problem</h3>
+
+<p>We have <a href="#different">already seen</a> that the same
+RGB image will display with different colours on two different monitors.
+To some extent this is unavoidable as some colours at the edges of one
+gamut are outside the other monitor's gamut, and vice verca.</p>
+
+<p>Manufacturers currently take great deal of care to ensure that
+certain colours, for example those associated with a particular brand or
+with a corporate logo, are reproduced precisely in printed media.  It is
+only a matter of time before they demand a similar fidelity from online
+media.</p>
+
+<p>In some cases, we <em>could</em> produce a more accurate colour
+rendering, but we would need to know the CIE XYZ values of the monitor
+on which the <em>original</em> image was generated.  In most cases, we
+do not know this.</p>
+
+<p>By analogy with gamma, if this information was stored in the image
+file then a start could be made with increasing the colour fidelity.
+There are currently three image formats that hold such information.  One
+is Kodak PhotoCD [<a href="#10">10</a>], another is extended
+TIFF, and the third is PNG.</p>
+
+<h3>Accurate colour</h3>
+
+<p>Knowing the CIE XYZ values of the current system monitor and (from
+the image) of the originating monitor, a colour transform for accurate
+display may be computed and applied to an image at minimal computational
+cost.  In some cases, colour management functions may be provided by the
+underlying platform.</p>
+
+<h3>Accurate grey scales</h3>
+
+<p>Knowing chromaticity data of the originating monitor it is trivial to
+compute the correct colour to greyscale transformation.  This gives
+<em>noticeably</em> superior results, even on an 8 bit indexed display,
+to the oft-quoted formula <cite>Grey = 0.30R + 0.59G + 0.11B</cite>
+which is only correct for the NTSC broadcast monitor, greatly atypical
+of modern computer monitors.</p>
+
+<h3>Better colour printing</h3>
+
+<p>Whenever people acquire a colour printer they are initially
+delighted, but typically soon become disillusioned as the quality of
+output falls far short of their expectations - a colour magazine, for
+example.  While accurate screen-to-print colour matching is still not a
+fully automated process, advances have been made in recent years
+and modern printers with a Level 2 PostScript interpreter can take
+calibrated RGB data and do a better job of matching the on-screen
+colours than with raw RGB data.</p>
+
+
+<h3>But what of the future?</h3>
+
+<p>More advanced methods of generating accurate portable colour have
+been proposed, such as the International Color Consortium Profile [<a
+href="#18">18</a>]. A legitimate concern is whether these
+more complex methods will supercede the methods discussed in this paper.
+The answer is that they may well do, but as all such approaches are
+built upon the foundation, directly or indirectly,of the CIE XYZ colour
+space, the simpler approaches are headed in the right direction and
+offer a smooth upgrade path.</p>
+
+<hr> 
+
+<h2>Notes to implementors</h2>
+
+<h3>Interactions</h3>
+
+<p>Attempting to produce better colours for screen display or for
+printing assumes that simpler issues such as the gamma correction are 
+being handled correctly and that a truecolour display is available.
+
+<h3>Recommendations</h3>
+
+<p>Accurate device independent colour reproduction has been spreading
+from high-end pre-press applications into the mainstream for the last
+five years or so.  Web user agents which are able to make use of
+chromaticity information will be at an increasing market advantage in
+the years to come.</p>
+
+
+<h2>Embedded metadata</h2>
+
+<h3>The problem</h3>
+
+<p>The topic of metadata has received some attention in connection with
+textual data.  Graphics too can have important metadata, such as
+Copyright details, descriptions of the content of the image, legal
+disclaimers, or technical descriptions of the method of image synthesis
+employed.  More application-specific metadata could include:</p>
+
+<ul>
+
+<li>the hospital number of a patient (for MRI or CT medical images)
+
+<li>the accession number (for images of museum holdings)
+
+<li>dataset, algorithms used and parameter settings (for scientific
+visualisation results)
+
+<li>the artist name and the asking price (for a fine-art
+catalogue)
+</ul>
+
+<p>and so on.  This information needs to be associated with the
+graphical information in some way.  As images become used as more than
+mere adornment, the role of image metadata will grow.  Quality graphics
+have associated metadata.</p>
+
+<hr>
+<h3>To embed or not to embed</h3>
+
+<p>The traditional method of transmitting such information has been via
+a separate text file.  There is however the risk that the two files will
+become separated.  Metadata can also be supplied as an HTML file, with
+the image linked to or supplied inline, to make a stronger connection
+between the image and it's metadata.</p>
+
+<p>These methods have consistency problems - particularly in a cacheing
+proxy environment - when either the image or the metadata needs to be
+altered.</p>
+
+<p>Rather than embedding the image in the metadata, several image
+formats allow text of various kinds to be contained within an image.
+The advantage of this is that the metadata cannot be inadvertantly
+separated, and hence for example the copyright details of a graphic are
+unambiguous.  Keeping the information in a single file also permits the
+use of message digests (as proposed in the draft HTML 3.0 specification
+[<a href="#19">19</a>]) on link anchors, to ensure that the
+currently linked-to graphic is exactly what the document author intended
+to link to with that URL.</p>
+
+<p>The disadvantage of embedded metadata is that the Web user agent must
+extract the information and display it.  The means of doing so are
+necessarily different for each Internet Media type.  It is a trade off
+between inconvenience to the implementor and the convenience to the user
+of a single consistent user interface.  This has to date been one of the
+Web's strengths, and a browser which presented embedded metadata by
+generating an HTML page would be highly suited to applications where
+image quality was considered important.</p>
+
+<p>A third, compromise possibility would be to link to a multipart
+Internet Media type containing image data and an accompanying metadata
+file.  There is as yet little experience, however, with the
+presentational aspects of multipart objects.</p>
+
+
+<h2>Notes to implementors</h2>
+
+<h3>Interactions</h3>
+
+<p>There are no known interactions between providing this facility and
+any other aspects of graphical excellence.  </p>
+
+
+<h3>Recommendations</h3>
+
+<p>Providing the ability to directly view embedded metadata in graphics
+files for a small number of suitable Internet Media types associated
+with high quality graphics would be an interesting experiment.  PNG is a
+relatively simple format which provides for text chunks with associated
+keywords, and the coded character set for these chunks is ISO Latin-1.
+There is a freely available C library for reading and writing PNG files,
+including extraction of text chunks.  It would thus be a suitable
+candidate for trial implementation of this facility.</p>
+
+
+<h2><a name="end">Conclusions</a></h2>
+
+<p>It is possible to provide high quality graphics on the Web if due
+consideration is given to the appropriate factors.  This need not result
+in reduced interactive performance if care is taken.  Inappropriate
+choices result in severely sub-optimal graphics which users are quick to
+see and complain about:  bad graphics are very visible.  There is
+increasing demand for high quality graphics.  User agents that take note
+of this trend will have a market advantage.  </p>
+
+
+<h2><a name="refs">References</a></h2>
+
+
+<p><a name="01"> 1. </a> Mosaic for X (the initial platform) is described at 
+<a href=" http://www.ncsa.uiuc.edu/SDG/Software/XMosaic/help-about.html">
+  http://www.ncsa.uiuc.edu/SDG/Software/XMosaic/help-about.html</a>
+
+<p><a name="02"> 2. </a> Watt, A. and Watt, M. (1992) <i>Advanced Animation and Rendering 
+Techniques</i>. New York : Addison-Wesley. ISBN 0-201-54412-1
+
+<p><a name="03"> 3. </a>Glassner, A.S. (1995) <i>Principles of Digital Image Synthesis</i>.
+San Francisco : Morgan Kaufmann Publishers, Inc. ISBN 1-55860-276-3
+
+<p><a name="04"> 4. </a> The GIF 89a specification is widely replicated 
+around the internet. A sample URL is
+<a href="ftp://ftp.ncsa.uiuc.edu/misc/file.formats/graphics.formats/gif89a.doc">
+ftp://ftp.ncsa.uiuc.edu/misc/file.formats/graphics.formats/gif89a.doc</a>
+
+<p><a name="05"> 5. </a> The Tagged Image File Format (TIFF) v.6 specification may be obtained from 
+<a href="ftp://ftp.sgi.com/graphics/tif/TIFF6.ps.Z">
+ftp://ftp.sgi.com/graphics/tif/TIFF6.ps.Z</a>
+
+<p><a name="06"> 6. </a> The Portable Networked Graphics (PNG) specification
+is at
+<a href="http://sunsite.unc.edu/boutell/png.html">
+http://sunsite.unc.edu/boutell/png.html</a>
+
+<p><a name="07"> 7. </a> The FIG element of the HTML 3 draft specification is at
+<a href="http://www.hpl.hp.co.uk/people/dsr/html/figures.html">
+http://www.hpl.hp.co.uk/people/dsr/html/figures.html</a>
+
+
+<p><a name="08"> 8. </a> See for example chapter 7 of
+Travis, D. (1991) <i>Effective Colour Displays</i>. London : Academic Press. 
+ISBN 0-12-697690-2
+
+<p><a name="09"> 9. </a> The design of the Utah Raster Toolkit RLE format
+is described at <a href=
+"ftp://ftp.ncsa.uiuc.edu/misc/file.formats/graphics.formats/urt/rle.doc">
+ftp://ftp.ncsa.uiuc.edu/misc/file.formats/graphics.formats/urt/rle.doc</a>
+
+<p><a name="10">10. </a> Some information about Kodak PhotoCD is at
+<a href="http://www.kodak.com/productInfo/technicalInfo/technicalInfo.shtml">
+http://www.kodak.com/productInfo/technicalInfo/technicalInfo.shtml</a>
+
+<p><a name="11">11. </a> JPEG compression is an International Standard
+ISO/IEC 10918-1.  The FAQ for JPEG is at <a
+href="http://www.cis.ohio-state.edu/hypertext/faq/usenet/jpeg-faq/faq.html">
+http://www.cis.ohio-state.edu/hypertext/faq/usenet/jpeg-faq/faq.html</a>
+
+<p><a name="12">12. </a>Wyszecki, G. and Stiles, W.S. (1982) <i>Color Science - Concepts and Methods, 
+Quantitative Data and Formulae</i>. New York : John Wiley &amp; Sons. 
+ISBN 0-471-02106-7
+
+<p><a name="13">13. </a>The student notes from
+Lilley, C. Lin, F. Hewitt, W.T.H and Howard, T.L.J.H (1993) <i>Colour
+in Computer Graphics</i>. Sheffield : CVCP/USDTU. ISBN 1-85889-022-5<br>
+<a href="http://info.mcc.ac.uk/CGU/ITTI/Col/col-free.html">
+http://info.mcc.ac.uk/CGU/ITTI/Col/col-free.html</a>
+
+<p><a name="14">14. </a> The Commission Internationale de l'Éclairage 
+web page is at
+<a href="http://www.hike.te.chiba-u.ac.jp:80/ikeda/CIE/">
+http://www.hike.te.chiba-u.ac.jp/ikeda/CIE/</a>
+
+<p><a name="15">15. </a> Defined in
+Colorimetry, 2nd Edition, Publication CIE 15.2-1986. ISBN 3-900-734-00-3<br>
+<a href="http://www.hike.te.chiba-u.ac.jp/ikeda/CIE/publ/abst/15-2-86.html">
+http://www.hike.te.chiba-u.ac.jp/ikeda/CIE/publ/abst/15-2-86.html</a>
+
+
+<p><a name="16">16. </a> Netscape 1.1N for X is described at
+<a href="http://home.netscape.com/eng/mozilla/1.1/relnotes/unix-1.1N.html">
+http://home.netscape.com/eng/mozilla/1.1/relnotes/unix-1.1N.html</a>
+
+<p><a name="17">17. </a> Arena is described at
+<a href="http://www.w3.org/hypertext/WWW/Arena/">
+http://www.w3.org/hypertext/WWW/Arena/</a>
+
+
+<p><a name="18">18. </a> International Color Consortium Profile v3.0 is at
+<a href="http://www.inforamp.net/~poynton/ICC_3.0a/icc-0.html">
+http://www.inforamp.net/~poynton/ICC_3.0a/icc-0.html</a>
+
+<p><a name="19">19. </a>The link model of the HTML 3.0 draft is described at
+<a href="http://www.hpl.hp.co.uk/people/dsr/html/anchors.html">
+http://www.hpl.hp.co.uk/people/dsr/html/anchors.html</a>
+
+
+<h2>Acknowledgements</h2>
+
+<p>Thanks to my colleague John Irwin for generating the Rayshade input
+files used to produce the CIE LUV scatter plots.  Thanks also to Tom
+Lane of the Independent JPEG Group, Dave Martindale, Glenn
+Randers-Pehrson and others on the PNG mailing list for helpful
+discussions on the requirements for a quality image format.</p>
+
+
+<h2>About the Author</h2>
+
+<p>Chris Lilley [<a href="http://info.mcc.ac.uk/CGU/staff/lilley/">
+http://info.mcc.ac.uk/CGU/staff/lilley/</a>]<br>
+<a href = "http://info.mcc.ac.uk/CGU/CGU-intro.html">Computer 
+Graphics Unit</a>, at the 
+<a href="http://info.mcc.ac.uk/UofM.html">University of Manchester</a><br>
+
+In addition to various aspects of graphical quality, his <a
+href="http://info.mcc.ac.uk/CGU/staff/lilley/shortbio.html">
+interests</a> include Web tools for collaborative working, Web
+standards, and the use of the Web for Education.  He is an active
+participant in the IETF <a href=
+"http://www.acl.lanl.gov/HTML_WG/archives.html">HTML Working Group</a>
+and a contributor to the <a href =
+"ftp://swrinde.nde.swri.edu/pub/png-group/archives/"> PNG working
+group</a>.  He is also the <a href =
+"http://www.niss.ac.uk/professional/jisc.html"> JISC</a> representative
+to <a href = "http://www.w3.org/pub/WWW/Consortium/">W3C</a>.</p>
+
+
+
+<!-- footnotes are here -->
+<hr> 
+
+<a name="fncol">1</a>.  The standard reference is [<a
+href="#12">12</a>].  A shorter and more informal
+introduction is [<a href="#13">13</a>] by the present
+author.
+
+<a name="alias">1</a>.  One good introduction among many is Chaper 4 of
+[<a href="#02">2</a>].  A more detailed and mathematical
+treatment is Unit II of [<a href="#03">3</a>].  
+
+<hr> 
+
+</body></html>

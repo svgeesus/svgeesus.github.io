@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<head>
+<title>WWW4: Not Just Decoration: quality graphics for the Web</title>
+</head>
+
+<body>
+<h3><a href="gq-boston.html">
+Not Just Decoration: quality graphics for the Web</a></h3>
+<hr>
+
+<h1>Colour display</h1>
+
+<p>A quick spot of colour theory before we can <a
+href="gq-alloc.html">move on</a>.  The bare minimum, really!  (<a
+href="#fncol">1</a>)</p>
+
+<h2>The problem</h2>
+
+<p>The colour of an object depends not only on the precise spectrum of
+light emitted or reflected from it but also on the observer - their
+species, what else they can see, even what they have recently looked
+at! Colour is not an objective property of real-world objects; it is a 
+subjective, biological sensation.</p>
+
+
+<h2>So what is colour, anyway</h2>
+
+<p>Given the preceeding description of colour sensation, one might be
+forgiven for assuming that there is no way to cope with these
+vagarities.  However, by treating the entire human eye/brain system as a
+black box and performing colour matching experiments upon it, it has
+been possible to arrive at a surprisingly objective, measurable and
+repeatable <em>model</em> of colour that corresponds in large measure
+with how we see colour.  This system, invented and standardised in the
+1930s by the International Commission on Lighting (Commission
+Internationale de l'clairage, or CIE) [<a href="gq-refs.html#14">14</a>]
+is called CIE XYZ [<a href="gq-refs.html#15">15</a>] and is capable of
+representing all colours that can be seen by the human visual system.
+The XYZ value of a colour can be measured by physical instruments or
+calculated from the spectrum of light given off by an object.</p>
+
+<p><a name="different">When</a> we look at an image on a computer
+screen, what we see depends on the precise colour and intensity of light
+emitted by each of the three phosphors in a computer monitor; this in
+turn depends on the make and the model, plus less tangible factors (such
+as the age, blue phosphors degrade faster than the other two).  In the
+limit, each monitor is unique.  This means that the same R,G,B values
+applied to two different monitors will give different colours;
+similarly, to produce exactly the same colour on two different monitors,
+different R,G,B values must be applied.</p>
+
+<h2>Gamut</h2>
+
+<p>Provided the CIE XYZ measured colours of the red, green and blue
+phosphors are available for a particular monitor, any RGB colour on that
+monitor can be converted to CIE XYZ.  Similarly, any measured CIE XYZ
+colour can be reproduced on that monitor, provided it falls within the
+range of displayable colours - the <i>gamut</i> - bounded by the
+monitor primaries.</p>
+
+<p>Figure 6 shows the triangular gamut of one particular monitor, drawn
+on a chromaticity diagram.  This is a way of reducing the three
+dimensional CIE XYZ space to two dimensions by removing the brightness
+information (light orange and dark orange map the the same
+chromaticities).  Different monitors will have different gamuts.</p>
+
+<p><a href="hp3.png"><img src="hp3.jpg" alt="[Download hp3.png (51k)]"></a><br>
+<i>Figure 6: The colour gamut of a sample monitor (an HP A1097C).</i></p>
+
+<h2>Perceptual colour space</h2>
+
+<p>CIE XYZ is the fundamental system for colour <em>measurement</em>,
+but (like RGB space) it is not <i>perceptually uniform</i>.  That is, the
+geometric distance apart of two colours does not relate to how different
+those colours appear.  However, in 1976 the CIE came up with a
+transformation of CIE XYZ space that is (fairly) uniform.  This is CIE
+LUV space, which will be used in the next section.</p>
+
+<p>The L parameter stands for lightness.  A grey scale with even
+numerical steps along the L axis will look even, and a mid grey will be
+at exactly the middle of the L axis.  It is easier to think of the other
+two axes in terms of polar coordinates.  The further a colour is from
+the central L axis, the more saturated it is.  The angle round from the
+positive U axis relates to hue.</p>
+
+<p>And, in summary, if we plot a series of colours in CIE LUV colour
+space, we can tell how evenly spaced those colours are from each other.
+Which we are about to do.</p>
+
+<hr> 
+
+<a name="fncol">1</a>.  The standard reference is [<a
+href="gq-refs.html#12">12</a>].  A shorter and more informal
+introduction is [<a href="gq-refs.html#13">13</a>] by the present
+author.
+
+<hr> 
+
+Next: <a href="gq-alloc.html">Colour allocation strategies</a>
+
+</body></html>

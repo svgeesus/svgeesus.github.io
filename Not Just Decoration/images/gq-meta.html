@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<head>
+<title>WWW4: Not Just Decoration: quality graphics for the Web</title>
+</head>
+
+<body>
+<h3><a href="gq-boston.html">
+Not Just Decoration: quality graphics for the Web</a></h3>
+<hr>
+
+<h1>Embedded metadata</h1>
+
+<h2>The problem</h2>
+
+<p>The topic of metadata has received some attention in connection with
+textual data.  Graphics too can have important metadata, such as
+Copyright details, descriptions of the content of the image, legal
+disclaimers, or technical descriptions of the method of image synthesis
+employed.  More application-specific metadata could include:</p>
+
+<ul>
+
+<li>the hospital number of a patient (for MRI or CT medical images)
+
+<li>the accession number (for images of museum holdings)
+
+<li>dataset, algorithms used and parameter settings (for scientific
+visualisation results)
+
+<li>the artist name and the asking price (for a fine-art
+catalogue)
+</ul>
+
+<p>and so on.  This information needs to be associated with the
+graphical information in some way.  As images become used as more than
+mere adornment, the role of image metadata will grow.  Quality graphics
+have associated metadata.</p>
+
+<hr>
+<h2>To embed or not to embed</h2>
+
+<p>The traditional method of transmitting such information has been via
+a separate text file.  There is however the risk that the two files will
+become separated.  Metadata can also be supplied as an HTML file, with
+the image linked to or supplied inline, to make a stronger connection
+between the image and it's metadata.</p>
+
+<p>These methods have consistency problems - particularly in a cacheing
+proxy environment - when either the image or the metadata needs to be
+altered.</p>
+
+<p>Rather than embedding the image in the metadata, several image
+formats allow text of various kinds to be contained within an image.
+The advantage of this is that the metadata cannot be inadvertantly
+separated, and hence for example the copyright details of a graphic are
+unambiguous.  Keeping the information in a single file also permits the
+use of message digests (as proposed in the draft HTML 3.0 specification
+[<a href="gq-refs.html#19">19</a>]) on link anchors, to ensure that the
+currently linked-to graphic is exactly what the document author intended
+to link to with that URL.</p>
+
+<p>The disadvantage of embedded metadata is that the Web user agent must
+extract the information and display it.  The means of doing so are
+necessarily different for each Internet Media type.  It is a trade off
+between inconvenience to the implementor and the convenience to the user
+of a single consistent user interface.  This has to date been one of the
+Web's strengths, and a browser which presented embedded metadata by
+generating an HTML page would be highly suited to applications where
+image quality was considered important.</p>
+
+<p>A third, compromise possibility would be to link to a multipart
+Internet Media type containing image data and an accompanying metadata
+file.  There is as yet little experience, however, with the
+presentational aspects of multipart objects.</p>
+
+
+<hr>
+<h2>Notes to implementors</h2>
+
+<h3>Interactions</h3>
+
+<p>There are no known interactions between providing this facility and
+any other aspects of graphical excellence.  </p>
+
+
+<h3>Recommendations</h3>
+
+<p>Providing the ability to directly view embedded metadata in graphics
+files for a small number of suitable Internet Media types associated
+with high quality graphics would be an interesting experiment.  PNG is a
+relatively simple format which provides for text chunks with associated
+keywords, and the coded character set for these chunks is ISO Latin-1.
+There is a freely available C library for reading and writing PNG files,
+including extraction of text chunks.  It would thus be a suitable
+candidate for trial implementation of this facility.</p>
+
+<hr>
+Next: <a href="gq-refs.html">Conclusions and References</a>
+
+</body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<head>
+<title>WWW4: Not Just Decoration: Quality Graphics for the Web</title>
+</head>
+
+<body>
+<h3><a href="gq-boston.html">
+Not Just Decoration: Quality Graphics for the Web</a></h3>
+<hr>
+
+<h1>Introduction</h1>
+
+<p>The means of providing and using high quality textual information on
+the Web has received a great deal of attention.  Of course, there is
+still plenty of low-grade textual information out there.  But the
+requirements are well understood and the infrastructure is in place for
+those who wish to generate or use quality text.</p>
+
+<p>Much graphical material on the Web is also of poor quality, but in
+contrast the requirements for high quality graphics on the Web have
+received much less attention.  Granted, many graphics are mere
+adornment, but some are not.  Graphics can be valid information in their
+own right.</p>
+
+<p>It would also be dangerous and limiting to assume that browsing
+constitutes the totality of present and future Web use.  In some
+applications, the graphical component can be essential.  Thus, it makes
+sense to evaluate the particular requirements for quality Web
+graphics.</p>
+
+<h2>Application areas</h2>
+
+<p>A sample of existing and potential application areas dependent on high
+quality images:</p>
+
+<ul>
+<li>Inline graphics were first added to the web because they were needed
+for a distributed, collaborative <em>scientific visualisation</em> application.
+Thus, NCSA Mosaic [<a href="gq-refs.html#01">1</a>] was born.  Scientific
+visualisation remains an application where high quality graphics are an
+essential requirement and where graphics constitute the bulk of the
+information.
+
+<li>Commercial applications such as <em>product design</em> and collaborative
+evaluation of prototypes clearly benefit from using the Web, and also
+require a high level of colour fidelity in rendition of images.
+
+<li>In the <em>medical</em> and <em>veterinary</em> fields, clear and portable images are
+essential if clinical decisions are to be made using them; there is also
+the need for tightly coupled image metadata for safety and liability
+reasons.
+
+<li>Accurate, repeatable device independent colour representation is an
+emerging key requirement in <em>advertising</em>.  Extreme care is currently
+taken with printed materials to ensure consistent colours for such
+things as brand identification and corporate identity, but the
+infrastructure is only slowly being put in place to assure a similar
+level of fidelity on the Web.
+
+<li>Last but not least, computer graphics research has a clear need for
+the dissemination of accurate images for viewing and analysis by
+colleagues worldwide.
+</ul>
+
+<h2>Scope</h2> 
+
+<p>This paper will survey some major areas affecting 2 dimensional,
+static, raster graphics quality.  Vector graphics (such as CGM), 3
+dimensional graphics (such as VRML), animations and movies are not
+considered.</p>
+
+<p>It will focus on areas such as accurate colour and tonal rendition
+which may as yet be unfamiliar to developers of Web user agents.  Topics
+which are important for Web graphics in general, but do not strictly
+relate to graphics <em>quality</em> - such as compression efficiency -
+are also outside the scope of this paper.</p>
+
+<h2>Effect on Web user agents</h2>
+
+<p>Computer Graphics can be seen as a somewhat specialised area -
+particularly where accurate rendition is required.  Yet parts of it need
+to be understood to produce good graphics.  Experience has shown that
+users can be harshly critical of browsers with poor image quality, even
+if these same browsers excel in other areas.  The thrust of this paper
+is to pull together separate strands of computer graphics as they relate
+to Web user agents, to make it easier to provide the increasingly high
+levels of graphical quality that users are demanding.</p>
+
+
+<p>A number of different quality requirements are discussed in this
+paper.  Attempting to implement a single one of these in isolation can
+be difficult, as there are strong interactions between them.  Partial
+implementation still requires an awareness of the other factors.  This
+paper highlights known interdependencies to make the implementors job
+easier and  prevent nasty surprises.</p>
+
+
+<hr>
+Next: <a href="gq-trans.html">Anti-aliasing and Transparency</a>
+
+</body></html>

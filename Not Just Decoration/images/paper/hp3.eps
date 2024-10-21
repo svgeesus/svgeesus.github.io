@@ -1,0 +1,396 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%Copyright: ITTI Computer Graphics and Visualisation project, University of Manchester
+%%Title: Comparison of two device gamuts on a CIE u'v' UCS Chromacity diagram
+%%Creator: cd_viewgamut ITTI demonstration program
+%%Author: Chris Lilley and Fenqiang Lin, 4 Aug 1992
+%%BoundingBox: 20 0 494 494
+%%Pages: 1
+%%EndComments
+
+%%BeginProlog
+
+%------ start of variable data
+/caption (HP A1097C monitor gamut) def
+% Data for device A
+/aru 0.428816 def /arv 0.524871 def %red
+/ayu 0.194457 def /ayv 0.552774 def %yellow
+/agu 0.117647 def /agv 0.561920 def %green
+/acu 0.136107 def /acv 0.429176 def %cyan
+/abu 0.172414 def /abv 0.168103 def %blue
+/amu 0.272909 def /amv 0.307936 def %magenta
+/awu 0.188353 def /awv 0.446256 def %white
+
+%-------- end of variable data
+
+/inch {72 mul} def
+/xscale 8 inch def	% main plot area is xscale inches square
+/xoffs 1.2 inch def	% room for axes, labels etc
+/xtic -0.01 def		% x axis tic length
+/ytic -0.01 def		% y axis tic length
+
+% some constants for HSV routines
+/third 1 3 div def	% a third
+/twothird 2 3 div def	% two thirds
+/sixth 1 6 div def	% one sixth
+
+/primary {
+  sub abs dup 0.5 gt { 1 exch sub } if
+  dup sixth le 
+    { pop 1 }
+    { dup third le 
+      { third exch sub sixth div }
+      { pop 0 } ifelse 
+    } ifelse
+  } bind def
+
+% Set just the hue, in HSV. 0=red
+% Usage:	hue sethue -
+/sethue	{
+  dup 0 primary exch
+  dup third primary exch
+  twothird primary setrgbcolor
+  } bind def
+
+% Set hue and saturation                       
+% Usage:	hue sat seths -
+/seths	{
+  /sat exch def
+  dup 0 primary sat mul 1 add sat sub exch
+  dup third primary sat mul 1 add sat sub exch
+  twothird primary sat mul 1 add sat sub setrgbcolor
+  } bind def
+
+% Set hue, saturation and value - converts to RGB
+% Usage:	hue sat val sethsv -  
+/sethsv	{	
+  /val exch def
+  /sat exch def
+  dup 0 primary sat mul 1 add sat sub val mul  exch
+  dup third primary sat mul 1 add sat sub val mul exch
+  twothird primary sat mul 1 add sat sub val mul setrgbcolor
+  } bind def       
+
+% scale 2 stack values and add offset. 
+%	usage: a b xpand a*xscale+xoffs b*xscale+xoffs
+/xpand {
+  /tmp exch def
+  xscale mul xoffs add
+  tmp
+  xscale mul xoffs add
+  } bind def
+
+/LT {xpand lineto} bind def
+/MT {xpand moveto} bind def
+
+% draw a round coloured marker with a black outline
+%	usage: u v width colour colblob -
+%	colour is angle 0 - 360 in HSV
+%	saturation and value are constant
+/colblob {
+  /col exch def
+  /width exch def
+  /v exch def
+  /u exch def
+  col 360 div sethue
+  newpath
+  u v xpand width 0 360 arc fill
+  0 setgray 0.24 setlinewidth
+  u v xpand width 0 360 arc stroke
+  } bind def
+
+% draw  awhite circular marker with black outline
+%	usage: u v width wblob -
+/wblob {
+  /width exch def
+  newpath
+  0 setgray 0.24 setlinewidth
+  xpand width 0 360 arc stroke
+  } bind def
+
+
+% draw filled or open square marker
+%	usage: u v width fillit marker -
+/marker {
+  /fillit exch def	% true to fill, false for open
+  /wid exch def
+  /wid wid 2 div def
+  /v exch def
+  /u exch def
+  gsave
+  0.24 setlinewidth
+  /ul u wid sub def
+  /ur u wid add def
+  /vb v wid sub def
+  /vt v wid add def
+  ul vb moveto
+  ul vt lineto
+  ur vt lineto
+  ur vb lineto
+  closepath
+  fillit {fill}{stroke} ifelse
+  grestore
+  } bind def  
+
+% draw a filled square marker
+% usage:  u v width fmarker -
+/fmarker {
+  true marker
+  } bind def
+
+% draw an open square marker
+% usage: u v width omarker -
+/omarker {
+  false marker
+  } bind def
+
+
+% draw the tongue. Data at 5nm intervals from 380nm except at the tightest
+% point of the curve, where 1 nm spacing is used.
+%	usage: - dotongue -
+/dotongue {
+  newpath
+  1 setlinewidth
+  0.256804  0.016594 MT
+  0.256637  0.016593 LT
+  0.256418  0.016266 LT
+  0.256085  0.016263 LT
+  0.255699  0.015935 LT	% 400
+  0.255200  0.015932 LT
+  0.254535  0.015927 LT
+  0.253704  0.015921 LT
+  0.252207  0.016885 LT
+  0.249615  0.019128 LT
+  0.246120  0.022623 LT
+  0.241063  0.027948 LT
+  0.234690  0.035011 LT
+  0.226630  0.043680 LT
+  0.216060  0.054946 LT	%450
+  0.203340  0.068779 LT
+  0.187720  0.087114 LT
+  0.168963  0.111946 LT
+  0.144076  0.150984 LT
+  0.114692  0.204374 LT
+  0.082816  0.270829 LT
+  0.052134  0.342686 LT
+  0.028159  0.411679 LT
+  0.011891  0.469843 LT
+  0.003473  0.513066 LT	%500
+  0.001438  0.543162 LT
+  0.004643  0.563843 LT
+  0.005859  0.567036 LT
+  0.007213  0.569939 LT
+  0.008771  0.572575 LT
+  0.010438  0.574905 LT
+  0.012285  0.576969 LT
+  0.014220  0.578754 LT
+  0.016315  0.580309 LT
+  0.018482  0.581618 LT
+  0.020756  0.582743 LT
+  0.023116  0.583667 LT
+  0.025566  0.584422 LT
+  0.028050  0.585009 LT
+  0.030633  0.585478 LT
+  0.033285  0.585851 LT
+  0.036008  0.586142 LT
+  0.050059  0.586754 LT
+  0.064335  0.586523 LT
+  0.079224  0.585616 LT
+  0.095269  0.584113 LT
+  0.112701  0.582069 LT
+  0.131858  0.579553 LT
+  0.153101  0.576592 LT
+  0.176586  0.573182 LT
+  0.202596  0.569364 LT
+  0.231170  0.565107 LT
+  0.262343  0.560441 LT
+  0.295958  0.555411 LT
+  0.331527  0.550115 LT
+  0.368060  0.544626 LT
+  0.403475  0.539334 LT
+  0.437943  0.534187 LT
+  0.469171  0.529561 LT
+  0.496768  0.525419 LT
+  0.520257  0.521894 LT
+  0.539920  0.518977 LT
+  0.556503  0.516489 LT
+  0.570880  0.514332 LT
+  0.583036  0.512508 LT
+  0.592866  0.511070 LT
+  0.600496  0.509926 LT
+  0.606437  0.509035 LT
+  0.610879  0.508368 LT
+  0.613777  0.507933 LT
+  0.616162  0.507576 LT
+  0.618025  0.507296 LT
+  0.619897  0.507015 LT
+  0.621507  0.506774 LT
+  0.622584  0.506612 LT
+  0.623123  0.506531 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  0.623393  0.506491 LT
+  closepath
+  stroke
+  } def
+
+% Centered title
+%	usage (string) Title -
+%	The string is centered around the position 0.4, 1.0 in WC
+/Title {
+  gsave
+  /AvantGarde-Book findfont 18 scalefont setfont
+  dup stringwidth pop 		% get x length of string
+  2 div
+  /offset exch def		% half the string width
+  0.35 0.65 MT			% move to WC position
+  offset -1 mul 0 rmoveto	% shift over to left
+  show				% print it
+  grestore
+  } def
+
+    
+% some axes - 0.7 by 0.7 to leave room for numbers
+%	usage: - axes -
+/axes {
+  newpath
+  1 setlinewidth
+  0 0 MT 
+  0.7 0 LT
+  0.7 0.7 LT 
+  0 0.7 LT
+  closepath
+  stroke
+  } def
+
+% tic marks and scales for axes
+%	usage: - tics -
+/tics {
+  /AvantGarde-Book findfont 14 scalefont setfont
+  newpath
+  0   0 MT  0   xtic LT stroke 0   -0.05 MT -10 0 rmoveto  (0.0) show
+  0.2 0 MT  0.2 xtic LT stroke 0.2 -0.05 MT -10 0 rmoveto  (0.2) show
+  0.4 0 MT  0.4 xtic LT stroke 0.4 -0.05 MT -10 0 rmoveto  (0.4) show
+  0.6 0 MT  0.6 xtic LT stroke 0.6 -0.05 MT -10 0 rmoveto  (0.6) show
+  /AvantGarde-BookOblique findfont 18 scalefont setfont
+  0.35 0 MT 0 -50 rmoveto (u') show
+  /AvantGarde-Book findfont 14 scalefont setfont
+  0   0 MT ytic 0   LT stroke -0.05 0   MT -10 0 rmoveto   (0.0) show
+  0 0.2 MT ytic 0.2 LT stroke -0.05 0.2 MT -10 0 rmoveto   (0.2) show
+  0 0.4 MT ytic 0.4 LT stroke -0.05 0.4 MT -10 0 rmoveto   (0.4) show
+  0 0.6 MT ytic 0.6 LT stroke -0.05 0.6 MT -10 0 rmoveto   (0.6) show
+  /AvantGarde-BookOblique findfont 18 scalefont setfont
+  0 0.35 MT -60 0 rmoveto (v') show
+  } def
+
+% annotate the spectral locus at a wavelength, position in UCS u' v' units 
+%	usage: (wavelength) u v numbers -
+/numbers {
+  /v exch def /u exch def
+  u v  MT
+  5 5 rmoveto	
+  show
+  u v xpand 4 omarker
+  } def
+
+% wavelengths to annotate
+%	usage - wavelengths -
+/wavelengths {
+  /AvantGarde-Book findfont 14 scalefont setfont
+  (400) 0.2558 0.0159 numbers
+  (450) 0.2161 0.0550 numbers
+  (475) 0.1147 0.2044 numbers
+  (500) 0.0035 0.5131 numbers
+  (525) 0.0360 0.5861 numbers
+  (550) 0.1127 0.5821 numbers
+  (575) 0.2312 0.5651 numbers
+  (600) 0.4035 0.5393 numbers
+  %(650) 0.6005 0.5099 numbers
+  % move the last one over a bit to fit nicely
+  (675-780) 0.6234 0.5065 MT -30 10 rmoveto show  0.6234 0.5065 xpand 4 omarker
+  } def
+ 
+% gamut of a single device
+%	usage: redu redv ... magentau magentav blobsize gamut -
+/gamut {
+  gsave
+  /blobsize exch def
+  /magv exch def /magu exch def
+  /bluv exch def /bluu exch def
+  /cyav exch def /cyau exch def
+  /grev exch def /greu exch def
+  /yelv exch def /yelu exch def
+  /redv exch def /redu exch def
+  0 setgray
+  newpath
+  redu redv MT yelu yelv LT greu grev LT
+  cyau cyav LT bluu bluv LT magu magv LT
+  closepath stroke
+  redu redv blobsize 0 colblob
+  yelu yelv blobsize 60 colblob
+  greu grev blobsize 120 colblob
+  cyau cyav blobsize 180 colblob
+  bluu bluv blobsize 240 colblob
+  magu magv blobsize 300 colblob
+  } def  
+
+% label for a device
+%	usage: string width vposition label -
+/label {
+  /labelsize 12 def
+  /AvantGarde-Book findfont labelsize scalefont setfont
+  /vpos exch def
+  /width exch def
+  0.40 vpos MT 0.45 vpos LT stroke
+  0.40 vpos width 0 colblob
+  0.45 vpos width 120 colblob
+  0.48 vpos MT 0 labelsize -2 div rmoveto	 
+  show    
+  } def
+
+% D65 label whitepoint
+%	usage - D65label -
+/D65label {
+  /labelsize 12 def
+  /AvantGarde-Book findfont labelsize scalefont setfont
+  0.45 0.15 xpand 4 fmarker
+  0.48 0.15 MT 0 labelsize -2 div rmoveto	 
+  (D65 whitepoint) show
+  } def
+
+%%EndProlog
+%%Page: 1 1
+%%BeginPageSetup
+%%EndPageSetup
+ 
+% set up graph
+axes
+dotongue
+tics
+wavelengths
+caption Title
+             
+% Device gamuts
+aru arv ayu ayv agu agv acu acv abu abv amu amv 4 gamut
+
+% whitepoints
+awu awv 4 wblob
+
+
+showpage
+
+%%Trailer
+%EOF

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<head>
+<title>WWW4: Not Just Decoration: quality graphics for the Web</title>
+<meta NAME="Topics" CONTENT="OTHER Quality and Portability Considerations 
+for 2D Graphical Information">
+<meta NAME="Keyword" CONTENT="WWW Web Graphics Images Quality Portability 
+Inline CIE Color Colour Gamma Negotiation Resampling">
+</head>
+
+<body>
+<h3><a href="gq-boston.html">
+Not Just Decoration: quality graphics for the Web</a></h3>
+<hr>
+
+<h1>Portable colour graphics</h1>
+
+<h2>The problem</h2>
+
+<p>We have <a href="gq-gamut#different">already seen</a> that the same
+RGB image will display with different colours on two different monitors.
+To some extent this is unavoidable as some colours at the edges of one
+gamut are outside the other monitor's gamut, and vice verca.</p>
+
+<p>Manufacturers currently take great deal of care to ensure that
+certain colours, for example those associated with a particular brand or
+with a corporate logo, are reproduced precisely in printed media.  It is
+only a matter of time before they demand a similar fidelity from online
+media.</p>
+
+<p>In some cases, we <em>could</em> produce a more accurate colour
+rendering, but we would need to know the CIE XYZ values of the monitor
+on which the <em>original</em> image was generated.  In most cases, we
+do not know this.</p>
+
+<p>By analogy with gamma, if this information was stored in the image
+file then a start could be made with increasing the colour fidelity.
+There are currently three image formats that hold such information.  One
+is Kodak PhotoCD [<a href="gq-refs.html#10">10</a>], another is extended
+TIFF, and the third is PNG.</p>
+
+<h2>Accurate colour</h2>
+
+<p>Knowing the CIE XYZ values of the current system monitor and (from
+the image) of the originating monitor, a colour transform for accurate
+display may be computed and applied to an image at minimal computational
+cost.  In some cases, colour management functions may be provided by the
+underlying platform.</p>
+
+<h2>Accurate grey scales</h2>
+
+<p>Knowing chromaticity data of the originating monitor it is trivial to
+compute the correct colour to greyscale transformation.  This gives
+<em>noticeably</em> superior results, even on an 8 bit indexed display,
+to the oft-quoted formula <cite>Grey = 0.30R + 0.59G + 0.11B</cite>
+which is only correct for the NTSC broadcast monitor, greatly atypical
+of modern computer monitors.</p>
+
+<h2>Better colour printing</h2>
+
+<p>Whenever people acquire a colour printer they are initially
+delighted, but typically soon become disillusioned as the quality of
+output falls far short of their expectations - a colour magazine, for
+example.  While accurate screen-to-print colour matching is still not a
+fully automated process, advances have been made in recent years
+and modern printers with a Level 2 PostScript interpreter can take
+calibrated RGB data and do a better job of matching the on-screen
+colours than with raw RGB data.</p>
+
+
+<h2>But what of the future?</h2>
+
+<p>More advanced methods of generating accurate portable colour have
+been proposed, such as the International Color Consortium Profile [<a
+href="gq-refs.html#18">18</a>]. A legitimate concern is whether these
+more complex methods will supercede the methods discussed in this paper.
+The answer is that they may well do, but as all such approaches are
+built upon the foundation, directly or indirectly,of the CIE XYZ colour
+space, the simpler approaches are headed in the right direction and
+offer a smooth upgrade path.</p>
+
+<hr> 
+
+<h2>Notes to implementors</h2>
+
+<h3>Interactions</h3>
+
+<p>Attempting to produce better colours for screen display or for
+printing assumes that simpler issues such as the gamma correction are 
+being handled correctly and that a truecolour display is available.
+
+<h3>Recommendations</h3>
+
+<p>Accurate device independent colour reproduction has been spreading
+from high-end pre-press applications into the mainstream for the last
+five years or so.  Web user agents which are able to make use of
+chromaticity information will be at an increasing market advantage in
+the years to come.</p>
+
+<hr>
+Next: <a href="gq-meta.html">Embeded metadata</a>
+
+</body></html>

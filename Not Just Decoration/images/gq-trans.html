@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<head>
+<title>WWW4: Not Just Decoration: Quality Graphics for the Web</title>
+</head>
+
+<body>
+<h3><a href="gq-boston.html">
+Not Just Decoration: Quality Graphics for the Web</a></h3>
+<hr>
+
+<h1>Anti-aliasing and Transparency</h1>
+
+<h2>What is aliasing</h2>
+
+<p>Aliasing is an artefact caused by inadequate sampling frequency
+(<a href="#alias">1</a>).  The term is most commonly applied to
+spatial aliasing, which manifests as visible pixelation - a blocky or
+jagged effect - especially with near horizontal or near vertical lines
+of high contrast.  It is thus particularly noticed with textual
+annotation of images.  Figure 1 shows a sample image, converted from a
+PostScript file with one sample per pixel, that displays severe spatial
+aliasing.</p>
+
+<p><img src="1perpix.gif"><br>
+<i>Figure 1: A severely aliased image.</i></p>
+
+<h2>How is aliasing reduced</h2>
+
+<p>Aliasing may be reduced by taking multiple samples of the underlying
+information.  In the case of a computer graphics technique such as
+raytracing, this involves shooting multiple rays through different parts
+of each pixel.  In the case of PostScript conversion to images, this is
+achieved by rasterising at a higher resolution then resampling down to
+the intended resolution.  Figure 2 shows the same PostScript file
+rendered with 16 samples per pixel.  Much less aliasing is seen.
+Careful examination of the edges of lettering and the coloured blocks
+shows that the background and foreground colours have been blended together based on their sub-pixel coverage.</p>
+
+<p><img src="16perpix.gif"><br>
+<i>Figure 2: An anti-aliased image.</i></p>
+
+
+<h2>What is transparency</h2>
+
+<p>Image file formats that support transparency are able to make certain
+designated pixels wholly or partially transparent, so that the
+background colour or texture shows through.  In this way,
+non-rectangular images may be simulated regardless of the background
+colour or texture of the user agent, as in seen in Figure 3.</p>
+
+<p><img src="seed-crambin.gif"><br>
+<i>Figure 3: An image with binary transparency.</i></p>
+
+<p>The simplest type of transparency is binary - each pixel is either
+<em>on</em> or <em>off</em>.  This may be specified by a binary
+transparency mask, or (particularly with palette-based formats) by
+nominating a particular colour or group of colours to be transparent.
+The latter method is used by the GIF89a format [<a href =
+"gq-refs.html#04">4</a>] and is widely supported in current Web user
+agents.</p>
+
+<h2>The problem</h2>
+
+<p>There is a <strong>severe interaction</strong> between anti-aliasing
+and binary transparency.  Because the background colour of the image is
+mixed in with the foreground colours, simply replacing a single
+background colour with another is not enough to simulate transparency.
+There will be a whole host of shades which are <em>mixtures</em> of
+background and foreground colours, as Figure 4 shows.  The effect in
+this case is a white halo around objects, because the original image was
+anti-aliased to a white background colour.</p>
+
+<p><img src="16perpix-halo.gif"><br>
+<i>Figure 4: Halo effect caused by anti-aliased edges.</i></p>
+
+<h2>The solution</h2>
+
+<p>An improvement on binary transparency is variable transparency, also
+known as an alpha mask or alpha channel.  Here each pixel can take any
+value between fully opaque and fully transparent, and this value is
+independent of the colour of that pixel.  Besides allowing smooth
+transitions between a graphic and the background, this permits a
+different type of antialiasing.</p>
+
+<p>Foreground colours contributing to a particular pixel are mixed
+together according to their sub-pixel foreground coverage,
+<em>ignoring</em> contribution from the background.  The alpha channel
+value is used to express the fractional contribution of the original
+background, irrespective of that background's colour.  When rendered,
+this alpha channel specifies for each pixel what proportion of the
+existing background is to be mixed with the forground image data to
+produce the final colour of each pixel.  In this way, the anti-aliased
+image can be displayed on any background or texture, or indeed
+composited on top of another arbitrary image, without the artefacts seen
+with binary transparency.</p>
+
+
+<hr> 
+
+<h2>Notes to implementors</h2>
+
+<h3>Interactions</h3>
+
+<p>There has been an increase in the number of anti-aliased images as
+people strive for better quality, and this brings to the fore a number
+of interations.  That between anti-aliasing and binary transparency has
+already been noted.  Also, anti-aliased images contain a lot more
+colours than aliased ones, which puts pressure on the <a href=
+"gq-alloc.html">colour allocation strategy</a>.</p>
+
+<p>Variable transparency is most easily implemented with a truecolour
+display, because if any image pixel may be mixed with the user agent's
+background colour or texture in any proportion, the total number of
+colours in a displayed image can become quite large.  It can be
+implemented in a colour-scarce environment provided an off screen buffer
+is provided to composite the image before reducing it to the current
+palette.</p>
+
+<h3>Recommendations</h3>
+
+<p>Future Web user agents should permit as inline images formats that
+support variable transparency, to allow quality anti-aliased images that
+are independent of the background colour or texture.  Suitable formats
+include extended TIFF [<a href="gq-refs.html#05">5</a>] and PNG [<a
+href="gq-refs.html#06">6</a>].  This will encourage information
+providers to migrate away from formats that only support binary
+transparency, such as GIF89a.</p>
+
+<p>This will also allow the OVERLAY attribute of the draft HTML 3.0 FIG
+element [<a href="gq-refs.html#07">7</a>] to be deployed more effectively.
+Overlays are only of use if one can also see what is being overlaid.</p>
+
+
+<hr>
+
+<a name="alias">1</a>.  One good introduction among many is Chaper 4 of
+[<a href="gq-refs.html#02">2</a>].  A more detailed and mathematical
+treatment is Unit II of [<a href="gq-refs.html#03">3</a>].  
+
+<hr> 
+Next:  <a href="gq-gamma.html">Gamma correction</a> 
+</body></html>

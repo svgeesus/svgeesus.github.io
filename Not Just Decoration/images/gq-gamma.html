@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<head>
+<title>WWW4: Not Just Decoration: quality graphics for the Web</title>
+</head>
+
+<body>
+<h3><a href="gq-boston.html">
+Not Just Decoration: quality graphics for the Web</a></h3>
+<hr>
+
+<h1>Gamma correction</h1>
+
+<h2>The problem</h2>
+
+<p>When expressing a colour in RGB, what we are trying to specify is the
+amount of light which will be emitted from each phosphor, as a fraction
+of full power.  What we are <em>actually</em> specifying is however the
+voltage which will be applied to each electron gun.</p>
+
+<p> The two are not linearly related, because the amount of light
+emitted is proportional to the beam power rather than the voltage.  The
+beam power is the product of voltage and current, and current turns out
+to be roughly proportional to the grid voltage to the power 1.5.  Thus,
+the light emitted is proportional to the voltage to the power 2.5 or so.
+The actual value of the exponent, called <i>gamma</i>, varies somewhat
+and the power law is only an an approximate model of the real situation,
+albeit a good one.  An additional optical effect caused by viewing
+images against a dim surround is that the effective gamma value is
+somewhat reduced, from a theoretical 2.5 to around 2.2</p>
+
+<!--   Oh for some real equations! Roll on the incorporation of 
+       HTML 3.0 maths into HTML 2.x he said wistfully            -->
+
+<p>To deal with this non-linearity, the inverse power function (1/2.2)
+is applied to the RGB data before display, compensating for the
+non-linearities which will be introduced.  Figure 5 shows a typical
+correction curve, which is a mirror image about the line <tt>Input =
+Output</tt> of the display non-linearity.  (In other words, the display
+non-linearity curves down from a straight line and so the gamma
+correction curves up from that line [<a href="gq-refs.html#08">8</a>].
+
+
+<p><img src="gamma.gif"><br>
+<i>Fig 5: A typical gamma correction curve.</i></p>
+
+
+<p>There are a number of places at which this correction could be
+applied, and this affects how Web user agents handle image data.</p>
+
+<ol>
+<li>In the image data itself, in other words a correction has been
+applied at the server end.
+
+<li>In the user agent software, correction being applied as the image is
+streamed in.
+
+<li>In the software of the underlying platform.  The Apple Mac and SGI
+workstations are examples of systems which apply some correction at this
+stage, using corrections of 1/1.4 and 1/1.7 (by default)
+respectively. (Put another way, the remaining correction that needs 
+to be applied is 1.78 and 1.47 respectively)
+
+<li>In the hardware of the underlying platform, using
+variable attenuation or amplification.  The Barco Calibrator is an
+example of a monitor which performs correction at this stage, using
+test signals and measured luminance values to correct itself.
+</ol>
+
+<p>The end result of all these potential corrections, plus the display
+non-linearity, must equal a linear transformation for accurate tonal
+reproduction to be obtained.  The Web user agent must therefore be aware
+of the amount of correction from step one (in the image file received
+from the server) and from steps two and three (provided by the
+underlying platform) so that the appropriate correction can be made.
+
+<h2>Avoiding guesswork</h2>
+
+<p>With most image formats there is no way to determine if any
+correction has been applied at step one, and if so, what value was used.
+This results in considerable uncertainty among information providers as
+to how to proceed.  The <a href =
+"http://www.halcyon.com/coolbrz/psycho.html"> following quote</a> is
+typical:</p>
+
+<blockquote>We have no real stats on what people on the nets have and
+what looks best.  Most Mac's wash out the colors while Windows 3.1 make
+everything look dark.  We need to know what is the best approach to
+providing free graphics.  Please let us know what you want!</blockquote>
+
+<p>What is needed is for the image file to contain machine-readable
+details of the correction that has been applied.  This facility has been
+part of the Utah RLE format [<a href="gq-refs.html#09">9</a>] for
+several years.  TIFF files [<a href="gq-refs.html#05">5</a>]
+<em>can</em> contain very precise transfer curves although most in
+practice do not.  PNG [<a href="gq-refs.html#06">6</a>]also has the
+facility to record any gamma correction that has been applied.  Kodak
+PhotoCD [<a href="gq-refs.html#10">10</a>] uses a single standard
+transfer function.  Clearly, such formats make the user agent
+implementor's job much easier.</p>
+
+
+<hr>
+<h2>Notes to implementors</h2>
+<h3>Interactions</h3>
+
+<p>If an image is under or over gamma corrected, this also affects the
+colour balance.  Over correction (in addition to making mid-tones too
+light) shifts colours towards neutral grey, while under correction (in
+addition to making mid-tones too dark) shifts colours towards the
+display primaries.</p>
+
+<p>Viewing on screen and printing on paper are two process with very
+different transfer characteristics, so what is right for one is not
+right for the other.  The extent of the mismatch depends on how much of
+the required correction has already been done to the image, how much is
+done in the viewing software, and how much (if any) is done by the
+software or hardware of the underlying platform.</p>
+
+
+<h3>Recommendations</h3>
+
+<p>User agents should provide some sort of gamma correction which does
+the right thing in as many cases as possible.  This might be done
+by, in order of importance:</p>
+
+<ul>
+
+<li>Honouring explicit source gamma declarations in those image files
+that support them - currently TIFF, Utah RLE and PNG.  Encouraging use
+of such formats to avoid guesswork.
+
+<li>Providing well chosen default settings, appropriate to the
+underlying platform.
+
+<li>Using suitable heuristics based on the Internet Media type for image
+formats without explicit source gamma declarations.  For example, GIF
+images typically have a source gamma of 0.45 (<i>ie</i> they are already
+corrected, for most displays) while JPEG JFIF [<a
+href="gq-refs.html#11">11</a>] files often have a source gamma of 1.0
+(<i>ie</i> they are uncorrected).  Yes, this is a guess.  It <em>will</em>
+sometimes be wrong.  It is however an improvement on providing no gamma
+correction at all, or a blanket gamma correction on all types of images.
+
+<li>Allowing setting of gamma in the preferences, for example by
+providing a slider to adjust the screen gamma by eye, for example until
+a user-agent-generated tone reproduction chart looks correct on screen,
+and saving this value for future use.
+
+<li>Allowing customisation by knowledgable users or those with stringent
+requirements, for example by inputting measured transfer characteristics
+or providing an interface for external programs to be called to aid in
+accurate reproduction.</ul>
+
+<p>User agents which offer printing should be aware of the different
+gamma requirements for screen and print and might offer similar
+facilities (allowing customisation, printing a test chart) to adjust
+gamma for printing.</p>
+
+<hr>
+Next: <a href="gq-gamut.html">Colour display</a>
+
+</body></html>

@@ -1,0 +1,16 @@
+09 October 1995
+
+There are two versions of the paper:
+
+a) Multifile for online reading. Includes colour images, PNG images,
+gif and JPEG versions of diagrams. Top node is called gq-boston.html
+
+b) Single file (Overview.html) for greyscale paper printing. Includes 
+highest resolution version of inline images, such as greyscale TIFF versions of 
+PNG files. Includes EPS versions of diagrams. On no account to be used as 
+the online version.
+
+files which are *only* used for b) are in a subdirectory called paper.
+
+To construct a version of these files for mounting on the conference 
+Web server, delete Overview.html and the directory called paper.
