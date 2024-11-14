@@ -1074,7 +1074,8 @@
 				},
 				{
 					"title": "Cutting Edge XML",
-					"type": "Talk"
+					"type": "Talk",
+					"slides": "http://www.w3.org/People/chris/OHE2000/Lilley-xml.pdf"
 				}
 			],
 			"name": "Online Help Conference Europe",
