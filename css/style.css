@@ -148,6 +148,14 @@ nav div.social a.twitter:not(:hover):not(:focus) {
 	filter: brightness(120%) grayscale(100%);
 }
 
+nav div.social a.mastodon {
+	background-image: url(../img/mastodon.svg)
+}
+
+nav div.social a.mastodon:not(:hover):not(:focus) {
+	filter: brightness(120%) grayscale(100%);
+}
+
 nav div.social a.github {
 	background-image: url(../img/github.svg)
 }
