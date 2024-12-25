@@ -77,10 +77,8 @@ img[property=image] {
 
 p[property=description] {
 	text-align: justify;
-	-webkit-hyphens: auto;
-	        hyphens: auto;
-	-webkit-font-kerning: normal;
-	        font-kerning: normal;
+	hyphens: auto;
+	font-kerning: normal;
 }
 
 header {
@@ -95,8 +93,6 @@ nav {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	min-width: -webkit-min-content;
-	min-width: -moz-min-content;
 	min-width: min-content;
 	padding: 0 calc(50% - 37rem / 2 - .5em);
 	padding: 0 calc(50% - var(--content-width) / 2 - .5em);
@@ -120,8 +116,6 @@ nav div:first-of-type a {
 	padding: .5em 1em;
 	align-items: center;
 	box-sizing: border-box;
-	min-width: -webkit-min-content;
-	min-width: -moz-min-content;
 	min-width: min-content
 }
 
