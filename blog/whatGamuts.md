@@ -1,5 +1,6 @@
 ---
 title: What are color gamuts
+date: 2022-07-18
 tags: [
 	"CSS",
 	"Color Science"
