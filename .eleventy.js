@@ -1,15 +1,10 @@
+import markdownIt from "markdown-it";
+import markdownItFootnote from "markdown-it-footnote";
+import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+
 // .eleventy.js
-
-
-
-module.exports = config => {
-
-	const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-
+export default config => {
 	config.addPlugin(syntaxHighlight);
-
-	const markdownIt = require("markdown-it");
-	const markdownItFootnote = require("markdown-it-footnote");
 
 	let options = {
 		html: true, // Enable HTML tags in source
@@ -20,7 +15,6 @@ module.exports = config => {
 	let markdownLib =  markdownIt(options).use(markdownItFootnote);
 	// set the library to process markdown files
 	config.setLibrary("md", markdownLib);
-
 
 	let data = {
 		"layout": "page.njk",
