@@ -145,6 +145,15 @@ nav {
 				}
 			}
 
+			&.mastodon {
+				background-image: url(../img/mastodon.svg);
+
+				&:not(:hover):not(:focus) {
+					-webkit-filter:  brightness(120%) grayscale(100%);
+					filter: brightness(120%) grayscale(100%);
+				}
+			}
+
 			&.github {
 				background-image: url(../img/github.svg);
 
