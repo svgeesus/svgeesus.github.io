@@ -1,5 +1,5 @@
 # Build artifacts
-index.html
+/index.html
 talks.html
 publications.html
 blog/**/*.html
