@@ -1,3 +1,9 @@
+# Build artifacts
+index.html
+talks.html
+publications.html
+blog/**/*.html
+
 node_modules
 .DS_Store
 Thumbs.db
