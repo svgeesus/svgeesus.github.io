@@ -6,11 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:html": "npx @11ty/eleventy",
-    "build:css": "gulp css",
-    "build": "npm run build:html && npm run build:css",
+    "build": "npm run build:html",
     "watch:html": "npx @11ty/eleventy --watch",
-    "watch:css": "gulp watch",
-    "watch": "npm run watch:html & npm run watch:css"
+    "watch": "npm run watch:html"
   },
   "repository": {
     "type": "git",
@@ -24,14 +22,7 @@
   "homepage": "https://github.com/svgeesus/svgeesus.github.io",
   "devDependencies": {
     "@11ty/eleventy": "^1.0.2",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
-    "autoprefixer": "^7.2.6",
-    "gulp": "^4.0.2",
-    "gulp-postcss": "^7.0.1",
-    "gulp-rename": "^1.4.0",
-    "postcss-custom-properties": "^6.3.1",
-    "postcss-nesting": "^4.2.1",
-    "postcss-selector-matches": "^3.0.1"
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0"
   },
   "dependencies": {
     "eslint": "^4.16.0",
