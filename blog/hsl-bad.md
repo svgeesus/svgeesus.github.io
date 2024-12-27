@@ -7,7 +7,9 @@ tags: [
 ]
 ---
 
-So far, each syntactic form has used the  Red-Green-Blue model directly. It is often assertedi that color pickers using color models with orthogonal perceptual attributes (such as Lightness, Colorfulness, Chroma, Saturation, Hue) have higher usability than RGB[Schwartz] although the early studies have significant methodological flawsii and more recent research finds that other factors such as interface design and responsive feedback are much more important in affecting the speed and accuracy of color selection than the color modeliii. While it seems intuitively reasonable, the usability benefit has yet to be demonstrated in a well-controlled study.
+Before CSS Color 3, each syntactic form in CSS used the  Red-Green-Blue color model directly. 
+
+It is often asserted that color pickers using color models with orthogonal perceptual attributes (such as Lightness, Colorfulness, Chroma, Saturation, Hue) have higher usability than RGB[Schwartz] although the early studies have significant methodological flawsii and more recent research finds that other factors such as interface design and responsive feedback are much more important in affecting the speed and accuracy of color selection than the color modeliii. While it seems intuitively reasonable, the usability benefit has yet to be demonstrated in a well-controlled study.
 
 Still, this assumed increase in usability was the reason that the hsl() (Hue, Saturation, Lightness) model [Joblove] was added in 2002 [csshsl], followed later by the alpha-including hsla() form.  
 
