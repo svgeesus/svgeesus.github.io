@@ -7,6 +7,19 @@
 				{
 					"title": "HDR at W3C",
 					"type": "Talk",
+					"slides": "https://svgees.us/Talks/HDRExperts2025/W3C-HDR-20250302.pdf"
+				}
+			],
+			"name": "ICC HDR Stills Expert Day",
+			"date": "2025-03-03",
+			"city": "Chiba",
+			"country": "jp"
+		},
+		{
+			"talk": [
+				{
+					"title": "HDR at W3C",
+					"type": "Talk",
 					"slides": "https://svgees.us/Lilley-HDR-W3C.pdf",
 					"@context": "https://schema.org/"
 				}
