@@ -1,0 +1,15 @@
+{
+  "name": "markdown-it-footnote",
+  "homepage": "https://github.com/markdown-it/markdown-it-footnote",
+  "version": "4.0.0",
+  "_release": "4.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "4.0.0",
+    "commit": "fe6c169c72b9f4d6656b10aa449128456f5a990e"
+  },
+  "_source": "https://github.com/markdown-it/markdown-it-footnote.git",
+  "_target": "^4.0.0",
+  "_originalSource": "markdown-it-footnote",
+  "_direct": true
+}

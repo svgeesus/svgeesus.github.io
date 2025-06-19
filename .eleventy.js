@@ -1,20 +1,11 @@
 import markdownIt from "markdown-it";
 import markdownItFootnote from "markdown-it-footnote";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+import markdownItAnchor from "markdown-it-anchor";
 
 // .eleventy.js
 export default config => {
 	config.addPlugin(syntaxHighlight);
-
-	let options = {
-		html: true, // Enable HTML tags in source
-		linkify: true // Autoconvert URL-like text to links
-	};
-
-	// configure the library with options
-	let markdownLib =  markdownIt(options).use(markdownItFootnote);
-	// set the library to process markdown files
-	config.setLibrary("md", markdownLib);
 
 	let data = {
 		"layout": "page.njk",
@@ -33,9 +24,24 @@ export default config => {
 		excerpt_separator: "<!-- more -->"
 	});
 
+	let md = markdownIt({
+		html: true,
+		linkify: true,
+		typographer: true,
+	})
+	.disable("code")
+	.use(markdownItFootnote)
+	.use(markdownItAnchor, {
+		permalink: markdownItAnchor.permalink.headerLink(),
+		level: 2,
+	})
+	;
+	config.setLibrary("md", md);
+
 	config.addFilter("md", function (content = "") {
-		return markdownIt({ html: true }).render(content);
+		return md.render(content);
 	});
+
 
 	return {
 		templateFormats: ["md", "njk"],

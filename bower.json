@@ -1,0 +1,21 @@
+{
+  "name": "svgees.us",
+  "description": "Chris Lilley’s personal website",
+  "main": "index.html",
+  "authors": [
+    "Chris Lilley",
+    "Lea Verou"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/svgeesus/svgeesus.github.io",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "markdown-it-footnote": "^4.0.0"
+  }
+}

@@ -55,7 +55,7 @@
 
 
 <img src="./img/colorjs-logo.png" style="width: 50vw"/>
-<p><em><strong>Related:</strong> <a href="https://lea.verou.me/2022/06/releasing-colorjs/">Lea's blog post for the release of color.js</a></em></p>
+<p><em><strong>Related:</strong> <a href="https://lea.verou.me/2022/06/releasing-colorjs/">Lea’s blog post for the release of color.js</a></em></p>
 <p>It has taken <a href="https://lea.verou.me/2022/06/releasing-colorjs/">Lea</a> and I far too long –
 there is always something more that <em>really should</em> be added,
 always some conversion that <em>really needs</em> an authoritive
@@ -69,7 +69,7 @@ please be careful and lower your expectations”.</p>
 to make demos and to check other color conversion code against
 (this includes some browser implementations of <a href="https://drafts.csswg.org/css-color-4/">CSS Color 4</a> and
 <a href="https://drafts.csswg.org/css-color-5/">CSS Color 5</a>).</p>
-<h2>Lots of color spaces</h2>
+<h2 id="lots-of-color-spaces" tabindex="-1"><a class="header-anchor" href="#lots-of-color-spaces">Lots of color spaces</a></h2>
 <p><a href="https://colorjs.io/">Color.js</a> is a JavaScript library  –
 which you can use on a web page,
 or from node,
@@ -88,7 +88,7 @@ creating diagrams,
 writing and verifying browser tests,
 and for sanity checking the CSS Color 4 specification
 in the days before browsers started implementing it.</p>
-<h2>Why do we need it</h2>
+<h2 id="why-do-we-need-it" tabindex="-1"><a class="header-anchor" href="#why-do-we-need-it">Why do we need it</a></h2>
 <p>Now, CSS Color 4 includes simple (but accurate)
 <a href="https://drafts.csswg.org/css-color-4/#color-conversion-code">Sample code for Color Conversions</a> so what extra does color.js add?</p>
 <p>Well, the sample code is purely procedural,
@@ -99,10 +99,13 @@ not missing any out.
 All done using simple arrays, so remember to keep track of what each one contains!</p>
 <p>To take an example: convert <code>color(prophoto-rgb 0.7 0.2 0.65)</code>
 to <code>oklch</code>. Using the sample code:</p>
-<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> mycolor <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0.7</span><span class="token punctuation">,</span> <span class="token number">0.2</span><span class="token punctuation">,</span> <span class="token number">0.65</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// this is ProPhoto by the way</span><br><span class="token keyword">let</span> myoklch <span class="token operator">=</span> <span class="token function">OKLab_to_OKLCH</span><span class="token punctuation">(</span><span class="token function">XYZ_to_OKLab</span><span class="token punctuation">(</span><span class="token function">D65_to_D50</span><span class="token punctuation">(</span><br>    <span class="token function">lin_ProPhoto_to_XYZ</span><span class="token punctuation">(</span><span class="token function">lin_ProPhoto</span><span class="token punctuation">(</span>mycolor<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> mycolor <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0.7</span><span class="token punctuation">,</span> <span class="token number">0.2</span><span class="token punctuation">,</span> <span class="token number">0.65</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// this is ProPhoto by the way</span>
+<span class="token keyword">let</span> myoklch <span class="token operator">=</span> <span class="token function">OKLab_to_OKLCH</span><span class="token punctuation">(</span><span class="token function">XYZ_to_OKLab</span><span class="token punctuation">(</span><span class="token function">D65_to_D50</span><span class="token punctuation">(</span>
+    <span class="token function">lin_ProPhoto_to_XYZ</span><span class="token punctuation">(</span><span class="token function">lin_ProPhoto</span><span class="token punctuation">(</span>mycolor<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p><em>(Prophoto uses the D50 whitepoint while OKLCH uses D65, so there is a <a href="https://colorjs.io/docs/adaptation.html">chromatic adaptation</a> step in the middle there)</em></p>
-<p>Now let's do that in color.js:</p>
-<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> mycolor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Color</span><span class="token punctuation">(</span><span class="token string">'color(prophoto-rgb 0.7 0.2 0.65)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">let</span> myoklch <span class="token operator">=</span> mycolor<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span><span class="token string">'oklch'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Now let’s do that in color.js:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> mycolor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Color</span><span class="token punctuation">(</span><span class="token string">'color(prophoto-rgb 0.7 0.2 0.65)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> myoklch <span class="token operator">=</span> mycolor<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span><span class="token string">'oklch'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>Each color object contains, not just the actual color coordinates,
 (and the alpha, if it is not fully opaque)
 but also an explicit color space identifier.
@@ -112,7 +115,7 @@ and can figure out how to convert between any pair of them.</p>
 and that conversion is as simple as saying where you want to go.
 (Internally, the exact same set of steps as the first example are carried out, for you).</p>
 <p><em>Here is a handy <a href="https://colorjs.io/apps/convert/?color=lime&amp;precision=4">color conversion app</a>, written in color.js, which I use all the time.</em></p>
-<h2>Interpolating colors</h2>
+<h2 id="interpolating-colors" tabindex="-1"><a class="header-anchor" href="#interpolating-colors">Interpolating colors</a></h2>
 <p>On the legacy web, you can make a gradient between two (or more) colors.
 As long as all are in sRGB,
 missing out around a third of all the colors
@@ -125,19 +128,21 @@ to get things looking right.</p>
 regardless what color space they were originally in.
 And you get to pick the color space used for interpolation, too:
 diffeent ones give very different results. For example:</p>
-<pre class="language-css"><code class="language-css"><span class="token function">linear-gradient</span><span class="token punctuation">(</span>in lab to right<span class="token punctuation">,</span> white<span class="token punctuation">,</span> #01E<span class="token punctuation">)</span><br><span class="token function">linear-gradient</span><span class="token punctuation">(</span>in srgb to right<span class="token punctuation">,</span> white<span class="token punctuation">,</span> #01E<span class="token punctuation">)</span><br><span class="token function">linear-gradient</span><span class="token punctuation">(</span>in oklab to right<span class="token punctuation">,</span> white<span class="token punctuation">,</span> #01E<span class="token punctuation">)</span></code></pre>
+<pre class="language-css"><code class="language-css"><span class="token function">linear-gradient</span><span class="token punctuation">(</span>in lab to right<span class="token punctuation">,</span> white<span class="token punctuation">,</span> #01E<span class="token punctuation">)</span>
+<span class="token function">linear-gradient</span><span class="token punctuation">(</span>in srgb to right<span class="token punctuation">,</span> white<span class="token punctuation">,</span> #01E<span class="token punctuation">)</span>
+<span class="token function">linear-gradient</span><span class="token punctuation">(</span>in oklab to right<span class="token punctuation">,</span> white<span class="token punctuation">,</span> #01E<span class="token punctuation">)</span></code></pre>
 <img src="./img/rectangular-fff-01e.png" style="width: 50vw"/>
 <p>The middle gradient of these three, in sRGB, is too dark and a bit purplish.
 The top one, in CIE Lab, is way too purple while the bottom one
 in shiny new <a href="https://bottosson.github.io/posts/oklab/">OKLab</a> has a nicely even lightness throughout and no purple shift at all.</p>
 <p>This rendering of the brand-new <a href="https://drafts.csswg.org/css-images-4/#linear-gradients">CSS Images 4 gradient syntax</a> was generated in color.js,
 using the <a href="https://colorjs.io/apps/gradients/">gradient interpolation demo app</a></p>
-<p>Gradients aren't the only time colors are interpolated on the web; just one of the prettiest to show.
+<p>Gradients aren’t the only time colors are interpolated on the web; just one of the prettiest to show.
 Animations, transitions, compositing and
 <a href="https://drafts.csswg.org/css-color-5/#color-mix">CSS Color 5 <code>color-mix()</code></a>
 also use interpolation, and color.js has you covered until all the browsers implement all of this (and beyond, because older browsers will always need a helping hand).</p>
-<h2>And that's not all</h2>
-<p>I haven't even talked about automatic <a href="https://drafts.csswg.org/css-color-4/#gamut-mapping">gamut mapping</a>, which <a href="https://colorjs.io/docs/gamut-mapping.html">brings undisplayable colors into gamut</a> while trying to keep them as similar-looking as possible. Or the several different <a href="https://colorjs.io/docs/color-difference.html">color difference (ΔE) formulae</a> that color.js supports. Or the alternate <a href="https://colorjs.io/docs/adaptation.html">Chromatic Adaptation Transform</a> methods you can use. Or just little utility functions to get luminance (on any color) or the <em>u,v</em> chromaticity coordinates, for making diagrams.</p>
+<h2 id="and-that%E2%80%99s-not-all" tabindex="-1"><a class="header-anchor" href="#and-that%E2%80%99s-not-all">And that’s not all</a></h2>
+<p>I haven’t even talked about automatic <a href="https://drafts.csswg.org/css-color-4/#gamut-mapping">gamut mapping</a>, which <a href="https://colorjs.io/docs/gamut-mapping.html">brings undisplayable colors into gamut</a> while trying to keep them as similar-looking as possible. Or the several different <a href="https://colorjs.io/docs/color-difference.html">color difference (ΔE) formulae</a> that color.js supports. Or the alternate <a href="https://colorjs.io/docs/adaptation.html">Chromatic Adaptation Transform</a> methods you can use. Or just little utility functions to get luminance (on any color) or the <em>u,v</em> chromaticity coordinates, for making diagrams.</p>
 <p>But this is a release announcement not a tutorial, so I had best be ending here.</p>
 <p><a href="https://colorjs.io/get/">Get color.js</a>, enjoy, and <a href="https://github.com/LeaVerou/color.js/issues">report bugs!!</a></p>
 

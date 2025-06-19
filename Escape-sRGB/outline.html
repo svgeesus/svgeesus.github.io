@@ -40,18 +40,18 @@
 </header>
 
 <h1>Escaping the sRGB Prison</h1>
-<h2>Color perception</h2>
-<h3>Lightness</h3>
+<h2 id="color-perception" tabindex="-1"><a class="header-anchor" href="#color-perception">Color perception</a></h2>
+<h3 id="lightness" tabindex="-1"><a class="header-anchor" href="#lightness">Lightness</a></h3>
 <ul>
 <li>luminance vs lightness</li>
 </ul>
-<h3>Complementary colors</h3>
+<h3 id="complementary-colors" tabindex="-1"><a class="header-anchor" href="#complementary-colors">Complementary colors</a></h3>
 <ul>
 <li>after images.</li>
 <li>reddish yellow but not reddish green</li>
 </ul>
-<h3>Color model</h3>
-<p>Describe OKLCH but don't name it yet, assume they understand the concept</p>
+<h3 id="color-model" tabindex="-1"><a class="header-anchor" href="#color-model">Color model</a></h3>
+<p>Describe OKLCH but don’t name it yet, assume they understand the concept</p>
 <ul>
 <li>
 <p>lightness, hue, chroma in 3D</p>
@@ -63,67 +63,67 @@
 <p>percentage of gamut in 2D is meaningless.</p>
 </li>
 </ul>
-<h2>the Prison</h2>
-<h3>HDTV Rec 709</h3>
+<h2 id="the-prison" tabindex="-1"><a class="header-anchor" href="#the-prison">the Prison</a></h2>
+<h3 id="hdtv-rec-709" tabindex="-1"><a class="header-anchor" href="#hdtv-rec-709">HDTV Rec 709</a></h3>
 <ul>
 <li>3D gamut volume in OKLCH</li>
 </ul>
-<h3>Display P3</h3>
+<h3 id="display-p3" tabindex="-1"><a class="header-anchor" href="#display-p3">Display P3</a></h3>
 <ul>
 <li>3D gamut volume in OKLCH</li>
 <li>compare to sRGB</li>
-<li>how many colors we <strong>can't use</strong></li>
+<li>how many colors we <strong>can’t use</strong></li>
 <li>all modern devices</li>
 </ul>
-<h3>? BT.2020?</h3>
+<h3 id="%3F-bt.2020%3F" tabindex="-1"><a class="header-anchor" href="#%3F-bt.2020%3F">? BT.2020?</a></h3>
 <ul>
 <li>or is that too confusing</li>
 </ul>
-<h3>All legacy color formats are sRGB</h3>
+<h3 id="all-legacy-color-formats-are-srgb" tabindex="-1"><a class="header-anchor" href="#all-legacy-color-formats-are-srgb">All legacy color formats are sRGB</a></h3>
 <ul>
 <li>hsl, named, etc</li>
 </ul>
-<h3>Canvas (was) sRGB only</h3>
+<h3 id="canvas-(was)-srgb-only" tabindex="-1"><a class="header-anchor" href="#canvas-(was)-srgb-only">Canvas (was) sRGB only</a></h3>
 <ul>
 <li>canvas example</li>
 </ul>
-<h2>Escaping (specifying color)</h2>
-<h3>color(display-p3 ...)</h3>
+<h2 id="escaping-(specifying-color)" tabindex="-1"><a class="header-anchor" href="#escaping-(specifying-color)">Escaping (specifying color)</a></h2>
+<h3 id="color(display-p3-%E2%80%A6)" tabindex="-1"><a class="header-anchor" href="#color(display-p3-%E2%80%A6)">color(display-p3 …)</a></h3>
 <ul>
 <li>Matches capabilities of modern devices</li>
 <li>CSS and Canvas examples</li>
 </ul>
-<h3>Other predefined color spaces</h3>
+<h3 id="other-predefined-color-spaces" tabindex="-1"><a class="header-anchor" href="#other-predefined-color-spaces">Other predefined color spaces</a></h3>
 <ul>
 <li>mainly for matching other content, like Adobe RGB or ProPhoto RGB</li>
 </ul>
-<h3>Lab, LCH, OKLab, OKLCH</h3>
+<h3 id="lab%2C-lch%2C-oklab%2C-oklch" tabindex="-1"><a class="header-anchor" href="#lab%2C-lch%2C-oklab%2C-oklch">Lab, LCH, OKLab, OKLCH</a></h3>
 <ul>
 <li>Meaningful, orthogonal polar color models</li>
 <li>OK is better, newer, not so well known or supported</li>
 </ul>
-<h2>Escaping (Mixing colors)</h2>
+<h2 id="escaping-(mixing-colors)" tabindex="-1"><a class="header-anchor" href="#escaping-(mixing-colors)">Escaping (Mixing colors)</a></h2>
 <ul>
 <li>color-mix()</li>
 <li>gradients and the perils of sRGB mixing</li>
 <li>gradients in OKLab</li>
 </ul>
-<h2>Escaping (Altering colors)</h2>
+<h2 id="escaping-(altering-colors)" tabindex="-1"><a class="header-anchor" href="#escaping-(altering-colors)">Escaping (Altering colors)</a></h2>
 <ul>
 <li>css variables and dynamic, computed colors (not like sass)</li>
 <li>relative color syntax</li>
 </ul>
-<h2>Most contrasting color</h2>
+<h2 id="most-contrasting-color" tabindex="-1"><a class="header-anchor" href="#most-contrasting-color">Most contrasting color</a></h2>
 <ul>
 <li>Automatic WCAG 2.1 contrast</li>
 <li>known to give false positives and negatives, improved system in development</li>
 </ul>
-<h2>Can I use it</h2>
+<h2 id="can-i-use-it" tabindex="-1"><a class="header-anchor" href="#can-i-use-it">Can I use it</a></h2>
 <ul>
 <li>browser landscape, Safari, color-mix in Firefox, Chrome lagging</li>
 <li>Interop 2022</li>
 </ul>
-<h2>Futures</h2>
+<h2 id="futures" tabindex="-1"><a class="header-anchor" href="#futures">Futures</a></h2>
 <ul>
 <li>BT.2020 and even wider gamut</li>
 <li>BT.2100 and PQ/HLG HDR (Canvas)</li>

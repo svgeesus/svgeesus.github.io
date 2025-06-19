@@ -10,6 +10,7 @@
     "watch:html": "npx @11ty/eleventy --watch",
     "watch": "npm run watch:html"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/svgeesus/svgeesus.github.io.git"
@@ -21,12 +22,13 @@
   },
   "homepage": "https://github.com/svgeesus/svgeesus.github.io",
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0"
+    "@11ty/eleventy": "^3.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5",
+    "markdown-it-anchor": "^9",
+    "markdown-it-footnote": "^4.0.0"
   },
   "dependencies": {
-    "eslint": "^4.16.0",
-    "markdown-it-footnote": "^3.0.3"
+    "eslint": "^9.22.0"
   },
   "keywords": []
 }

@@ -2,7 +2,7 @@
 <html lang="en" vocab="https://schema.org/">
 <head>
 	<meta charset="UTF-8">
-	<title>cICP explained &bull; Chris Lilley</title>
+	<title>cICP in PNG, explained &bull; Chris Lilley</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="fediverse:creator" content="@svgeesus@mastodon.scot">
 
@@ -33,7 +33,7 @@
 
 		<span property="name">
 			
-				cICP explained
+				cICP in PNG, explained
 			
 		</span>
 	</h1>
@@ -48,21 +48,261 @@
 
 	<p class="date">
 		Published on
-		<time datetime="2024-12-26T05:08:11.596Z">26 December 2024</time>
+		<time datetime="2025-03-17T00:00:00.000Z">16 March 2025</time>
 	</p>
 
 </header>
 
 
-<p>Blog post taking apart the H.273 values in cICP and distilling down to the useful ones,
-ignoring historical/undefined/reserved/useless.</p>
-<p>XYZ is available but with a stupid white point, x=0.3333 y=0.3333 don't be tempted to use it.</p>
-<p>sRGB is there (also 709 HDTV with a different transfer curve)
-DCI-P3 and display-p3 are available
-2020, 2100-hlg and 2100-pq all there.</p>
-<p>Not representable: Adobe 1998, ProPhoto, xyz-d65, xyz-d50
-and only RGB-like formats, no CIE Lab, Oklab.</p>
-<p>cICP chunk (including chunk name, length and checksum) adds 16 bytes, much smaller than even a minimal ICC profile.</p>
+<p>So, <a href="https://www.w3.org/TR/png-3/">PNG Third Edition</a> adds <a href="https://www.w3.org/TR/png-3/#cICP-chunk">Coding Independent Code Points</a> (CICP) for color space identification. What are they, why should you care, and should you be using them?</p>
+<h2 id="color-spaces" tabindex="-1"><a class="header-anchor" href="#color-spaces">Color spaces</a></h2>
+<p><a href="#introducing-cicp">I already know what a color space is, skip to CICP</a></p>
+<p>Same values, different colors (swatches)
+Same colors, different values</p>
+<p>Primary chromaticitiees, white point [^adaptation]
+Transfer functions (graphs)</p>
+<p>Gamut [^gamut_in_detail]</p>
+<h2 id="introducing-cicp" tabindex="-1"><a class="header-anchor" href="#introducing-cicp">Introducing CICP</a></h2>
+<p>The CICP specification allows labelling of <em>what</em> color space is used
+for a given image.
+It doesn’t say <em>how to handle</em> that color space. [^label_vs_processing]</p>
+<h3 id="video-what%3F" tabindex="-1"><a class="header-anchor" href="#video-what%3F">Video what?</a></h3>
+<p>CICP wasn’t invented for PNG. It builds on
+an International Telecommunication Union (ITU) specification
+for broadcast and television
+whose full title is, somewhat confusingly,
+“Coding-independent code points for video signal type identification”.</p>
+<p>This heritage explains some of the choices for what was included
+(many old, historical, or obsolete video standards),
+and what was left out (common color spaces for still images, like ProPhoto RGB).</p>
+<p>But CICP isn’t just for video anymore;
+it has been adopted by still-image and animation formats
+like <a href="https://github.com/AOMediaCodec/libavif/wiki/CICP">AVI</a> and
+<a href="https://www.loc.gov/preservation/digital/formats/fdd/fdd000536.shtml#factors">JPEG-XL</a>.
+And now, PNG as well.</p>
+<h3 id="four-(well%2C-two)-numbers" tabindex="-1"><a class="header-anchor" href="#four-(well%2C-two)-numbers">Four (well, two) numbers</a></h3>
+<p>To save space and to encourage automated processing,
+CICP encodes the color space using just four numbers,
+each of which can be encoded in one byte.
+The actual meaning of each one
+can be found in the <a href="https://www.itu.int/rec/T-REC-H.273">ITU H.273 specification</a>.</p>
+<p>Of those, two are vitaly important:
+the <strong>Color Primaries</strong>,
+which tell you the chromaticity [^chromaticity]
+of the white, red, green and blue,
+thus defining the color gamut;
+and the <strong>Transfer Characteristics</strong>
+or Electro-Optical Transfer Function (EOTF),
+which allows interconverting between
+the pixel values in the image
+and the light intensities emitted by the display [^display referred].</p>
+<p>Examples with same primaries different transfer,</p>
+<p>sRGB and BT.709 (HDRV)</p>
+<p>and different primaries with same transfer</p>
+<p>sRGB and Display p3</p>
+<h3 id="the-other-two-numbers" tabindex="-1"><a class="header-anchor" href="#the-other-two-numbers">The other two numbers</a></h3>
+<p>Narrow range not so common in practice (also poorly supported in browsers)</p>
+<p>PNG is RGB only, others use various luminance-chrominance spaces
+so need a way to convert that to RGB.</p>
+<h3 id="high-dynamic-range" tabindex="-1"><a class="header-anchor" href="#high-dynamic-range">High Dynamic Range</a></h3>
+<p>PQ and HLG</p>
+<p>2100-hlg and 2100-pq both there.
+P3D65-PQ also</p>
+<h3 id="compared-to-icc-profiles" tabindex="-1"><a class="header-anchor" href="#compared-to-icc-profiles">Compared to ICC profiles</a></h3>
+<p>table of comparisons</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">CICP</th>
+<th style="text-align:center">ICC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">RGB, YCC, XYZ [^stupid xyz]</td>
+<td style="text-align:center">RGB, CMY, CMYK, Lab</td>
+</tr>
+<tr>
+<td style="text-align:center">list of known spaces[^weird_obsolete]</td>
+<td style="text-align:center">any space [^measured]</td>
+</tr>
+<tr>
+<td style="text-align:center">small</td>
+<td style="text-align:center">larger to very large (CMYK) [^detailed_sizes]</td>
+</tr>
+<tr>
+<td style="text-align:center">what it is</td>
+<td style="text-align:center">what to do with it</td>
+</tr>
+</tbody>
+</table>
+<p>Since PNG is limited to RGB images, the fact that CICP doesn’t support things like CMYK or Lab is not an issue. However, it does mean that common but not representable RGB spaces like Adobe 1998 or ProPhoto RGB cannot use CICP and have to be identified with ICC profiles instead.</p>
+<h2 id="cicp-in-png" tabindex="-1"><a class="header-anchor" href="#cicp-in-png"><code>cICP</code> in PNG</a></h2>
+<h3 id="wait-why-the-little-c" tabindex="-1"><a class="header-anchor" href="#wait-why-the-little-c">Wait why the little c</a></h3>
+<p>PNG chunk naming [^chunk_naming]</p>
+<p><code>cICP</code></p>
+<h3 id="adds-just-16-bytes" tabindex="-1"><a class="header-anchor" href="#adds-just-16-bytes">Adds just 16 bytes</a></h3>
+<p>compared to <code>iCCP</code> which adds 23 bytes <strong>plus</strong> the size of the compressed profile.
+Checking on some <a href="https://github.com/svgeesus/PNG-ICC-tests">ICC profiles in PNG tests</a>
+I found the smallest compressed profile
+was 312 bytes, so 335 bytes in total;
+the largest was 8825 bytes so 8848 in total.</p>
+<h3 id="browser-support" tabindex="-1"><a class="header-anchor" href="#browser-support">Browser support</a></h3>
+<p>link to implementation report (dated snapshot)</p>
+<h3 id="what-is-in-my-png" tabindex="-1"><a class="header-anchor" href="#what-is-in-my-png">What is in my PNG</a></h3>
+<p>pngcheck</p>
+<p>I recently extended this ancient tool to support PNG 3e including <code>cICP</code></p>
+<p>brief example</p>
+<p>more examples</p>
+<h3 id="tool-support" tabindex="-1"><a class="header-anchor" href="#tool-support">Tool support</a></h3>
+<p>Mention a few that export with <code>cICP</code>.</p>
+<h3 id="the-png-cicp_editor-utility" tabindex="-1"><a class="header-anchor" href="#the-png-cicp_editor-utility">The <code>png-cicp_editor</code> utility</a></h3>
+<p>Some programs will export a PNG,
+but expect you to pass along the colorspace info yourself
+to whatever program is next in your pipeline.
+Clearly, that won’t work on the web;
+browsers will <a href="https://drafts.csswg.org/css-color-4/#untagged">assume the untagged image is in sRGB</a>.</p>
+<p>So there is a need to take a given PNG,
+where you already know the color space,
+and add <code>cICP</code> without otherwise altering the image.</p>
+<p><a href="https://github.com/ProgramMax">Chris Blume</a>,
+who is the chair of the W3C PNG Working Group,
+wrote <a href="https://github.com/ProgramMax/png_cicp_editor">a nice little command-line utility</a>
+to do that one specific task.
+It is called <code>png-cicp_editor</code>.
+Here it is being used to label a PNG image as display P3:</p>
+<pre class="language-bash"><code class="language-bash">png-cicp_editor <span class="token function">add</span> <span class="token parameter variable">--preset</span> display-p3 test.png</code></pre>
+<p>Notice that your image is modified in-place.
+Notice too that the actual image data is <em>not changed</em> in any way
+(it does <strong>not</strong> do color space conversion),
+this utility simply inserts the missing colorspace labelling
+that should have been there anyway.</p>
+<p>Here is another example, marking an HDR image
+as being in the BT.2100 color space with PQ transfer function:</p>
+<pre class="language-bash"><code class="language-bash">png-cicp_editor <span class="token function">add</span> <span class="token parameter variable">--preset</span> bt.2100-pq test2.png</code></pre>
+<p>The available presets <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> cover the most common
+color spaces which will be encountered in practice.</p>
+<p>But to avoid clutter, they don’t cover all possible options.
+Suppose you have a PNG image converted from some old video format,
+which CICP does in fact support.
+Then you can provide your four numbers directly
+(you will need to look them up in the
+<a href="https://www.itu.int/rec/T-REC-H.273">ITU H.273 specification</a>,
+which is freely available).</p>
+<p>For example, to label an RGB image decoded from an old <a href="https://en.wikipedia.org/wiki/SECAM">SECAM video</a>:</p>
+<pre class="language-bash"><code class="language-bash">png-cicp_editor <span class="token function">add</span> <span class="token parameter variable">--color_primaries</span> <span class="token number">5</span> <span class="token parameter variable">--transfer_function</span> <span class="token number">4</span> <span class="token parameter variable">--matrix_coefficients</span> <span class="token number">0</span> <span class="token parameter variable">--video_full_range_flag</span> <span class="token number">1</span> secam-test.png</code></pre>
+<p>getting rid of an existing <code>cICP</code></p>
+<h2 id="geeknotes" tabindex="-1"><a class="header-anchor" href="#geeknotes">Geeknotes</a></h2>
+<table>
+<thead>
+<tr>
+<th>Preset</th>
+<th>Specification</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bt.601-pal</td>
+<td>Rec. ITU-R BT.601 625-line 50 Hz (PAL)</td>
+<td>old video framegrabs</td>
+</tr>
+<tr>
+<td>bt.601-ntsc</td>
+<td>Rec. ITU-R BT.601 525-line 60 Hz (NTSC)</td>
+<td>old video framegrabs</td>
+</tr>
+<tr>
+<td>bt.709</td>
+<td>Rec. ITU-R BT.709-6</td>
+<td>HDTV (1080p)</td>
+</tr>
+<tr>
+<td>srgb-linear</td>
+<td>linear-light sRGB</td>
+<td>video games, GPU</td>
+</tr>
+<tr>
+<td>srgb</td>
+<td>IEC 61966-2-1 sRGB</td>
+<td>web default</td>
+</tr>
+<tr>
+<td>bt.2020-10-bit</td>
+<td>Rec. ITU-R BT.2020-2 (10-bit system)</td>
+<td>4k streaming</td>
+</tr>
+<tr>
+<td>bt.2020-12-bit</td>
+<td>Rec. ITU-R BT.2020-2 (12-bit system)</td>
+<td>4k streaming</td>
+</tr>
+<tr>
+<td>bt.2100-pq</td>
+<td>Rec. ITU-R BT.2100-2 perceptual quantization (PQ) system</td>
+<td>HDR streaming</td>
+</tr>
+<tr>
+<td>bt.2100-hlg</td>
+<td>Rec. ITU-R BT.2100-2 hybrid log-gamma (HLG) system</td>
+<td>iPhone video, images</td>
+</tr>
+<tr>
+<td>dci-p3</td>
+<td>SMPTE RP 431-2 with SMPTE ST 428-1 D-Cinema Distribution Master (DCI-P3)</td>
+<td>digital cinema</td>
+</tr>
+<tr>
+<td>display-p3</td>
+<td>Display P3</td>
+<td>modern WCG web</td>
+</tr>
+<tr>
+<td>p3-d65-pq</td>
+<td>P3-D65 PQ</td>
+<td>Dolby Vision HDR</td>
+</tr>
+</tbody>
+</table>
+<p>For Dolby Vision mastering, see <a href="https://professionalsupport.dolby.com/s/article/Dolby-Vision-Content-Creation-Best-Practices-Guide?language=en_US">Dolby Vision Content Creation Best Practices Guide</a></p>
+<p>[^detailed_sizes]
+cICP chunk (including chunk name, length and checksum) adds 16 bytes, much smaller than even a minimal ICC profile.
+<code>iCCP</code> holds compressed profiles but even so (list a few sizes)</p>
+<p>Use the files in the ICC test page as input.
+profile size, PNG size (compressed, plus chunk overhead)</p>
+<p>ICCv2 sRGB (rgswap)  chunk iCCP at offset 0x00025, length 335
+profile name = LittleCMS ICC profile, compression method = 0 (deflate)
+compressed profile = 312 bytes
+uncompressed 1156</p>
+<p>v2-CIE-Lstar chunk iCCP at offset 0x00025, length 8848
+profile name = LittleCMS ICC profile, compression method = 0 (deflate)
+compressed profile = 8825 bytes
+uncompressed 9376</p>
+<p>v2-ProPhoto  chunk iCCP at offset 0x00025, length 666
+profile name = LittleCMS ICC profile, compression method = 0 (deflate)
+compressed profile = 643 bytes
+uncompressed 1260</p>
+<p>v40-DisplayP3 chunk iCCP at offset 0x00025, length 376
+profile name = LittleCMS ICC profile, compression method = 0 (deflate)
+compressed profile = 353 bytes
+uncompressed 536</p>
+<p>v4-CIE-Lstar  chunk iCCP at offset 0x00025, length 624
+profile name = LittleCMS ICC profile, compression method = 0 (deflate)
+compressed profile = 601 bytes
+uncompressed 1144</p>
+<p>v4-ProPhoto chunk iCCP at offset 0x00025, length 616
+profile name = LittleCMS ICC profile, compression method = 0 (deflate)
+compressed profile = 593 bytes
+uncompressed 1156</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Here are the names of all the presets (as of March 2025)
+together with the specifications that define each color space
+and some places where they are commonly used: <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
 </main>
 
