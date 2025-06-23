@@ -48,30 +48,90 @@
 
 	<p class="date">
 		Published on
-		<time datetime="2025-03-17T00:00:00.000Z">16 March 2025</time>
+		<time datetime="2025-06-24T00:00:00.000Z">23 June 2025</time>
 	</p>
 
 </header>
 
 
-<p>So, <a href="https://www.w3.org/TR/png-3/">PNG Third Edition</a> adds <a href="https://www.w3.org/TR/png-3/#cICP-chunk">Coding Independent Code Points</a> (CICP) for color space identification. What are they, why should you care, and should you be using them?</p>
+<p>So, <a href="https://www.w3.org/TR/png-3/">PNG Third Edition</a> adds
+<a href="https://www.w3.org/TR/png-3/#cICP-chunk">Coding Independent Code Points</a> (CICP)
+for color space identification.
+What is CICP,
+why should you care,
+should you be using it
+and if so, how?</p>
 <h2 id="color-spaces" tabindex="-1"><a class="header-anchor" href="#color-spaces">Color spaces</a></h2>
-<p><a href="#introducing-cicp">I already know what a color space is, skip to CICP</a></p>
-<p>Same values, different colors (swatches)
-Same colors, different values</p>
-<p>Primary chromaticitiees, white point [^adaptation]
-Transfer functions (graphs)</p>
-<p>Gamut [^gamut_in_detail]</p>
+<p>(Hey, I already know what a color space is, <a href="#introducing-cicp">skip forward to CICP</a>)</p>
+<p>Let us first define what we mean by a <em>color</em>.
+It is an objective (measured) value,
+describing the human visual perception
+of some object that is emitting light
+(or, for physical objects, is illuminated by some light
+and reflecting some of that light to our eye).</p>
+<p>This measurement consists of three numbers: X, Y and Z.
+Two objects that have identical X, Y and Z values
+will look exactly the same color
+to a normal human observer <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup><sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>.</p>
+<div style="width: 5em; height: 5em; background-color: hotpink"></div>
+<p>That hot pink square, for example, has <a href="https://apps.colorjs.io/convert/?color=hotpink&amp;precision=4">X = 0.5453, Y = 0.3466
+and Z = 0.4700</a></p>
+<p>Because working with three-dimensional data is hard,
+it is common to convert XYZ values
+into <em>chromaticity values</em> (x,y) where:</p>
+<p>x = X / (X + Y + Z)</p>
+<p>y = Y / (X + Y + Z)</p>
+<p>Two objects with the same chromaticity values
+will look the same color,
+but one may be brighter or darker than the other.</p>
+<p>To reproduce a given color
+on a particular screen,
+we need to know the chromaticities
+of the red, green and blue primaries
+and also the exact color of the white
+that results when those three are mixed together
+in equal proportions.</p>
+<p><img src="./img/CIE1931xy_gamut_comparison_of_sRGB_P3_Rec2020.svg" alt="chromaticity diagram"></p>
+<div style="text-align: center;">
+<p><em>Chromaticity diagram
+showing various RGB color spaces
+and two white points</em> <sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></p>
+</div>
+<p>We also need to know the relationship
+between the numbers we send to a screen
+and the amount of light generated.
+This is typically not a linear relationship.
+For example, if a monitor takes values
+between 0 and 255,
+and we send a number in the middle (127),
+we would typically only get 21% of the full amount of light,
+not 50%.
+This is called the <em>transfer function</em> <sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>.</p>
+<img src="./img/lin-srgb-hlg-pq.png" alt="graph of transfer functions for extended sRGB, linear-light sRGB, the Perceptual Quantizer (PQ) and Hybrid Log-Gamma (HLG)">
+<p style="text-align: center;"><i>Four different transfer functions for various color spaces</i></p>
+<p>Taken together, the primary chromaticities
+and the white point define the <em>gamut</em> or
+range of colors that a given screen can produce <sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup>.</p>
+<p>If we also know the transfer function,
+then for any color that is in gamut,
+we can calculate the red, green and blue values
+needed to display that color.
+In other words, we have a defined <a href="https://drafts.csswg.org/css-color-4/#color-space"><strong>color space</strong></a>.</p>
+<p>So for example that same hot pink would need red = 0.9297 green = 0.4489 blue = 0.6964 on a Display P3 screen. On a screen with a different color space, the same color would need different numbers.</p>
 <h2 id="introducing-cicp" tabindex="-1"><a class="header-anchor" href="#introducing-cicp">Introducing CICP</a></h2>
 <p>The CICP specification allows labelling of <em>what</em> color space is used
 for a given image.
-It doesn’t say <em>how to handle</em> that color space. [^label_vs_processing]</p>
+It doesn’t say <em>how to handle</em> that color space. <sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup>
+Because it is just saying <em>which</em>
+of a small number of industry-standard color spaces
+is being used,
+the implementation is expected to handle them all.</p>
 <h3 id="video-what%3F" tabindex="-1"><a class="header-anchor" href="#video-what%3F">Video what?</a></h3>
 <p>CICP wasn’t invented for PNG. It builds on
 an International Telecommunication Union (ITU) specification
 for broadcast and television
 whose full title is, somewhat confusingly,
-“Coding-independent code points for video signal type identification”.</p>
+<em>“Coding-independent code points for video signal type identification”</em>.</p>
 <p>This heritage explains some of the choices for what was included
 (many old, historical, or obsolete video standards),
 and what was left out (common color spaces for still images, like ProPhoto RGB).</p>
@@ -88,28 +148,153 @@ The actual meaning of each one
 can be found in the <a href="https://www.itu.int/rec/T-REC-H.273">ITU H.273 specification</a>.</p>
 <p>Of those, two are vitaly important:
 the <strong>Color Primaries</strong>,
-which tell you the chromaticity [^chromaticity]
+which tell you the chromaticity
 of the white, red, green and blue,
 thus defining the color gamut;
 and the <strong>Transfer Characteristics</strong>
 or Electro-Optical Transfer Function (EOTF),
 which allows interconverting between
 the pixel values in the image
-and the light intensities emitted by the display [^display referred].</p>
-<p>Examples with same primaries different transfer,</p>
-<p>sRGB and BT.709 (HDRV)</p>
-<p>and different primaries with same transfer</p>
-<p>sRGB and Display p3</p>
+and the light intensities emitted by the display.</p>
+<p>In theory these are independent, but not all combinations make sense.
+Also, sometimes multiple color standards use the same primaries, or the same transfer function.</p>
+<p>For example, a value of 1 for primaries is used
+by a bunch of standards
+including ITU-R BT.709-6
+(which is used for High-Definition TV).
+More relevant for the web, it is also used by IEC 61966-2-1
+(which is sRGB, the basic default color space for the web ever since CSS 1).</p>
+<p><img src="./img/H.273-primaries.png" alt="primaries 1"></p>
+<p>To distinguish between these various options,
+we also need to give the transfer function.
+For sRGB, we want transfer function 13</p>
+<p><img src="./img/H.273-transfer-13.png" alt="transfer 13"></p>
+<p>while for HDTV, we need transfer function 1</p>
+<p><img src="./img/H.273-transfer-1.png" alt="transfer 1"></p>
+<p>Turning now to wide gamut images,
+a primaries value of 11
+is used by SMPTE RP 431-2,
+otherwise known as DCI P3
+and used for digital cinema reference projectors.
+While a value of 12
+is used by SMPTE EG 432-1,
+which covers Color Processing for D-Cinema.
+Notice that the red, green and blue chromaticities are identical.
+The whites differ, DCI-P3 uses a weird, somewhat greenish white <sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup>
+while the other one,
+which is used for general wide-gamut digital video workflow,
+uses the widespread D65 daylight white.</p>
+<p><img src="./img/H.273-primaries-11-12.png" alt="p3 primaries"></p>
+<p>If we combine primaries 12 and transfer 13
+(yes, the exact same one as sRGB uses)
+we end up with <a href="https://www.color.org/chardata/rgb/DisplayP3.xalter">Display P3</a>
+which is the most common wide-gamut color space
+for modern web content.</p>
 <h3 id="the-other-two-numbers" tabindex="-1"><a class="header-anchor" href="#the-other-two-numbers">The other two numbers</a></h3>
-<p>Narrow range not so common in practice (also poorly supported in browsers)</p>
-<p>PNG is RGB only, others use various luminance-chrominance spaces
-so need a way to convert that to RGB.</p>
+<p>I did say earlier that two of the four numbers in CICP were <em>vitally important</em>
+and you probably wondered what was up with the other two.</p>
+<p>The fourth number specifies whether <strong>Full Range or Narrow Range</strong> is used.</p>
+<p>Most digital image processing uses the full range of code values:
+for 8-bit data,
+black is at 0 and white at 255,
+while for 16-bit data,
+black is again at 0 and white at 65535.</p>
+<p>In 10-bit narrow range, black starts at 64 (not 0)
+and white is at 940 (not 1023);
+in 16-bit narrow-range,
+black starts at 4096 (not 0)
+and white is at 60160  (not 65535).
+This is called the “legal range”.
+The extra headroom and footroom outside that range (called the “extended range”)
+is used to capture momentary excursions outside the legal range,
+such as overshoots (ringing) from image filtering <sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup>.
+This was also used to slightly extend the dynamic range in some systems (super whites).</p>
+<p>On SDI video systems, certain values are <em>reserved</em>
+and used for things like
+<a href="https://en.wikipedia.org/wiki/Serial_digital_interface#Synchronization_packets">synchronization packets</a>,
+line counts and cyclic redundancy checksums.
+For example, a 10-bit SDI system will reserve values 0 to 3
+and 1020 to 1023 for synchronization packets and ancillary data <sup class="footnote-ref"><a href="#fn9" id="fnref9">[9]</a></sup>.</p>
+<p>It is worth noting that these types of video systems rarely handle RGB data directly;
+instead they use luminance and chrominance (Y’CbCr) data.
+If that content gets converted to RGB to make a still image or short animated sequence,
+there is the option to convert to Full Range RGB at the same time.</p>
+<p>All of which is to say that narrow range RGB data is not so common in practice
+(it is also poorly supported in browsers at the current time).
+Narrow range RGB PNG images do exist,
+but they are generated and processed in video workflows <sup class="footnote-ref"><a href="#fn10" id="fnref10">[10]</a></sup>
+and don’t often show up in the wild on the web.</p>
+<p>Which brings us to the remaining (third) number, <strong>Matrix coefficients</strong>.</p>
+<p>This gives the matrix to convert from Y’CbCr to RGB.
+Since PNG only handles RGB data, the value of this in PNG images
+is <em>always</em> zero, meaning “data is already RGB, nothing to do”.</p>
+<p>Why, then, did we bother storing it at all?</p>
+<p>Two reasons – compatibility and extensibility.</p>
+<p>To interoperate with other systems,
+which do handle formats other than RGB,
+it is better to explicitly store the extra number even if the value is fixed.
+It is only one byte, after all.</p>
+<p>Also to allow future extension
+(maybe a newer version of PNG will store other formats than RGB)
+it is also better to store it explicitly in this version.</p>
 <h3 id="high-dynamic-range" tabindex="-1"><a class="header-anchor" href="#high-dynamic-range">High Dynamic Range</a></h3>
-<p>PQ and HLG</p>
-<p>2100-hlg and 2100-pq both there.
-P3D65-PQ also</p>
-<h3 id="compared-to-icc-profiles" tabindex="-1"><a class="header-anchor" href="#compared-to-icc-profiles">Compared to ICC profiles</a></h3>
-<p>table of comparisons</p>
+<p>The color spaces used as examples so far in this post have all been
+<em>Standard Dynamic Range</em> (SDR),
+meaning that the media white (as in CSS <code>white</code> of <code>RGB #FFFFFF</code>)
+is also the brightest color that can be displayed.
+Media white can be comfortably viewed, over the whole screen.</p>
+<p>This limits the dynamic range to around 8 stops <sup class="footnote-ref"><a href="#fn11" id="fnref11">[11]</a></sup>
+which is not enough for high quality images and video.</p>
+<p>In <em>High Dynamic Range</em> (HDR),
+the same media white can of course be produced,
+but also significantly <em>brighter</em> colors
+(and significantly <em>darker</em> colors than the dark gray
+which often represents <code>black</code> on SDR systems).
+For example, an HDR reference monitor
+might have a dynamic range of 14 stops <sup class="footnote-ref"><a href="#fn12" id="fnref12">[12]</a></sup>.</p>
+<p>By far the most commonly used HDR primaries
+(used by HDR streaming services
+like, for example, Netflix, Prime, and Disney+ <sup class="footnote-ref"><a href="#fn13" id="fnref13">[13]</a></sup>)
+are defined in <strong>ITU-R BT.2100</strong> <sup class="footnote-ref"><a href="#fn14" id="fnref14">[14]</a></sup>.
+These give a significantly wider gamut than Display P3,
+although content does not necessarily take advantage
+of the full gamut <sup class="footnote-ref"><a href="#fn15" id="fnref15">[15]</a></sup>.</p>
+<p>This is indicated in CICP with a primaries value of 9:</p>
+<p><img src="./img/H.273-primaries-9.png" alt="primaries 9"></p>
+<p>To define a color space we also need the transfer function,
+and in fact threre are three in common use.</p>
+<p>The first is <strong>ITU-R BT.2020</strong> <sup class="footnote-ref"><a href="#fn16" id="fnref16">[16]</a></sup>,
+an SDR space used for UltraHD (4k) television.</p>
+<p>This uses transfer values 14 or 15
+(depending on whether the content uses 10 bits or 12 bits per component)
+which is a bit sneaky since the actual equations are the same;
+CICP does not have a separate way to indicate significant bits
+although PNG does <sup class="footnote-ref"><a href="#fn17" id="fnref17">[17]</a></sup>:</p>
+<p><img src="./img/H.273-primaries-14-15.png" alt="primaries 14 and 15"></p>
+<p>The second is <strong>Perceptual Quantizer (PQ)</strong>,
+an HDR space used for color graded content such as movies.</p>
+<p>In CICP, PQ is indicated with transfer value 16
+(and note this covers bit depths from 10 to 16):</p>
+<p><img src="./img/H.273-transfer-16.png" alt="primaries 16"></p>
+<p>PQ was first defined by <strong>SMPTE ST 2084</strong>
+and is now a part of <strong>ITU-R BT.2100</strong>.</p>
+<p>The third is <strong>Hybrid Log Gamma (HLG)</strong>,
+an HDR space used for live broadcast such as sports,
+and also for iPhone video clips [iPhone-HLG].</p>
+<p>In CICP, HLG is indicated with transfer value 18:</p>
+<p><img src="./img/H.273-transfer-18.png" alt="primaries 18"></p>
+<p>HLG was first defined in <strong>ARIB STD-B67</strong>
+and is now a part of <strong>ITU-R BT.2100</strong>.</p>
+<p>Lastly, HDR content that doesn’t need
+(and isn’t required to use) BT.2100
+can specify P3 D65 with the PQ transfer function:
+primaries 12, transfer 16.
+This is used in, for example, Dolby Vision HDR.</p>
+<h3 id="cicp-compared-to-icc-profiles" tabindex="-1"><a class="header-anchor" href="#cicp-compared-to-icc-profiles">CICP compared to ICC profiles</a></h3>
+<p>In summary,
+since ICC profiles are currently the main way to ensure accurate color
+(at least, for still, SDR images)
+here is a quick comparison.</p>
 <table>
 <thead>
 <tr>
@@ -119,16 +304,16 @@ P3D65-PQ also</p>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">RGB, YCC, XYZ [^stupid xyz]</td>
+<td style="text-align:center">RGB, YCC, XYZ <sup class="footnote-ref"><a href="#fn18" id="fnref18">[18]</a></sup></td>
 <td style="text-align:center">RGB, CMY, CMYK, Lab</td>
 </tr>
 <tr>
-<td style="text-align:center">list of known spaces[^weird_obsolete]</td>
-<td style="text-align:center">any space [^measured]</td>
+<td style="text-align:center">list of known spaces<sup class="footnote-ref"><a href="#fn19" id="fnref19">[19]</a></sup></td>
+<td style="text-align:center">any space <sup class="footnote-ref"><a href="#fn20" id="fnref20">[20]</a></sup></td>
 </tr>
 <tr>
 <td style="text-align:center">small</td>
-<td style="text-align:center">larger to very large (CMYK) [^detailed_sizes]</td>
+<td style="text-align:center">larger to very large (CMYK) <sup class="footnote-ref"><a href="#fn21" id="fnref21">[21]</a></sup></td>
 </tr>
 <tr>
 <td style="text-align:center">what it is</td>
@@ -136,29 +321,130 @@ P3D65-PQ also</p>
 </tr>
 </tbody>
 </table>
-<p>Since PNG is limited to RGB images, the fact that CICP doesn’t support things like CMYK or Lab is not an issue. However, it does mean that common but not representable RGB spaces like Adobe 1998 or ProPhoto RGB cannot use CICP and have to be identified with ICC profiles instead.</p>
+<p>Since PNG is limited to RGB images,
+the fact that CICP doesn’t support things like CMYK or Lab
+is not an issue.
+However, it does mean that common but not representable RGB spaces
+like Adobe 1998 RGB or ProPhoto RGB
+cannot use CICP
+and have to be identified with ICC profiles instead.</p>
 <h2 id="cicp-in-png" tabindex="-1"><a class="header-anchor" href="#cicp-in-png"><code>cICP</code> in PNG</a></h2>
 <h3 id="wait-why-the-little-c" tabindex="-1"><a class="header-anchor" href="#wait-why-the-little-c">Wait why the little c</a></h3>
-<p>PNG chunk naming [^chunk_naming]</p>
-<p><code>cICP</code></p>
+<p>Chunks in PNG use four ASCII letters.
+If the first letter is uppercase (for example <a href="https://www.w3.org/TR/png-3/#11IHDR"><code>IHDR</code> Image header</a>)
+then that chunk is <strong>critical</strong>;
+the image cannot be understood without it.
+There are <a href="https://www.w3.org/TR/png-3/#11Critical-chunks">only four critical chunks</a>.</p>
+<p>If the first letter is lowercase (for example <a href="https://www.w3.org/TR/png-3/#cICP-chunk"><code>cICP</code></a>)
+then that chunk is <strong>ancillary</strong>;
+the image can be displayed without understanding this chunk.
+Most chunks are ancillary.</p>
+<p>For some ancillary chunks (like <a href="https://www.w3.org/TR/png-3/#11tIME"><code>tIME</code>, the image last-modification time</a>)
+there is no impact on image display at all;
+for others, like <code>cICP</code> the image is displayed with the wrong colors.</p>
 <h3 id="adds-just-16-bytes" tabindex="-1"><a class="header-anchor" href="#adds-just-16-bytes">Adds just 16 bytes</a></h3>
-<p>compared to <code>iCCP</code> which adds 23 bytes <strong>plus</strong> the size of the compressed profile.
-Checking on some <a href="https://github.com/svgeesus/PNG-ICC-tests">ICC profiles in PNG tests</a>
-I found the smallest compressed profile
-was 312 bytes, so 335 bytes in total;
-the largest was 8825 bytes so 8848 in total.</p>
+<p>Compared to the <a href="https://www.w3.org/TR/png-3/#11iCCP"><code>iCCP</code> Embedded ICC profile</a> chunk,
+which adds 23 bytes <strong>plus</strong> the size of the compressed profile,
+<a href="https://www.w3.org/TR/png-3/#cICP-chunk"><code>cICP</code></a> adds a total of 16 bytes to the image.</p>
+<p>Checking on some <a href="https://github.com/svgeesus/PNG-ICC-tests">ICC profiles in PNG tests</a>
+I found the smallest <em>compressed</em> profile
+was 312 bytes, so it adds 335 bytes in total;
+the largest was 8,825 bytes, so it adds 8,848 in total.</p>
+<p>Naturally this makes more of a difference for tiny to small PNG images.</p>
 <h3 id="browser-support" tabindex="-1"><a class="header-anchor" href="#browser-support">Browser support</a></h3>
-<p>link to implementation report (dated snapshot)</p>
+<p>The <a href="https://w3c.github.io/png/Implementation_Report_3e/#cicp"><code>cICP</code> section of the
+Implementation Report</a>
+(a dated snapshot, needed for a W3C specification to become a standard)
+lists support in various tools,
+including browsers,</p>
+<p>CICP in PNG is supported in Chrome (and thus, Edge); Firefox, Safari,
+and two new, up-and coming browsers <sup class="footnote-ref"><a href="#fn22" id="fnref22">[22]</a></sup>,
+<a href="https://servo.org/">Servo</a> and <a href="https://ladybird.org/">Ladybird</a></p>
+<p>To demonstrate, here is a sample PNG image <sup class="footnote-ref"><a href="#fn23" id="fnref23">[23]</a></sup>
+which uses <code>cICP</code> to label the color space,
+which in this case is BT.2020.</p>
+<p><img src="./img/revoy-cICP-bt.2020.png" alt="image displayed correctly"></p>
+<p>Now, if your browser did not support <code>cICP</code> in PNG images,
+that image would look the same as this, incorrect, washed-out one:</p>
+<p><img src="./img/revoy-unlabelled-srgb.png" alt="washed-out image because cICP is unsupported"></p>
+<p>Sadly, if your browser is displaying on an old, sRGB-only screen <sup class="footnote-ref"><a href="#fn24" id="fnref24">[24]</a></sup>
+the images will also look similar,
+but that is the best your screen can do.
+Luckily, most modern hardware can display most of the Display P3 gamut.</p>
 <h3 id="what-is-in-my-png" tabindex="-1"><a class="header-anchor" href="#what-is-in-my-png">What is in my PNG</a></h3>
-<p>pngcheck</p>
-<p>I recently extended this ancient tool to support PNG 3e including <code>cICP</code></p>
-<p>brief example</p>
-<p>more examples</p>
-<h3 id="tool-support" tabindex="-1"><a class="header-anchor" href="#tool-support">Tool support</a></h3>
-<p>Mention a few that export with <code>cICP</code>.</p>
+<p>By now you may well be wondering,
+are the PNG images I am exporting
+from my favorite program already using <code>cICP</code>?
+Or something else?
+Or nothing?</p>
+<p>I recently extended an ancient command-line tool,
+<a href="https://github.com/pnggroup/pngcheck">pngcheck</a>,
+to support all the PNG Third Edition chunks
+including <code>cICP</code>.</p>
+<p>Without any arguments,
+it just tells you whether the PNG iage(s)
+are valid or not (plus some summary information)</p>
+<pre class="language-bash"><code class="language-bash">$ pngcheck lin-srgb-hlg-pq.png
+OK: lin-srgb-hlg-pq.png <span class="token punctuation">(</span>839x803, <span class="token number">32</span>-bit RGB+alpha, non-interlaced, static, <span class="token number">97.6</span>%<span class="token punctuation">)</span>.</code></pre>
+<p>With the <code>-v</code> option (v for verbose)
+it also lists each of the chunks in the file
+(this can get quite long, for larger images):</p>
+<pre class="language-bash"><code class="language-bash">$ pngcheck <span class="token parameter variable">-v</span> lin-srgb-hlg-pq.png
+File: lin-srgb-hlg-pq.png <span class="token punctuation">(</span><span class="token number">64792</span> bytes<span class="token punctuation">)</span>
+  chunk IHDR at offset 0x0000c, length <span class="token number">13</span>
+    <span class="token number">839</span> x <span class="token number">803</span> image, <span class="token number">32</span>-bit RGB+alpha, non-interlaced
+  chunk sBIT at offset 0x00025, length <span class="token number">4</span>
+    red <span class="token operator">=</span> <span class="token number">8</span> <span class="token operator">=</span> 0x08, green <span class="token operator">=</span> <span class="token number">8</span> <span class="token operator">=</span> 0x08, blue <span class="token operator">=</span> <span class="token number">8</span> <span class="token operator">=</span> 0x08, alpha <span class="token operator">=</span> <span class="token number">8</span> <span class="token operator">=</span> 0x08
+  chunk pHYs at offset 0x00035, length <span class="token number">9</span>: 5905x5905 pixels/meter <span class="token punctuation">(</span><span class="token number">150</span> dpi<span class="token punctuation">)</span>
+  chunk tEXt at offset 0x0004a, length <span class="token number">56</span>, keyword: Software
+  chunk IDAT at offset 0x0008e, length <span class="token number">8192</span>
+    zlib: deflated, 32K window, default compression
+  chunk IDAT at offset 0x0209a, length <span class="token number">8192</span>
+  chunk IDAT at offset 0x040a6, length <span class="token number">8192</span>
+  chunk IDAT at offset 0x060b2, length <span class="token number">8192</span>
+  chunk IDAT at offset 0x080be, length <span class="token number">8192</span>
+  chunk IDAT at offset 0x0a0ca, length <span class="token number">8192</span>
+  chunk IDAT at offset 0x0c0d6, length <span class="token number">8192</span>
+  chunk IDAT at offset 0x0e0e2, length <span class="token number">7202</span>
+  chunk IEND at offset 0x0fd10, length <span class="token number">0</span>
+No errors detected <span class="token keyword">in</span> lin-srgb-hlg-pq.png <span class="token punctuation">(</span><span class="token number">13</span> chunks, <span class="token number">97.6</span>% compression<span class="token punctuation">)</span>.</code></pre>
+<p>So, that one doesn’t have any color information at all.
+Browsers will treat is as sRGB.</p>
+<p>Here is an example which includes an ICC profile (the <code>iCCP</code> chunk):</p>
+<pre class="language-bash"><code class="language-bash">$  pngcheck <span class="token parameter variable">-v</span> macbeth-v2-ProPhoto.png
+File: macbeth-v2-ProPhoto.png <span class="token punctuation">(</span><span class="token number">2530</span> bytes<span class="token punctuation">)</span>
+  chunk IHDR at offset 0x0000c, length <span class="token number">13</span>
+    <span class="token number">670</span> x <span class="token number">450</span> image, <span class="token number">24</span>-bit RGB, non-interlaced
+  chunk iCCP at offset 0x00025, length <span class="token number">666</span>
+    profile name <span class="token operator">=</span> LittleCMS ICC profile, compression method <span class="token operator">=</span> <span class="token number">0</span> <span class="token punctuation">(</span>deflate<span class="token punctuation">)</span>
+    compressed profile <span class="token operator">=</span> <span class="token number">643</span> bytes
+  chunk IDAT at offset 0x002cb, length <span class="token number">1795</span>
+    zlib: deflated, 32K window, maximum compression
+  chunk IEND at offset 0x009da, length <span class="token number">0</span>
+No errors detected <span class="token keyword">in</span> macbeth-v2-ProPhoto.png <span class="token punctuation">(</span><span class="token number">4</span> chunks, <span class="token number">99.7</span>% compression<span class="token punctuation">)</span>.</code></pre>
+<p>And now, one with the <code>cICP</code> chunk.
+The cryptic H.273 codes are expanded to human-readable color space information;
+this one uses BT.2100 primaries and the PQ transfer curve:</p>
+<pre class="language-bash"><code class="language-bash">$ pngcheck <span class="token parameter variable">-v</span> test_pattern-PQ-cICP-cLLI.png
+File: test_pattern-PQ-cICP-cLLI.png <span class="token punctuation">(</span><span class="token number">9796</span> bytes<span class="token punctuation">)</span>
+  chunk IHDR at offset 0x0000c, length <span class="token number">13</span>
+    <span class="token number">1024</span> x <span class="token number">1024</span> image, <span class="token number">48</span>-bit RGB, non-interlaced
+  chunk cICP at offset 0x00025, length <span class="token number">4</span>
+   Rec. ITU-R BT.2100-2 perceptual quantization <span class="token punctuation">(</span>PQ<span class="token punctuation">)</span> system
+    White x <span class="token operator">=</span> <span class="token number">0.3127</span> y <span class="token operator">=</span> <span class="token number">0.329</span>,  Red x <span class="token operator">=</span> <span class="token number">0.708</span> y <span class="token operator">=</span> <span class="token number">0.292</span>
+    Green x <span class="token operator">=</span> <span class="token number">0.17</span> y <span class="token operator">=</span> <span class="token number">0.797</span>,  Blue x <span class="token operator">=</span> <span class="token number">0.131</span> y <span class="token operator">=</span> <span class="token number">0.046</span>
+    Full range
+  chunk cLLI at offset 0x00035, length <span class="token number">8</span>
+    Maximum content light level <span class="token operator">=</span> <span class="token number">10000</span> cd/m^2
+    Maximum frame average light level unknown
+  chunk IDAT at offset 0x00049, length <span class="token number">8192</span>
+    zlib: deflated, 32K window, default compression
+  chunk IDAT at offset 0x02055, length <span class="token number">1499</span>
+  chunk IEND at offset 0x0263c, length <span class="token number">0</span>
+No errors detected <span class="token keyword">in</span> test_pattern-PQ-cICP-cLLI.png <span class="token punctuation">(</span><span class="token number">6</span> chunks, <span class="token number">99.9</span>% compression<span class="token punctuation">)</span>.</code></pre>
 <h3 id="the-png-cicp_editor-utility" tabindex="-1"><a class="header-anchor" href="#the-png-cicp_editor-utility">The <code>png-cicp_editor</code> utility</a></h3>
 <p>Some programs will export a PNG,
-but expect you to pass along the colorspace info yourself
+but expect you to pass along the color space info yourself
 to whatever program is next in your pipeline.
 Clearly, that won’t work on the web;
 browsers will <a href="https://drafts.csswg.org/css-color-4/#untagged">assume the untagged image is in sRGB</a>.</p>
@@ -175,12 +461,12 @@ Here it is being used to label a PNG image as display P3:</p>
 <p>Notice that your image is modified in-place.
 Notice too that the actual image data is <em>not changed</em> in any way
 (it does <strong>not</strong> do color space conversion),
-this utility simply inserts the missing colorspace labelling
+this utility simply inserts the missing color space labelling
 that should have been there anyway.</p>
 <p>Here is another example, marking an HDR image
 as being in the BT.2100 color space with PQ transfer function:</p>
 <pre class="language-bash"><code class="language-bash">png-cicp_editor <span class="token function">add</span> <span class="token parameter variable">--preset</span> bt.2100-pq test2.png</code></pre>
-<p>The available presets <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> cover the most common
+<p>The available presets <sup class="footnote-ref"><a href="#fn25" id="fnref25">[25]</a></sup> cover the most common
 color spaces which will be encountered in practice.</p>
 <p>But to avoid clutter, they don’t cover all possible options.
 Suppose you have a PNG image converted from some old video format,
@@ -191,8 +477,170 @@ Then you can provide your four numbers directly
 which is freely available).</p>
 <p>For example, to label an RGB image decoded from an old <a href="https://en.wikipedia.org/wiki/SECAM">SECAM video</a>:</p>
 <pre class="language-bash"><code class="language-bash">png-cicp_editor <span class="token function">add</span> <span class="token parameter variable">--color_primaries</span> <span class="token number">5</span> <span class="token parameter variable">--transfer_function</span> <span class="token number">4</span> <span class="token parameter variable">--matrix_coefficients</span> <span class="token number">0</span> <span class="token parameter variable">--video_full_range_flag</span> <span class="token number">1</span> secam-test.png</code></pre>
-<p>getting rid of an existing <code>cICP</code></p>
 <h2 id="geeknotes" tabindex="-1"><a class="header-anchor" href="#geeknotes">Geeknotes</a></h2>
+<!-- Use the files in the ICC test page as input.
+profile size, PNG size (compressed, plus chunk overhead)
+
+ICCv2 sRGB (rgswap)  chunk iCCP at offset 0x00025, length 335
+    profile name = LittleCMS ICC profile, compression method = 0 (deflate)
+    compressed profile = 312 bytes
+ uncompressed 1156
+
+v2-CIE-Lstar chunk iCCP at offset 0x00025, length 8848
+    profile name = LittleCMS ICC profile, compression method = 0 (deflate)
+    compressed profile = 8825 bytes
+ uncompressed 9376
+
+v2-ProPhoto  chunk iCCP at offset 0x00025, length 666
+    profile name = LittleCMS ICC profile, compression method = 0 (deflate)
+    compressed profile = 643 bytes
+ uncompressed 1260
+
+v40-DisplayP3 chunk iCCP at offset 0x00025, length 376
+    profile name = LittleCMS ICC profile, compression method = 0 (deflate)
+    compressed profile = 353 bytes
+ uncompressed 536
+
+v4-CIE-Lstar  chunk iCCP at offset 0x00025, length 624
+    profile name = LittleCMS ICC profile, compression method = 0 (deflate)
+    compressed profile = 601 bytes
+ uncompressed 1144
+
+v4-ProPhoto chunk iCCP at offset 0x00025, length 616
+    profile name = LittleCMS ICC profile, compression method = 0 (deflate)
+    compressed profile = 593 bytes
+ uncompressed 1156 -->
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Normal in the sense that they do not have
+what is commonly, but inaccurately, called <em>color blindness</em>.
+Better terms are <em>atypical color vision</em>
+or <em>color vision deficiency</em> (CVD)
+because those people are usually not <strong>unable</strong> to tell the difference
+between, say, a red and a green;
+rather their ability to tell them apart is reduced. Because the genes controlling this are on the X chromosome,
+people who have only one X chromosome (XY) are
+<a href="https://www.visioncenter.org/resources/color-blind-statistics/">much more likely</a>
+to have CVD (8%).
+People with two (XX) are much less likely to have both of them affected;
+around 0.5%. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>For objects that emit light,
+it doesn’t matter what their exact emission spectrum is
+(how much light they produce at each wavelength).
+For objects that reflect light,
+it also doesn’t matter, <em><strong>if</strong> the light source that is illuminating them is constant</em>.
+Otherwise, they may or may not match. This is called <em>metamerism</em> <sup class="footnote-ref"><a href="#fn26" id="fnref26">[26]</a></sup>. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p><a href="https://en.wikipedia.org/wiki/File:CIE1931xy_gamut_comparison_of_sRGB_P3_Rec2020.svg">WikiMedia Commons image</a> by
+Andrew Somers, used under a CC-BY-SA 4.0 license <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p>In full, the <strong>Electro-Optical Transfer Function (EOTF</strong>). Just to be extra spicy, some standards instead define the <strong>Opto-Electrical Transfer Function</strong> and let you do the math. <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p>Want a deep dive on color gamuts?
+You are in luck, I <a href="https://svgees.us/blog/whatGamuts.html">have a whole blog post about that</a>. <a href="#fnref5" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn6" class="footnote-item"><p>ICC profiles, on the other hand,
+define how to convert image data to and from XYZ,
+but don’t tell you what the data actually is. <a href="#fnref6" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn7" class="footnote-item"><p>This is actually the color produced by the <a href="https://www.lamptolaser.com/fact5.html">xenon lamp</a> inside the reference projector. <a href="#fnref7" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn8" class="footnote-item"><p>For further details see EBU-R-103 (2020) <a href="https://tech.ebu.ch/docs/r/r103.pdf"><em>Video Signal Tolerance
+in Digital Television Systems</em></a>. <a href="#fnref8" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn9" class="footnote-item"><p>For further details see Society of Motion Picture
+and Television Engineers (2013) SMPTE-RP-177 <a href="https://standards.globalspec.com/std/1284890/smpte-rp-177"><em>Full-Range Image Mapping</em></a>. <a href="#fnref9" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn10" class="footnote-item"><p>For example, the video post-production software suite
+<a href="https://www.blackmagicdesign.com/products/davinciresolve">DaVinci Resolve 20</a>
+fully supports both Full-Range and Narrow-Range PNG images on import and export. <a href="#fnref10" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn11" class="footnote-item"><p>Dynamic range is the
+<a href="https://drafts.csswg.org/css-color-hdr-1/#defining-dynamic-range">difference in luminance</a>
+between the lightest and the darkest colors.
+Dynamic range is measured in photographic <em>stops</em>.
+One stop is a doubling of luminance.</p>
+<p>If you want to play with this, the equation is very simple:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">DynamicRange</span> <span class="token punctuation">(</span><span class="token parameter">high<span class="token punctuation">,</span> low</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">log2</span><span class="token punctuation">(</span>high<span class="token punctuation">)</span> <span class="token operator">-</span> Math<span class="token punctuation">.</span><span class="token function">log2</span><span class="token punctuation">(</span>low<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> </code></pre>
+<p>For example, in sRGB, under standard viewing conditions,
+white is defined to have a luminance of 80 cd/m²
+while black is defined to have a luminance of 0.2 cd/m².
+Thus, the dynamic range is 8.6 stops. <a href="#fnref11" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn12" class="footnote-item"><p>For example, on an HDR reference mastering display,
+the small-area peak white might have a luminance of 1000 cd/m²
+while the deepest black has a luminance of 0.05 cd/m².
+Thus, the dynamic range is 14.3 stops. <a href="#fnref12" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn13" class="footnote-item"><p>All trademarks mentioned are the property of their respective owners. <a href="#fnref13" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn14" class="footnote-item"><p>ITU-R BT.2100-2 (2018) <a href="https://www.itu.int/dms_pubrec/itu-r/rec/bt/R-REC-BT.2100-2-201807-I!!PDF-E.pdf"><em>Image parameter values
+for high dynamic range television
+for use in production and international programme exchange</em></a>. <a href="#fnref14" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn15" class="footnote-item"><p>Common practice is to
+create and color grade HDR content
+on an HDR display which uses P3 primaries and D65 white point,
+but then (for example for hardware or software compatibility)
+to convert the image data to BT.2100 <sup class="footnote-ref"><a href="#fn27" id="fnref27">[27]</a></sup>. <a href="#fnref15" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn16" class="footnote-item"><p>ITU-R BT.2020-2 (2015) <a href="%5B"><em>Parameter values for
+ultra-high definition television systems
+for production and international programme exchange</em></a>](<a href="http://www.itu.int/rec/R-REC-BT.2020/en">http://www.itu.int/rec/R-REC-BT.2020/en</a>). <a href="#fnref16" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn17" class="footnote-item"><p>PNG uses the <a href="https://www.w3.org/TR/png-3/#11sBIT"><code>sBIT</code> Significant bits</a> chunk for this purpose. <a href="#fnref17" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn18" class="footnote-item"><p>CIE XYZ <em>is</em> available, but with a stupid equi-energy white point: x=0.3333 y=0.3333. CICP can’t be used to label useful spaces like xyz-d65 or xyz-d50. <a href="#fnref18" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn19" class="footnote-item"><p>Sadly, some of those code values are taken up by
+obsolete or historical video systems that nobody uses anymore.
+And most values are reserved for future standardization. <a href="#fnref19" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn20" class="footnote-item"><p>ICC profiles can describe how to process any color space that has been measured.
+In the case of RGB profiles, that means measuring the color and white primaries
+and the transfer curve;
+for CMY and CMYK profiles,
+it entails measuring several hundred color patches
+to build an inverse lookup table. <a href="#fnref20" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn21" class="footnote-item"><p>The <code>cICP</code> chunk (including chunk name, length and checksum)
+adds 16 bytes,
+much smaller than even a minimal ICC profile.
+<code>iCCP</code> holds compressed profiles but even so
+the size can be significant for smaller files. <a href="#fnref21" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn22" class="footnote-item"><p>Browser engine diversity is a good thing for the web in general.
+Not only does it give users more choice,
+but it makes the web more robust
+and more resistant to beingcontrolled by, and aimed towards, a single browser engine.
+Chris Coyier <a href="https://css-tricks.com/browser-engine-diversity/">explains it well in a CSS Tricks article</a>
+as does Brian Kardell discussing <a href="https://bkardell.com/blog/EcosystemHealth.html">Ecosystem Health</a>. <a href="#fnref22" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn23" class="footnote-item"><p>The original (and higher resolution) image is entitled
+<a href="https://www.davidrevoy.com/article1031/happy-25th-anniversary-krita">Happy 25th anniversary, Krita!</a>
+by <a href="https://www.davidrevoy.com/">David Revoy</a>
+and is used here with explicit permission
+(including for the version with the wrong colors!)
+under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0 International</a> license.</p>
+<p>Both versions used here are modified from the original:</p>
+<ul>
+<li>the image was resampled to a lower resolutions</li>
+<li>the image was converted to BT.2020 color space</li>
+<li>the image was exported as PNG, with no embedded ICC profile and without converting to sRGB</li>
+</ul>
+<p>For the correct image, a <code>cICP</code> chunk was added as described in this blog post</p>
+<p>For the incorrect image, it was not. <a href="#fnref23" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn24" class="footnote-item"><p>Test pages <a href="https://www.wide-gamut.com/test">like this one</a>
+will let you see whether you are using a wide gamut monitor. <a href="#fnref24" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn25" class="footnote-item"><p>Here are the names of all the presets (as of March 2025)
+together with the specifications that define each color space
+and some places where they are commonly used:</p>
 <table>
 <thead>
 <tr>
@@ -264,42 +712,17 @@ which is freely available).</p>
 </tr>
 </tbody>
 </table>
-<p>For Dolby Vision mastering, see <a href="https://professionalsupport.dolby.com/s/article/Dolby-Vision-Content-Creation-Best-Practices-Guide?language=en_US">Dolby Vision Content Creation Best Practices Guide</a></p>
-<p>[^detailed_sizes]
-cICP chunk (including chunk name, length and checksum) adds 16 bytes, much smaller than even a minimal ICC profile.
-<code>iCCP</code> holds compressed profiles but even so (list a few sizes)</p>
-<p>Use the files in the ICC test page as input.
-profile size, PNG size (compressed, plus chunk overhead)</p>
-<p>ICCv2 sRGB (rgswap)  chunk iCCP at offset 0x00025, length 335
-profile name = LittleCMS ICC profile, compression method = 0 (deflate)
-compressed profile = 312 bytes
-uncompressed 1156</p>
-<p>v2-CIE-Lstar chunk iCCP at offset 0x00025, length 8848
-profile name = LittleCMS ICC profile, compression method = 0 (deflate)
-compressed profile = 8825 bytes
-uncompressed 9376</p>
-<p>v2-ProPhoto  chunk iCCP at offset 0x00025, length 666
-profile name = LittleCMS ICC profile, compression method = 0 (deflate)
-compressed profile = 643 bytes
-uncompressed 1260</p>
-<p>v40-DisplayP3 chunk iCCP at offset 0x00025, length 376
-profile name = LittleCMS ICC profile, compression method = 0 (deflate)
-compressed profile = 353 bytes
-uncompressed 536</p>
-<p>v4-CIE-Lstar  chunk iCCP at offset 0x00025, length 624
-profile name = LittleCMS ICC profile, compression method = 0 (deflate)
-compressed profile = 601 bytes
-uncompressed 1144</p>
-<p>v4-ProPhoto chunk iCCP at offset 0x00025, length 616
-profile name = LittleCMS ICC profile, compression method = 0 (deflate)
-compressed profile = 593 bytes
-uncompressed 1156</p>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>Here are the names of all the presets (as of March 2025)
-together with the specifications that define each color space
-and some places where they are commonly used: <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+<p>For Dolby Vision mastering, see <a href="https://professionalsupport.dolby.com/s/article/Dolby-Vision-Content-Creation-Best-Practices-Guide?language=en_US">Dolby Vision Content Creation Best Practices Guide</a> <a href="#fnref25" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn26" class="footnote-item"><p>No, I am not going to get into corresponding colors and chromatic adaptation.
+At least, not in this particular blog article. <a href="#fnref26" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn27" class="footnote-item"><p>It would be pretty useful,
+for good color gamut mapping,
+to know the actual range of colors used for a given image, animation or video.</p>
+<p>PNG Third Edition has a special chunk,
+<a href="https://www.w3.org/TR/png-3/#mDCV-chunk"><code>mDCV</code> Mastering Display Color Volume</a>
+for that very purpose. <a href="#fnref27" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>

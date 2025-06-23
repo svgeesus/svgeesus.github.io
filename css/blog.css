@@ -13,6 +13,12 @@ main a:hover {
 	text-decoration: underline;
 }
 
+li.footnote-item:target > p, li.footnote-item:target > table, li.footnote-item:target > ul {
+		background: #BEC;
+		padding: 4px;
+		border: thin solid #0000040;
+} 
+
 .footnote-ref > a {
 	text-decoration: none;
 }
@@ -55,6 +61,20 @@ time {
 main {
 	text-align: left;
 }
+
+/** ANSI to HTML styles
+*/
+
+.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+.body_foreground { color: #AAAAAA; }
+.body_background { background-color: #000000; }
+.inv_foreground { color: #000000; }
+.inv_background { background-color: #AAAAAA; }
+.ansi1 { font-weight: bold; }
+.ansi32 { color: #00aa00; }
+.ansi33 { color: #aa5500; }
+.ansi37 { color: #F5F1DE; }
+.ansi40 { background-color: #000316; }
 
 /**
  * MIT License
