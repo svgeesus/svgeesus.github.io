@@ -340,8 +340,8 @@ then that chunk is <strong>ancillary</strong>;
 the image can be displayed without understanding this chunk.
 Most chunks are ancillary.</p>
 <p>For some ancillary chunks (like <a href="https://www.w3.org/TR/png-3/#11tIME"><code>tIME</code>, the image last-modification time</a>)
-there is no impact on image display at all;
-for others, like <code>cICP</code> the image is displayed with the wrong colors.</p>
+ignoring the chunk has no impact on image display at all;
+for others, like <code>cICP</code> ignoring it means the image is displayed with the wrong colors.</p>
 <h3 id="adds-just-16-bytes" tabindex="-1"><a class="header-anchor" href="#adds-just-16-bytes">Adds just 16 bytes</a></h3>
 <p>Compared to the <a href="https://www.w3.org/TR/png-3/#11iCCP"><code>iCCP</code> Embedded ICC profile</a> chunk,
 which adds 23 bytes <strong>plus</strong> the size of the compressed profile,
@@ -356,7 +356,7 @@ the largest was 8,825 bytes, so it adds 8,848 in total.</p>
 Implementation Report</a>
 (a dated snapshot, needed for a W3C specification to become a standard)
 lists support in various tools,
-including browsers,</p>
+including browsers.</p>
 <p>CICP in PNG is supported in Chrome (and thus, Edge); Firefox, Safari,
 and two new, up-and coming browsers <sup class="footnote-ref"><a href="#fn22" id="fnref22">[22]</a></sup>,
 <a href="https://servo.org/">Servo</a> and <a href="https://ladybird.org/">Ladybird</a></p>
@@ -442,7 +442,7 @@ File: test_pattern-PQ-cICP-cLLI.png <span class="token punctuation">(</span><spa
   chunk IDAT at offset 0x02055, length <span class="token number">1499</span>
   chunk IEND at offset 0x0263c, length <span class="token number">0</span>
 No errors detected <span class="token keyword">in</span> test_pattern-PQ-cICP-cLLI.png <span class="token punctuation">(</span><span class="token number">6</span> chunks, <span class="token number">99.9</span>% compression<span class="token punctuation">)</span>.</code></pre>
-<h3 id="the-png-cicp_editor-utility" tabindex="-1"><a class="header-anchor" href="#the-png-cicp_editor-utility">The <code>png-cicp_editor</code> utility</a></h3>
+<h3 id="the-png_cicp_editor-utility" tabindex="-1"><a class="header-anchor" href="#the-png_cicp_editor-utility">The <code>png_cicp_editor</code> utility</a></h3>
 <p>Some programs will export a PNG,
 but expect you to pass along the color space info yourself
 to whatever program is next in your pipeline.
@@ -455,9 +455,9 @@ and add <code>cICP</code> without otherwise altering the image.</p>
 who is the chair of the W3C PNG Working Group,
 wrote <a href="https://github.com/ProgramMax/png_cicp_editor">a nice little command-line utility</a>
 to do that one specific task.
-It is called <code>png-cicp_editor</code>.
+It is called <code>png_cicp_editor</code>.
 Here it is being used to label a PNG image as display P3:</p>
-<pre class="language-bash"><code class="language-bash">png-cicp_editor <span class="token function">add</span> <span class="token parameter variable">--preset</span> display-p3 test.png</code></pre>
+<pre class="language-bash"><code class="language-bash">png_cicp_editor <span class="token function">add</span> <span class="token parameter variable">--preset</span> display-p3 test.png</code></pre>
 <p>Notice that your image is modified in-place.
 Notice too that the actual image data is <em>not changed</em> in any way
 (it does <strong>not</strong> do color space conversion),
@@ -465,7 +465,7 @@ this utility simply inserts the missing color space labelling
 that should have been there anyway.</p>
 <p>Here is another example, marking an HDR image
 as being in the BT.2100 color space with PQ transfer function:</p>
-<pre class="language-bash"><code class="language-bash">png-cicp_editor <span class="token function">add</span> <span class="token parameter variable">--preset</span> bt.2100-pq test2.png</code></pre>
+<pre class="language-bash"><code class="language-bash">png_cicp_editor <span class="token function">add</span> <span class="token parameter variable">--preset</span> bt.2100-pq test2.png</code></pre>
 <p>The available presets <sup class="footnote-ref"><a href="#fn25" id="fnref25">[25]</a></sup> cover the most common
 color spaces which will be encountered in practice.</p>
 <p>But to avoid clutter, they don’t cover all possible options.
@@ -476,7 +476,7 @@ Then you can provide your four numbers directly
 <a href="https://www.itu.int/rec/T-REC-H.273">ITU H.273 specification</a>,
 which is freely available).</p>
 <p>For example, to label an RGB image decoded from an old <a href="https://en.wikipedia.org/wiki/SECAM">SECAM video</a>:</p>
-<pre class="language-bash"><code class="language-bash">png-cicp_editor <span class="token function">add</span> <span class="token parameter variable">--color_primaries</span> <span class="token number">5</span> <span class="token parameter variable">--transfer_function</span> <span class="token number">4</span> <span class="token parameter variable">--matrix_coefficients</span> <span class="token number">0</span> <span class="token parameter variable">--video_full_range_flag</span> <span class="token number">1</span> secam-test.png</code></pre>
+<pre class="language-bash"><code class="language-bash">png_cicp_editor <span class="token function">add</span> <span class="token parameter variable">--color_primaries</span> <span class="token number">5</span> <span class="token parameter variable">--transfer_function</span> <span class="token number">4</span> <span class="token parameter variable">--matrix_coefficients</span> <span class="token number">0</span> <span class="token parameter variable">--video_full_range_flag</span> <span class="token number">1</span> secam-test.png</code></pre>
 <h2 id="geeknotes" tabindex="-1"><a class="header-anchor" href="#geeknotes">Geeknotes</a></h2>
 <!-- Use the files in the ICC test page as input.
 profile size, PNG size (compressed, plus chunk overhead)
@@ -616,7 +616,7 @@ the size can be significant for smaller files. <a href="#fnref21" class="footnot
 <li id="fn22" class="footnote-item"><p>Browser engine diversity is a good thing for the web in general.
 Not only does it give users more choice,
 but it makes the web more robust
-and more resistant to beingcontrolled by, and aimed towards, a single browser engine.
+and more resistant to being controlled by, and aimed towards, a single browser engine.
 Chris Coyier <a href="https://css-tricks.com/browser-engine-diversity/">explains it well in a CSS Tricks article</a>
 as does Brian Kardell discussing <a href="https://bkardell.com/blog/EcosystemHealth.html">Ecosystem Health</a>. <a href="#fnref22" class="footnote-backref">↩︎</a></p>
 </li>

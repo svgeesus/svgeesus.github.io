@@ -359,8 +359,8 @@ the image can be displayed without understanding this chunk.
 Most chunks are ancillary.
 
 For some ancillary chunks (like [`tIME`, the image last-modification time](https://www.w3.org/TR/png-3/#11tIME))
-there is no impact on image display at all;
-for others, like `cICP` the image is displayed with the wrong colors.
+ignoring the chunk has no impact on image display at all;
+for others, like `cICP`, ignoring it means the image is displayed with the wrong colors.
 
 ### Adds just 16 bytes
 
@@ -381,7 +381,7 @@ The [`cICP` section of the
 Implementation Report](https://w3c.github.io/png/Implementation_Report_3e/#cicp)
 (a dated snapshot, needed for a W3C specification to become a standard)
 lists support in various tools,
-including browsers,
+including browsers.
 
 CICP in PNG is supported in Chrome (and thus, Edge); Firefox, Safari,
 and two new, up-and coming browsers [^diversity],
@@ -495,7 +495,7 @@ No errors detected in test_pattern-PQ-cICP-cLLI.png (6 chunks, 99.9% compression
 ```
 
 
-### The `png-cicp_editor` utility
+### The `png_cicp_editor` utility
 
 Some programs will export a PNG,
 but expect you to pass along the color space info yourself
@@ -511,11 +511,11 @@ and add `cICP` without otherwise altering the image.
 who is the chair of the W3C PNG Working Group,
 wrote [a nice little command-line utility](https://github.com/ProgramMax/png_cicp_editor)
 to do that one specific task.
-It is called `png-cicp_editor`.
+It is called `png_cicp_editor`.
 Here it is being used to label a PNG image as display P3:
 
 ```bash
-png-cicp_editor add --preset display-p3 test.png
+png_cicp_editor add --preset display-p3 test.png
 ```
 
 Notice that your image is modified in-place.
@@ -528,7 +528,7 @@ Here is another example, marking an HDR image
 as being in the BT.2100 color space with PQ transfer function:
 
 ```bash
-png-cicp_editor add --preset bt.2100-pq test2.png
+png_cicp_editor add --preset bt.2100-pq test2.png
 ```
 
 The available presets [^preset_list] cover the most common
@@ -545,7 +545,7 @@ which is freely available).
 For example, to label an RGB image decoded from an old [SECAM video](https://en.wikipedia.org/wiki/SECAM):
 
 ```bash
-png-cicp_editor add --color_primaries 5 --transfer_function 4 --matrix_coefficients 0 --video_full_range_flag 1 secam-test.png
+png_cicp_editor add --color_primaries 5 --transfer_function 4 --matrix_coefficients 0 --video_full_range_flag 1 secam-test.png
 ```
 
 
@@ -672,7 +672,7 @@ the size can be significant for smaller files.
 [^diversity]: Browser engine diversity is a good thing for the web in general.
 Not only does it give users more choice,
 but it makes the web more robust
-and more resistant to beingcontrolled by, and aimed towards, a single browser engine.
+and more resistant to being controlled by, and aimed towards, a single browser engine.
 Chris Coyier [explains it well in a CSS Tricks article](https://css-tricks.com/browser-engine-diversity/)
 as does Brian Kardell discussing [Ecosystem Health](https://bkardell.com/blog/EcosystemHealth.html).
 
