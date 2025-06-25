@@ -48,43 +48,60 @@
 
 	<p class="date">
 		Published on
-		<time datetime="2025-06-25T17:32:28.274Z">25 June 2025</time>
+		<time datetime="2025-06-26T00:00:00.000Z">25 June 2025</time>
 	</p>
 
 </header>
 
 
 <p>Before CSS Color 3, each syntactic form in CSS used the  Red-Green-Blue color model directly.</p>
-<p>It is often asserted that color pickers using color models with orthogonal perceptual attributes (such as Lightness, Colorfulness, Chroma, Saturation, Hue) have higher usability than RGB[Schwartz] although the early studies have significant methodological flawsii and more recent research finds that other factors such as interface design and responsive feedback are much more important in affecting the speed and accuracy of color selection than the color modeliii. While it seems intuitively reasonable, the usability benefit has yet to be demonstrated in a well-controlled study.</p>
-<p>Still, this assumed increase in usability was the reason that the hsl() (Hue, Saturation, Lightness) model [Joblove] was added in 2002 [csshsl], followed later by the alpha-including hsla() form.</p>
-<p>footnotes</p>
-<p>The CSS Color 3 specification [csshsl] asserted “The advantage of HSL over RGB is that it is far more intuitive: you can guess at the colors you want, and then tweak. It is also easier to create sets of matching colors (by keeping the hue the same and varying the lightness/darkness, and saturation)”. However, no published Human Computer Interaction study has demonstrated this.</p>
-<p>The oft-cited study by Schwartz [Schwartz] was deeply flawed: the interface provided no user feedback on the effect of moving the featureless gray sliders, and there was no navigational hint as to the current position in the color model. Test subjects were essentially proceeding by guessing [DKModels]. In addition, closeness to the target color was measured by Euclidean distance in gamma-encoded RGB space rather than by using an established color-difference metric.</p>
-<p>“With these interfaces we could not find a significant difference between the accuracy and speed of the RGB and HSV models, but did find that level of feedback had a significant effect on accuracy of the final match.” [DKFeedback]</p>
-<p>references</p>
-<p>csshsl. World Wide Web Consortium (2002)
-CSS3 module: Color: 4.2.4. HSL color values
-<a href="https://www.w3.org/TR/2002/WD-css3-color-20020219/#hsl-color">https://www.w3.org/TR/2002/WD-css3-color-20020219/#hsl-color</a>
-(accessed $$)</p>
-<p>Schwartz.
-Schwarz, M., Cowan, W. and Beatty, J.  (1987)
-An experimental comparison of RGB, YIQ, LAB, HSV, and opponent color models.
-ACM Transactions on Graphics 6, 2 (April 1987) 123-158.</p>
-<p>DKModels.
-Douglas, S.A., and A.E. Kirkpatrick (1996).
-Do Color Models Really Make a Difference?
+<p>It is often asserted <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> that color pickers using color models with orthogonal perceptual attributes (such as Lightness, Colorfulness, Chroma, Saturation, Hue) have higher usability than RGB; although the early studies have significant methodological flaws and more recent research finds that other factors such as interface design and responsive feedback are much more important in affecting the speed and accuracy of color selection than the color model.</p>
+<p>While it seems intuitively reasonable, the usability benefit has yet to be demonstrated in a well-controlled study. The oft-cited study by Schwartz <sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> was deeply flawed: the interface provided no user feedback on the effect of moving the featureless gray sliders, and there was no navigational hint as to the current position in the color model. Test subjects were essentially proceeding by guessing <sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>.</p>
+<blockquote>
+<p>“With these interfaces we could not find a significant difference between the accuracy and speed of the RGB and HSV models, but did find that level of feedback had a significant effect on accuracy of the final match.” <sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></p>
+</blockquote>
+<p>In addition, in the Schwartz study, closeness to the target color was measured by Euclidean distance in gamma-encoded RGB space, rather than by using an established color-difference metric such as CIE Delta-E.</p>
+<p>Still, this assumed increase in usability was the reason that the <code>hsl()</code> (Hue, Saturation, Lightness) model <sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup> was added in to CSS Color 3 in 2002 <sup class="footnote-ref"><a href="#fn1" id="fnref1:1">[1:1]</a></sup>, followed later by the alpha-including <code>hsla()</code> form.</p>
+<p>This is why CSS Color 4 has some warnings about HSL</p>
+<blockquote>
+<p>“A disadvantage of HSL over OkLCh is that hue manipulation changes the visual lightness, and that hues are not evenly spaced apart.” <sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup></p>
+</blockquote>
+<h2 id="geeknotes" tabindex="-1"><a class="header-anchor" href="#geeknotes">Geeknotes</a></h2>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>The <a href="https://www.w3.org/TR/2002/WD-css3-color-20020219/#hsl-color">CSS Color 3 specification</a> asserted</p>
+<blockquote>
+<p>“The advantage of HSL over RGB is that it is far more intuitive: you can guess at the colors you want, and then tweak. It is also easier to create sets of matching colors (by keeping the hue the same and varying the lightness/darkness, and saturation)”.</p>
+</blockquote>
+<p>However, no published Human Computer Interaction study has demonstrated this. <a href="#fnref1" class="footnote-backref">↩︎</a> <a href="#fnref1:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>Schwarz, M., Cowan, W. and Beatty, J.  (1987)
+<em>An experimental comparison of RGB, YIQ, LAB, HSV, and opponent color models.</em>
+ACM Transactions on Graphics <strong>6, 2</strong> (April 1987) 123-158.
+<a href="https://www.mendeley.com/catalogue/c3fee117-0b6a-355d-a569-20172cfa905c/">abstract</a> <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>Douglas, S.A., and A.E. Kirkpatrick (1996).
+<em>Do Color Models Really Make a Difference?</em>
 Proceedings of the SIGCHI conference on Human Factors in Computing systems
 (April 1996) pp.399-405.
-<a href="https://web.archive.org/web/20080507020049/https://sigchi.org/chi96/proceedings/papers/Douglas/sad_txt.htm">https://web.archive.org/web/20080507020049/https://sigchi.org/chi96/proceedings/papers/Douglas/sad_txt.htm</a></p>
-<p>DKFeedback.
-Douglas, S.A.; Kirkpatrick, T. (1996)
-The Effect of Feedback on a Color Selection Interface
+<a href="https://web.archive.org/web/20080507020049/https://sigchi.org/chi96/proceedings/papers/Douglas/sad_txt.htm">download</a> <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p>Douglas, S.A.; Kirkpatrick, T. (1996)
+<em>The Effect of Feedback on a Color Selection Interface</em>
 Proceedings of Graphics Interface '96: Toronto, Ontario, Canada, 22 - 24 May 1996, 47-54
 doi: 10.20380/GI1996.06
-Joblove.
-Joblove, G. H.; Greenberg, D. (1978).
-Color spaces for computer graphics. Computer Graphics. 12 (3): 20–25 (August 1978).
-doi:10.1145/965139.807362.</p>
+<a href="https://graphicsinterface.org/wp-content/uploads/gi1996-6.pdf">download</a> <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p>Joblove, G. H.; Greenberg, D. (1978).
+<em>Color spaces for computer graphics</em>. Computer Graphics. <strong>12 (3)</strong>: 20–25 (August 1978).
+doi:10.1145/965139.807362.
+<a href="https://dl.acm.org/doi/10.1145/965139.807362">download</a> <a href="#fnref5" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn6" class="footnote-item"><p>CSS Color 4, <a href="https://drafts.csswg.org/css-color-4/#the-hsl-notation">HSL Colors: <code>hsl()</code> and <code>hsla()</code> functions</a> <a href="#fnref6" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
 </main>
 

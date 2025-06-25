@@ -13,7 +13,7 @@ main a:hover {
 	text-decoration: underline;
 }
 
-li.footnote-item:target > p, li.footnote-item:target > table, li.footnote-item:target > ul {
+li.footnote-item:target > p, li.footnote-item:target > table, li.footnote-item:target > ul, li.footnote-item:target > blockquote {
 		background: #BEC;
 		padding: 4px;
 		border: thin solid #0000040;
