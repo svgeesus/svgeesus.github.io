@@ -120,7 +120,7 @@ and what was left out (common color spaces for still images, like ProPhoto RGB).
 
 But CICP isn't just for video anymore;
 it has been adopted by still-image and animation formats
-like [AVI](https://github.com/AOMediaCodec/libavif/wiki/CICP) and
+like [AVIF](https://github.com/AOMediaCodec/libavif/wiki/CICP) and
 [JPEG-XL](https://www.loc.gov/preservation/digital/formats/fdd/fdd000536.shtml#factors). 
 And now, PNG as well.
 
@@ -252,7 +252,7 @@ it is also better to store it explicitly in this version.
 
 The color spaces used as examples so far in this post have all been
  _Standard Dynamic Range_ (SDR),
-meaning that the media white (as in CSS `white` of `RGB #FFFFFF`) 
+meaning that the media white (as in CSS `white` or `RGB #FFFFFF`) 
 is also the brightest color that can be displayed.
 Media white can be comfortably viewed, over the whole screen.
 
@@ -306,7 +306,7 @@ and is now a part of **ITU-R BT.2100**.
 
 The third is **Hybrid Log Gamma (HLG)**,
 an HDR space used for live broadcast such as sports,
-and also for iPhone video clips [iPhone-HLG].
+and also for iPhone video clips [^iPhone-HLG].
 
 In CICP, HLG is indicated with transfer value 18:
 

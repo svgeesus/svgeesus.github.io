@@ -280,7 +280,7 @@ an HDR space used for color graded content such as movies.</p>
 and is now a part of <strong>ITU-R BT.2100</strong>.</p>
 <p>The third is <strong>Hybrid Log Gamma (HLG)</strong>,
 an HDR space used for live broadcast such as sports,
-and also for iPhone video clips [iPhone-HLG].</p>
+and also for iPhone video clips <sup class="footnote-ref"><a href="#fn18" id="fnref18">[18]</a></sup>.</p>
 <p>In CICP, HLG is indicated with transfer value 18:</p>
 <p><img src="./img/H.273-transfer-18.png" alt="primaries 18"></p>
 <p>HLG was first defined in <strong>ARIB STD-B67</strong>
@@ -304,16 +304,16 @@ here is a quick comparison.</p>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">RGB, YCC, XYZ <sup class="footnote-ref"><a href="#fn18" id="fnref18">[18]</a></sup></td>
+<td style="text-align:center">RGB, YCC, XYZ <sup class="footnote-ref"><a href="#fn19" id="fnref19">[19]</a></sup></td>
 <td style="text-align:center">RGB, CMY, CMYK, Lab</td>
 </tr>
 <tr>
-<td style="text-align:center">list of known spaces<sup class="footnote-ref"><a href="#fn19" id="fnref19">[19]</a></sup></td>
-<td style="text-align:center">any space <sup class="footnote-ref"><a href="#fn20" id="fnref20">[20]</a></sup></td>
+<td style="text-align:center">list of known spaces<sup class="footnote-ref"><a href="#fn20" id="fnref20">[20]</a></sup></td>
+<td style="text-align:center">any space <sup class="footnote-ref"><a href="#fn21" id="fnref21">[21]</a></sup></td>
 </tr>
 <tr>
 <td style="text-align:center">small</td>
-<td style="text-align:center">larger to very large (CMYK) <sup class="footnote-ref"><a href="#fn21" id="fnref21">[21]</a></sup></td>
+<td style="text-align:center">larger to very large (CMYK) <sup class="footnote-ref"><a href="#fn22" id="fnref22">[22]</a></sup></td>
 </tr>
 <tr>
 <td style="text-align:center">what it is</td>
@@ -341,7 +341,7 @@ the image can be displayed without understanding this chunk.
 Most chunks are ancillary.</p>
 <p>For some ancillary chunks (like <a href="https://www.w3.org/TR/png-3/#11tIME"><code>tIME</code>, the image last-modification time</a>)
 ignoring the chunk has no impact on image display at all;
-for others, like <code>cICP</code> ignoring it means the image is displayed with the wrong colors.</p>
+for others, like <code>cICP</code>, ignoring it means the image is displayed with the wrong colors.</p>
 <h3 id="adds-just-16-bytes" tabindex="-1"><a class="header-anchor" href="#adds-just-16-bytes">Adds just 16 bytes</a></h3>
 <p>Compared to the <a href="https://www.w3.org/TR/png-3/#11iCCP"><code>iCCP</code> Embedded ICC profile</a> chunk,
 which adds 23 bytes <strong>plus</strong> the size of the compressed profile,
@@ -358,16 +358,16 @@ Implementation Report</a>
 lists support in various tools,
 including browsers.</p>
 <p>CICP in PNG is supported in Chrome (and thus, Edge); Firefox, Safari,
-and two new, up-and coming browsers <sup class="footnote-ref"><a href="#fn22" id="fnref22">[22]</a></sup>,
+and two new, up-and coming browsers <sup class="footnote-ref"><a href="#fn23" id="fnref23">[23]</a></sup>,
 <a href="https://servo.org/">Servo</a> and <a href="https://ladybird.org/">Ladybird</a></p>
-<p>To demonstrate, here is a sample PNG image <sup class="footnote-ref"><a href="#fn23" id="fnref23">[23]</a></sup>
+<p>To demonstrate, here is a sample PNG image <sup class="footnote-ref"><a href="#fn24" id="fnref24">[24]</a></sup>
 which uses <code>cICP</code> to label the color space,
 which in this case is BT.2020.</p>
 <p><img src="./img/revoy-cICP-bt.2020.png" alt="image displayed correctly"></p>
 <p>Now, if your browser did not support <code>cICP</code> in PNG images,
 that image would look the same as this, incorrect, washed-out one:</p>
 <p><img src="./img/revoy-unlabelled-srgb.png" alt="washed-out image because cICP is unsupported"></p>
-<p>Sadly, if your browser is displaying on an old, sRGB-only screen <sup class="footnote-ref"><a href="#fn24" id="fnref24">[24]</a></sup>
+<p>Sadly, if your browser is displaying on an old, sRGB-only screen <sup class="footnote-ref"><a href="#fn25" id="fnref25">[25]</a></sup>
 the images will also look similar,
 but that is the best your screen can do.
 Luckily, most modern hardware can display most of the Display P3 gamut.</p>
@@ -466,7 +466,7 @@ that should have been there anyway.</p>
 <p>Here is another example, marking an HDR image
 as being in the BT.2100 color space with PQ transfer function:</p>
 <pre class="language-bash"><code class="language-bash">png_cicp_editor <span class="token function">add</span> <span class="token parameter variable">--preset</span> bt.2100-pq test2.png</code></pre>
-<p>The available presets <sup class="footnote-ref"><a href="#fn25" id="fnref25">[25]</a></sup> cover the most common
+<p>The available presets <sup class="footnote-ref"><a href="#fn26" id="fnref26">[26]</a></sup> cover the most common
 color spaces which will be encountered in practice.</p>
 <p>But to avoid clutter, they don’t cover all possible options.
 Suppose you have a PNG image converted from some old video format,
@@ -531,7 +531,7 @@ it doesn’t matter what their exact emission spectrum is
 (how much light they produce at each wavelength).
 For objects that reflect light,
 it also doesn’t matter, <em><strong>if</strong> the light source that is illuminating them is constant</em>.
-Otherwise, they may or may not match. This is called <em>metamerism</em> <sup class="footnote-ref"><a href="#fn26" id="fnref26">[26]</a></sup>. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+Otherwise, they may or may not match. This is called <em>metamerism</em> <sup class="footnote-ref"><a href="#fn27" id="fnref27">[27]</a></sup>. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
 </li>
 <li id="fn3" class="footnote-item"><p><a href="https://en.wikipedia.org/wiki/File:CIE1931xy_gamut_comparison_of_sRGB_P3_Rec2020.svg">WikiMedia Commons image</a> by
 Andrew Somers, used under a CC-BY-SA 4.0 license <a href="#fnref3" class="footnote-backref">↩︎</a></p>
@@ -586,7 +586,7 @@ for use in production and international programme exchange</em></a>. <a href="#f
 create and color grade HDR content
 on an HDR display which uses P3 primaries and D65 white point,
 but then (for example for hardware or software compatibility)
-to convert the image data to BT.2100 <sup class="footnote-ref"><a href="#fn27" id="fnref27">[27]</a></sup>. <a href="#fnref15" class="footnote-backref">↩︎</a></p>
+to convert the image data to BT.2100 <sup class="footnote-ref"><a href="#fn28" id="fnref28">[28]</a></sup>. <a href="#fnref15" class="footnote-backref">↩︎</a></p>
 </li>
 <li id="fn16" class="footnote-item"><p>ITU-R BT.2020-2 (2015) <a href="%5B"><em>Parameter values for
 ultra-high definition television systems
@@ -594,33 +594,35 @@ for production and international programme exchange</em></a>](<a href="http://ww
 </li>
 <li id="fn17" class="footnote-item"><p>PNG uses the <a href="https://www.w3.org/TR/png-3/#11sBIT"><code>sBIT</code> Significant bits</a> chunk for this purpose. <a href="#fnref17" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn18" class="footnote-item"><p>CIE XYZ <em>is</em> available, but with a stupid equi-energy white point: x=0.3333 y=0.3333. CICP can’t be used to label useful spaces like xyz-d65 or xyz-d50. <a href="#fnref18" class="footnote-backref">↩︎</a></p>
+<li id="fn18" class="footnote-item"><p>See the Apple support article <a href="https://support.apple.com/en-us/102241">Edit HDR video recorded on an iPhone or iPad</a>. The color space is (incorrectly) called “Wide Gamut HDR - Rec. 2020 HLG” in that article. <a href="#fnref18" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn19" class="footnote-item"><p>Sadly, some of those code values are taken up by
+<li id="fn19" class="footnote-item"><p>CIE XYZ <em>is</em> available, but with a stupid equi-energy white point: x=0.3333 y=0.3333. CICP can’t be used to label useful spaces like xyz-d65 or xyz-d50. <a href="#fnref19" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn20" class="footnote-item"><p>Sadly, some of those code values are taken up by
 obsolete or historical video systems that nobody uses anymore.
-And most values are reserved for future standardization. <a href="#fnref19" class="footnote-backref">↩︎</a></p>
+And most values are reserved for future standardization. <a href="#fnref20" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn20" class="footnote-item"><p>ICC profiles can describe how to process any color space that has been measured.
+<li id="fn21" class="footnote-item"><p>ICC profiles can describe how to process any color space that has been measured.
 In the case of RGB profiles, that means measuring the color and white primaries
 and the transfer curve;
 for CMY and CMYK profiles,
 it entails measuring several hundred color patches
-to build an inverse lookup table. <a href="#fnref20" class="footnote-backref">↩︎</a></p>
+to build an inverse lookup table. <a href="#fnref21" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn21" class="footnote-item"><p>The <code>cICP</code> chunk (including chunk name, length and checksum)
+<li id="fn22" class="footnote-item"><p>The <code>cICP</code> chunk (including chunk name, length and checksum)
 adds 16 bytes,
 much smaller than even a minimal ICC profile.
 <code>iCCP</code> holds compressed profiles but even so
-the size can be significant for smaller files. <a href="#fnref21" class="footnote-backref">↩︎</a></p>
+the size can be significant for smaller files. <a href="#fnref22" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn22" class="footnote-item"><p>Browser engine diversity is a good thing for the web in general.
+<li id="fn23" class="footnote-item"><p>Browser engine diversity is a good thing for the web in general.
 Not only does it give users more choice,
 but it makes the web more robust
 and more resistant to being controlled by, and aimed towards, a single browser engine.
 Chris Coyier <a href="https://css-tricks.com/browser-engine-diversity/">explains it well in a CSS Tricks article</a>
-as does Brian Kardell discussing <a href="https://bkardell.com/blog/EcosystemHealth.html">Ecosystem Health</a>. <a href="#fnref22" class="footnote-backref">↩︎</a></p>
+as does Brian Kardell discussing <a href="https://bkardell.com/blog/EcosystemHealth.html">Ecosystem Health</a>. <a href="#fnref23" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn23" class="footnote-item"><p>The original (and higher resolution) image is entitled
+<li id="fn24" class="footnote-item"><p>The original (and higher resolution) image is entitled
 <a href="https://www.davidrevoy.com/article1031/happy-25th-anniversary-krita">Happy 25th anniversary, Krita!</a>
 by <a href="https://www.davidrevoy.com/">David Revoy</a>
 and is used here with explicit permission
@@ -633,12 +635,12 @@ under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0 I
 <li>the image was exported as PNG, with no embedded ICC profile and without converting to sRGB</li>
 </ul>
 <p>For the correct image, a <code>cICP</code> chunk was added as described in this blog post</p>
-<p>For the incorrect image, it was not. <a href="#fnref23" class="footnote-backref">↩︎</a></p>
+<p>For the incorrect image, it was not. <a href="#fnref24" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn24" class="footnote-item"><p>Test pages <a href="https://www.wide-gamut.com/test">like this one</a>
-will let you see whether you are using a wide gamut monitor. <a href="#fnref24" class="footnote-backref">↩︎</a></p>
+<li id="fn25" class="footnote-item"><p>Test pages <a href="https://www.wide-gamut.com/test">like this one</a>
+will let you see whether you are using a wide gamut monitor. <a href="#fnref25" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn25" class="footnote-item"><p>Here are the names of all the presets (as of March 2025)
+<li id="fn26" class="footnote-item"><p>Here are the names of all the presets (as of March 2025)
 together with the specifications that define each color space
 and some places where they are commonly used:</p>
 <table>
@@ -712,17 +714,17 @@ and some places where they are commonly used:</p>
 </tr>
 </tbody>
 </table>
-<p>For Dolby Vision mastering, see <a href="https://professionalsupport.dolby.com/s/article/Dolby-Vision-Content-Creation-Best-Practices-Guide?language=en_US">Dolby Vision Content Creation Best Practices Guide</a> <a href="#fnref25" class="footnote-backref">↩︎</a></p>
+<p>For Dolby Vision mastering, see <a href="https://professionalsupport.dolby.com/s/article/Dolby-Vision-Content-Creation-Best-Practices-Guide?language=en_US">Dolby Vision Content Creation Best Practices Guide</a> <a href="#fnref26" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn26" class="footnote-item"><p>No, I am not going to get into corresponding colors and chromatic adaptation.
-At least, not in this particular blog article. <a href="#fnref26" class="footnote-backref">↩︎</a></p>
+<li id="fn27" class="footnote-item"><p>No, I am not going to get into corresponding colors and chromatic adaptation.
+At least, not in this particular blog article. <a href="#fnref27" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn27" class="footnote-item"><p>It would be pretty useful,
+<li id="fn28" class="footnote-item"><p>It would be pretty useful,
 for good color gamut mapping,
 to know the actual range of colors used for a given image, animation or video.</p>
 <p>PNG Third Edition has a special chunk,
 <a href="https://www.w3.org/TR/png-3/#mDCV-chunk"><code>mDCV</code> Mastering Display Color Volume</a>
-for that very purpose. <a href="#fnref27" class="footnote-backref">↩︎</a></p>
+for that very purpose. <a href="#fnref28" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
