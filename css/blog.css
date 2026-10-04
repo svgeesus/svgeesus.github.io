@@ -58,6 +58,10 @@ time {
 	color: hsl(220 10% 30%);
 }
 
+figcaption {
+	font-style: italic;
+}
+
 main {
 	text-align: left;
 }
